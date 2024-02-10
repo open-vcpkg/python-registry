@@ -1,18 +1,55 @@
 set(ENV{SETUPTOOLS_SCM_PRETEND_VERSION} "${VERSION}")
 
+function(vcpkg_from_pythonhosted)
+  cmake_parse_arguments(
+    PARSE_ARGV 0
+    "arg"
+    ""
+    "OUT_SOURCE_PATH;PACKAGE_NAME;VERSION;SHA512"
+    "")
+
+  if(DEFINED arg_UNPARSED_ARGUMENTS)
+    message(WARNING "vcpkg_from_pythonhosted was passed extra arguments: ${arg_UNPARSED_ARGUMENTS}")
+  endif()
+
+  if(NOT DEFINED arg_OUT_SOURCE_PATH)
+      message(FATAL_ERROR "OUT_SOURCE_PATH must be specified.")
+  endif()
+  if(NOT DEFINED arg_PACKAGE_NAME)
+    message(FATAL_ERROR "PACKAGE_NAME must be specified.")
+  endif()
+  if(NOT DEFINED arg_VERSION)
+    message(FATAL_ERROR "VERSION must be specified.")
+  endif()
+
+  string(SUBSTRING "${arg_PACKAGE_NAME}" 0 1 _PACKAGE_PREFIX)
+  vcpkg_download_distfile(ARCHIVE
+    URLS "https://files.pythonhosted.org/packages/source/${_PACKAGE_PREFIX}/${arg_PACKAGE_NAME}/${arg_PACKAGE_NAME}-${arg_VERSION}.tar.gz"
+    FILENAME "${arg_PACKAGE_NAME}-${arg_VERSION}.tar.gz"
+    SHA512 ${arg_SHA512}
+  )
+
+  vcpkg_extract_source_archive_ex(
+    OUT_SOURCE_PATH SOURCE_PATH
+    ARCHIVE ${ARCHIVE}
+  )
+
+  set("${arg_OUT_SOURCE_PATH}" "${SOURCE_PATH}" PARENT_SCOPE)
+endfunction()
+
 function(vcpkg_python_build_wheel)
-    cmake_parse_arguments(
-        PARSE_ARGV 0
-        "arg"
-        "ISOLATE"
-        "SOURCE_PATH;OUTPUT_WHEEL"
-        "OPTIONS"
-    )
+  cmake_parse_arguments(
+    PARSE_ARGV 0
+    "arg"
+    "ISOLATE"
+    "SOURCE_PATH;OUTPUT_WHEEL"
+    "OPTIONS"
+  )
 
   set(build_ops "${arg_OPTIONS}")
 
   if(NOT arg_ISOLATE)
-	  #  list(APPEND build_ops "-n")
+    list(APPEND build_ops "-n")
   endif()
 
   set(z_vcpkg_wheeldir "${CURRENT_PACKAGES_DIR}/wheels")
@@ -20,9 +57,9 @@ function(vcpkg_python_build_wheel)
   file(MAKE_DIRECTORY "${z_vcpkg_wheeldir}")
 
   message(STATUS "Building python wheel!")
-  vcpkg_execute_required_process(COMMAND "${PYTHON3}" -m build -w ${build_ops} -o "${z_vcpkg_wheeldir}" "${arg_SOURCE_PATH}"
+  vcpkg_execute_required_process(COMMAND "${PYTHON3}" -m gpep517 build-wheel --wheel-dir "${z_vcpkg_wheeldir}" --output-fd 2
     LOGNAME "python-build-${TARGET_TRIPLET}"
-    WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
+    WORKING_DIRECTORY "${arg_SOURCE_PATH}"
   )
   message(STATUS "Finished building python wheel!")
 
@@ -32,13 +69,13 @@ function(vcpkg_python_build_wheel)
 endfunction()
 
 function(vcpkg_python_install_wheel)
-    cmake_parse_arguments(
-        PARSE_ARGV 0
-        "arg"
-        ""
-        "WHEEL"
-        ""
-    )
+  cmake_parse_arguments(
+    PARSE_ARGV 0
+    "arg"
+    ""
+    "WHEEL"
+    ""
+  )
 
   set(build_ops "")
 

@@ -5,9 +5,6 @@
   "license": "MIT",
   "supports": "native",
   "dependencies": [
-    "py-build",
-    "py-flit-core",
-    "py-installer",
     "python3"
   ]
 }

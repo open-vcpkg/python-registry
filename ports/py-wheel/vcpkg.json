@@ -5,9 +5,7 @@
   "homepage": "https://github.com/pypa/wheel",
   "license": "MIT",
   "dependencies": [
-    "py-build",
-    "py-installer",
-    "python3",
+    "py-gpep517",
     {
       "name": "vcpkg-python-scripts",
       "host": true

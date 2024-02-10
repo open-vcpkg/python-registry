@@ -5,9 +5,6 @@
   "homepage": "python-build.readthedocs.io/en/stable/",
   "license": "MIT",
   "dependencies": [
-    "py-pyproject-hooks",
-    "py-setuptools",
-    "py-wheel",
     "python3"
   ]
 }
