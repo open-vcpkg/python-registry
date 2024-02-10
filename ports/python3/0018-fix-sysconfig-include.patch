@@ -7,10 +7,10 @@ index ebe371182..e351df7da 100644
          'platlib': '{platbase}/{platlibdir}/python{py_version_short}/site-packages',
          'include':
 -            '{installed_base}/include/python{py_version_short}{abiflags}',
-+            '{installed_base}/../../include/python{py_version_short}{abiflags}',
++            '{installed_base}/include/python{py_version_short}{abiflags}',
          'platinclude':
 -            '{installed_platbase}/include/python{py_version_short}{abiflags}',
-+            '{installed_platbase}/../../include/python{py_version_short}{abiflags}',
++            '{installed_platbase}/include/python{py_version_short}{abiflags}',
          'scripts': '{base}/bin',
          'data': '{base}',
          },
@@ -20,8 +20,8 @@ index ebe371182..e351df7da 100644
          'platlib': '{base}/Lib/site-packages',
 -        'include': '{installed_base}/Include',
 -        'platinclude': '{installed_base}/Include',
-+        'include': '{installed_base}/../../include/python{py_version_short}{abiflags}',
-+        'platinclude': '{installed_base}/../../include/python{py_version_short}{abiflags}',
++        'include': '{installed_base}/include/python{py_version_short}{abiflags}',
++        'platinclude': '{installed_base}/include/python{py_version_short}{abiflags}',
          'scripts': '{base}/Scripts',
          'data': '{base}',
          },
