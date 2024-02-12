@@ -53,10 +53,16 @@ jobs:
           echo "PATH=$VCPKG_ROOT;$PATH" >> $GITHUB_ENV
           echo "VCPKG_ROOT=$VCPKG_ROOT" >> $GITHUB_ENV
 
+
       - name: 🌋 Build
         run: |
-          .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vpckg-build py-pyqt6
+          .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build --debug py-pyqt6
           
+      - name: Debug nuspec
+        shell: powershell
+        run: |
+          Write-Output C:\vcpkg-build\py-packaging\x64-windows.nuspec
+
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v4
         if: failure()
