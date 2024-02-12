@@ -57,6 +57,9 @@ jobs:
       - name: 🌋 Build
         run: |
           .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build py-pyqt6
+
+      - uses: m-kuhn/action-tmate@patch-1
+        if: failure()
           
       - name: Debug nuspec
         if: always()
