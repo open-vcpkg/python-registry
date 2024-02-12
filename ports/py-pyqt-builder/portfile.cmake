@@ -5,8 +5,6 @@ vcpkg_from_pythonhosted(
     SHA512          ec0b9f7784a32af744111615b93f98d73f284bb752fd71359c798d3b093a01925823effea72c866a5f49f77e3dfc5dee4125bbb289f647d84000bf34b5db6931
 )
 
-file(REMOVE_RECURSE ${SOURCE_PATH}/pyqtbuild/bundle)
-
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}" OPTIONS -x)
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")

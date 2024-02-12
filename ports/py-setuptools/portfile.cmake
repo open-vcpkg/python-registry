@@ -1,9 +1,8 @@
-vcpkg_from_github(
+vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO pypa/setuptools
-    REF v${VERSION}
-    SHA512 93cea3b30093ff0094acdcc688e689dcf7173e43cfd33bf3bc2e268f7f5065e38627f942f6778d29fd10d2e467af28b0d772bf2fc94318e3e74670d1d5f3e4ea
-    HEAD_REF main
+    PACKAGE_NAME    setuptools
+    VERSION         ${VERSION}
+    SHA512          11df934931f4b73f7e07ea5713479593c6baa134d423556b2ae7aff0f1e5bdbdee1f5b516131adb169c838231ceb0293441fbf275ef7030dabecf74122565b6d
     PATCHES 
       fix-prefix.patch
 )

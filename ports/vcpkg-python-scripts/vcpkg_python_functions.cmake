@@ -6,7 +6,7 @@ function(vcpkg_from_pythonhosted)
     "arg"
     ""
     "OUT_SOURCE_PATH;PACKAGE_NAME;VERSION;SHA512"
-    "")
+    "PATCHES")
 
   if(DEFINED arg_UNPARSED_ARGUMENTS)
     message(WARNING "vcpkg_from_pythonhosted was passed extra arguments: ${arg_UNPARSED_ARGUMENTS}")
@@ -32,6 +32,7 @@ function(vcpkg_from_pythonhosted)
   vcpkg_extract_source_archive_ex(
     OUT_SOURCE_PATH SOURCE_PATH
     ARCHIVE ${ARCHIVE}
+    PATCHES ${arg_PATCHES}
   )
 
   set("${arg_OUT_SOURCE_PATH}" "${SOURCE_PATH}" PARENT_SCOPE)
@@ -57,7 +58,7 @@ function(vcpkg_python_build_wheel)
   file(MAKE_DIRECTORY "${z_vcpkg_wheeldir}")
 
   message(STATUS "Building python wheel!")
-  vcpkg_execute_required_process(COMMAND "${PYTHON3}" -m gpep517 build-wheel --wheel-dir "${z_vcpkg_wheeldir}" --output-fd 2
+  vcpkg_execute_required_process(COMMAND "${PYTHON3}" -m gpep517 build-wheel --wheel-dir "${z_vcpkg_wheeldir}" --output-fd 1
     LOGNAME "python-build-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${arg_SOURCE_PATH}"
   )

@@ -9,7 +9,7 @@ vcpkg_from_pythonhosted(
 
 set(SIPBUILD_ARGS
   "--confirm-license"
-  "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake"
+  "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake.exe" #TODO: append .exe only on windows
   "--api-dir" "${CURRENT_PACKAGES_DIR}/share/qt6/qsci/api/python"
   "--verbose"
   "--qt-shared"
@@ -17,6 +17,20 @@ set(SIPBUILD_ARGS
   "--disable" "QtDesigner"
   "--pep484-pyi"
   "--debug"
+  "--target-dir" "${CURRENT_PACKAGES_DIR}/lib/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}/site-packages"
+  "--build-dir" "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel-build"
+)
+
+set(SIPBUILD_ARGS
+  "--confirm-license"
+  "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake.exe" #TODO: append .exe only on windows
+  "--api-dir" "${CURRENT_PACKAGES_DIR}/share/qt6/qsci/api/python"
+  "--verbose"
+  "--qt-shared"
+  "--no-make"
+  "--disable" "QtDesigner"
+  "--pep484-pyi"
+  #  "--debug" # will create debuggable bindings
   "--target-dir" "${CURRENT_PACKAGES_DIR}/lib/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}/site-packages"
   "--build-dir" "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel-build"
 )
