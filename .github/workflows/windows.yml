@@ -32,7 +32,7 @@ jobs:
       - name: 🧽 Developer Command Prompt for Microsoft Visual C++
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: 🐣 Checkout
+      - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
         with:
           repository: microsoft/vcpkg
@@ -40,7 +40,7 @@ jobs:
           path: vcpkg
           fetch-depth: 1
 
-      - name: Bootstrap vcpkg
+      - name: 🐾 Bootstrap vcpkg
         shell: powershell
         run: |
           $PKG_SOURCE_USER = $env:GITHUB_REPOSITORY -split '/' | Select-Object -First 1
