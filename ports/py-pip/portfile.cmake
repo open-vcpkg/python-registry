@@ -7,6 +7,6 @@ vcpkg_from_pythonhosted(
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}" OPTIONS -x)
 
-vcpkg_install_copyright(FILE_LIST "${CURRENT_PORT_DIR}/copyright")
+vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE.txt")
 
 set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
