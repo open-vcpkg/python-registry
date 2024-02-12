@@ -1,5 +1,5 @@
 ---
-name: 🪟 Windows
+name: 🍎 MacOS
 on:
   push:
     branches:
@@ -12,15 +12,20 @@ concurrency:
 
 jobs:
   build:
-    name: build (windows)
-    runs-on: windows-2022
     permissions:
       contents: read
       packages: write
     strategy:
       matrix:
         include:
-          - triplet: 'x64-windows'
+          - os: macos-13
+            triplet: x64-osx-dynamic
+          - os: macos-14
+            triplet: arm64-osx
+    env:
+      buildtrees: /Users/runner/vcpkg-build
+    name: build (macos)
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: 🐣 Checkout
@@ -31,6 +36,10 @@ jobs:
 
       - name: 🧽 Developer Command Prompt for Microsoft Visual C++
         uses: ilammy/msvc-dev-cmd@v1
+
+      - name: 🔨 Prepare build env
+        run: |
+          brew install autoconf automake autoconf-archive
 
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
@@ -45,21 +54,23 @@ jobs:
         run: |
           PKG_SOURCE_USER=$(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)
           ./vcpkg/bootstrap-vcpkg.sh
-          NUGET_EXE=$(./vcpkg/vcpkg fetch nuget)
+          NUGET_EXE=$(./vcpkg/vcpkg fetch nuget | grep '^\/.*nuget.exe$')
           echo "Downloaded $NUGET_EXE"
-          $NUGET_EXE sources add -Name ghpkg -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json" -UserName "$PKG_SOURCE_USER" -Password "${{ secrets.GITHUB_TOKEN }}" -StorePasswordInClearText
-          $NUGET_EXE setapikey "${{ secrets.GITHUB_TOKEN }}" -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json"
+          mono $NUGET_EXE sources add -Name ghpkg -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json" -UserName "$PKG_SOURCE_USER" -Password "${{ secrets.GITHUB_TOKEN }}" -StorePasswordInClearText
+          mono $NUGET_EXE setapikey "${{ secrets.GITHUB_TOKEN }}" -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json"
           echo "VCPKG_BINARY_SOURCES=clear;nuget,https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json,readwrite" >> $GITHUB_ENV
           echo "PATH=$VCPKG_ROOT;$PATH" >> $GITHUB_ENV
           echo "VCPKG_ROOT=$VCPKG_ROOT" >> $GITHUB_ENV
 
       - name: 🌋 Build
         run: |
-          .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} py-sip
+          VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }}"
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-sip
           
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: logs-${{ matrix.triplet }}
-          path: /c/vcpkg/buildtrees/**/*.log
+          path: ${{ env.buildtrees }}/**/*.log
