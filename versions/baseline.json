@@ -20,6 +20,10 @@
       "baseline": "23.1",
       "port-version": 0
     },
+    "py-pip": {
+      "baseline": "23.3.2",
+      "port-version": 0
+    },
     "py-ply": {
       "baseline": "3.11",
       "port-version": 0
