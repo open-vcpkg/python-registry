@@ -21,7 +21,7 @@ jobs:
           - os: macos-13
             triplet: x64-osx-dynamic
           - os: macos-14
-            triplet: arm64-osx-dynamic
+            triplet: arm64-osx
     env:
       buildtrees: /Users/runner/vcpkg-build
     name: build (macos)
