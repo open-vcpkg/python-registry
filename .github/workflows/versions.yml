@@ -19,16 +19,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ github.head_ref }}
           fetch-depth: 2
 
       - name: Setup vcpkg
         uses: ./.github/actions/setup-vcpkg
-        with:
-          vcpkgVersion: latest
-          vcpkgRoot: /usr/local/vcpkg
-          vcpkgDownload: /usr/local/vcpkg-downloads
 
       - name: Format vcpkg.json
         run: |

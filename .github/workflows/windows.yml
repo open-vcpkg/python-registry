@@ -1,0 +1,63 @@
+---
+name: 🪟 Windows
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: build (windows)
+    runs-on: windows-2022
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        include:
+          - triplet: 'x64-windows'
+
+    steps:
+      - name: 🐣 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐩 Install CMake and Ninja
+        uses: lukka/get-cmake@latest
+
+      - name: 🧽 Developer Command Prompt for Microsoft Visual C++
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: 🐕 Checkout vcpkg
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/vcpkg
+          ref: 345ac44ab8d6a16239d3af55df9608bf725e7a48 # TODO: can we have a canonical baseline for tests?
+          path: vcpkg
+          fetch-depth: 1
+
+      - name: 🐾 Bootstrap vcpkg
+        shell: powershell
+        run: |
+          $PKG_SOURCE_USER = $env:GITHUB_REPOSITORY -split '/' | Select-Object -First 1
+          .\vcpkg\bootstrap-vcpkg.bat
+          .$(.\vcpkg\vcpkg.exe fetch nuget) sources add -Name ghpkg -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json" -UserName "$PKG_SOURCE_USER" -Password "${{ secrets.GITHUB_TOKEN }}" -StorePasswordInClearText
+          .$(.\vcpkg\vcpkg.exe fetch nuget) setapikey "${{ secrets.GITHUB_TOKEN }}" -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json"
+          echo "VCPKG_BINARY_SOURCES=clear;nuget,https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json,readwrite" >> $env:GITHUB_ENV
+          echo "PATH=$env:VCPKG_ROOT;$env:PATH" >> $env:GITHUB_ENV
+          echo "VCPKG_ROOT=$env:VCPKG_ROOT" >> $env:GITHUB_ENV
+
+      - name: 🌋 Build
+        run: |
+          .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} py-sip
+          
+      - name: 📑 Upload logs
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: logs-${{ matrix.triplet }}
+          path: /c/vcpkg/buildtrees/**/*.log
