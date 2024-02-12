@@ -1,0 +1,33 @@
+name: Static checks
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.head_ref }}
+          fetch-depth: 2
+
+      - name: Setup vcpkg
+        uses: ./.github/actions/setup-vcpkg
+        with:
+          vcpkgVersion: latest
+          vcpkgRoot: /usr/local/vcpkg
+          vcpkgDownload: /usr/local/vcpkg-downloads
+
+      - name: Format vcpkg.json
+        run: |
+          vcpkg format-manifest --all $(find . -name "vcpkg.json")
