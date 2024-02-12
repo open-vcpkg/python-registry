@@ -10,7 +10,13 @@
     "py-pyqt-builder",
     "py-ply",
     "py-packaging",
+    "qtactiveqt",
     "qtbase",
+    "qtmultimedia",
+    "qtsensors",
+    "qtsvg",
+    "qtwebchannel",
+    "qtwebsockets",
     {
       "name": "vcpkg-python-scripts",
       "host": true
