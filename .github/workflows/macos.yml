@@ -19,7 +19,7 @@ jobs:
       matrix:
         include:
           - os: macos-13
-            triplet: x64-osx-dynamic
+            triplet: x64-osx
           - os: macos-14
             triplet: arm64-osx
     env:

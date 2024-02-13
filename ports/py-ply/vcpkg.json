@@ -1,10 +1,15 @@
 {
   "name": "py-ply",
   "version": "3.11",
+  "port-version": 1,
   "description": "Python Lex & Yacc",
   "homepage": "https://www.dabeaz.com/ply/",
   "dependencies": [
-    "py-wheel",
+    "python3",
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
     {
       "name": "vcpkg-python-scripts",
       "host": true
