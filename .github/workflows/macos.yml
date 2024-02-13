@@ -67,7 +67,12 @@ jobs:
           VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }}"
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-sip
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
+
+      - uses: m-kuhn/action-tmate@patch-1
+        if: failure()
           
+
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v4
         if: failure()
