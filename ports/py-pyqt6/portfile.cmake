@@ -16,26 +16,16 @@ set(SIPBUILD_ARGS
   "--no-make"
   "--disable" "QtDesigner"
   "--pep484-pyi"
-  "--debug"
-  "--target-dir" "${CURRENT_PACKAGES_DIR}/lib/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}/site-packages"
-  "--build-dir" "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel-build"
-)
-
-set(SIPBUILD_ARGS
-  "--confirm-license"
-  "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake.exe" #TODO: append .exe only on windows
-  "--api-dir" "${CURRENT_PACKAGES_DIR}/share/qt6/qsci/api/python"
-  "--verbose"
-  "--qt-shared"
-  "--no-make"
-  "--disable" "QtDesigner"
-  "--pep484-pyi"
   #  "--debug" # will create debuggable bindings
   "--target-dir" "${CURRENT_PACKAGES_DIR}/lib/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}/site-packages"
   "--build-dir" "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel-build"
 )
 
+set(path_backup "$ENV{PATH}")
+
 message(STATUS "Running sipbuild... (${PYTHON3})")
+
+set(ENV{PATH} "${CURRENT_INSTALLED_DIR}/bin;$ENV{PATH}")
 vcpkg_execute_required_process(
         COMMAND "${PYTHON3}" "-m" "sipbuild.tools.build" ${SIPBUILD_ARGS}
         WORKING_DIRECTORY "${SOURCE_PATH}"
@@ -48,7 +38,6 @@ set(MAKEFILE "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel-build/Makefile")
 
 vcpkg_list(SET make_opts)
 vcpkg_list(SET install_opts)
-set(path_backup "$ENV{PATH}")
 if (CMAKE_HOST_WIN32)
     vcpkg_add_to_path(PREPEND "${SCRIPTS}/buildsystems/make_wrapper")
     if(NOT DEFINED Z_VCPKG_MAKE)
