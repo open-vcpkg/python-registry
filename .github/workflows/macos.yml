@@ -59,6 +59,7 @@ jobs:
           mono $NUGET_EXE sources add -Name ghpkg -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json" -UserName "$PKG_SOURCE_USER" -Password "${{ secrets.GITHUB_TOKEN }}" -StorePasswordInClearText
           mono $NUGET_EXE setapikey "${{ secrets.GITHUB_TOKEN }}" -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json"
           echo "VCPKG_BINARY_SOURCES=clear;nuget,https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json,readwrite" >> $GITHUB_ENV
+          VCPKG_ROOT=$(pwd)/vcpkg
           echo "PATH=$VCPKG_ROOT;$PATH" >> $GITHUB_ENV
           echo "VCPKG_ROOT=$VCPKG_ROOT" >> $GITHUB_ENV
 
