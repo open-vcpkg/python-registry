@@ -10,7 +10,10 @@
     "py-pyqt-builder",
     "py-ply",
     "py-packaging",
-    "qtactiveqt",
+    {
+      "name": "qtactiveqt",
+      "platform": "windows"
+    },
     "qtbase",
     "qtmultimedia",
     "qtsensors",
