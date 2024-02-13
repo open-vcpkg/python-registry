@@ -35,26 +35,20 @@ vcpkg_execute_required_process(
     )
 message(STATUS "Running sipbuild...finished.")
 
-# TODO: Can we use vcpkg_install_make here instead of duplicating code?
-set(MAKEFILE "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel-build/Makefile")
 
-vcpkg_list(SET make_opts)
-vcpkg_list(SET install_opts)
 if (CMAKE_HOST_WIN32)
-    vcpkg_add_to_path(PREPEND "${SCRIPTS}/buildsystems/make_wrapper")
-    if(NOT DEFINED Z_VCPKG_MAKE)
-        vcpkg_acquire_msys(MSYS_ROOT)
-        find_program(Z_VCPKG_MAKE make PATHS "${MSYS_ROOT}/usr/bin" NO_DEFAULT_PATH REQUIRED)
-    endif()
-    set(make_command "${Z_VCPKG_MAKE}")
-    vcpkg_list(SET make_opts -j ${VCPKG_CONCURRENCY} --trace -f ${MAKEFILE})
-
-    string(REPLACE " " [[\ ]] vcpkg_package_prefix "${CURRENT_PACKAGES_DIR}")
-    string(REGEX REPLACE [[([a-zA-Z]):/]] [[/\1/]] vcpkg_package_prefix "${vcpkg_package_prefix}")
-    vcpkg_list(SET install_opts -j ${VCPKG_CONCURRENCY} --trace -f ${MAKEFILE} DESTDIR=${vcpkg_package_prefix}/lib/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}/site-packages)
-    #TODO: optimize for install-data (release) and install-exec (release/debug)
-
+    vcpkg_build_nmake(
+        SOURCE_PATH "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel-build"
+        PROJECT_NAME "Makefile"
+    )
+    
 else()
+    # TODO: Can we use vcpkg_install_make here instead of duplicating code?
+    set(MAKEFILE "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel-build/Makefile")
+
+    vcpkg_list(SET make_opts)
+    vcpkg_list(SET install_opts)
+
     if(VCPKG_HOST_IS_OPENBSD)
         find_program(Z_VCPKG_MAKE gmake REQUIRED)
     else()
@@ -66,23 +60,23 @@ else()
 
     # To find sip-distinfo and python3 during install
     set(ENV{PATH} "${CURRENT_INSTALLED_DIR}/tools:${CURRENT_INSTALLED_DIR}/tools/python3:$ENV{PATH}")
-endif()
 
-vcpkg_list(SET make_cmd_line ${make_command} ${make_opts})
-vcpkg_list(SET install_cmd_line ${make_command} install ${install_opts})
+    vcpkg_list(SET make_cmd_line ${make_command} ${make_opts})
+    vcpkg_list(SET install_cmd_line ${make_command} install ${install_opts})
 
-message(STATUS "Running build...")
-vcpkg_execute_build_process(
+    message(STATUS "Running build...")
+    vcpkg_execute_build_process(
         COMMAND ${make_cmd_line}
         WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel-build"
         LOGNAME "build-${TARGET_TRIPLET}${short_buildtype}"
-)
-message(STATUS "Running build... finished.")
-message(STATUS "Running install...")
-vcpkg_execute_build_process(
+    )
+    message(STATUS "Running build... finished.")
+    message(STATUS "Running install...")
+    vcpkg_execute_build_process(
         COMMAND ${install_cmd_line}
         WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel-build"
         LOGNAME "install-${TARGET_TRIPLET}${short_buildtype}"
 	)
-message(STATUS "Running install... finished.")
+    message(STATUS "Running install... finished.")
+endif()
 set(ENV{PATH} "${path_backup}")
