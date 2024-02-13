@@ -25,3 +25,11 @@ jobs:
       - name: Format vcpkg.json
         run: |
           vcpkg format-manifest --all $(find . -name "vcpkg.json")
+
+      - name: Check versions
+        run: |
+          for dir in ports/* ; do
+            vcpkg x-add-version ${dir##ports/} --overlay-ports=./ports \
+            --x-builtin-registry-versions-dir=./versions/ \
+            --x-builtin-ports-root=./ports
+          done
