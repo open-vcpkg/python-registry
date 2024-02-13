@@ -22,15 +22,15 @@
     },
     "py-pip": {
       "baseline": "23.3.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-ply": {
       "baseline": "3.11",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyparsing": {
       "baseline": "3.1.1",
-      "port-version": 1
+      "port-version": 2
     },
     "py-pyproject-hooks": {
       "baseline": "1.0.0",
@@ -38,7 +38,7 @@
     },
     "py-pyqt-builder": {
       "baseline": "1.15.4",
-      "port-version": 1
+      "port-version": 2
     },
     "py-pyqt6": {
       "baseline": "6.6.1",
@@ -50,7 +50,7 @@
     },
     "py-sip": {
       "baseline": "6.7.12",
-      "port-version": 1
+      "port-version": 2
     },
     "py-wheel": {
       "baseline": "0.41.3",
