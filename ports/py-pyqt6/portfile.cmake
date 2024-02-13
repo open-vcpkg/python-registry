@@ -25,7 +25,9 @@ set(path_backup "$ENV{PATH}")
 
 message(STATUS "Running sipbuild... (${PYTHON3})")
 
-# set(ENV{PATH} "${CURRENT_INSTALLED_DIR}/bin;$ENV{PATH}")
+# Make sure sipbuild can find QtCore.dll
+set(ENV{PATH} "${CURRENT_INSTALLED_DIR}/bin;$ENV{PATH}")
+
 vcpkg_execute_required_process(
         COMMAND "${PYTHON3}" "-m" "sipbuild.tools.build" ${SIPBUILD_ARGS}
         WORKING_DIRECTORY "${SOURCE_PATH}"
