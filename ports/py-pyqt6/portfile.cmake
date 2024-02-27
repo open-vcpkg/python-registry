@@ -54,11 +54,13 @@ endif()
 
 message(STATUS "Running build...")
 vcpkg_execute_build_process(
-    COMMAND "${invoke_command}" -j ${VCPKG_CONCURRENCY}
-    NO_PARALLEL_COMMAND "${invoke_command}" -j 1
+    COMMAND "${invoke_command}" -j ${VCPKG_CONCURRENCY} install
+    NO_PARALLEL_COMMAND "${invoke_command}" -j 1 install
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel"
     LOGNAME "build-${TARGET_TRIPLET}-rel"
 )
 message(STATUS "Running build...finished.")
+
+vcpkg_python_test_import(MODULE PyQt6)
 
 vcpkg_restore_env_variables(VARS PATH)
