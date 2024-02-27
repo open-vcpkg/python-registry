@@ -8,9 +8,13 @@ vcpkg_from_pythonhosted(
     SHA512          c2ff8c47c9b0e43c009d0c90f565a54344e6f384c67dd30c2d422465d0702c07713acc0095c8b67827d1146675611c07d548ba282a26e41bb60a0a21977a7a64
 )
 
+if(CMAKE_HOST_WIN32)
+    set(EXE_SUFFIX ".exe")
+endif()
+
 set(SIPBUILD_ARGS
   "--confirm-license"
-  "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake"
+  "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake${EXE_SUFFIX}"
   "--api-dir" "${CURRENT_PACKAGES_DIR}/share/qt6/qsci/api/python"
   "--verbose"
   "--qt-shared"
