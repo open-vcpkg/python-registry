@@ -10,7 +10,7 @@ vcpkg_from_pythonhosted(
 
 set(SIPBUILD_ARGS
   "--confirm-license"
-  "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake.exe" #TODO: append .exe only on windows
+  "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake"
   "--api-dir" "${CURRENT_PACKAGES_DIR}/share/qt6/qsci/api/python"
   "--verbose"
   "--qt-shared"

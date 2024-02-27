@@ -59,16 +59,6 @@ jobs:
         run: |
           .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build py-pyqt6
 
-      - uses: m-kuhn/action-tmate@patch-1
-        if: failure()
-          
-      - name: Debug nuspec
-        if: always()
-        shell: powershell
-        run: |
-          $content = Get-Content -Path "C:\vcpkg-build\py-packaging\x64-windows.nuspec"
-          Write-Output $content
-
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v4
         if: failure()
