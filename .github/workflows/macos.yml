@@ -39,7 +39,7 @@ jobs:
 
       - name: 🔨 Prepare build env
         run: |
-          brew install autoconf automake autoconf-archive
+          brew install autoconf automake autoconf-archive libtool
 
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
