@@ -6,7 +6,7 @@
   "homepage": "https://www.riverbankcomputing.com/software/pyqt/",
   "dependencies": [
     "python3",
-    "py-sip",
+    "py-pyqt6-sip",
     "py-pyqt-builder",
     "py-ply",
     "py-packaging",

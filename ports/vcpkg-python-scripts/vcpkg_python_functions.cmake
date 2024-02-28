@@ -144,7 +144,15 @@ function(vcpkg_python_test_import)
   )
 
   message(STATUS "Testing package!")
-  set(ENV{PYTHONPATH} "${CURRENT_PACKAGES_DIR}/lib/python3.11/site-packages")
+  set(pypath_prefix "${CURRENT_PACKAGES_DIR}")
+  if(VCPKG_TARGET_IS_WINDOWS)
+    string(APPEND pypath_prefix "/tools/python3/Lib/site-packages")
+  else()
+    string(APPEND pypath_prefix "/lib/site-packages")
+  endif()
+
+  # todo add_dll_directory / ld_library_path
+  set(ENV{PYTHONPATH} "${pypath_prefix}")
   vcpkg_execute_required_process(COMMAND "${PYTHON3}" -c "from ${arg_MODULE} import *"
     LOGNAME "python-test-import-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
