@@ -24,16 +24,13 @@ set(SIPBUILD_ARGS
 
 if(VCPKG_TARGET_IS_OSX)
     if(DEFINED VCPKG_OSX_DEPLOYMENT_TARGET)
-        vcpkg_list(APPEND arg_QMAKE_OPTIONS "QMAKE_MACOSX_DEPLOYMENT_TARGET=${VCPKG_OSX_DEPLOYMENT_TARGET}")
+        vcpkg_list(APPEND SIPBUILD_ARGS "--qmake-setting" "QMAKE_MACOSX_DEPLOYMENT_TARGET=${VCPKG_OSX_DEPLOYMENT_TARGET}")
     else()
         # https://doc.qt.io/qt-6/macos.html
-        vcpkg_list(APPEND arg_QMAKE_OPTIONS "QMAKE_MACOSX_DEPLOYMENT_TARGET=10.15")
+        vcpkg_list(APPEND SIPBUILD_ARGS "--qmake-setting" "QMAKE_MACOSX_DEPLOYMENT_TARGET=10.15")
     endif()
+    vcpkg_list(APPEND SIPBUILD_ARGS "--no-dbus-python")
 endif()
-
-vcpkg_backup_env_variables(VARS PATH)
-
-vcpkg_add_to_path(PREPEND "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/Scripts/" "${CURRENT_HOST_INSTALLED_DIR}/tools/Qt6/bin/" "${CURRENT_HOST_INSTALLED_DIR}/bin")
 
 message(STATUS "Running sipbuild...")
 vcpkg_execute_required_process(
@@ -42,7 +39,6 @@ vcpkg_execute_required_process(
     LOGNAME "sipbuild-${TARGET_TRIPLET}"
 )
 message(STATUS "Running sipbuild...finished.")
-
 
 # inventory.txt is consumed by the distinfo tool which is run during make and should be run against the package directory
 file(TO_NATIVE_PATH "${CURRENT_INSTALLED_DIR}" NATIVE_INSTALLED_DIR)
