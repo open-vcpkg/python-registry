@@ -32,6 +32,11 @@ if(VCPKG_TARGET_IS_OSX)
     vcpkg_list(APPEND SIPBUILD_ARGS "--no-dbus-python")
 endif()
 
+
+vcpkg_backup_env_variables(VARS PATH)
+
+vcpkg_add_to_path(PREPEND "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/Scripts/" "${CURRENT_HOST_INSTALLED_DIR}/tools/Qt6/bin/" "${CURRENT_HOST_INSTALLED_DIR}/bin")
+
 message(STATUS "Running sipbuild...")
 vcpkg_execute_required_process(
     COMMAND "${PYTHON3}" "-m" "sipbuild.tools.build" ${SIPBUILD_ARGS}
@@ -39,6 +44,8 @@ vcpkg_execute_required_process(
     LOGNAME "sipbuild-${TARGET_TRIPLET}"
 )
 message(STATUS "Running sipbuild...finished.")
+
+vcpkg_restore_env_variables(VARS PATH)
 
 # inventory.txt is consumed by the distinfo tool which is run during make and should be run against the package directory
 file(TO_NATIVE_PATH "${CURRENT_INSTALLED_DIR}" NATIVE_INSTALLED_DIR)
