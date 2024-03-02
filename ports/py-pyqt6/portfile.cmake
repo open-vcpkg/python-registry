@@ -22,6 +22,15 @@ set(SIPBUILD_ARGS
   "--target-dir" "${PYTHON3_SITEPACKAGES}"
 )
 
+if(VCPKG_TARGET_IS_OSX)
+    if(DEFINED VCPKG_OSX_DEPLOYMENT_TARGET)
+        vcpkg_list(APPEND arg_QMAKE_OPTIONS "QMAKE_MACOSX_DEPLOYMENT_TARGET=${VCPKG_OSX_DEPLOYMENT_TARGET}")
+    else()
+        # https://doc.qt.io/qt-6/macos.html
+        vcpkg_list(APPEND arg_QMAKE_OPTIONS "QMAKE_MACOSX_DEPLOYMENT_TARGET=10.15")
+    endif()
+endif()
+
 vcpkg_backup_env_variables(VARS PATH)
 
 vcpkg_add_to_path(PREPEND "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/Scripts/" "${CURRENT_HOST_INSTALLED_DIR}/tools/Qt6/bin/" "${CURRENT_HOST_INSTALLED_DIR}/bin")
