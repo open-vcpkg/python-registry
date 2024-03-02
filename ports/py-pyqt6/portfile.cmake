@@ -19,6 +19,7 @@ set(SIPBUILD_ARGS
   "--disable" "QtDesigner"
   "--pep484-pyi"
   "--build-dir" "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel"
+  "--target-dir" "${PYTHON3_SITEPACKAGES}"
 )
 
 vcpkg_backup_env_variables(VARS PATH)
