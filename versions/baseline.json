@@ -6,7 +6,7 @@
     },
     "py-flit-core": {
       "baseline": "3.9.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-gpep517": {
       "baseline": "15",
