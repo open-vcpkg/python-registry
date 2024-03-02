@@ -34,6 +34,16 @@ vcpkg_execute_required_process(
 )
 message(STATUS "Running sipbuild...finished.")
 
+
+# inventory.txt is consumed by the distinfo tool which is run during make and should be run against the package directory
+file(TO_NATIVE_PATH "${CURRENT_INSTALLED_DIR}" NATIVE_INSTALLED_DIR)
+vcpkg_replace_string("${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel/inventory.txt"
+            "${CURRENT_INSTALLED_DIR}"
+            "${CURRENT_PACKAGES_DIR}")
+            vcpkg_replace_string("${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel/inventory.txt"
+            "${NATIVE_INSTALLED_DIR}"
+            "${CURRENT_PACKAGES_DIR}")
+
 vcpkg_qmake_build(BUILD_LOGNAME "install" TARGETS "install")
 
 vcpkg_python_test_import(MODULE "PyQt6.QtCore")
