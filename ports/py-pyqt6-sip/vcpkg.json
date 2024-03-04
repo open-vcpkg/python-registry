@@ -4,12 +4,12 @@
   "description": "Python bindings for the Qt cross platform application toolkit",
   "homepage": "https://www.riverbankcomputing.com/software/pyqt/",
   "dependencies": [
-    "python3",
-    "py-sip",
     {
       "name": "py-setuptools",
       "host": true
     },
+    "py-sip",
+    "python3",
     {
       "name": "vcpkg-python-scripts",
       "host": true

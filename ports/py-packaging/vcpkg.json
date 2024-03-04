@@ -5,9 +5,9 @@
   "homepage": "packaging.pypa.io/",
   "license": "MIT",
   "dependencies": [
-    "python3",
     "py-flit-core",
     "py-gpep517",
+    "python3",
     {
       "name": "vcpkg-python-scripts",
       "host": true
