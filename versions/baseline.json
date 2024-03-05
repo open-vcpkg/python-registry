@@ -18,7 +18,7 @@
     },
     "py-packaging": {
       "baseline": "23.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pip": {
       "baseline": "23.3.2",
