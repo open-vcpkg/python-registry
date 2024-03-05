@@ -39,7 +39,7 @@ jobs:
 
       - name: 🔨 Prepare build env
         run: |
-          brew install autoconf automake autoconf-archive
+          brew install autoconf automake autoconf-archive libtool
 
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
@@ -59,6 +59,7 @@ jobs:
           mono $NUGET_EXE sources add -Name ghpkg -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json" -UserName "$PKG_SOURCE_USER" -Password "${{ secrets.GITHUB_TOKEN }}" -StorePasswordInClearText
           mono $NUGET_EXE setapikey "${{ secrets.GITHUB_TOKEN }}" -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json"
           echo "VCPKG_BINARY_SOURCES=clear;nuget,https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json,readwrite" >> $GITHUB_ENV
+          VCPKG_ROOT=$(pwd)/vcpkg
           echo "PATH=$VCPKG_ROOT;$PATH" >> $GITHUB_ENV
           echo "VCPKG_ROOT=$VCPKG_ROOT" >> $GITHUB_ENV
 
@@ -67,7 +68,8 @@ jobs:
           VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }}"
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-sip
-          
+          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
+
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v4
         if: failure()

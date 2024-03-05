@@ -144,8 +144,14 @@ function(vcpkg_python_test_import)
   )
 
   message(STATUS "Testing package!")
-  set(ENV{PYTHONPATH} "${CURRENT_PACKAGES_DIR}/lib/python3.11/site-packages")
-  vcpkg_execute_required_process(COMMAND "${PYTHON3}" -c "from ${arg_MODULE} import *"
+  
+  set(DLL_DIR "${CURRENT_INSTALLED_DIR}/bin")
+  configure_file("${CURRENT_HOST_INSTALLED_DIR}/share/vcpkg-python-scripts/import_test.py.in" "${CURRENT_BUILDTREES_DIR}/import_test.py" @ONLY)
+
+  message(STATUS "Site packages: ${PYTHON3_SITEPACKAGES}")
+  set(ENV{PYTHONPATH} "${PYTHON3_SITEPACKAGES}")
+
+  vcpkg_execute_required_process(COMMAND "${PYTHON3}" "${CURRENT_BUILDTREES_DIR}/import_test.py"
     LOGNAME "python-test-import-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
   )
