@@ -1,8 +1,9 @@
 {
   "name": "py-packaging",
   "version": "23.1",
+  "port-version": 1,
   "description": "Core utilities for Python packages",
-  "homepage": "packaging.pypa.io/",
+  "homepage": "https://packaging.pypa.io/",
   "license": "MIT",
   "dependencies": [
     "py-flit-core",
