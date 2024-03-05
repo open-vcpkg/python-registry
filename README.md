@@ -11,7 +11,11 @@ Enable registries feature flag in vcpkg and write a vcpkg-configuration.json fil
       {
         "kind": "git",
         "repository": "https://github.com/open-vcpkg/vcpkg-python.git",
-        "packages": [ "List the packages to use from this registry here" ]
+        "packages": [
+          "python3",
+          "vcpkg-python-scripts",
+          "py-*"
+        ]
       }
     ]
 }
