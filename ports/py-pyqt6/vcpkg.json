@@ -1,7 +1,7 @@
 {
   "name": "py-pyqt6",
   "version": "6.6.1",
-  "port-version": 2,
+  "port-version": 3,
   "description": "Python bindings for the Qt cross platform application toolkit",
   "homepage": "https://www.riverbankcomputing.com/software/pyqt/",
   "dependencies": [
@@ -10,15 +10,45 @@
     "py-pyqt-builder",
     "py-pyqt6-sip",
     "python3",
+    "qt3d",
+    "qt5compat",
     {
       "name": "qtactiveqt",
       "platform": "windows"
     },
-    "qtbase",
+    {
+      "name": "qtbase",
+      "features": [
+        "concurrent",
+        "gui",
+        "network",
+        "opengl",
+        "widgets"
+      ]
+    },
+    "qtcharts",
+    "qtconnectivity",
+    "qtdatavis3d",
+    "qtgraphs",
+    "qthttpserver",
+    "qtlocation",
     "qtmultimedia",
+    "qtnetworkauth",
+    "qtpositioning",
+    "qtquick3d",
+    "qtremoteobjects",
+    "qtscxml",
     "qtsensors",
+    "qtserialbus",
+    "qtserialport",
+    "qtspeech",
     "qtsvg",
-    "qtwebchannel",
+    {
+      "name": "qtwebengine",
+      "features": [
+        "webchannel"
+      ]
+    },
     "qtwebsockets",
     {
       "name": "vcpkg-python-scripts",
