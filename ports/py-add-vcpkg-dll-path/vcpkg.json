@@ -5,6 +5,7 @@
   "license": "MIT",
   "supports": "windows",
   "dependencies": [
-    "vcpkg-python.scripts"
+    "vcpkg-python-scripts"
+
   ]
 }
