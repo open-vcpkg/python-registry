@@ -34,7 +34,7 @@ set(PATCHES
     0014-fix-get-python-inc-output.patch
     0015-dont-use-WINDOWS-def.patch
     0018-fix-sysconfig-include.patch
-    add-vcpkg-search-path.patch
+    # add-vcpkg-search-path.patch
 )
 
 if(VCPKG_LIBRARY_LINKAGE STREQUAL "static")
