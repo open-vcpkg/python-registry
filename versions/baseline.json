@@ -48,6 +48,10 @@
       "baseline": "13.6.0",
       "port-version": 0
     },
+    "py-pyyaml": {
+      "baseline": "6.0.1",
+      "port-version": 0
+    },
     "py-setuptools": {
       "baseline": "69.0.3",
       "port-version": 2
