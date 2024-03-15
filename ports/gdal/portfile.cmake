@@ -56,6 +56,7 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         webp             GDAL_USE_WEBP
         core             GDAL_USE_ZLIB
         zstd             GDAL_USE_ZSTD
+        python           BUILD_PYTHON_BINDINGS
         tools            BUILD_APPS
     INVERTED_FEATURES
         libspatialite    CMAKE_DISABLE_FIND_PACKAGE_SPATIALITE
@@ -77,12 +78,11 @@ vcpkg_cmake_configure(
         -DVCPKG_HOST_TRIPLET=${HOST_TRIPLET} # for host pkgconf in PATH
         ${FEATURE_OPTIONS}
         -DBUILD_DOCS=OFF
-        -DBUILD_PYTHON_BINDINGS=OFF
         -DBUILD_TESTING=OFF
         -DCMAKE_DISABLE_FIND_PACKAGE_CSharp=ON
         -DCMAKE_DISABLE_FIND_PACKAGE_Java=ON
         -DCMAKE_DISABLE_FIND_PACKAGE_JNI=ON
-        -DCMAKE_DISABLE_FIND_PACKAGE_SWIG=ON
+#        -DCMAKE_DISABLE_FIND_PACKAGE_SWIG=ON
         -DCMAKE_DISABLE_FIND_PACKAGE_Arrow=ON
         -DGDAL_USE_INTERNAL_LIBS=OFF
         -DGDAL_USE_EXTERNAL_LIBS=OFF
@@ -97,9 +97,12 @@ vcpkg_cmake_configure(
         -DGDAL_CHECK_PACKAGE_QHULL_NAMES=Qhull
         "-DGDAL_CHECK_PACKAGE_QHULL_TARGETS=${qhull_target}"
         "-DQHULL_LIBRARY=${qhull_target}"
+        "-DSWIG_DIR=${CURRENT_HOST_INSTALLED_DIR}/tools/swig"
+        "-DSWIG_EXECUTABLE=${CURRENT_HOST_INSTALLED_DIR}/tools/swig/swig${VCPKG_HOST_EXECUTABLE_SUFFIX}"
         "-DCMAKE_PROJECT_INCLUDE=${CMAKE_CURRENT_LIST_DIR}/cmake-project-include.cmake"
     OPTIONS_DEBUG
         -DBUILD_APPS=OFF
+        "-DGDAL_DEBUG_POSTFIX="
     MAYBE_UNUSED_VARIABLES
         QHULL_LIBRARY
 )
@@ -162,6 +165,19 @@ if(NOT bin_files)
     file(REMOVE_RECURSE
         "${CURRENT_PACKAGES_DIR}/bin"
         "${CURRENT_PACKAGES_DIR}/debug/bin"
+    )
+endif()
+
+if("bindings" IN_LIST FEATURES)
+  file(REMOVE_RECURSE
+    "${CURRENT_PACKAGES_DIR}/debug/Lib"
+    "${CURRENT_PACKAGES_DIR}/debug/Scripts"
+  )
+  file(COPY "${CURRENT_PACKAGES_DIR}/Lib" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}")
+  file(COPY "${CURRENT_PACKAGES_DIR}/Scripts" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}")
+  file(REMOVE_RECURSE
+    "${CURRENT_PACKAGES_DIR}/Lib"
+    "${CURRENT_PACKAGES_DIR}/Scripts"
     )
 endif()
 
