@@ -41,6 +41,20 @@
     "default-features"
   ],
   "features": {
+    "python": {
+      "description": "Build python bindings",
+      "dependencies": [
+        "python3",
+        {
+          "name": "swig",
+          "host": true
+        },
+        {
+          "name": "py-setuptools",
+          "host": true
+        }
+      ]
+    },
     "aws-ec2-windows": {
       "description": "Optimized detection of AWS EC2 Windows hosts",
       "dependencies": [
