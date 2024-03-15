@@ -1,0 +1,8 @@
+{
+  "name": "py-add-vcpkg-dll-path",
+  "version-date": "2024-03-13",
+  "description": "Adds the vcpkg dll path to python",
+  "documentation": "https://vcpkg.io/en/docs/README.html",
+  "license": "MIT",
+  "supports": "windows"
+}
