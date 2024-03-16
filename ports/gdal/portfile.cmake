@@ -168,7 +168,7 @@ if(NOT bin_files)
     )
 endif()
 
-if("bindings" IN_LIST FEATURES)
+if("python" IN_LIST FEATURES)
   file(REMOVE_RECURSE
     "${CURRENT_PACKAGES_DIR}/debug/Lib"
     "${CURRENT_PACKAGES_DIR}/debug/Scripts"
@@ -179,6 +179,7 @@ if("bindings" IN_LIST FEATURES)
     "${CURRENT_PACKAGES_DIR}/Lib"
     "${CURRENT_PACKAGES_DIR}/Scripts"
     )
+  vcpkg_python_test_import(MODULE "osgeo.gdal")
 endif()
 
 vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/cpl_config.h" "#define GDAL_PREFIX \"${CURRENT_PACKAGES_DIR}\"" "")
