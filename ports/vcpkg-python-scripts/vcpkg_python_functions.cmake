@@ -147,12 +147,14 @@ function(vcpkg_python_test_import)
   )
 
   message(STATUS "Testing package!")
-  
-  set(DLL_DIR "${CURRENT_INSTALLED_DIR}/bin")
-  configure_file("${CURRENT_HOST_INSTALLED_DIR}/share/vcpkg-python-scripts/import_test.py.in" "${CURRENT_BUILDTREES_DIR}/import_test.py" @ONLY)
 
-  message(STATUS "Site packages: ${PYTHON3_SITEPACKAGES}")
-  set(ENV{PYTHONPATH} "${PYTHON3_SITEPACKAGES}")
+  set(RELATIVE_SITE_PACKAGES_DIR "${PYTHON3_SITEPACKAGES}")
+  cmake_path(RELATIVE_PATH RELATIVE_SITE_PACKAGES_DIR BASE_DIRECTORY "${CURRENT_INSTALLED_DIR}")
+  
+  set(INSTALLED_DLL_DIR "${CURRENT_INSTALLED_DIR}/bin")
+  set(PACKAGE_DLL_DIR "${CURRENT_PACKAGES_DIR}/bin")
+  set(PACKAGE_SITE_PACKAGES_DIR "${CURRENT_PACKAGES_DIR}/${RELATIVE_SITE_PACKAGES_DIR}")
+  configure_file("${CURRENT_HOST_INSTALLED_DIR}/share/vcpkg-python-scripts/import_test.py.in" "${CURRENT_BUILDTREES_DIR}/import_test.py" @ONLY)
 
   vcpkg_execute_required_process(COMMAND "${PYTHON3}" "${CURRENT_BUILDTREES_DIR}/import_test.py"
     LOGNAME "python-test-import-${TARGET_TRIPLET}"
