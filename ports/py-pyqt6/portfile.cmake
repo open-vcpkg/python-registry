@@ -5,7 +5,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    PyQt6
     VERSION         ${VERSION}
-    SHA512          c2ff8c47c9b0e43c009d0c90f565a54344e6f384c67dd30c2d422465d0702c07713acc0095c8b67827d1146675611c07d548ba282a26e41bb60a0a21977a7a64
+    SHA512          619210d2de3e149b55e2d45cbd8ec2113b3effcaccd25eef6067ea99b82e250f1ce288b38136604536053690071f8c843339b934b5ce5e539a5dfdecc26f44d2
 )
 
 # https://www.riverbankcomputing.com/static/Docs/PyQt6/installation.html
