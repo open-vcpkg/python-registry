@@ -4,6 +4,10 @@
       "baseline": "0.10.0",
       "port-version": 1
     },
+    "py-cython": {
+      "baseline": "3.0.5",
+      "port-version": 0
+    },
     "py-flit-core": {
       "baseline": "3.9.0",
       "port-version": 1
@@ -15,6 +19,10 @@
     "py-installer": {
       "baseline": "0.7.0",
       "port-version": 1
+    },
+    "py-numpy": {
+      "baseline": "1.26.4",
+      "port-version": 0
     },
     "py-packaging": {
       "baseline": "23.1",
