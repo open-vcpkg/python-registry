@@ -1,5 +1,9 @@
 {
   "default": {
+    "gdal": {
+      "baseline": "3.8.4",
+      "port-version": 0
+    },
     "py-add-vcpkg-dll-path": {
       "baseline": "2024-03-13",
       "port-version": 0
@@ -80,9 +84,13 @@
       "baseline": "3.11.9",
       "port-version": 1
     },
+    "swig": {
+      "baseline": "4.2.1",
+      "port-version": 0
+    },
     "vcpkg-python-scripts": {
       "baseline": "2024-05-12",
-      "port-version": 0
+      "port-version": 1
     }
   }
 }
