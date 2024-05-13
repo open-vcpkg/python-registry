@@ -1,6 +1,5 @@
 {
   "name": "py-pyqt6",
-  "version": "6.6.1",
   "version": "6.7.0",
   "port-version": 1,
   "description": "Python bindings for the Qt cross platform application toolkit",
