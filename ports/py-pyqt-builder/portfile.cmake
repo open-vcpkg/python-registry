@@ -1,8 +1,9 @@
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    PyQt-builder
+    FILE_NAME       pyqt_builder
     VERSION         ${VERSION}
-    SHA512          ec0b9f7784a32af744111615b93f98d73f284bb752fd71359c798d3b093a01925823effea72c866a5f49f77e3dfc5dee4125bbb289f647d84000bf34b5db6931
+    SHA512          64fc969799a12a176eb730fdc4581f18293dceb8edff20db0177ce409fe7e712cdfb07449b6c4abdd33f1fd9aabe8bee248fe9aeb5373df533d805f9d2a0c6a5
     PATCHES
       libpath.patch
 )
