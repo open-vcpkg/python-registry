@@ -1,3 +1,5 @@
+set(VCPKG_BUILD_TYPE release)
+
 vcpkg_download_distfile(ARCHIVE
     URLS "https://www.riverbankcomputing.com/static/Downloads/QScintilla/${VERSION}/QScintilla_src-${VERSION}.tar.gz"
     FILENAME "QScintilla-${VERSION}.tar.gz"
