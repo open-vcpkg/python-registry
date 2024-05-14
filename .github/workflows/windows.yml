@@ -57,7 +57,7 @@ jobs:
 
       - name: 🌋 Build
         run: |
-          .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build py-pyqt6 py-pyyaml py-numpy gdal[python]
+          .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build py-pyqt6 py-pyyaml py-numpy gdal[python] py-qscintilla
 
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v4
