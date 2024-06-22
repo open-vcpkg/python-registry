@@ -169,17 +169,37 @@ if(NOT bin_files)
 endif()
 
 if("python" IN_LIST FEATURES)
+  if(VCPKG_TARGET_IS_WINDOWS)
+    set(PY_LIB_DIR "Lib")
+    set(PY_SCRIPTS_DIR "Scripts")
+  else()
+    set(PY_LIB_DIR ${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR})
+    set(PY_SCRIPTS_DIR "bin")
+  endif()
+
   file(REMOVE_RECURSE
-    "${CURRENT_PACKAGES_DIR}/debug/Lib"
-    "${CURRENT_PACKAGES_DIR}/debug/Scripts"
+    "${CURRENT_PACKAGES_DIR}/debug/${PY_LIB_DIR}"
+    "${CURRENT_PACKAGES_DIR}/debug/${PY_SCRIPTS_DIR}"
   )
-  file(COPY "${CURRENT_PACKAGES_DIR}/Lib/site-packages/" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}")
-  # TODO: Generalize for non windows
-  file(COPY "${CURRENT_PACKAGES_DIR}/Scripts" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/../../Scripts")
-  file(REMOVE_RECURSE
-    "${CURRENT_PACKAGES_DIR}/Lib/site-packages"
-    "${CURRENT_PACKAGES_DIR}/Scripts"
+  if(VCPKG_TARGET_IS_WINDOWS)
+    file(COPY "${CURRENT_PACKAGES_DIR}/${PY_LIB_DIR}/site-packages/" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}")
+    file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/${PY_LIB_DIR}/site-packages")
+    file(COPY "${CURRENT_PACKAGES_DIR}/Scripts" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/../../Scripts")
+    file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/Scripts")
+  endif()
+  if(VCPKG_TARGET_IS_OSX)
+    file(GLOB_RECURSE macho_files LIST_DIRECTORIES FALSE "${CURRENT_PACKAGES_DIR}/${PY_LIB_DIR}/*")
+    list(FILTER macho_files INCLUDE REGEX "\.so$")
+    foreach(macho_file IN LISTS macho_files)
+      # Required for testing, as it needs to be able load shared libs from the package (not yet installed) path
+      # Will be overwritten by z_vcpkg_fixup_rpath_macho
+      execute_process(
+        COMMAND install_name_tool -add_rpath "${CURRENT_PACKAGES_DIR}/lib" "${macho_file}"
+        OUTPUT_QUIET
+        ERROR_VARIABLE set_rpath_error
     )
+    endforeach()
+  endif()
   vcpkg_python_test_import(MODULE "osgeo.gdal")
 endif()
 
