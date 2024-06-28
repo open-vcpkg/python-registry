@@ -15,12 +15,6 @@ vcpkg_extract_source_archive(
 
 file(RENAME "${SOURCE_PATH}/Python/pyproject-qt5.toml" "${SOURCE_PATH}/Python/pyproject.toml")
 
-if(VCPKG_TARGET_IS_WINDOWS)
-  set(PY_LIB_DIR "tools/python3/Lib")
-else()
-  set(PY_LIB_DIR "lib/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}")
-endif()
-
 set(SIPBUILD_ARGS
     "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}"
     "--api-dir" "${CURRENT_PACKAGES_DIR}/share/Qt6/qsci/api/python"
