@@ -25,7 +25,7 @@ set(SIPBUILD_ARGS
     "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}"
     "--api-dir" "${CURRENT_PACKAGES_DIR}/share/Qt6/qsci/api/python"
     "--qsci-features-dir" "${SOURCE_PATH}/src/features"
-    "--qsci-include-dir" "${CURRENT_INSTALLED_DIR}/${PY_LIB_DIR}/site-packages/PyQt6/bindings"
+    "--qsci-include-dir" "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}/PyQt6/bindings"
     "--qsci-library-dir" "${SOURCE_PATH}/src"
     "--no-make"
     "--verbose"
