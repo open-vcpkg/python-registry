@@ -30,7 +30,7 @@ set(SIPBUILD_ARGS
     "--no-make"
     "--verbose"
     "--build-dir" "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel"
-    "--target-dir" "${CURRENT_INSTALLED_DIR}/${PY_LIB_DIR}/site-packages/"
+    "--target-dir" "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}"
 )
 if(DEFINED VCPKG_OSX_DEPLOYMENT_TARGET)
   list(APPEND SIPBUILD_ARGS "--qmake-setting" "QMAKE_MACOSX_DEPLOYMENT_TARGET = ${VCPKG_OSX_DEPLOYMENT_TARGET}")
