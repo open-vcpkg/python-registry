@@ -11,6 +11,7 @@
       "name": "qscintilla"
     },
     "py-pyqt6",
+    "python3",
     {
       "name": "vcpkg-python-scripts",
       "host": true
