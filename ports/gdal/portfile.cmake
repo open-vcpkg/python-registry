@@ -72,6 +72,11 @@ endif()
 
 string(REPLACE "dynamic" "" qhull_target "Qhull::qhull${VCPKG_LIBRARY_LINKAGE}_r")
 
+if(VCPKG_TARGET_IS_WINDOWS)
+    set(GDAL_PYTHON_INSTALL_PREFIX "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/../../")
+else()
+    set(GDAL_PYTHON_INSTALL_PREFIX "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/../../../")
+endif()
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
@@ -99,6 +104,8 @@ vcpkg_cmake_configure(
         "-DQHULL_LIBRARY=${qhull_target}"
         "-DSWIG_DIR=${CURRENT_HOST_INSTALLED_DIR}/tools/swig"
         "-DSWIG_EXECUTABLE=${CURRENT_HOST_INSTALLED_DIR}/tools/swig/swig${VCPKG_HOST_EXECUTABLE_SUFFIX}"
+        "-DGDAL_PYTHON_INSTALL_PREFIX=${GDAL_PYTHON_INSTALL_PREFIX}"
+        -DONLY_GENERATE_FOR_NON_DEBUG=ON # Python bindings only for release
         "-DCMAKE_PROJECT_INCLUDE=${CMAKE_CURRENT_LIST_DIR}/cmake-project-include.cmake"
     OPTIONS_DEBUG
         -DBUILD_APPS=OFF
@@ -169,17 +176,19 @@ if(NOT bin_files)
 endif()
 
 if("python" IN_LIST FEATURES)
-  file(REMOVE_RECURSE
-    "${CURRENT_PACKAGES_DIR}/debug/Lib"
-    "${CURRENT_PACKAGES_DIR}/debug/Scripts"
-  )
-  file(COPY "${CURRENT_PACKAGES_DIR}/Lib/site-packages/" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}")
-  # TODO: Generalize for non windows
-  file(COPY "${CURRENT_PACKAGES_DIR}/Scripts" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/../../Scripts")
-  file(REMOVE_RECURSE
-    "${CURRENT_PACKAGES_DIR}/Lib/site-packages"
-    "${CURRENT_PACKAGES_DIR}/Scripts"
+  if(VCPKG_TARGET_IS_OSX)
+    file(GLOB_RECURSE macho_files LIST_DIRECTORIES FALSE "${CURRENT_PACKAGES_DIR}/*")
+    list(FILTER macho_files INCLUDE REGEX "\.so$")
+    foreach(macho_file IN LISTS macho_files)
+      # Required for testing, as it needs to be able load shared libs from the package (not yet installed) path
+      # Will be overwritten by z_vcpkg_fixup_rpath_macho
+      execute_process(
+        COMMAND install_name_tool -add_rpath "${CURRENT_PACKAGES_DIR}/lib" "${macho_file}"
+        OUTPUT_QUIET
+        ERROR_VARIABLE set_rpath_error
     )
+    endforeach()
+  endif()
   vcpkg_python_test_import(MODULE "osgeo.gdal")
 endif()
 
