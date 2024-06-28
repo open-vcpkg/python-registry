@@ -99,6 +99,7 @@ vcpkg_cmake_configure(
         "-DQHULL_LIBRARY=${qhull_target}"
         "-DSWIG_DIR=${CURRENT_HOST_INSTALLED_DIR}/tools/swig"
         "-DSWIG_EXECUTABLE=${CURRENT_HOST_INSTALLED_DIR}/tools/swig/swig${VCPKG_HOST_EXECUTABLE_SUFFIX}"
+        -DONLY_GENERATE_FOR_NON_DEBUG=ON # Python bindings only for release
         "-DCMAKE_PROJECT_INCLUDE=${CMAKE_CURRENT_LIST_DIR}/cmake-project-include.cmake"
     OPTIONS_DEBUG
         -DBUILD_APPS=OFF
@@ -170,25 +171,16 @@ endif()
 
 if("python" IN_LIST FEATURES)
   if(VCPKG_TARGET_IS_WINDOWS)
-    set(PY_LIB_DIR "Lib")
-    set(PY_SCRIPTS_DIR "Scripts")
-  else()
-    set(PY_LIB_DIR ${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR})
-    set(PY_SCRIPTS_DIR "bin")
-  endif()
-
-  file(REMOVE_RECURSE
-    "${CURRENT_PACKAGES_DIR}/debug/${PY_LIB_DIR}"
-    "${CURRENT_PACKAGES_DIR}/debug/${PY_SCRIPTS_DIR}"
-  )
-  if(VCPKG_TARGET_IS_WINDOWS)
-    file(COPY "${CURRENT_PACKAGES_DIR}/${PY_LIB_DIR}/site-packages/" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}")
-    file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/${PY_LIB_DIR}/site-packages")
+    # to be checked ... can this be replaced with -DGDAL_PYTHON_INSTALL_PREFIX:PATH="${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}" ?
+    file(COPY "${CURRENT_PACKAGES_DIR}/Lib/site-packages/" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}")
     file(COPY "${CURRENT_PACKAGES_DIR}/Scripts" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/../../Scripts")
-    file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/Scripts")
+    file(REMOVE_RECURSE
+      "${CURRENT_PACKAGES_DIR}/Lib/site-packages"
+      "${CURRENT_PACKAGES_DIR}/Scripts"
+      )
   endif()
   if(VCPKG_TARGET_IS_OSX)
-    file(GLOB_RECURSE macho_files LIST_DIRECTORIES FALSE "${CURRENT_PACKAGES_DIR}/${PY_LIB_DIR}/*")
+    file(GLOB_RECURSE macho_files LIST_DIRECTORIES FALSE "${CURRENT_PACKAGES_DIR}/*")
     list(FILTER macho_files INCLUDE REGEX "\.so$")
     foreach(macho_file IN LISTS macho_files)
       # Required for testing, as it needs to be able load shared libs from the package (not yet installed) path
