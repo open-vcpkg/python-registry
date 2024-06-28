@@ -72,6 +72,11 @@ endif()
 
 string(REPLACE "dynamic" "" qhull_target "Qhull::qhull${VCPKG_LIBRARY_LINKAGE}_r")
 
+if(VCPKG_TARGET_IS_WINDOWS)
+    set(GDAL_PYTHON_INSTALL_PREFIX "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/../../")
+else()
+    set(GDAL_PYTHON_INSTALL_PREFIX "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/../../../")
+endif()
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
@@ -99,7 +104,7 @@ vcpkg_cmake_configure(
         "-DQHULL_LIBRARY=${qhull_target}"
         "-DSWIG_DIR=${CURRENT_HOST_INSTALLED_DIR}/tools/swig"
         "-DSWIG_EXECUTABLE=${CURRENT_HOST_INSTALLED_DIR}/tools/swig/swig${VCPKG_HOST_EXECUTABLE_SUFFIX}"
-        "-DGDAL_PYTHON_INSTALL_PREFIX=${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/../../../"
+        "-DGDAL_PYTHON_INSTALL_PREFIX=${GDAL_PYTHON_INSTALL_PREFIX}"
         -DONLY_GENERATE_FOR_NON_DEBUG=ON # Python bindings only for release
         "-DCMAKE_PROJECT_INCLUDE=${CMAKE_CURRENT_LIST_DIR}/cmake-project-include.cmake"
     OPTIONS_DEBUG
