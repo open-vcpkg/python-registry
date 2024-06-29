@@ -1,7 +1,6 @@
 {
   "name": "py-gpep517",
-  "version": "15",
-  "port-version": 1,
+  "version": "16",
   "description": "Python package builder and installer for non-pip-centric world",
   "homepage": "https://github.com/projg2/gpep517",
   "license": "MIT",
