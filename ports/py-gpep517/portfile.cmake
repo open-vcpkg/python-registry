@@ -9,6 +9,6 @@ vcpkg_from_github(
 file(COPY "${SOURCE_PATH}/gpep517" DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}")
 # TODO: python3 -m compileall "$pkgdir/$sitedir"
 
-vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
+vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/COPYING")
 
 set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
