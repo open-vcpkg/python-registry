@@ -21,8 +21,8 @@
       "port-version": 1
     },
     "py-gpep517": {
-      "baseline": "15",
-      "port-version": 1
+      "baseline": "16",
+      "port-version": 0
     },
     "py-installer": {
       "baseline": "0.7.0",
