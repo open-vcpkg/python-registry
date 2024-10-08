@@ -1,7 +1,7 @@
 {
   "name": "py-pyyaml",
   "version": "6.0.1",
-  "port-version": 1,
+  "port-version": 2,
   "description": "YAML parser and emitter for Python",
   "homepage": "https://pyyaml.org/",
   "dependencies": [
