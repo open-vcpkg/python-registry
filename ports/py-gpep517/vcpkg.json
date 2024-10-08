@@ -18,6 +18,7 @@
       "name": "python3",
       "host": true,
       "default-features": false
-    }
+    },
+    "vcpkg-python-scripts"
   ]
 }

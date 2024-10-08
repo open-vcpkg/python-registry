@@ -6,6 +6,7 @@
   "homepage": "https://packaging.pypa.io/",
   "license": "MIT",
   "dependencies": [
+    "py-gpep517",
     "vcpkg-python-scripts"
   ]
 }
