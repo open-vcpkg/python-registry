@@ -5,9 +5,13 @@ vcpkg_from_pythonhosted(
     SHA512          a691fd09762221e854861dedce37b05e5354e0701feea470a6d5046960056ef02a8c9ecfa751adeba485271ea7d5834643b7d3a3c3f3270087f5ed9c68509f5f
 )
 
-vcpkg_add_to_path("${CURRENT_INSTALLED_DIR}/tools/libpq/bin")
+vcpkg_add_to_path("${CURRENT_INSTALLED_DIR}/tools/libpq")
 
-vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}" OPTIONS -x)
+set(ENV{INCLUDE} "${CURRENT_INSTALLED_DIR}/include;$ENV{INCLUDE}")
+
+vcpkg_python_build_and_install_wheel(
+  SOURCE_PATH "${SOURCE_PATH}"
+)
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 

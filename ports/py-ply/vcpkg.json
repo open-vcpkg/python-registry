@@ -1,7 +1,7 @@
 {
   "name": "py-ply",
   "version": "3.11",
-  "port-version": 1,
+  "port-version": 2,
   "description": "Python Lex & Yacc",
   "homepage": "https://www.dabeaz.com/ply/",
   "dependencies": [

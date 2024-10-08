@@ -2,7 +2,7 @@
   "default": {
     "gdal": {
       "baseline": "3.9.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-add-vcpkg-dll-path": {
       "baseline": "2024-03-13",
@@ -12,21 +12,57 @@
       "baseline": "0.10.0",
       "port-version": 1
     },
+    "py-certifi": {
+      "baseline": "2024-02-02",
+      "port-version": 0
+    },
+    "py-contourpy": {
+      "baseline": "1.3.0",
+      "port-version": 0
+    },
+    "py-cppy": {
+      "baseline": "1.2.1",
+      "port-version": 0
+    },
+    "py-cycler": {
+      "baseline": "0.12.1",
+      "port-version": 0
+    },
     "py-cython": {
       "baseline": "3.0.5",
+      "port-version": 0
+    },
+    "py-dateutil": {
+      "baseline": "2.9.0",
       "port-version": 0
     },
     "py-flit-core": {
       "baseline": "3.9.0",
       "port-version": 1
     },
+    "py-fonttools": {
+      "baseline": "4.53.1",
+      "port-version": 0
+    },
     "py-gpep517": {
       "baseline": "16",
-      "port-version": 0
+      "port-version": 1
     },
     "py-installer": {
       "baseline": "0.7.0",
       "port-version": 1
+    },
+    "py-kiwisolver": {
+      "baseline": "1.4.5",
+      "port-version": 0
+    },
+    "py-matplotlib": {
+      "baseline": "3.9.2",
+      "port-version": 0
+    },
+    "py-meson": {
+      "baseline": "0.15.0",
+      "port-version": 0
     },
     "py-numpy": {
       "baseline": "1.26.4",
@@ -34,19 +70,23 @@
     },
     "py-packaging": {
       "baseline": "24.1",
+      "port-version": 1
+    },
+    "py-pillow": {
+      "baseline": "10.4.0",
       "port-version": 0
     },
     "py-pip": {
-      "baseline": "23.3.2",
-      "port-version": 1
+      "baseline": "24.2",
+      "port-version": 0
     },
     "py-ply": {
       "baseline": "3.11",
-      "port-version": 1
+      "port-version": 2
     },
     "py-psycopg2": {
       "baseline": "2.9.9",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyparsing": {
       "baseline": "3.1.1",
@@ -56,8 +96,12 @@
       "baseline": "1.0.0",
       "port-version": 0
     },
+    "py-pyproject-metadata": {
+      "baseline": "0.8.0",
+      "port-version": 0
+    },
     "py-pyqt-builder": {
-      "baseline": "1.16.2",
+      "baseline": "1.16.4",
       "port-version": 0
     },
     "py-pyqt6": {
@@ -70,22 +114,42 @@
     },
     "py-pyyaml": {
       "baseline": "6.0.1",
-      "port-version": 1
+      "port-version": 2
     },
     "py-qscintilla": {
       "baseline": "2.14.1",
-      "port-version": 1
+      "port-version": 2
+    },
+    "py-semantic-version": {
+      "baseline": "2.10.0",
+      "port-version": 0
     },
     "py-setuptools": {
       "baseline": "70.1.1",
       "port-version": 0
     },
+    "py-setuptools-scm": {
+      "baseline": "8.1.0",
+      "port-version": 0
+    },
     "py-sip": {
       "baseline": "6.8.3",
+      "port-version": 1
+    },
+    "py-six": {
+      "baseline": "1.16.0",
+      "port-version": 0
+    },
+    "py-tomli": {
+      "baseline": "2.0.1",
+      "port-version": 0
+    },
+    "py-typing-extensions": {
+      "baseline": "4.11.0",
       "port-version": 0
     },
     "py-wheel": {
-      "baseline": "0.41.3",
+      "baseline": "0.43.0",
       "port-version": 0
     },
     "python3": {
@@ -94,7 +158,7 @@
     },
     "swig": {
       "baseline": "4.2.1",
-      "port-version": 0
+      "port-version": 1
     },
     "vcpkg-python-scripts": {
       "baseline": "2024-05-12",

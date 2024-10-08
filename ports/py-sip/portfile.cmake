@@ -5,7 +5,7 @@ vcpkg_from_pythonhosted(
     SHA512          8a0ff1c16ead4c2b1c53963a015fb3d149362f649eeec2523e6b243945493f28f5ecf29aabbf5cee5f7909ded40d64a1f469d2d0c1b3c33244e6213ab23ec733
 )
 
-vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}" OPTIONS -x)
+vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 
