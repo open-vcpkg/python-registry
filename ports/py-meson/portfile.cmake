@@ -6,8 +6,6 @@ vcpkg_from_github(
     HEAD_REF main
 )
 
-#vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}" OPTIONS -x)
-
 set(VCPKG_BUILD_TYPE release)
 
 vcpkg_configure_meson(SOURCE_PATH "${SOURCE_PATH}")
