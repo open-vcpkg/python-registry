@@ -1,11 +1,14 @@
 set(ENV{SETUPTOOLS_SCM_PRETEND_VERSION} "${VERSION}")
+set(ENV{PDM_BUILD_SCM_VERSION} "${VERSION}")
+
+set(z_vcpkg_python_func_python "${PYTHON3}")
 
 function(vcpkg_from_pythonhosted)
   cmake_parse_arguments(
     PARSE_ARGV 0
     "arg"
     ""
-    "OUT_SOURCE_PATH;PACKAGE_NAME;FILE_NAME;VERSION;SHA512"
+    "OUT_SOURCE_PATH;PACKAGE_NAME;VERSION;SHA512;FILENAME"
     "PATCHES")
 
   if(DEFINED arg_UNPARSED_ARGUMENTS)
@@ -21,13 +24,13 @@ function(vcpkg_from_pythonhosted)
   if(NOT DEFINED arg_VERSION)
     message(FATAL_ERROR "VERSION must be specified.")
   endif()
-  if(NOT DEFINED arg_FILE_NAME)
-    set(arg_FILE_NAME ${arg_PACKAGE_NAME})
+  if(NOT DEFINED arg_FILENAME)
+    set(arg_FILENAME "${arg_PACKAGE_NAME}")
   endif()
-
+  
   string(SUBSTRING "${arg_PACKAGE_NAME}" 0 1 _PACKAGE_PREFIX)
   vcpkg_download_distfile(ARCHIVE
-    URLS "https://files.pythonhosted.org/packages/source/${_PACKAGE_PREFIX}/${arg_PACKAGE_NAME}/${arg_FILE_NAME}-${arg_VERSION}.tar.gz"
+    URLS "https://files.pythonhosted.org/packages/source/${_PACKAGE_PREFIX}/${arg_PACKAGE_NAME}/${arg_FILENAME}-${arg_VERSION}.tar.gz"
     FILENAME "${arg_PACKAGE_NAME}-${arg_VERSION}.tar.gz"
     SHA512 ${arg_SHA512}
   )
@@ -45,26 +48,54 @@ function(vcpkg_python_build_wheel)
   cmake_parse_arguments(
     PARSE_ARGV 0
     "arg"
-    "ISOLATE"
+    ""
     "SOURCE_PATH;OUTPUT_WHEEL"
-    "OPTIONS"
+    "OPTIONS;ENVIRONMENT"
   )
 
-  set(build_ops "${arg_OPTIONS}")
+  # These are common variables used by python backends
+  set(ENV{SETUPTOOLS_SCM_PRETEND_VERSION} "${VERSION}")
+  set(ENV{PDM_BUILD_SCM_VERSION} "${VERSION}")
 
-  if(NOT arg_ISOLATE)
-    list(APPEND build_ops "-n")
-  endif()
+  set(build_ops "${arg_OPTIONS}")
 
   set(z_vcpkg_wheeldir "${CURRENT_PACKAGES_DIR}/wheels")
 
   file(MAKE_DIRECTORY "${z_vcpkg_wheeldir}")
 
   message(STATUS "Building python wheel!")
-  vcpkg_execute_required_process(COMMAND "${PYTHON3}" -m gpep517 build-wheel --wheel-dir "${z_vcpkg_wheeldir}" --output-fd 1
+
+   list(JOIN arg_ENVIRONMENT " " env)
+  if(CMAKE_HOST_WIN32)
+    set(env "")
+    set(env_backup_vars "")
+    foreach(envvarline IN LISTS arg_ENVIRONMENT)
+      if(envvarline MATCHES "([^=]+)=(.+)")
+        list(APPEND env_backup_vars "${CMAKE_MATCH_1}")
+        if(DEFINED ENV{${CMAKE_MATCH_1}})
+          set(env_bak_${CMAKE_MATCH_1} "$ENV{${CMAKE_MATCH_1}}")
+        endif()
+        set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
+      else()
+        message(FATAL_ERROR "'${envvarline}' is not a valid line for setting an environment variable!")
+      endif()
+    endforeach()
+  endif()
+
+  vcpkg_execute_required_process(
+    COMMAND ${env} "${z_vcpkg_python_func_python}" -m gpep517 build-wheel --wheel-dir "${z_vcpkg_wheeldir}" --output-fd 1 ${build_ops}
     LOGNAME "python-build-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${arg_SOURCE_PATH}"
   )
+
+  foreach(env_var IN LISTS env_backup_vars)
+    if(DEFINED env_bak_${env_var})
+      set(ENV{${env_var}} "${env_bak_${env_var}}")
+    else()
+      unset(ENV{${env_var}})
+    endif()
+  endforeach()
+
   message(STATUS "Finished building python wheel!")
 
   file(GLOB WHEEL "${z_vcpkg_wheeldir}/*.whl")
@@ -89,7 +120,7 @@ function(vcpkg_python_install_wheel)
   endif()
 
   message(STATUS "Installing python wheel:'${arg_WHEEL}'")
-  vcpkg_execute_required_process(COMMAND "${PYTHON3}" -m installer 
+  vcpkg_execute_required_process(COMMAND "${z_vcpkg_python_func_python}" -m installer 
     --prefix "${install_prefix}" 
     --destdir "${CURRENT_PACKAGES_DIR}" "${arg_WHEEL}"
     LOGNAME "python-installer-${TARGET_TRIPLET}"
@@ -117,24 +148,19 @@ function(vcpkg_python_build_and_install_wheel)
   cmake_parse_arguments(
     PARSE_ARGV 0
     "arg"
-    "ISOLATE"
+    ""
     "SOURCE_PATH"
-    "OPTIONS"
+    "OPTIONS;ENVIRONMENT"
   )
-
-  set(ENV{SETUPTOOLS_SCM_PRETEND_VERSION} "${VERSION}")
-
-  if("-x" IN_LIST arg_OPTIONS)
-    message(WARNING "Python wheel will be ignoring dependencies")
-  endif()
-
-  set(opts "")
-  if(arg_ISOLATE)
-    set(opts ISOLATE)
-  endif()
-
-  vcpkg_python_build_wheel(${opts} SOURCE_PATH "${arg_SOURCE_PATH}" OUTPUT_WHEEL WHEEL OPTIONS ${arg_OPTIONS})
-  vcpkg_python_install_wheel(WHEEL "${WHEEL}")
+  vcpkg_python_build_wheel(
+    OUTPUT_WHEEL wheel
+    ENVIRONMENT ${arg_ENVIORNMENT}
+    SOURCE_PATH "${arg_SOURCE_PATH}"
+    OPTIONS ${arg_OPTIONS}
+  )
+  vcpkg_python_install_wheel(
+    WHEEL "${wheel}"
+  )
 endfunction()
 
 function(vcpkg_python_test_import)
@@ -150,13 +176,13 @@ function(vcpkg_python_test_import)
 
   set(RELATIVE_SITE_PACKAGES_DIR "${PYTHON3_SITEPACKAGES}")
   cmake_path(RELATIVE_PATH RELATIVE_SITE_PACKAGES_DIR BASE_DIRECTORY "${CURRENT_INSTALLED_DIR}")
-  
+
   set(INSTALLED_DLL_DIR "${CURRENT_INSTALLED_DIR}/bin")
   set(PACKAGE_DLL_DIR "${CURRENT_PACKAGES_DIR}/bin")
   set(PACKAGE_SITE_PACKAGES_DIR "${CURRENT_PACKAGES_DIR}/${RELATIVE_SITE_PACKAGES_DIR}")
   configure_file("${CURRENT_HOST_INSTALLED_DIR}/share/vcpkg-python-scripts/import_test.py.in" "${CURRENT_BUILDTREES_DIR}/import_test.py" @ONLY)
 
-  vcpkg_execute_required_process(COMMAND "${PYTHON3}" "${CURRENT_BUILDTREES_DIR}/import_test.py"
+  vcpkg_execute_required_process(COMMAND "${z_vcpkg_python_func_python}" "${CURRENT_BUILDTREES_DIR}/import_test.py"
     LOGNAME "python-test-import-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
   )
