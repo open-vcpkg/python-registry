@@ -30,7 +30,7 @@
     },
     "py-cython": {
       "baseline": "3.0.5",
-      "port-version": 0
+      "port-version": 1
     },
     "py-dateutil": {
       "baseline": "2.9.0",
