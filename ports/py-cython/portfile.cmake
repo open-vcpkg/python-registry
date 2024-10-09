@@ -11,7 +11,7 @@ vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE.txt")
 
 if(NOT VCPKG_TARGET_IS_WINDOWS)
-  vcpkg_copy_tools(TOOL_NAMES cygdb cython cythonize DESTINATION "${CURRENT_PACKAGES_DIR}/${VCPKG_PYTHON3_SCRIPTS}" AUTO_CLEAN)
+  vcpkg_copy_tools(TOOL_NAMES cygdb cython cythonize DESTINATION "${CURRENT_PACKAGES_DIR}/tools/python3" AUTO_CLEAN)
 endif()
 
 set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
