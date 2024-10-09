@@ -1,0 +1,17 @@
+{
+  "name": "py-pathspec",
+  "version": "0.12.1",
+  "description": "Utility library for gitignore style pattern matching of file paths.",
+  "homepage": "https://python-path-specification.readthedocs.io/en/latest/index.html",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

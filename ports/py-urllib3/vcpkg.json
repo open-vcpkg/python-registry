@@ -1,0 +1,29 @@
+{
+  "name": "py-urllib3",
+  "version": "2.2.3",
+  "description": "HTTP library with thread-safe connection pooling, file post, and more.",
+  "homepage": "https://github.com/urllib3/urllib3",
+  "dependencies": [
+    {
+      "name": "py-hatch-vcs",
+      "host": true
+    },
+    {
+      "name": "py-hatchling",
+      "host": true
+    },
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    {
+      "name": "py-setuptools-scm",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "py-pluggy",
+  "version": "1.5.0",
+  "description": "plugin and hook calling mechanisms for python",
+  "homepage": "https://github.com/pytest-dev/pluggy",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
