@@ -69,6 +69,7 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-sip
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numpy
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-psycopg2
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
       - name: 📑 Upload logs
