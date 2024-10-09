@@ -10,7 +10,11 @@ vcpkg_find_acquire_program(GIT)
 cmake_path(GET GIT PARENT_PATH GIT_DIR)
 vcpkg_add_to_path("${GIT_DIR}")
 
-vcpkg_get_mecurial(HG)
+if(VCPKG_HOST_IS_WINDOWS)
+  vcpkg_get_mercurial(HG)
+else()
+  find_program(HG NAMES hg)
+endif()
 cmake_path(GET HG PARENT_PATH HG_DIR)
 vcpkg_add_to_path("${HG_DIR}")
 

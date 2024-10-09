@@ -1,6 +1,7 @@
 {
   "name": "py-setuptools-scm",
   "version": "8.1.0",
+  "port-version": 1,
   "description": "the blessed package to manage your versions by scm tags",
   "homepage": "https://github.com/pypa/setuptools_scm",
   "license": "MIT",
@@ -17,6 +18,9 @@
     "py-typing-extensions",
     "vcpkg-get-python-packages",
     "vcpkg-python-scripts",
-    "vcpkg-tool-mecurial"
+    {
+      "name": "vcpkg-tool-mercurial",
+      "platform": "windows"
+    }
   ]
 }
