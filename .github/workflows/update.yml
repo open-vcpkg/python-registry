@@ -1,0 +1,48 @@
+name: Auto update python packages
+
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  update_packages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup vcpkg
+        uses: ./.github/actions/setup-vcpkg
+
+      - name: Format vcpkg.json
+        run: |
+          python ./scripts/update-ports.py
+
+      - name: Format vcpkg.json
+        run: |
+          vcpkg format-manifest --all $(find . -name "vcpkg.json")
+          git add ports
+          git commit -m "Autoupdating ports"
+
+      - name: Update versions
+        run: |
+          for dir in ports/* ; do
+            vcpkg x-add-version ${dir##ports/} --overlay-ports=./ports \
+              --x-builtin-registry-versions-dir=./versions/ \
+              --x-builtin-ports-root=./ports
+          done
+          git add versions
+          git commit --am --no-edit
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+
