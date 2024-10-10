@@ -30,6 +30,9 @@ jobs:
       - name: Format vcpkg.json
         run: |
           vcpkg format-manifest --all $(find . -name "vcpkg.json")
+
+          git config --global user.email "updatebot@open-vcpkg"
+          git config --global user.name "Update Bot"
           git add ports
           git commit -m "Autoupdating ports"
 
@@ -40,6 +43,7 @@ jobs:
               --x-builtin-registry-versions-dir=./versions/ \
               --x-builtin-ports-root=./ports
           done
+
           git add versions
           git commit --am --no-edit
 
