@@ -1,6 +1,6 @@
 {
   "name": "py-setuptools",
-  "version": "70.1.1",
+  "version": "75.1.0",
   "description": "Official project repository for the Setuptools build system ",
   "homepage": "https://pypi.org/project/setuptools/",
   "license": "MIT",
