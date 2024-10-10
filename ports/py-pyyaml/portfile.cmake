@@ -1,8 +1,9 @@
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    PyYAML
+    PACKAGE_NAME        PyYAML
     VERSION         ${VERSION}
-    SHA512          94a29924484f557c0966d485c2b70232909253f27fcea9b89e1db1462abf61f2f85d55fbae0177b2bed70eb5daa75813551e868df4df4cddfdee9a87bd08485f
+    SHA512          a675e0056bb6af9119c7f2796e349ced05afca64118a5b444d66dafcb6a774cf274eeba7eab044b86eb6c12a9d7c785c654f6cf229e1d190340dd06ea76e25ec
+    FILENAME        pyyaml
     PATCHES
         cy-me-a-river.patch
 )

@@ -2,9 +2,10 @@ set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
 
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    PyQt6_sip
+    PACKAGE_NAME        PyQt6-sip
     VERSION         ${VERSION}
-    SHA512          bd2fa70d64544d8104d3477cb650a0e6bcefa0008680afcf7d187ba3fb1117871c0237d3a7f047144c8a8a8eeb8da941a3b206f8ee0601cb2cc734243cdb9d46
+    SHA512          6947690e61fe65a21f61d034ae9de7b7adb001c59a4a362933c5441648fe27140b43666efa73f981b138cfc73fac72777bb7318b98accc3c7f808687e3fc5d81
+    FILENAME        PyQt6_sip
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

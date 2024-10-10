@@ -41,7 +41,7 @@
       "port-version": 1
     },
     "py-fonttools": {
-      "baseline": "4.53.1",
+      "baseline": "4.54.1",
       "port-version": 0
     },
     "py-gpep517": {
@@ -125,16 +125,16 @@
       "port-version": 0
     },
     "py-pyqt6": {
-      "baseline": "6.7.0",
+      "baseline": "6.7.1",
       "port-version": 0
     },
     "py-pyqt6-sip": {
-      "baseline": "13.6.0",
+      "baseline": "13.8.0",
       "port-version": 0
     },
     "py-pyyaml": {
-      "baseline": "6.0.1",
-      "port-version": 2
+      "baseline": "6.0.2",
+      "port-version": 0
     },
     "py-qscintilla": {
       "baseline": "2.14.1",
@@ -145,7 +145,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "70.1.1",
+      "baseline": "75.1.0",
       "port-version": 0
     },
     "py-setuptools-scm": {
@@ -153,8 +153,8 @@
       "port-version": 1
     },
     "py-sip": {
-      "baseline": "6.8.3",
-      "port-version": 1
+      "baseline": "6.8.6",
+      "port-version": 0
     },
     "py-six": {
       "baseline": "1.16.0",
