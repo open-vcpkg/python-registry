@@ -1,0 +1,17 @@
+{
+  "name": "py-charset-normalizer",
+  "version": "3.4.0",
+  "description": "The Real First Universal Charset Detector. Open, modern and actively maintained alternative to Chardet.",
+  "homepage": "https://github.com/Ousret/charset_normalizer",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

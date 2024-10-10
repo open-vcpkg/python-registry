@@ -1,0 +1,20 @@
+{
+  "name": "py-requests",
+  "version": "2.32.3",
+  "description": "Python HTTP for Humans.",
+  "homepage": "https://requests.readthedocs.io/",
+  "dependencies": [
+    "py-certifi",
+    "py-charset-normalizer",
+    "py-idna",
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
