@@ -1,7 +1,9 @@
 name: Auto update python packages
 
 on:
-  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 5 * * *"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
