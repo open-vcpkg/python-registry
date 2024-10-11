@@ -72,6 +72,8 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-psycopg2
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-urllib3
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-markupsafe
+          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-matplotlib
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-requests
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
       - name: 📑 Upload logs
