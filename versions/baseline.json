@@ -34,7 +34,7 @@
     },
     "py-dateutil": {
       "baseline": "2.9.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-flit-core": {
       "baseline": "3.9.0",

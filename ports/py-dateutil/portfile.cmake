@@ -1,4 +1,6 @@
 string(REGEX REPLACE "^py-" "" package "${PORT}")
+
+# PYPI_PROJECT_NAME python-dateutil
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    python-${package}
