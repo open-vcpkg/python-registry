@@ -82,6 +82,12 @@ function(vcpkg_python_build_wheel)
     endforeach()
   endif()
 
+  vcpkg_cmake_get_vars(cmake_vars_file)
+  include("${cmake_vars_file}")
+
+  set(ENV{CFLAGS} "${VCPKG_COMBINED_C_FLAGS_RELEASE}")
+  set(ENV{CXXFLAGS} "${VCPKG_COMBINED_CXX_FLAGS_RELEASE}")
+
   vcpkg_execute_required_process(
     COMMAND ${env} "${z_vcpkg_python_func_python}" -m gpep517 build-wheel --wheel-dir "${z_vcpkg_wheeldir}" --output-fd 1 ${build_ops}
     LOGNAME "python-build-${TARGET_TRIPLET}"
