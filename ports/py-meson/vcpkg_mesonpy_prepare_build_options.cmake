@@ -26,6 +26,12 @@ function(vcpkg_mesonpy_prepare_build_options)
     vcpkg_find_acquire_program(PYTHON3)
     get_filename_component(PYTHON3_DIR "${PYTHON3}" DIRECTORY)
     vcpkg_add_to_path(PREPEND "${PYTHON3_DIR}")
+    x_vcpkg_get_python_packages(
+      PYTHON_VERSION 3
+      PYTHON_EXECUTABLE ${PYTHON3}
+      PACKAGES gpep517 setuptools-scm
+      OUT_PYTHON_VAR PYTHON3
+    )
 
     set(buildname "RELEASE")
     vcpkg_list(APPEND buildtypes "${buildname}")
