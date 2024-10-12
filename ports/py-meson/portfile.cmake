@@ -15,9 +15,12 @@ vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 
 set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
 
-file(MAKE_DIRECTORY "${CURRENT_PACKAGES_DIR}/tools/python3/Lib")
-file(RENAME "${CURRENT_PACKAGES_DIR}/Lib/site-packages/" "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/")
-file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/Lib")
+if(VCPKG_TARGET_IS_WINDOWS)
+  file(MAKE_DIRECTORY "${CURRENT_PACKAGES_DIR}/tools/python3/Lib")
+  file(RENAME "${CURRENT_PACKAGES_DIR}/Lib/site-packages/" "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/")
+  file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/Lib")
+endif()
+
 
 vcpkg_python_test_import(MODULE "mesonpy")
 

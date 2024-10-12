@@ -78,11 +78,11 @@
     },
     "py-matplotlib": {
       "baseline": "3.9.2",
-      "port-version": 1
+      "port-version": 2
     },
     "py-meson": {
       "baseline": "0.15.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-numpy": {
       "baseline": "1.26.4",
@@ -173,7 +173,7 @@
       "port-version": 0
     },
     "py-tomli": {
-      "baseline": "2.0.1",
+      "baseline": "2.0.2",
       "port-version": 0
     },
     "py-trove-classifiers": {
@@ -206,7 +206,7 @@
     },
     "vcpkg-python-scripts": {
       "baseline": "2024-05-12",
-      "port-version": 2
+      "port-version": 4
     },
     "vcpkg-tool-mercurial": {
       "baseline": "2023-06-27",
