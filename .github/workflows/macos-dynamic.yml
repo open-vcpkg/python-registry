@@ -1,5 +1,5 @@
 ---
-name: 🍎 MacOS
+name: 🍎 MacOS Dynamic
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-osx-dynamic:
     permissions:
       contents: read
       packages: write
