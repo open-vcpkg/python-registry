@@ -66,21 +66,22 @@ jobs:
       - name: 🌋 Build
         run: |
           VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }}"
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-sip
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numpy
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-psycopg2
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-urllib3
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-markupsafe
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-matplotlib
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-requests
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-isort
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-autopep8
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-flask
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip \
+            py-sip \
+            py-numpy \
+            py-psycopg2 \
+            py-urllib3 \
+            py-markupsafe \
+            py-matplotlib \
+            py-requests \
+            py-isort \
+            py-autopep8 \
+            py-flask \
+            py-pyqt6
+
+          # Try again with *-macos-dynamic
+          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-matplotlib
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
-          #
-      - uses: mxschmitt/action-tmate@v3
-        if: always()
 
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v4
