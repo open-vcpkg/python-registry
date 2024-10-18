@@ -68,6 +68,10 @@
       "baseline": "0.7.0",
       "port-version": 1
     },
+    "py-jinja2": {
+      "baseline": "3.1.4",
+      "port-version": 0
+    },
     "py-kiwisolver": {
       "baseline": "1.4.5",
       "port-version": 0
