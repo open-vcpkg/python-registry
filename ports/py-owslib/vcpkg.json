@@ -1,0 +1,17 @@
+{
+  "name": "py-owslib",
+  "version": "0.31.0",
+  "description": "OGC Web Service utility library",
+  "homepage": "https://owslib.readthedocs.io/",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
