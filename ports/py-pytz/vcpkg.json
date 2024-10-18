@@ -1,0 +1,17 @@
+{
+  "name": "py-pytz",
+  "version": "2024.2",
+  "description": "World timezone definitions, modern and historical",
+  "homepage": "http://pythonhosted.org/pytz",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

@@ -76,6 +76,10 @@
       "baseline": "1.4.5",
       "port-version": 0
     },
+    "py-lxml": {
+      "baseline": "5.3.0",
+      "port-version": 0
+    },
     "py-markupsafe": {
       "baseline": "3.0.1",
       "port-version": 0
@@ -90,6 +94,10 @@
     },
     "py-numpy": {
       "baseline": "1.26.4",
+      "port-version": 0
+    },
+    "py-owslib": {
+      "baseline": "0.31.0",
       "port-version": 0
     },
     "py-packaging": {
@@ -142,6 +150,10 @@
     },
     "py-pyqt6-sip": {
       "baseline": "13.8.0",
+      "port-version": 0
+    },
+    "py-pytz": {
+      "baseline": "2024.2",
       "port-version": 0
     },
     "py-pyyaml": {
