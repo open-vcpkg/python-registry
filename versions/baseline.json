@@ -81,7 +81,7 @@
       "port-version": 0
     },
     "py-markupsafe": {
-      "baseline": "3.0.1",
+      "baseline": "3.0.2",
       "port-version": 0
     },
     "py-matplotlib": {
@@ -125,8 +125,8 @@
       "port-version": 2
     },
     "py-psycopg2": {
-      "baseline": "2.9.9",
-      "port-version": 2
+      "baseline": "2.9.10",
+      "port-version": 0
     },
     "py-pyparsing": {
       "baseline": "3.1.1",
@@ -173,7 +173,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "75.1.0",
+      "baseline": "75.2.0",
       "port-version": 0
     },
     "py-setuptools-scm": {
@@ -193,7 +193,7 @@
       "port-version": 0
     },
     "py-trove-classifiers": {
-      "baseline": "2024.9.12",
+      "baseline": "2024.10.16",
       "port-version": 0
     },
     "py-typing-extensions": {
