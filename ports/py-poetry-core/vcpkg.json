@@ -1,0 +1,18 @@
+{
+  "name": "py-poetry-core",
+  "version": "1.9.1",
+  "description": "Poetry PEP 517 Build Backend",
+  "homepage": "https://github.com/python-poetry/poetry-core",
+  "license": "MIT",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "py-isort",
+  "version": "5.13.2",
+  "description": "A Python utility / library to sort Python imports.",
+  "homepage": "https://pycqa.github.io/isort/",
+  "dependencies": [
+    {
+      "name": "py-poetry-core",
+      "host": true
+    },
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
