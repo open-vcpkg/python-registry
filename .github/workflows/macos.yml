@@ -74,6 +74,8 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-markupsafe
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-matplotlib
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-requests
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-isort
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-autopep8
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
       - name: 📑 Upload logs
