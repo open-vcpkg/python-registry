@@ -2,9 +2,10 @@ set(VCPKG_BUILD_TYPE release)
 
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    markupsafe
+    PACKAGE_NAME        MarkupSafe
     VERSION         ${VERSION}
-    SHA512          1d5342766fae024a243e12a2ad384724ec2a9ea5dfd4af1651725ef5201bcec5ca2e520720a05d05d3ca91fcdbf78e00afec6a70a73146ab29e29c6989559651
+    SHA512          26946b928b001933f08a5dd90c5fe424a1d9e2bccfbf7194955d031a3df54a03eb48e4e47ea9564a25da33efeb62a043a53008f551fa1e8d71321bc276e19ce2
+    FILENAME        markupsafe
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
