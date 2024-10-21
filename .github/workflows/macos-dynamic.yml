@@ -1,5 +1,5 @@
 ---
-name: 🍎 MacOS
+name: 🍎 MacOS Dynamic
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-osx-dynamic:
     permissions:
       contents: read
       packages: write
@@ -19,9 +19,9 @@ jobs:
       matrix:
         include:
           - os: macos-13
-            triplet: x64-osx
+            triplet: x64-osx-dynamic
           - os: macos-14
-            triplet: arm64-osx
+            triplet: arm64-osx-dynamic
     env:
       buildtrees: /Users/runner/vcpkg-build
     name: build (macos)
