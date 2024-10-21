@@ -1,0 +1,84 @@
+---
+name: 🍎 MacOS Dynamic
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-osx-dynamic:
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        include:
+          - os: macos-13
+            triplet: x64-osx-dynamic
+          - os: macos-14
+            triplet: arm64-osx-dynamic
+    env:
+      buildtrees: /Users/runner/vcpkg-build
+    name: build (macos)
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: 🐣 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐩 Install CMake and Ninja
+        uses: lukka/get-cmake@latest
+
+      - name: 🧽 Developer Command Prompt for Microsoft Visual C++
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: 🔨 Prepare build env
+        run: |
+          brew install autoconf automake autoconf-archive libtool
+
+      - name: 🐕 Checkout vcpkg
+        uses: actions/checkout@v4
+        with:
+          repository: microsoft/vcpkg
+          ref: c4467cb686f92671f0172aa8299a77d908175b4e # TODO: can we have a canonical baseline for tests?
+          path: vcpkg
+          fetch-depth: 1
+
+      - name: 🐾 Bootstrap vcpkg
+        shell: bash
+        run: |
+          PKG_SOURCE_USER=$(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)
+          ./vcpkg/bootstrap-vcpkg.sh
+          NUGET_EXE=$(./vcpkg/vcpkg fetch nuget | grep '^\/.*nuget.exe$')
+          echo "Downloaded $NUGET_EXE"
+          mono $NUGET_EXE sources add -Name ghpkg -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json" -UserName "$PKG_SOURCE_USER" -Password "${{ secrets.GITHUB_TOKEN }}" -StorePasswordInClearText
+          mono $NUGET_EXE setapikey "${{ secrets.GITHUB_TOKEN }}" -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json"
+          echo "VCPKG_BINARY_SOURCES=clear;nuget,https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json,readwrite" >> $GITHUB_ENV
+          VCPKG_ROOT=$(pwd)/vcpkg
+          echo "PATH=$VCPKG_ROOT;$PATH" >> $GITHUB_ENV
+          echo "VCPKG_ROOT=$VCPKG_ROOT" >> $GITHUB_ENV
+
+      - name: 🌋 Build
+        run: |
+          VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }}"
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-sip
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numpy
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-psycopg2
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-urllib3
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-markupsafe
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-matplotlib
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-requests
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
+
+      - name: 📑 Upload logs
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: logs-${{ matrix.triplet }}
+          path: ${{ env.buildtrees }}/**/*.log
