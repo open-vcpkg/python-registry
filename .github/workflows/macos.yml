@@ -79,10 +79,6 @@ jobs:
             py-flask \
             py-pyqt6
 
-          # Try again with *-macos-dynamic
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-matplotlib
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
-
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v4
         if: failure()
