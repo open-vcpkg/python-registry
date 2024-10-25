@@ -105,7 +105,7 @@
       "port-version": 0
     },
     "py-owslib": {
-      "baseline": "0.31.0",
+      "baseline": "0.32.0",
       "port-version": 0
     },
     "py-packaging": {
@@ -209,7 +209,7 @@
       "port-version": 0
     },
     "py-trove-classifiers": {
-      "baseline": "2024.10.16",
+      "baseline": "2024.10.21.16",
       "port-version": 0
     },
     "py-typing-extensions": {
