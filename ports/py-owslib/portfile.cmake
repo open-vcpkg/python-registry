@@ -1,8 +1,8 @@
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    OWSLib
+    PACKAGE_NAME        OWSLib
     VERSION         ${VERSION}
-    SHA512          4182ca1df362c2f30bff843d7937c642d730d7d5de312a20d8f2c8396653ee52265218a17fe6ee0777accccc7ebbe6eee94fc7f160dc495015361fe3981907cf
+    SHA512          e71a553b4cbba7b5d650e495a376bab8e27ce99dcb0ada26997b29d6deae1ac6d1de5ac30d980f2b12c494af1179e6c14ed8eae606efc820a17e8f2d94786b78
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
