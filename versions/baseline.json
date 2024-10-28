@@ -12,6 +12,10 @@
       "baseline": "2.3.1",
       "port-version": 0
     },
+    "py-blinker": {
+      "baseline": "1.8.2",
+      "port-version": 0
+    },
     "py-build": {
       "baseline": "0.10.0",
       "port-version": 1
@@ -22,6 +26,10 @@
     },
     "py-charset-normalizer": {
       "baseline": "3.4.0",
+      "port-version": 0
+    },
+    "py-click": {
+      "baseline": "8.1.7",
       "port-version": 0
     },
     "py-contourpy": {
@@ -43,6 +51,10 @@
     "py-dateutil": {
       "baseline": "2.9.0",
       "port-version": 1
+    },
+    "py-flask": {
+      "baseline": "3.0.3",
+      "port-version": 0
     },
     "py-flit-core": {
       "baseline": "3.9.0",
@@ -74,6 +86,10 @@
     },
     "py-isort": {
       "baseline": "5.13.2",
+      "port-version": 0
+    },
+    "py-itsdangerous": {
+      "baseline": "2.2.0",
       "port-version": 0
     },
     "py-jinja2": {
@@ -218,6 +234,10 @@
     },
     "py-urllib3": {
       "baseline": "2.2.3",
+      "port-version": 0
+    },
+    "py-werkzeug": {
+      "baseline": "3.0.6",
       "port-version": 0
     },
     "py-wheel": {

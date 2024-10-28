@@ -1,0 +1,17 @@
+{
+  "name": "py-itsdangerous",
+  "version": "2.2.0",
+  "description": "Safely pass data to untrusted environments and back.",
+  "homepage": "https://itsdangerous.palletsprojects.com/",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
