@@ -1,0 +1,19 @@
+{
+  "name": "py-setuptools-rust",
+  "version": "1.10.1",
+  "description": "Setuptools Rust extension plugin",
+  "homepage": "https://github.com/PyO3/setuptools-rust",
+  "dependencies": [
+    "py-semantic-version",
+    "py-setuptools",
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

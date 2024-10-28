@@ -1,0 +1,18 @@
+{
+  "name": "py-maturin",
+  "version": "1.7.4",
+  "description": "Build and publish crates with pyo3, cffi and uniffi bindings as well as rust binaries as python packages",
+  "homepage": "https://github.com/pyca/cryptography",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "py-setuptools-rust",
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

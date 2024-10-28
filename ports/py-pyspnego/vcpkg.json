@@ -1,0 +1,19 @@
+{
+  "name": "py-pyspnego",
+  "version": "0.11.1",
+  "description": "Windows Negotiate Authentication Client and Server",
+  "homepage": "https://github.com/jborean93/pyspnego",
+  "dependencies": [
+    "py-cryptography",
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "py-sspilib",
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "py-cryptography",
+  "version": "43.0.3",
+  "description": "cryptography is a package which provides cryptographic recipes and primitives to Python developers",
+  "homepage": "https://github.com/pyca/cryptography",
+  "dependencies": [
+    {
+      "name": "py-cffi",
+      "host": true
+    },
+    {
+      "name": "py-maturin",
+      "host": true
+    },
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
