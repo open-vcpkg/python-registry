@@ -32,6 +32,8 @@ jobs:
       - name: 🧽 Developer Command Prompt for Microsoft Visual C++
         uses: ilammy/msvc-dev-cmd@v1
 
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
         with:

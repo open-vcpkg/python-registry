@@ -81,7 +81,6 @@ jobs:
             py-geographiclib \
             py-kerberos-proxy-auth \
             py-pip-system-certs \
-            py-requests-kerberos \
             py-wrapt
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
