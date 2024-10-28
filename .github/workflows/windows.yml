@@ -33,6 +33,14 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
 
       - uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          cache: false
+
+      - name: Setup rust path
+        shell: bash
+        run: |
+          echo "/c/Users/runneradmin/.cargo/bin" >> $GITHUB_PATH
+         
 
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
@@ -53,7 +61,7 @@ jobs:
           $NUGET_EXE setapikey "${{ secrets.GITHUB_TOKEN }}" -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json"
           echo "VCPKG_BINARY_SOURCES=clear;nuget,https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json,readwrite" >> $GITHUB_ENV
           VCPKG_ROOT=$(cygpath -w $(pwd)/vcpkg)
-          echo "PATH=$VCPKG_ROOT;$PATH" >> $GITHUB_ENV
+          echo "$VCPKG_ROOT" >> $GITHUB_PATH
           echo "VCPKG_ROOT=$VCPKG_ROOT" >> $GITHUB_ENV
 
 
