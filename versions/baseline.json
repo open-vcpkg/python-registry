@@ -154,7 +154,7 @@
     },
     "py-psycopg2": {
       "baseline": "2.9.10",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pycodestyle": {
       "baseline": "2.12.1",
