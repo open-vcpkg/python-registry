@@ -205,7 +205,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "75.2.0",
+      "baseline": "75.3.0",
       "port-version": 0
     },
     "py-setuptools-scm": {
