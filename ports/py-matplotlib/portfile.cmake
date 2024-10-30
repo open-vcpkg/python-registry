@@ -9,7 +9,11 @@ vcpkg_from_github(
 set(ENV{PKG_CONFIG_PATH} "${CURRENT_INSTALLED_DIR}/lib/pkgconfig;${CURRENT_INSTALLED_DIR}/share/pkgconfig")
 set(ENV{INCLUDE} "${CURRENT_INSTALLED_DIR}/include;$ENV{INCLUDE}")
 
-set(PYTHON3 "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python${VCPKG_HOST_EXECUTABLE_SUFFIX}")
+if(VCPKG_TARGET_IS_WINDOWS)
+  set(PYTHON3 "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python.exe")
+else()
+  set(PYTHON3 "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}")
+endif()
 vcpkg_mesonpy_prepare_build_options(OUTPUT meson_opts)
 
 z_vcpkg_setup_pkgconfig_path(CONFIG "RELEASE")

@@ -1,5 +1,5 @@
 ---
-name: 🍎 MacOS
+name: 🍎 MacOS Dynamic
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-osx-dynamic:
     permissions:
       contents: read
       packages: write
@@ -19,9 +19,9 @@ jobs:
       matrix:
         include:
           - os: macos-13
-            triplet: x64-osx
+            triplet: x64-osx-dynamic
           - os: macos-14
-            triplet: arm64-osx
+            triplet: arm64-osx-dynamic
     env:
       buildtrees: /Users/runner/vcpkg-build
     name: build (macos)
@@ -45,13 +45,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: microsoft/vcpkg
-          ref: c4467cb686f92671f0172aa8299a77d908175b4e # TODO: can we have a canonical baseline for tests?
+          ref: e60236ee051183f1122066bee8c54a0b47c43a60 # TODO: can we have a canonical baseline for tests?
           path: vcpkg
           fetch-depth: 1
 
       - name: 🐾 Bootstrap vcpkg
         shell: bash
         run: |
+          wget https://raw.githubusercontent.com/microsoft/vcpkg/f9dfb066d02fa62015e5c27acb4801cb482d5890/scripts/cmake/z_vcpkg_fixup_rpath_macho.cmake -O vcpkg/scripts/cmake/z_vcpkg_fixup_rpath_macho.cmake
           PKG_SOURCE_USER=$(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)
           ./vcpkg/bootstrap-vcpkg.sh
           NUGET_EXE=$(./vcpkg/vcpkg fetch nuget | grep '^\/.*nuget.exe$')
@@ -76,7 +77,6 @@ jobs:
             py-requests \
             py-isort \
             py-autopep8 \
-            py-flask \
             py-pyqt6
 
       - name: 📑 Upload logs
