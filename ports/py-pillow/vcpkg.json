@@ -1,6 +1,7 @@
 {
   "name": "py-pillow",
   "version": "10.4.0",
+  "port-version": 1,
   "description": "Python Imaging Library",
   "homepage": "https://python-pillow.org/",
   "license": null,
