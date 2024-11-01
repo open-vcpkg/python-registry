@@ -1,7 +1,7 @@
 {
   "name": "vcpkg-python-scripts",
   "version-date": "2024-05-12",
-  "port-version": 2,
+  "port-version": 3,
   "documentation": "https://vcpkg.io/en/docs/README.html",
   "license": "MIT",
   "supports": "native",
