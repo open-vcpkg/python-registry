@@ -188,3 +188,49 @@ function(vcpkg_python_test_import)
   )
   message(STATUS "Finished testing package!")
 endfunction()
+
+function(vcpkg_fixup_shebang script)
+  cmake_parse_arguments(
+    PARSE_ARGV 0
+    "arg"
+    ""
+    "SCRIPT"
+    ""
+  )
+  set(script_path "${CURRENT_PACKAGES_DIR}/${arg_SCRIPT}")
+  file(STRINGS "${script_path}" SCRIPT_FILE_LINES)
+
+  # Extract the first line (shebang)
+  list(POP_FRONT SCRIPT_FILE_LINES first_line)
+
+  # Check if the first line is a shebang
+  string(FIND "${first_line}" "#!" shebang_pos)
+  if (NOT shebang_pos EQUAL 0)
+    message(FATAL_ERROR "No shebang found in the first line of ${arg_SCRIPT}")
+  endif()
+
+  # Extract the interpreter path by removing the shebang `#!` part
+  string(REGEX REPLACE "^#!" "" interpreter_path "${first_line}")
+
+  # Replace the prefix from `CURRENT_INSTALLED_DIR` with `CURRENT_PACKAGES_DIR`
+  string(REPLACE "${CURRENT_INSTALLED_DIR}" "${CURRENT_PACKAGES_DIR}" new_interpreter_path "${interpreter_path}")
+
+  get_filename_component(script_dir "${script_path}" DIRECTORY)
+  # Calculate the relative path from the script location to the new interpreter location
+  file(RELATIVE_PATH relative_interpreter_path "${script_dir}" "${new_interpreter_path}")
+
+  # Construct the new relative shebang
+  set(new_shebang "#!/bin/sh\n\"exec\" \"`dirname $0`/${relative_interpreter_path}\" \"$0\" \"$@\"")
+
+  # Rebuild the file content with the new shebang as the first line
+  set(new_script_content "${new_shebang}\n")
+
+  # Loop through remaining lines and append them to the new content
+  while (SCRIPT_FILE_LINES)
+    list(POP_FRONT SCRIPT_FILE_LINES line)
+    set(new_script_content "${new_script_content}${line}\n")
+  endwhile()
+
+  # Write the modified content back to the script file
+  file(WRITE "${script_path}" "${new_script_content}")
+endfunction()
