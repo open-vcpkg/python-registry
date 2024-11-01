@@ -111,7 +111,7 @@ for root, dirs, files in os.walk(PORTS_DIR):
 
                         new_portfile_content = re.sub(
                             r'PACKAGE_NAME\s+[^\s]+',
-                            f'PACKAGE_NAME        {pypi_project_name}',
+                            f'PACKAGE_NAME    {pypi_project_name}',
                             portfile_content
                         )
 
