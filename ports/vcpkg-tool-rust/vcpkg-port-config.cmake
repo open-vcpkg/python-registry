@@ -8,12 +8,12 @@ function(vcpkg_get_rust OUT)
     
     set(tool_path "${DOWNLOADS}/tools/${tool_subdirectory}")
 
-    find_program(CARGO NAMES "${tool_name}" PATHS "${DOWNLOADS}/tools/${tool_path}/bin")
+    find_program(CARGO NAMES "${tool_name}" PATHS "${tool_path}/bin")
 
     set(ENV{RUSTUP_HOME} "${tool_path}")
     set(ENV{CARGO_HOME} "${tool_path}")
 
-    if(NOT RUST)
+    if(NOT CARGO)
         vcpkg_download_distfile(rustup_path
             URLS ${download_urls}
             SHA512 "${download_sha512}"
@@ -23,12 +23,15 @@ function(vcpkg_get_rust OUT)
         if (VCPKG_TARGET_IS_WINDOWS AND NOT VCPKG_TARGET_IS_MINGW)
             vcpkg_acquire_msys(MSYS_ROOT PACKAGES)
             vcpkg_add_to_path("${MSYS_ROOT}/usr/bin")
+            set(BASH "${MSYS_ROOT}/usr/bin/bash")
+        else()
+            set(BASH "bash")
         endif()
 
         file(MAKE_DIRECTORY "${tool_path}")
         message(STATUS "Running rustup ...")
         vcpkg_execute_in_download_mode(
-                        COMMAND "${MSYS_ROOT}/usr/bin/bash" -c "${rustup_path} -y --profile minimal --default-toolchain=${version}"
+                        COMMAND "${BASH}" -c "${rustup_path} -y --profile minimal --default-toolchain=${version}"
                         WORKING_DIRECTORY "${tool_path}" 
                         OUTPUT_FILE "${CURRENT_BUILDTREES_DIR}/rustup-${TARGET_TRIPLET}-out.log"
                         ERROR_FILE "${CURRENT_BUILDTREES_DIR}/rustup-${TARGET_TRIPLET}-err.log"

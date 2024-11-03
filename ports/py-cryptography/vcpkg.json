@@ -20,6 +20,11 @@
     {
       "name": "vcpkg-python-scripts",
       "host": true
-    }
+    },
+    {
+      "name": "vcpkg-tool-rust",
+      "host": true
+    },
+    "openssl"
   ]
 }

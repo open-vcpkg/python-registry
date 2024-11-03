@@ -6,9 +6,7 @@ vcpkg_from_pythonhosted(
 )
 
 vcpkg_get_rust(CARGO)
-
 cmake_path(GET CARGO PARENT_PATH CARGO_BIN_DIR)
-
 vcpkg_add_to_path("${CARGO_BIN_DIR}")
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
