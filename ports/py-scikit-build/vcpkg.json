@@ -1,0 +1,17 @@
+{
+  "name": "py-scikit-build",
+  "version": "0.18.1",
+  "description": "Improved build system generator for Python C/C++/Fortran/Cython extensions",
+  "homepage": "https://github.com/scikit-build/scikit-build",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "vcpkg-python-scripts",
+    {
+      "name": "py-hatch-fancy-pypi-readme",
+      "host": true
+    }
+  ]
+}
