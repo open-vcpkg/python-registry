@@ -13,6 +13,10 @@
     {
       "name": "vcpkg-python-scripts",
       "host": true
+    },
+    {
+      "name": "py-cython",
+      "host": true
     }
   ]
 }
