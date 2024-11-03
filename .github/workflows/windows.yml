@@ -32,16 +32,6 @@ jobs:
       - name: 🧽 Developer Command Prompt for Microsoft Visual C++
         uses: ilammy/msvc-dev-cmd@v1
 
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: x86_64-pc-windows-msvc
-
-      - name: Setup rust path
-        shell: bash
-        run: |
-          echo "/c/Users/runneradmin/.cargo/bin" >> $GITHUB_PATH
-         
-
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
         with:
