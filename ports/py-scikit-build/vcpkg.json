@@ -8,6 +8,10 @@
       "name": "py-setuptools",
       "host": true
     },
+    {
+      "name": "py-setuptools-scm",
+      "host": true
+    },
     "vcpkg-python-scripts",
     {
       "name": "py-hatch-fancy-pypi-readme",
