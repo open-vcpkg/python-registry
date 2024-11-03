@@ -1,0 +1,17 @@
+{
+  "name": "py-pip-system-certs",
+  "version": "4.0",
+  "description": "Live patches pip to use system certs by default",
+  "homepage": "https://gitlab.com/alelec/pip-system-certs",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

@@ -24,6 +24,10 @@
       "baseline": "2024-02-02",
       "port-version": 0
     },
+    "py-cffi": {
+      "baseline": "1.17.1",
+      "port-version": 0
+    },
     "py-charset-normalizer": {
       "baseline": "3.4.0",
       "port-version": 0
@@ -40,6 +44,10 @@
       "baseline": "1.2.1",
       "port-version": 0
     },
+    "py-cryptography": {
+      "baseline": "43.0.3",
+      "port-version": 0
+    },
     "py-cycler": {
       "baseline": "0.12.1",
       "port-version": 0
@@ -51,6 +59,10 @@
     "py-dateutil": {
       "baseline": "2.9.0",
       "port-version": 1
+    },
+    "py-ephem": {
+      "baseline": "4.1.6",
+      "port-version": 0
     },
     "py-flask": {
       "baseline": "3.0.3",
@@ -64,9 +76,17 @@
       "baseline": "4.54.1",
       "port-version": 0
     },
+    "py-geographiclib": {
+      "baseline": "2.0",
+      "port-version": 0
+    },
     "py-gpep517": {
       "baseline": "16",
       "port-version": 1
+    },
+    "py-hatch-fancy-pypi-readme": {
+      "baseline": "24.1.0",
+      "port-version": 0
     },
     "py-hatch-vcs": {
       "baseline": "0.4.0",
@@ -96,6 +116,10 @@
       "baseline": "3.1.4",
       "port-version": 0
     },
+    "py-kerberos-proxy-auth": {
+      "baseline": "0.0.2",
+      "port-version": 0
+    },
     "py-kiwisolver": {
       "baseline": "1.4.5",
       "port-version": 0
@@ -111,6 +135,10 @@
     "py-matplotlib": {
       "baseline": "3.9.2",
       "port-version": 1
+    },
+    "py-maturin": {
+      "baseline": "1.7.4",
+      "port-version": 0
     },
     "py-meson": {
       "baseline": "0.15.0",
@@ -140,6 +168,10 @@
       "baseline": "24.3.1",
       "port-version": 0
     },
+    "py-pip-system-certs": {
+      "baseline": "4.0",
+      "port-version": 0
+    },
     "py-pluggy": {
       "baseline": "1.5.0",
       "port-version": 0
@@ -158,6 +190,10 @@
     },
     "py-pycodestyle": {
       "baseline": "2.12.1",
+      "port-version": 0
+    },
+    "py-pycparser": {
+      "baseline": "2.22",
       "port-version": 0
     },
     "py-pyparsing": {
@@ -184,6 +220,10 @@
       "baseline": "13.8.0",
       "port-version": 0
     },
+    "py-pyspnego": {
+      "baseline": "0.11.1",
+      "port-version": 0
+    },
     "py-pytz": {
       "baseline": "2024.2",
       "port-version": 0
@@ -200,12 +240,28 @@
       "baseline": "2.32.3",
       "port-version": 0
     },
+    "py-requests-kerberos": {
+      "baseline": "0.15.0",
+      "port-version": 0
+    },
+    "py-scikit-build": {
+      "baseline": "0.18.1",
+      "port-version": 0
+    },
+    "py-scikit-build-core": {
+      "baseline": "0.9.3",
+      "port-version": 0
+    },
     "py-semantic-version": {
       "baseline": "2.10.0",
       "port-version": 0
     },
     "py-setuptools": {
       "baseline": "75.3.0",
+      "port-version": 0
+    },
+    "py-setuptools-rust": {
+      "baseline": "1.10.1",
       "port-version": 0
     },
     "py-setuptools-scm": {
@@ -218,6 +274,10 @@
     },
     "py-six": {
       "baseline": "1.16.0",
+      "port-version": 0
+    },
+    "py-sspilib": {
+      "baseline": "0.2.0",
       "port-version": 0
     },
     "py-tomli": {
@@ -244,6 +304,10 @@
       "baseline": "0.43.0",
       "port-version": 0
     },
+    "py-wrapt": {
+      "baseline": "1.16.0",
+      "port-version": 0
+    },
     "pybind11": {
       "baseline": "2.11.1",
       "port-version": 0
@@ -262,6 +326,10 @@
     },
     "vcpkg-tool-mercurial": {
       "baseline": "2023-06-27",
+      "port-version": 0
+    },
+    "vcpkg-tool-rust": {
+      "baseline": "2024-10-29",
       "port-version": 0
     }
   }

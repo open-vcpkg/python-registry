@@ -1,0 +1,17 @@
+{
+  "name": "py-geographiclib",
+  "version": "2.0",
+  "description": "The geodesic routines from GeographicLib",
+  "homepage": "https://geographiclib.sourceforge.io/Python/2.0",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

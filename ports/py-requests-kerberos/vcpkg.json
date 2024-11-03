@@ -1,0 +1,20 @@
+{
+  "name": "py-requests-kerberos",
+  "version": "0.15.0",
+  "description": "A Kerberos authentication handler for python-requests",
+  "homepage": "https://github.com/requests/requests-kerberos",
+  "dependencies": [
+    "py-pyspnego",
+    "py-requests",
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "py-wrapt",
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

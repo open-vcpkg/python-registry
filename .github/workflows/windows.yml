@@ -51,13 +51,14 @@ jobs:
           $NUGET_EXE setapikey "${{ secrets.GITHUB_TOKEN }}" -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json"
           echo "VCPKG_BINARY_SOURCES=clear;nuget,https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json,readwrite" >> $GITHUB_ENV
           VCPKG_ROOT=$(cygpath -w $(pwd)/vcpkg)
-          echo "PATH=$VCPKG_ROOT;$PATH" >> $GITHUB_ENV
+          echo "$VCPKG_ROOT" >> $GITHUB_PATH
           echo "VCPKG_ROOT=$VCPKG_ROOT" >> $GITHUB_ENV
 
 
       - name: 🌋 Build
         run: |
-          .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build py-pyqt6 py-pyyaml py-numpy gdal[python] py-qscintilla py-psycopg2 py-urllib3 py-markupsafe py-requests py-isort py-autopep8 py-flask
+          .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build py-pyqt6 py-pyyaml py-numpy gdal[python] py-qscintilla py-psycopg2 py-urllib3 py-markupsafe py-requests py-isort py-autopep8 py-flask py-ephem py-geographiclib py-kerberos-proxy-auth py-pip-system-certs py-requests-kerberos py-wrapt
+
           # py-matplotlib 
 
       - name: 📑 Upload logs
