@@ -57,7 +57,7 @@ jobs:
 
       - name: 🌋 Build
         run: |
-          .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build py-pyqt6 py-pyyaml py-numpy gdal[python] py-qscintilla py-psycopg2 py-urllib3 py-markupsafe py-requests py-isort py-autopep8 py-flask py-ephem py-geographiclib py-kerberos-proxy-auth py-pip-system-certs py-requests-kerberos py-wrapt
+          .\vcpkg\vcpkg.exe install --overlay-ports="${{ github.workspace }}/ports" --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build py-pyqt6 py-pyyaml py-numpy gdal[python] py-qscintilla py-psycopg2 py-urllib3 py-markupsafe py-requests py-isort py-autopep8 py-flask py-ephem py-geographiclib py-kerberos-proxy-auth py-pip-system-certs py-requests-kerberos py-wrapt py-opencv-contrib-python
 
           # py-matplotlib 
 
