@@ -12,6 +12,7 @@
     {
       "name": "vcpkg-python-scripts",
       "host": true
-    }
+    },
+    "py-wrapt"
   ]
 }
