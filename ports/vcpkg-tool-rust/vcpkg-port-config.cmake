@@ -28,7 +28,7 @@ function(vcpkg_get_rust OUT)
         file(MAKE_DIRECTORY "${tool_path}")
         message(STATUS "Running rustup ...")
         vcpkg_execute_in_download_mode(
-                        COMMAND "bash" -c "${rustup_path} -y --profile minimal --default-toolchain=${version}"
+                        COMMAND "${MSYS_ROOT}/usr/bin/bash" -c "${rustup_path} -y --profile minimal --default-toolchain=${version}"
                         WORKING_DIRECTORY "${tool_path}" 
                         OUTPUT_FILE "${CURRENT_BUILDTREES_DIR}/rustup-${TARGET_TRIPLET}-out.log"
                         ERROR_FILE "${CURRENT_BUILDTREES_DIR}/rustup-${TARGET_TRIPLET}-err.log"
