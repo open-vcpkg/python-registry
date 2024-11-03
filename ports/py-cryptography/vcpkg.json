@@ -4,6 +4,7 @@
   "description": "cryptography is a package which provides cryptographic recipes and primitives to Python developers",
   "homepage": "https://github.com/pyca/cryptography",
   "dependencies": [
+    "openssl",
     {
       "name": "py-cffi",
       "host": true
@@ -24,7 +25,6 @@
     {
       "name": "vcpkg-tool-rust",
       "host": true
-    },
-    "openssl"
+    }
   ]
 }

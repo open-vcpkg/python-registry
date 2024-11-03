@@ -5,15 +5,16 @@
   "homepage": "https://github.com/requests/requests-kerberos",
   "dependencies": [
     "py-pyspnego",
+    "py-requests",
     {
       "name": "py-setuptools",
       "host": true
     },
+    "py-wrapt",
     "python3",
     {
       "name": "vcpkg-python-scripts",
       "host": true
-    },
-    "py-requests"
+    }
   ]
 }

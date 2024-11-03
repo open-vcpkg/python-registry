@@ -4,7 +4,5 @@
   "description": "Rust",
   "homepage": "https://www.rust-lang.org//",
   "license": "MIT",
-  "supports": "native",
-  "dependencies": [
-  ]
+  "supports": "native"
 }
