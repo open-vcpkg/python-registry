@@ -79,7 +79,6 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-flask
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-ephem \
             py-geographiclib \
-            py-kerberos-proxy-auth \
             py-pip-system-certs \
             py-wrapt
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
