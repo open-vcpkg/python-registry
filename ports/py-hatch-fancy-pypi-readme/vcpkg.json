@@ -4,6 +4,7 @@
   "description": "Fancy PyPI READMEs with Hatch",
   "homepage": "https://github.com/hynek/hatch-fancy-pypi-readme",
   "dependencies": [
+    "py-hatchling",
     {
       "name": "py-setuptools",
       "host": true
