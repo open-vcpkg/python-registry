@@ -1,6 +1,6 @@
 {
   "name": "py-hatchling",
-  "version": "1.25.0",
+  "version": "1.26.1",
   "description": "Modern, extensible Python build backend",
   "homepage": "https://hatch.pypa.io/latest/",
   "dependencies": [
