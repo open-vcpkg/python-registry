@@ -134,7 +134,7 @@
     },
     "py-matplotlib": {
       "baseline": "3.9.2",
-      "port-version": 1
+      "port-version": 2
     },
     "py-maturin": {
       "baseline": "1.7.4",
@@ -162,7 +162,7 @@
     },
     "py-pillow": {
       "baseline": "10.4.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pip": {
       "baseline": "24.3.1",
