@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    blinker
     VERSION         ${VERSION}
-    SHA512          037822e014974aaa9d6faf76805b09c06d697de9555cf4cd1265e639c52f72c5ed905e4698140b49a5e011806d91541636a7cf58082aabdd927c60dffd7df012
+    SHA512          587eaead4750eb742209703d792498293579dc55afc855498066b49a067527b6b3eccbe9a35ddbacc2cb1b7ced0bb3bb7a5716dba82d87b434a6ca8281bd76e5
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
