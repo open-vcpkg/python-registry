@@ -65,7 +65,7 @@
       "port-version": 0
     },
     "py-flask": {
-      "baseline": "3.0.3",
+      "baseline": "3.1.0",
       "port-version": 0
     },
     "py-flit-core": {
@@ -73,7 +73,7 @@
       "port-version": 1
     },
     "py-fonttools": {
-      "baseline": "4.54.1",
+      "baseline": "4.55.0",
       "port-version": 0
     },
     "py-geographiclib": {
@@ -257,7 +257,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "75.4.0",
+      "baseline": "75.5.0",
       "port-version": 0
     },
     "py-setuptools-rust": {
