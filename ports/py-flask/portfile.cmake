@@ -1,8 +1,9 @@
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    flask
+    PACKAGE_NAME    Flask
     VERSION         ${VERSION}
-    SHA512          977c0e5fd2d496fae8e34a035f211118642dc6518a14dc5f6c175b72c6a76407aeb9ff0ed1f5db636370a9aa7e0d36baa783713ea7bdabd7f28c8c2b94643cd1
+    SHA512          dd1d9113f57d62cd8fb5d33a6fb6258761a39c3df41d174e52f454abfbfc2da4b6a88b142196bd0681637fe53982d95762b023acddbed00f10805c4266194e24
+    FILENAME        flask
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
