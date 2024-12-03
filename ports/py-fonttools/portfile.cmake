@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    fonttools
     VERSION         ${VERSION}
-    SHA512          6eeb68b5ca200338a8bea7a46141cc69a6a13441260a2a4a00d6a540a1ce37ea6e5502f7bf3a3774aad24df21d13b88c20ed8e634317b94526dee724d76ef7da
+    SHA512          a936d2365ca6c1a852d93b027bd4e864e03e381108f1e33f41fb40048b0da982d1b566cd2b6a7f4939f21c0d891ec4f8d69541464274ba78d5e8b599ded630e1
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
