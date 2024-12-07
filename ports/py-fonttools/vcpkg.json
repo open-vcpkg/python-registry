@@ -1,6 +1,6 @@
 {
   "name": "py-fonttools",
-  "version": "4.55.1",
+  "version": "4.55.2",
   "description": "A library to manipulate font files from Python.",
   "homepage": "https://github.com/fonttools/fonttools",
   "dependencies": [

@@ -73,7 +73,7 @@
       "port-version": 1
     },
     "py-fonttools": {
-      "baseline": "4.55.1",
+      "baseline": "4.55.2",
       "port-version": 0
     },
     "py-geographiclib": {
@@ -209,7 +209,7 @@
       "port-version": 0
     },
     "py-pyqt-builder": {
-      "baseline": "1.16.4",
+      "baseline": "1.17.0",
       "port-version": 0
     },
     "py-pyqt6": {
@@ -217,7 +217,7 @@
       "port-version": 0
     },
     "py-pyqt6-sip": {
-      "baseline": "13.8.0",
+      "baseline": "13.9.0",
       "port-version": 0
     },
     "py-pyspnego": {
@@ -269,8 +269,8 @@
       "port-version": 1
     },
     "py-sip": {
-      "baseline": "6.8.6",
-      "port-version": 1
+      "baseline": "6.9.0",
+      "port-version": 0
     },
     "py-six": {
       "baseline": "1.16.0",
