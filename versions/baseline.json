@@ -73,7 +73,7 @@
       "port-version": 1
     },
     "py-fonttools": {
-      "baseline": "4.55.2",
+      "baseline": "4.55.3",
       "port-version": 0
     },
     "py-geographiclib": {
