@@ -1,6 +1,6 @@
 {
   "name": "py-click",
-  "version": "8.1.7",
+  "version": "8.1.8",
   "description": "Composable command line interface toolkit",
   "homepage": "https://palletsprojects.com/p/click/",
   "dependencies": [
