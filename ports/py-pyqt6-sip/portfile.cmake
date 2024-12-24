@@ -6,8 +6,6 @@ vcpkg_from_pythonhosted(
     VERSION         ${VERSION}
     SHA512          a4d4f3207f6bc86e148934fc84f86bcbe895d1d890b9e642154a1b5881898f1d363662ca51a847aed9bfc9942479b77581771b4f5d8d9c140bc4066d06d584f9
     FILENAME        pyqt6_sip
-    FILENAME        PyQt6_sip
-    FILENAME        PyQt6_sip
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
