@@ -2,9 +2,10 @@ set(VCPKG_BUILD_TYPE release)
 
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    charset_normalizer
+    PACKAGE_NAME    charset-normalizer
     VERSION         ${VERSION}
-    SHA512          7b7098d389bf4b181bd26037fa439abb44811ee68b01b78bfd399b4213cca7309d4878e90a0983d6aa2c550c3b9b355c8b5157fae731981f3e6e4028a911d143
+    SHA512          2891c0bd3097ad38d296a8378ded36110a06113c0f79e49cdfd7f3bca4f42487d10895db34cbb020cb70e93d9094ae72555ceef5535f8984de1cac4082232f4f
+    FILENAME        charset_normalizer
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
