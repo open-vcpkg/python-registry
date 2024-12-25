@@ -1,12 +1,17 @@
 {
   "name": "py-lxml",
   "version": "5.3.0",
-  "port-version": 1,
+  "port-version": 2,
   "description": "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.",
   "homepage": "https://lxml.de/",
   "dependencies": [
     "libxml2",
-    "libxslt",
+    {
+      "name": "libxslt",
+      "features": [
+        "profiler"
+      ]
+    },
     {
       "name": "py-setuptools",
       "host": true

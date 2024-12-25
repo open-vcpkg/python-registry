@@ -126,7 +126,7 @@
     },
     "py-lxml": {
       "baseline": "5.3.0",
-      "port-version": 1
+      "port-version": 2
     },
     "py-markupsafe": {
       "baseline": "3.0.2",
