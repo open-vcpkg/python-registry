@@ -1,8 +1,9 @@
 {
   "name": "py-tomli",
   "version": "2.0.1",
+  "port-version": 1,
   "description": "A simple, correct Python build frontend ",
-  "homepage": "py-build.readthedocs.io/en/stable/",
+  "homepage": "https://github.com/hukkin/tomli",
   "license": "MIT",
   "dependencies": [
     "vcpkg-python-scripts"
