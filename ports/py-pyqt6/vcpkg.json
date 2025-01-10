@@ -1,6 +1,7 @@
 {
   "name": "py-pyqt6",
   "version": "6.8.0",
+  "port-version": 1,
   "description": "Python bindings for the Qt cross platform application toolkit",
   "homepage": "https://www.riverbankcomputing.com/software/pyqt/",
   "dependencies": [
@@ -27,5 +28,109 @@
       "name": "vcpkg-qmake",
       "host": true
     }
-  ]
+  ],
+  "features": {
+    "qt3d": {
+      "description": "Build with qt3d",
+      "dependencies": [
+        "qt3d"
+      ]
+    },
+    "qt5compat": {
+      "description": "Build with qt5compat",
+      "dependencies": [
+        "qt5compat"
+      ]
+    },
+    "qtcharts": {
+      "description": "Build with qtcharts",
+      "dependencies": [
+        "qtcharts"
+      ]
+    },
+    "qtconnectivity": {
+      "description": "Build with qtconnectivity",
+      "dependencies": [
+        "qtconnectivity"
+      ]
+    },
+    "qtdatavis3d": {
+      "description": "Build with qtdatavis3d",
+      "dependencies": [
+        "qtdatavis3d"
+      ]
+    },
+    "qtdeclarative": {
+      "description": "Build with qtdeclarative",
+      "dependencies": [
+        "qtdeclarative"
+      ]
+    },
+    "qtgraphs": {
+      "description": "Build with qtgraphs",
+      "dependencies": [
+        "qtgraphs"
+      ]
+    },
+    "qthttpserver": {
+      "description": "Build with qthttpserver",
+      "dependencies": [
+        "qthttpserver"
+      ]
+    },
+    "qtlocation": {
+      "description": "Build with qtlocation",
+      "dependencies": [
+        "qtlocation"
+      ]
+    },
+    "qtpositioning": {
+      "description": "Build with qtpositioning",
+      "dependencies": [
+        "qtpositioning"
+      ]
+    },
+    "qtquick3d": {
+      "description": "Build with qtquick3d",
+      "dependencies": [
+        "qtquick3d"
+      ]
+    },
+    "qtremoteobjects": {
+      "description": "Build with qtremoteobjects",
+      "dependencies": [
+        "qtremoteobjects"
+      ]
+    },
+    "qtscxml": {
+      "description": "Build with qtscxml",
+      "dependencies": [
+        "qtscxml"
+      ]
+    },
+    "qtserialbus": {
+      "description": "Build with qtserialbus",
+      "dependencies": [
+        "qtserialbus"
+      ]
+    },
+    "qtserialport": {
+      "description": "Build with qtserialport",
+      "dependencies": [
+        "qtserialport"
+      ]
+    },
+    "qtspeech": {
+      "description": "Build with qtspeech",
+      "dependencies": [
+        "qtspeech"
+      ]
+    },
+    "qtwebengine": {
+      "description": "Build with qtwebengine",
+      "dependencies": [
+        "qtwebengine"
+      ]
+    }
+  }
 }

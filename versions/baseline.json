@@ -214,7 +214,7 @@
     },
     "py-pyqt6": {
       "baseline": "6.8.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyqt6-sip": {
       "baseline": "13.9.1",
