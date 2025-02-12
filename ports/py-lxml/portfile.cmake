@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    lxml
     VERSION         ${VERSION}
-    SHA512          7f8a3717645893bc6f790cc9adfb8fdab91c352dc4dc23c0ccb4af9a0d138acf9ef5054e9786af497955f10079e9242dbd63ea9ac39c33bfd71ca2fe4ef4a7c0
+    SHA512          7bd8828d94d0d5e453877962cf9c332e38d4db289d6d962decabeca7ee8c73a9bfa8c9f315f5ee2e224f0b80022d718fb0e20ab62664c4471bd41611f16da18c
 )
 
 if(VCPKG_TARGET_IS_WINDOWS)

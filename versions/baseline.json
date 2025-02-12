@@ -45,7 +45,7 @@
       "port-version": 0
     },
     "py-cryptography": {
-      "baseline": "44.0.0",
+      "baseline": "44.0.1",
       "port-version": 0
     },
     "py-cycler": {
@@ -73,7 +73,7 @@
       "port-version": 1
     },
     "py-fonttools": {
-      "baseline": "4.55.3",
+      "baseline": "4.56.0",
       "port-version": 0
     },
     "py-geographiclib": {
@@ -105,7 +105,7 @@
       "port-version": 1
     },
     "py-isort": {
-      "baseline": "5.13.2",
+      "baseline": "6.0.0",
       "port-version": 0
     },
     "py-itsdangerous": {
@@ -125,8 +125,8 @@
       "port-version": 0
     },
     "py-lxml": {
-      "baseline": "5.3.0",
-      "port-version": 2
+      "baseline": "5.3.1",
+      "port-version": 0
     },
     "py-markupsafe": {
       "baseline": "3.0.2",
@@ -137,7 +137,7 @@
       "port-version": 2
     },
     "py-maturin": {
-      "baseline": "1.8.1",
+      "baseline": "1.8.2",
       "port-version": 0
     },
     "py-meson": {
@@ -149,7 +149,7 @@
       "port-version": 0
     },
     "py-owslib": {
-      "baseline": "0.32.0",
+      "baseline": "0.32.1",
       "port-version": 0
     },
     "py-packaging": {
@@ -165,7 +165,7 @@
       "port-version": 1
     },
     "py-pip": {
-      "baseline": "24.3.1",
+      "baseline": "25.0.1",
       "port-version": 0
     },
     "py-pip-system-certs": {
@@ -209,15 +209,15 @@
       "port-version": 0
     },
     "py-pyqt-builder": {
-      "baseline": "1.17.1",
+      "baseline": "1.18.0",
       "port-version": 0
     },
     "py-pyqt6": {
-      "baseline": "6.8.0",
-      "port-version": 1
+      "baseline": "6.8.1",
+      "port-version": 0
     },
     "py-pyqt6-sip": {
-      "baseline": "13.9.1",
+      "baseline": "13.10.0",
       "port-version": 0
     },
     "py-pyspnego": {
@@ -225,7 +225,7 @@
       "port-version": 0
     },
     "py-pytz": {
-      "baseline": "2024.2",
+      "baseline": "2025.1",
       "port-version": 0
     },
     "py-pyyaml": {
@@ -269,7 +269,7 @@
       "port-version": 1
     },
     "py-sip": {
-      "baseline": "6.9.1",
+      "baseline": "6.10.0",
       "port-version": 0
     },
     "py-six": {
