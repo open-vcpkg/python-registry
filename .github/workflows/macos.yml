@@ -80,7 +80,8 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-ephem \
             py-geographiclib \
             py-pip-system-certs \
-            py-wrapt
+            py-wrapt \
+            py-waitress
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
       - name: 📑 Upload logs
