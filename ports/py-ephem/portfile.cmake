@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    ephem
     VERSION         ${VERSION}
-    SHA512          06bd6235389bb8d660529f636dc1a1a0e366dc1d5a6cd93e5dfc523ebd01d0fb3ca3c963ad801dba0de8022378ff76fd48e82bac62a7686772f6ae12ddffb3aa
+    SHA512          fc0aacd15e080b57b9ee9c17cc50ba839b91968bc2787b7a4c018a7d3b16d07ee927b6e85ecf63cde294b99a3c4d6618876067bfecf661e9ba4e08e63513c81c
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
