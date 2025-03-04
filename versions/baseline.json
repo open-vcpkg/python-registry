@@ -45,7 +45,7 @@
       "port-version": 0
     },
     "py-cryptography": {
-      "baseline": "44.0.1",
+      "baseline": "44.0.2",
       "port-version": 0
     },
     "py-cycler": {
@@ -285,7 +285,7 @@
       "port-version": 1
     },
     "py-trove-classifiers": {
-      "baseline": "2025.2.18.16",
+      "baseline": "2025.3.3.18",
       "port-version": 0
     },
     "py-typing-extensions": {
