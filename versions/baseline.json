@@ -333,7 +333,7 @@
       "port-version": 0
     },
     "vcpkg-tool-rust": {
-      "baseline": "2024-10-29",
+      "baseline": "2025-03-13",
       "port-version": 0
     }
   }
