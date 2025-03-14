@@ -2,9 +2,10 @@ function(vcpkg_get_rust OUT)
     set(version "1.82.0")
     set(tool_name "cargo")
     set(tool_subdirectory "rust-${version}-x64")
-    set(download_urls "https://sh.rustup.rs")
-    set(download_filename "rustup-${version}-x64")
-    set(download_sha512 bece2dfa6889f3ac4de782e51543cf18112130092d50d270c86ffcd5f6e62636d39077dffd71ed7df59e7fa8123f5746d0558783f86246ca2cee8c24ecb07545)
+    set(rustup_version "1.28.1")
+    set(download_urls "https://raw.githubusercontent.com/rust-lang/rustup/refs/tags/${rustup_version}/rustup-init.sh")
+    set(download_filename "rustup-${rustup_version}-x64")
+    set(download_sha512 2482d1ca4b052f4452e06a43c472a2cf5430b4ff5e4bb1e80bb65608ca581c191e12cf85f07115ce75628f30b5e0ca09c9c5e74711111ed638f6d550c52ac725)
     
     set(tool_path "${DOWNLOADS}/tools/${tool_subdirectory}")
 
