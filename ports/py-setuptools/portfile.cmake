@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    setuptools
     VERSION         ${VERSION}
-    SHA512          adf7f5d2eab7621b03c86e3f96857b176631108dc8a0eba2b16b87e394bff0b607998bc24cc074cd3f7b0ed6dbe0bd753cce5af2f108fce2473fb50b22f32913
+    SHA512          8272f0f2823d8f093d24eeb12270f978dab52d1a609c08275248024decf2b47bc5b1ce352f22ea198bd93eb3375c829757e573921721e05f5269651669df9b2e
     PATCHES 
       fix-prefix.patch
 )
