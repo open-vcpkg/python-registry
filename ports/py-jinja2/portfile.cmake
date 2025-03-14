@@ -2,7 +2,8 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    Jinja2
     VERSION         ${VERSION}
-    SHA512          75ad0094482c69d45fcd3aa8ee32e249931e53fee3f804f6ddfd5b6da0ed16962d8f1fced811e7dcb4d8401fadd828e77528d6d1280547a7d4f5f77cccf9bbd4
+    SHA512          bddd5e142f1462426c57b2efafdfafdfc6b66de257668707940896feae71eabdf19e0b6e34ef49b965153baf9b1eb59bb5a97349bb287ea0921dd2a751e967ab
+    FILENAME        jinja2
     FILENAME        jinja2
 )
 

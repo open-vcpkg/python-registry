@@ -1,6 +1,6 @@
 {
   "name": "py-jinja2",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "description": "A very fast and expressive template engine.",
   "homepage": "https://github.com/pallets/jinja/",
   "dependencies": [
