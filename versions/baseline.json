@@ -261,7 +261,7 @@
       "port-version": 0
     },
     "py-setuptools-rust": {
-      "baseline": "1.10.2",
+      "baseline": "1.11.0",
       "port-version": 0
     },
     "py-setuptools-scm": {
