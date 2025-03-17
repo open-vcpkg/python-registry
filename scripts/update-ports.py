@@ -144,6 +144,11 @@ for root, dirs, files in os.walk(PORTS_DIR):
                                     f"\\g<1>{filename_prefix}",
                                     new_portfile_content,
                                 )
+                                new_portfile_content = re.sub(
+                                    r"(SHA512\s+)[a-f0-9]+",
+                                    f"\\g<1>{sha512_checksum}",
+                                    new_portfile_content,
+                                )
                             else:
                                 # Insert FILENAME after SHA512
                                 new_portfile_content = re.sub(
