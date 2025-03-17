@@ -1,6 +1,6 @@
 {
   "name": "py-setuptools-rust",
-  "version": "1.10.2",
+  "version": "1.11.0",
   "description": "Setuptools Rust extension plugin",
   "homepage": "https://github.com/PyO3/setuptools-rust",
   "dependencies": [
