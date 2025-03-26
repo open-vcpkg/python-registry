@@ -225,7 +225,7 @@
       "port-version": 0
     },
     "py-pytz": {
-      "baseline": "2025.1",
+      "baseline": "2025.2",
       "port-version": 0
     },
     "py-pyyaml": {
@@ -257,7 +257,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "77.0.3",
+      "baseline": "78.1.0",
       "port-version": 0
     },
     "py-setuptools-rust": {
