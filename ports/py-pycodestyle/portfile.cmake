@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    pycodestyle
     VERSION         ${VERSION}
-    SHA512          e2a5a10723a2606e49674c4782b50f65ad4d02238e9251fff3d8cf4332cc8df665740265b687a3ec3f9e1e5e03e5787bb82c599ba31dc3c408f32bab353cef71
+    SHA512          eca00f19ac2036dfc7d78da7cbda7b57e8f2aea961be49ef88d03dbc7cc158e69a6953e03cf78e7d7ce5706ccaff6afc04d3cf550b997c00dfe18f5f18692f56
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
