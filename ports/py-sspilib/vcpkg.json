@@ -1,6 +1,6 @@
 {
   "name": "py-sspilib",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "SSPI API bindings for Python",
   "homepage": "https://github.com/jborean93/sspilib",
   "supports": "windows",
