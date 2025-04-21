@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    contourpy
     VERSION         ${VERSION}
-    SHA512          de3f6dc930bb752a3cf8d2244fc15b20061380dc84de11c847ad534ac92eb56049448e397c54831f735ac02b42387ddfa559d4aad3699cb765b03e2cb808efe7
+    SHA512          c32f6329a306ecc5df054eadc0208484be2fca86f7c3a158dca813c0c6fab121ab674ea8c9b9fb0a229a03876ce950fb62f3b8adf6cfb6ef8cd7bc4ae1c0d907
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

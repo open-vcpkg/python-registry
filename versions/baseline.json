@@ -37,7 +37,7 @@
       "port-version": 0
     },
     "py-contourpy": {
-      "baseline": "1.3.1",
+      "baseline": "1.3.2",
       "port-version": 0
     },
     "py-cppy": {
@@ -257,7 +257,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "78.1.0",
+      "baseline": "79.0.0",
       "port-version": 0
     },
     "py-setuptools-rust": {
@@ -285,7 +285,7 @@
       "port-version": 1
     },
     "py-trove-classifiers": {
-      "baseline": "2025.3.19.19",
+      "baseline": "2025.4.11.15",
       "port-version": 0
     },
     "py-typing-extensions": {
