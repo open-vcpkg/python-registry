@@ -29,7 +29,7 @@
       "port-version": 0
     },
     "py-charset-normalizer": {
-      "baseline": "3.4.1",
+      "baseline": "3.4.2",
       "port-version": 0
     },
     "py-click": {
@@ -45,7 +45,7 @@
       "port-version": 0
     },
     "py-cryptography": {
-      "baseline": "44.0.2",
+      "baseline": "44.0.3",
       "port-version": 0
     },
     "py-cycler": {
@@ -85,7 +85,7 @@
       "port-version": 1
     },
     "py-hatch-fancy-pypi-readme": {
-      "baseline": "24.1.0",
+      "baseline": "25.1.0",
       "port-version": 0
     },
     "py-hatch-vcs": {
@@ -165,7 +165,7 @@
       "port-version": 1
     },
     "py-pip": {
-      "baseline": "25.1",
+      "baseline": "25.1.1",
       "port-version": 0
     },
     "py-pip-system-certs": {
@@ -257,7 +257,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "80.0.1",
+      "baseline": "80.3.0",
       "port-version": 0
     },
     "py-setuptools-rust": {
@@ -277,7 +277,7 @@
       "port-version": 0
     },
     "py-sspilib": {
-      "baseline": "0.3.0",
+      "baseline": "0.3.1",
       "port-version": 0
     },
     "py-tomli": {
@@ -285,7 +285,7 @@
       "port-version": 1
     },
     "py-trove-classifiers": {
-      "baseline": "2025.4.28.22",
+      "baseline": "2025.5.1.12",
       "port-version": 0
     },
     "py-typing-extensions": {

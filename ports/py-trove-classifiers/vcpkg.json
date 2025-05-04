@@ -1,6 +1,6 @@
 {
   "name": "py-trove-classifiers",
-  "version": "2025.4.28.22",
+  "version": "2025.5.1.12",
   "description": "Canonical source for classifiers on PyPI (pypi.org).",
   "homepage": "https://github.com/pypa/trove-classifiers",
   "dependencies": [
