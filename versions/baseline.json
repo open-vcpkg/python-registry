@@ -257,7 +257,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "80.0.1",
+      "baseline": "80.3.0",
       "port-version": 0
     },
     "py-setuptools-rust": {
