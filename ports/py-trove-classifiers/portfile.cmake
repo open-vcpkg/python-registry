@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    trove-classifiers
     VERSION         ${VERSION}
-    SHA512          4863ff031d9c83177099b5c1e04e2a22396055209b88e60dd44e22a8357889f27572444e0a1fbef65b7b37919cb9d7f8cb548b7007fd878d8fe92c9cd39b864e
+    SHA512          ee858f52c08b867fe4845ebb19f9b431308d216b5313e2bc030d63340860205d40125ef6cee218f734ccd49e5ae36011c8e3415f03d0ace182cb518ed5f2318d
     FILENAME        trove_classifiers
 )
 
