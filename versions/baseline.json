@@ -270,7 +270,7 @@
     },
     "py-sip": {
       "baseline": "6.10.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-six": {
       "baseline": "1.16.0",
@@ -325,8 +325,8 @@
       "port-version": 1
     },
     "vcpkg-python-scripts": {
-      "baseline": "2024-05-12",
-      "port-version": 3
+      "baseline": "2025-05-20",
+      "port-version": 0
     },
     "vcpkg-tool-mercurial": {
       "baseline": "2023-06-27",
