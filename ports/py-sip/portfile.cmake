@@ -13,12 +13,12 @@ vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
 file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/lib/${python_versioned}/site-packages/pyqtbuild/bundle/dlls/)
 
 if(NOT VCPKG_TARGET_IS_WINDOWS)
-  vcpkg_fixup_shebang(SCRIPT "bin/sip-build")
-  vcpkg_fixup_shebang(SCRIPT "bin/sip-distinfo")
-  vcpkg_fixup_shebang(SCRIPT "bin/sip-install")
-  vcpkg_fixup_shebang(SCRIPT "bin/sip-module")
-  vcpkg_fixup_shebang(SCRIPT "bin/sip-sdist")
-  vcpkg_fixup_shebang(SCRIPT "bin/sip-wheel")
+  vcpkg_fixup_shebang(SCRIPT "sip-build" MODULE "sipbuild.tools.build")
+  vcpkg_fixup_shebang(SCRIPT "sip-distinfo" MODULE "sipbuild.tools.distinfo")
+  vcpkg_fixup_shebang(SCRIPT "sip-install" MODULE "sipbuild.tools.install")
+  vcpkg_fixup_shebang(SCRIPT "sip-module" MODULE "sipbuild.tools.module")
+  vcpkg_fixup_shebang(SCRIPT "sip-sdist" MODULE "sipbuild.tools.sdist")
+  vcpkg_fixup_shebang(SCRIPT "sip-wheel" MODULE "sipbuild.tools.wheel")
 endif()
 
 
