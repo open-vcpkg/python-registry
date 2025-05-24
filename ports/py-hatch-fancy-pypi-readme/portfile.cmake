@@ -1,8 +1,9 @@
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    hatch_fancy_pypi_readme
+    PACKAGE_NAME    hatch-fancy-pypi-readme
     VERSION         ${VERSION}
-    SHA512          c263fe2d73a92ab29da215852d76a1a0c465b821e437fe96aea3f0fe30cee40e3013db01ff50b9dea138c5d766716d217af6bbe89c6a8d6ff41e59ba34f90976
+    SHA512          04b930498dc707cd66009354c30185c121f2eb056534eacf290eabfe6aabf21d9f766e0d453ec6be6648380e37a7e18c632a7198375209e76995db162a698fe4
+    FILENAME        hatch_fancy_pypi_readme
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
