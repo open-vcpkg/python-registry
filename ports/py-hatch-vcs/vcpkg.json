@@ -1,6 +1,6 @@
 {
   "name": "py-hatch-vcs",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Hatch plugin for versioning with your preferred VCS",
   "homepage": "https://github.com/ofek/hatch-vcs",
   "dependencies": [
