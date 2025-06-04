@@ -29,11 +29,11 @@
       "port-version": 0
     },
     "py-charset-normalizer": {
-      "baseline": "3.4.1",
+      "baseline": "3.4.2",
       "port-version": 0
     },
     "py-click": {
-      "baseline": "8.1.8",
+      "baseline": "8.2.1",
       "port-version": 0
     },
     "py-contourpy": {
@@ -45,7 +45,7 @@
       "port-version": 0
     },
     "py-cryptography": {
-      "baseline": "44.0.2",
+      "baseline": "45.0.3",
       "port-version": 0
     },
     "py-cycler": {
@@ -65,7 +65,7 @@
       "port-version": 0
     },
     "py-flask": {
-      "baseline": "3.1.0",
+      "baseline": "3.1.1",
       "port-version": 0
     },
     "py-flit-core": {
@@ -73,7 +73,7 @@
       "port-version": 1
     },
     "py-fonttools": {
-      "baseline": "4.57.0",
+      "baseline": "4.58.1",
       "port-version": 0
     },
     "py-geographiclib": {
@@ -85,11 +85,11 @@
       "port-version": 1
     },
     "py-hatch-fancy-pypi-readme": {
-      "baseline": "24.1.0",
+      "baseline": "25.1.0",
       "port-version": 0
     },
     "py-hatch-vcs": {
-      "baseline": "0.4.0",
+      "baseline": "0.5.0",
       "port-version": 0
     },
     "py-hatchling": {
@@ -137,7 +137,7 @@
       "port-version": 2
     },
     "py-maturin": {
-      "baseline": "1.8.3",
+      "baseline": "1.8.6",
       "port-version": 0
     },
     "py-meson": {
@@ -149,7 +149,7 @@
       "port-version": 0
     },
     "py-owslib": {
-      "baseline": "0.33.0",
+      "baseline": "0.34.0",
       "port-version": 0
     },
     "py-packaging": {
@@ -165,7 +165,7 @@
       "port-version": 1
     },
     "py-pip": {
-      "baseline": "25.1",
+      "baseline": "25.1.1",
       "port-version": 0
     },
     "py-pip-system-certs": {
@@ -173,7 +173,7 @@
       "port-version": 1
     },
     "py-pluggy": {
-      "baseline": "1.5.0",
+      "baseline": "1.6.0",
       "port-version": 0
     },
     "py-ply": {
@@ -181,7 +181,7 @@
       "port-version": 2
     },
     "py-poetry-core": {
-      "baseline": "2.1.2",
+      "baseline": "2.1.3",
       "port-version": 0
     },
     "py-psycopg2": {
@@ -209,16 +209,16 @@
       "port-version": 0
     },
     "py-pyqt-builder": {
-      "baseline": "1.18.1",
-      "port-version": 1
+      "baseline": "1.18.2",
+      "port-version": 0
     },
     "py-pyqt6": {
       "baseline": "6.9.0",
       "port-version": 0
     },
     "py-pyqt6-sip": {
-      "baseline": "13.10.0",
-      "port-version": 1
+      "baseline": "13.10.2",
+      "port-version": 0
     },
     "py-pyspnego": {
       "baseline": "0.11.2",
@@ -257,7 +257,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "80.0.1",
+      "baseline": "80.9.0",
       "port-version": 0
     },
     "py-setuptools-rust": {
@@ -268,16 +268,12 @@
       "baseline": "8.1.0",
       "port-version": 1
     },
-    "py-sip": {
-      "baseline": "6.10.0",
-      "port-version": 1
-    },
     "py-six": {
       "baseline": "1.16.0",
       "port-version": 0
     },
     "py-sspilib": {
-      "baseline": "0.3.0",
+      "baseline": "0.3.1",
       "port-version": 0
     },
     "py-tomli": {
@@ -285,7 +281,7 @@
       "port-version": 1
     },
     "py-trove-classifiers": {
-      "baseline": "2025.4.28.22",
+      "baseline": "2025.5.9.12",
       "port-version": 0
     },
     "py-typing-extensions": {

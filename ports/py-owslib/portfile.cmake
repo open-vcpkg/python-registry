@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    OWSLib
     VERSION         ${VERSION}
-    SHA512          2da371b8adeef035dd6234daddb5936e9eb70ea43ebb26adac63589486965b9761c23867542f73d0cca4484df009c09b6b27e4a73c1e9a45428222dc3a0fd031
+    SHA512          f320e0054dde9ff76fb75c938bc9648cabda4b8bd0e6fd79affa2461ff62159953278d39686e3d91724ba6417d35a4c9e83d44b703f12072e39d21d5f5b6ffca
     FILENAME        owslib
 )
 
