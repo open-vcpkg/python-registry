@@ -1,7 +1,7 @@
 {
   "default": {
     "gdal": {
-      "baseline": "3.10.0",
+      "baseline": "3.11.0",
       "port-version": 0
     },
     "py-add-vcpkg-dll-path": {
@@ -33,7 +33,7 @@
       "port-version": 0
     },
     "py-click": {
-      "baseline": "8.2.1",
+      "baseline": "8.1.8",
       "port-version": 0
     },
     "py-contourpy": {
@@ -65,7 +65,7 @@
       "port-version": 0
     },
     "py-flask": {
-      "baseline": "3.1.1",
+      "baseline": "3.1.0",
       "port-version": 0
     },
     "py-flit-core": {
@@ -267,6 +267,10 @@
     "py-setuptools-scm": {
       "baseline": "8.1.0",
       "port-version": 1
+    },
+    "py-sip": {
+      "baseline": "6.12.0",
+      "port-version": 0
     },
     "py-six": {
       "baseline": "1.16.0",
