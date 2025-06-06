@@ -16,6 +16,7 @@ vcpkg_from_github(
         libkml.patch
         target-is-valid.patch
         easy-install.patch
+        isysroot-python.patch
         ${arm_neon_diff}
 )
 # `vcpkg clean` stumbles over one subdir
@@ -31,6 +32,7 @@ vcpkg_replace_string("${SOURCE_PATH}/ogr/ogrsf_frmts/flatgeobuf/flatbuffers/base
 vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
     FEATURES
         arrow            GDAL_USE_ARROW
+        arrow-adbc       GDAL_USE_ADBCDRIVERMANAGER
         archive          GDAL_USE_ARCHIVE
         cfitsio          GDAL_USE_CFITSIO
         curl             GDAL_USE_CURL
