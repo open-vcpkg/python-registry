@@ -1,5 +1,5 @@
 {
-  "name": "py-pyyaml",
+  "name": "py-pydantic",
   "version": "2.11.5",
   "description": "Data validation using Python type hints.",
   "homepage": "https://github.com/pydantic/pydantic",
