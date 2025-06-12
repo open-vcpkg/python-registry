@@ -57,6 +57,7 @@ jobs:
 
 
       - name: 🌋 Build
+        shell: bash
         run: |
             .\vcpkg\vcpkg.exe install \
             --overlay-ports="${{ github.workspace }}/ports" \
