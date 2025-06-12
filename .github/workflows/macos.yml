@@ -68,8 +68,10 @@ jobs:
         run: |
           VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }}"
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pydantic
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-sip
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numpy
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-psycopg
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-psycopg2
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-urllib3
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-markupsafe

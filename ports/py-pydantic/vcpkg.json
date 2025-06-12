@@ -1,0 +1,21 @@
+{
+  "name": "py-pydantic",
+  "version": "2.11.5",
+  "description": "Data validation using Python type hints.",
+  "homepage": "https://github.com/pydantic/pydantic",
+  "dependencies": [
+    {
+      "name": "py-hatch-fancy-pypi-readme",
+      "host": true
+    },
+    {
+      "name": "py-hatchling",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

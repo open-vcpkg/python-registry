@@ -184,6 +184,10 @@
       "baseline": "2.1.3",
       "port-version": 0
     },
+    "py-psycopg": {
+      "baseline": "3.2.9",
+      "port-version": 0
+    },
     "py-psycopg2": {
       "baseline": "2.9.10",
       "port-version": 1
@@ -194,6 +198,10 @@
     },
     "py-pycparser": {
       "baseline": "2.22",
+      "port-version": 0
+    },
+    "py-pydantic": {
+      "baseline": "2.11.5",
       "port-version": 0
     },
     "py-pyparsing": {
