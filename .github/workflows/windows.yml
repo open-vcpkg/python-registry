@@ -59,7 +59,7 @@ jobs:
       - name: 🌋 Build
         shell: bash
         run: |
-            .\vcpkg\vcpkg.exe install \
+            ./vcpkg/vcpkg.exe install \
             --overlay-ports="${{ github.workspace }}/ports" \
             --triplet=${{ matrix.triplet }} \
             --x-buildtrees-root=C:/vcpkg-build \
