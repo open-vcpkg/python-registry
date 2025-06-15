@@ -33,7 +33,7 @@
       "port-version": 0
     },
     "py-click": {
-      "baseline": "8.1.8",
+      "baseline": "8.2.1",
       "port-version": 0
     },
     "py-contourpy": {
@@ -45,7 +45,7 @@
       "port-version": 0
     },
     "py-cryptography": {
-      "baseline": "45.0.3",
+      "baseline": "45.0.4",
       "port-version": 0
     },
     "py-cycler": {
@@ -65,7 +65,7 @@
       "port-version": 0
     },
     "py-flask": {
-      "baseline": "3.1.0",
+      "baseline": "3.1.1",
       "port-version": 0
     },
     "py-flit-core": {
@@ -73,7 +73,7 @@
       "port-version": 1
     },
     "py-fonttools": {
-      "baseline": "4.58.1",
+      "baseline": "4.58.4",
       "port-version": 0
     },
     "py-geographiclib": {
@@ -137,7 +137,7 @@
       "port-version": 2
     },
     "py-maturin": {
-      "baseline": "1.8.6",
+      "baseline": "1.8.7",
       "port-version": 0
     },
     "py-meson": {
@@ -169,8 +169,8 @@
       "port-version": 0
     },
     "py-pip-system-certs": {
-      "baseline": "4.0",
-      "port-version": 1
+      "baseline": "5.0",
+      "port-version": 0
     },
     "py-pluggy": {
       "baseline": "1.6.0",
@@ -201,7 +201,7 @@
       "port-version": 0
     },
     "py-pydantic": {
-      "baseline": "2.11.5",
+      "baseline": "2.11.7",
       "port-version": 0
     },
     "py-pyparsing": {
@@ -221,7 +221,7 @@
       "port-version": 0
     },
     "py-pyqt6": {
-      "baseline": "6.9.0",
+      "baseline": "6.9.1",
       "port-version": 0
     },
     "py-pyqt6-sip": {
@@ -245,7 +245,7 @@
       "port-version": 2
     },
     "py-requests": {
-      "baseline": "2.32.3",
+      "baseline": "2.32.4",
       "port-version": 0
     },
     "py-requests-kerberos": {
