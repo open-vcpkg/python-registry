@@ -13,12 +13,6 @@ foreach(buildtype IN LISTS buildtypes)
     z_vcpkg_make_prepare_env("${cmake_buildtype}" ${prepare_env_opts})
 endforeach()
 
-vcpkg_execute_required_process(
-    COMMAND env
-    WORKING_DIRECTORY "${SOURCE_PATH}"
-    LOGNAME my-env
-)
-
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}/tools/pythonpkg")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
