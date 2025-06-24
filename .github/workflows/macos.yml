@@ -67,6 +67,7 @@ jobs:
       - name: 🌋 Build
         run: |
           VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }}"
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-duckdb
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pydantic
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-sip
