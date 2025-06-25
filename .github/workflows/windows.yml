@@ -83,7 +83,8 @@ jobs:
             py-pip-system-certs \
             py-requests-kerberos \
             py-wrapt \
-            py-waitress
+            py-waitress \
+            py-duckdb
 
           # py-matplotlib 
 
