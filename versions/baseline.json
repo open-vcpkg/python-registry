@@ -60,6 +60,10 @@
       "baseline": "2.9.0",
       "port-version": 1
     },
+    "py-duckdb": {
+      "baseline": "1.2.2",
+      "port-version": 0
+    },
     "py-ephem": {
       "baseline": "4.2",
       "port-version": 0

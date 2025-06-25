@@ -9,19 +9,19 @@
       "name": "py-setuptools",
       "host": true
     },
-    "python3",
-    {
-      "name": "vcpkg-python-scripts",
-      "host": true
-    },
     {
       "name": "pybind11",
       "features": [
         "scripts"
       ]
     },
+    "python3",
     {
       "name": "vcpkg-make",
+      "host": true
+    },
+    {
+      "name": "vcpkg-python-scripts",
       "host": true
     }
   ]
