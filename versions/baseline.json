@@ -282,7 +282,7 @@
     },
     "py-sip": {
       "baseline": "6.12.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-six": {
       "baseline": "1.16.0",
