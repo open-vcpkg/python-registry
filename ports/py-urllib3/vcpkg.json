@@ -1,6 +1,6 @@
 {
   "name": "py-urllib3",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "HTTP library with thread-safe connection pooling, file post, and more.",
   "homepage": "https://github.com/urllib3/urllib3",
   "dependencies": [

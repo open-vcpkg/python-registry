@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    urllib3
     VERSION         ${VERSION}
-    SHA512          d5c5ffc6ace356769f0fa80279ce1f07f3fe5913942acadac93d965612a9225bc3da94f711184ecd5b76bf893a29c7c854903c2c4e4de84edc490e6d72a80693
+    SHA512          f417a2745bc9750da23916690937e5c0dfe0534354f2c1c9f056baf16554a831a28937acca2b1f23941d5b6e87a372f2e074508eaf2c3304fd1014b8afc3295e
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
