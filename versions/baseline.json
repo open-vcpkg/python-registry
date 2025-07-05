@@ -73,8 +73,8 @@
       "port-version": 0
     },
     "py-flit-core": {
-      "baseline": "3.9.0",
-      "port-version": 1
+      "baseline": "3.11.0",
+      "port-version": 0
     },
     "py-fonttools": {
       "baseline": "4.58.1",
