@@ -15,8 +15,6 @@ vcpkg_from_github(
         fix-gdal-target-interfaces.patch
         libkml.patch
         target-is-valid.patch
-        easy-install.patch
-        isysroot-python.patch
         ${arm_neon_diff}
 )
 # `vcpkg clean` stumbles over one subdir
