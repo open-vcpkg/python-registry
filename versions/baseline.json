@@ -1,7 +1,7 @@
 {
   "default": {
     "gdal": {
-      "baseline": "3.11.0",
+      "baseline": "3.11.3",
       "port-version": 0
     },
     "py-add-vcpkg-dll-path": {
