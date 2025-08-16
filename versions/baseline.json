@@ -169,7 +169,7 @@
       "port-version": 1
     },
     "py-pip": {
-      "baseline": "25.1.1",
+      "baseline": "25.2",
       "port-version": 0
     },
     "py-pip-system-certs": {
