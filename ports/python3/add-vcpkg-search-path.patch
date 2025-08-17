@@ -1,22 +1,20 @@
 diff --git a/Python/pylifecycle.c b/Python/pylifecycle.c
-index eeaf20b46..13bb1fe7b 100644
+index ef4e607..184546a 100644
 --- a/Python/pylifecycle.c
 +++ b/Python/pylifecycle.c
-@@ -32,7 +32,10 @@
+@@ -51,6 +51,11 @@
+ 
  #ifdef MS_WINDOWS
  #  undef BYTE
- #  include "windows.h"
--
++
 +#  include <shlwapi.h>
 +#  include <string.h>
 +#  include <malloc.h>
 +#  include <libloaderapi.h>
-    extern PyTypeObject PyWindowsConsoleIO_Type;
- #  define PyWindowsConsoleIO_Check(op) \
-        (PyObject_TypeCheck((op), &PyWindowsConsoleIO_Type))
-@@ -88,8 +91,97 @@ __attribute__ ((section (".PyRuntime")))
- = _PyRuntimeState_INIT;
- _Py_COMP_DIAG_POP
+ #endif
+ 
+ #define PUTS(fd, str) _Py_write_noraise(fd, str, (int)strlen(str))
+@@ -100,6 +105,95 @@ _Py_COMP_DIAG_POP
  
  static int runtime_initialized = 0;
  
@@ -112,7 +110,7 @@ index eeaf20b46..13bb1fe7b 100644
  PyStatus
  _PyRuntime_Initialize(void)
  {
-@@ -102,6 +193,11 @@ _PyRuntime_Initialize(void)
+@@ -114,6 +208,12 @@ _PyRuntime_Initialize(void)
      }
      runtime_initialized = 1;
  
@@ -121,6 +119,7 @@ index eeaf20b46..13bb1fe7b 100644
 +    if(PyStatus_IsError(err))
 +      return err;
 +#endif
++
      return _PyRuntimeState_Init(&_PyRuntime);
  }
  
