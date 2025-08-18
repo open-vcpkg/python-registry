@@ -1,6 +1,6 @@
 {
   "name": "py-cryptography",
-  "version": "45.0.5",
+  "version": "45.0.6",
   "description": "cryptography is a package which provides cryptographic recipes and primitives to Python developers",
   "homepage": "https://github.com/pyca/cryptography",
   "dependencies": [
