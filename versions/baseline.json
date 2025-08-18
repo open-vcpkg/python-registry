@@ -329,7 +329,7 @@
       "port-version": 0
     },
     "python3": {
-      "baseline": "3.11.10",
+      "baseline": "3.11.13",
       "port-version": 0
     },
     "swig": {
