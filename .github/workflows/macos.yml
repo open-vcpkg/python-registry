@@ -46,7 +46,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: microsoft/vcpkg
-          ref: 9b75e789ece3f942159b8500584e35aafe3979ff # TODO: can we have a canonical baseline for tests?
+          ref: 4bb07a326d9b9bce3703272a509e5bc25dd9cfd5 # TODO: can we have a canonical baseline for tests?
           path: vcpkg
           fetch-depth: 1
 
@@ -85,7 +85,8 @@ jobs:
             py-geographiclib \
             py-pip-system-certs \
             py-wrapt \
-            py-waitress
+            py-waitress \
+            py-lxml
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
       - name: 📑 Upload logs
