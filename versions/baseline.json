@@ -249,7 +249,7 @@
       "port-version": 2
     },
     "py-requests": {
-      "baseline": "2.32.4",
+      "baseline": "2.32.5",
       "port-version": 0
     },
     "py-requests-kerberos": {
