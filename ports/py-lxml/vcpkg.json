@@ -4,7 +4,12 @@
   "description": "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API.",
   "homepage": "https://lxml.de/",
   "dependencies": [
-    "libxml2",
+    {
+      "name": "libxml2",
+      "features": [
+        "http"
+      ]
+    },
     {
       "name": "libxslt",
       "features": [
