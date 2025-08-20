@@ -69,7 +69,7 @@
       "port-version": 0
     },
     "py-flask": {
-      "baseline": "3.1.1",
+      "baseline": "3.1.2",
       "port-version": 0
     },
     "py-flit-core": {

@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    Flask
     VERSION         ${VERSION}
-    SHA512          b582b71e10f72c2096f4a665a8182775165f48eece8bcded9ca5791bc575e3333ac913fb355279f0bee93fc57c16f9a8b635b329bfd71ed42df2b288c1a69741
+    SHA512          4eacac745cc285d82956a040385ec08d134ef639a7fe802a0bbb8b8d92e0c341668eed3ab49eedf4500796b7f1d54930e6a94515f88daedb39928fdbc693ac9b
     FILENAME        flask
 )
 
