@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    pyspnego
     VERSION         ${VERSION}
-    SHA512          6e2a16b538d5c078842db1629628b13257a900c51778b9186f4edff33b4e932eaff2a8ccad41b50a8a89118283059fc716cfc92dfe423ed1ead1a22e6a172a9c
+    SHA512          0fb6d0c7f07a9ed0ab10ea5bf771acb7b99d91c6f3031faa5451520004fcc6868751f86725a3b8a75078d6396ffae60669a40fca46f24853587922d01ae76e52
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    setuptools-rust
     VERSION         ${VERSION}
-    SHA512          c6612323e12b114adcd8f12c14491c0bfd0fc89ca73f046a39783003182f44b200c1df67db13116a63d3609a610574dabb2858cf5a3400c8503ce98fa3ae509c
+    SHA512          60ca0327758bcb29c2b7e2c28f264c9d23f62de049deca0a9e7c284f2b82fbca36d1db09bf3ef940fb688efa6c3969b1c93e08d8da11bb9f6ec40ff48ecefbcc
     FILENAME        setuptools_rust
 )
 
