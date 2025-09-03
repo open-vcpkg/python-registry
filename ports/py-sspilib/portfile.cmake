@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    sspilib
     VERSION         ${VERSION}
-    SHA512          82aabc30a5206ff9764cbd2b8ec5f5006c133bc7c32399eb9917b213daf7512c33de946842a943caa77562954ac421f7600170610489713a6edbd68d481e2eab
+    SHA512          a88ad8d05e52c99ac0429c0f77ebc131adf8506a411ba75b0d781858353dfddd7d5ea694e54c7062664c877954a26ed0fd6ea4b2bb631e00c98d9f279d96ec55
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

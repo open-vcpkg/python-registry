@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    geographiclib
     VERSION         ${VERSION}
-    SHA512          08e67317b83ed96dc45b013bfc0eac771f015250da07b1574252f566f48ce944ad0a5a0623b1bfc96c14e65658f2f39a069af5ceb6ffe153677cc2a023eeef91
+    SHA512          585f507cf7c3815645462affcc40c6babfa3179dfae695eeddf1a96de9315957679a00949d8c68f900c6da024a57cf1f6b90cbd843d8fdc668b6b43717d9ae5c
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
