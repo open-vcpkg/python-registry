@@ -1,6 +1,6 @@
 {
   "name": "py-pycparser",
-  "version": "2.22",
+  "version": "2.23",
   "description": "C parser in Python",
   "homepage": "https://github.com/eliben/pycparser",
   "dependencies": [

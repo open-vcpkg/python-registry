@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    pycparser
     VERSION         ${VERSION}
-    SHA512          c9a81c78d87162f71281a32a076b279f4f7f2e17253fe14c89c6db5f9b3554a6563ff700c385549a8b51ef8832f99f7bb4ac07f22754c7c475dd91feeb0cf87f
+    SHA512          317f02bf58482b9d80b7395fe6fe5f756230915473b65b219755ccf0f4f1d3b227f508925fcf81fe28bcd6c113cf93e0075bf16a9a499cb306e1627222b1b1a7
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

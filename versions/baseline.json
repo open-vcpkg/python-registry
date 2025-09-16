@@ -25,7 +25,7 @@
       "port-version": 0
     },
     "py-cffi": {
-      "baseline": "1.17.1",
+      "baseline": "2.0.0",
       "port-version": 0
     },
     "py-charset-normalizer": {
@@ -185,11 +185,11 @@
       "port-version": 2
     },
     "py-poetry-core": {
-      "baseline": "2.1.3",
+      "baseline": "2.2.0",
       "port-version": 0
     },
     "py-psycopg": {
-      "baseline": "3.2.9",
+      "baseline": "3.2.10",
       "port-version": 0
     },
     "py-psycopg2": {
@@ -201,11 +201,11 @@
       "port-version": 0
     },
     "py-pycparser": {
-      "baseline": "2.22",
+      "baseline": "2.23",
       "port-version": 0
     },
     "py-pydantic": {
-      "baseline": "2.11.7",
+      "baseline": "2.11.9",
       "port-version": 0
     },
     "py-pyparsing": {
@@ -297,7 +297,7 @@
       "port-version": 1
     },
     "py-trove-classifiers": {
-      "baseline": "2025.8.26.11",
+      "baseline": "2025.9.11.17",
       "port-version": 0
     },
     "py-typing-extensions": {
