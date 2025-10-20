@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    pip-system-certs
     VERSION         ${VERSION}
-    SHA512          b91ce14078dbe8ecb35347a83e1976ebd9b89b7624addb6d6892f6ac396922dac60316961781ae05785e622be7e41a75efbf9e64af0bebec304ad9743c7b73fe
+    SHA512          0b1ac7b2aeb3a3c47e96886940ea0914aacd015614f7799b7d545a70b1958c6656199b5043b1c68cf90bbfe07b7b87c5cbb88fb54ceffe4b91bd12a680d23ddc
     FILENAME        pip_system_certs
 )
 
