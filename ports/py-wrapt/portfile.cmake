@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    wrapt
     VERSION         ${VERSION}
-    SHA512          e559393b1f18de0ae337b99cb0b50a808f42194d126491dd4ffa312a4a748427d2aa6abc9b7f3be3d838871c55ea243c0f1380b3d8e4afa2970926eb62e48e86
+    SHA512          61f3aae61b9a1fd6cc2227dc08b6738a21413f5b56baf8e0c77942975165704f538a94e10bb85a656c7519d0c9e25d6371026b1541ab134579ff7bb50e5f16bf
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

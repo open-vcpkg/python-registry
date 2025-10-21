@@ -1,6 +1,6 @@
 {
   "name": "py-poetry-core",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Poetry PEP 517 Build Backend",
   "homepage": "https://github.com/python-poetry/poetry-core",
   "license": "MIT",
