@@ -1,6 +1,6 @@
 {
   "name": "py-pip",
-  "version": "25.2",
+  "version": "25.3",
   "description": "Tool for installing and managing Python packages",
   "homepage": "https://pypi.org/project/setuptools",
   "dependencies": [
