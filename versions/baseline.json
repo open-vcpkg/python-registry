@@ -169,7 +169,7 @@
       "port-version": 1
     },
     "py-pip": {
-      "baseline": "25.2",
+      "baseline": "25.3",
       "port-version": 0
     },
     "py-pip-system-certs": {
@@ -189,7 +189,7 @@
       "port-version": 0
     },
     "py-psycopg": {
-      "baseline": "3.2.11",
+      "baseline": "3.2.12",
       "port-version": 0
     },
     "py-psycopg2": {
@@ -225,7 +225,7 @@
       "port-version": 0
     },
     "py-pyqt6": {
-      "baseline": "6.9.1",
+      "baseline": "6.10.0",
       "port-version": 0
     },
     "py-pyqt6-sip": {
@@ -281,7 +281,7 @@
       "port-version": 1
     },
     "py-sip": {
-      "baseline": "6.13.1",
+      "baseline": "6.14.0",
       "port-version": 0
     },
     "py-six": {

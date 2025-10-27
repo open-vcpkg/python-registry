@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    psycopg
     VERSION         ${VERSION}
-    SHA512          0da1aedbecbe119f1657b7d28ef2511fada3e51eae243d91cf8376a454f45bfb6f5cd9d9d318e3f37477f0dc3af536ff3fbafa1a4f9e80301d3fc424f118df09
+    SHA512          5599082f2fa1ab55ee8eb93aa8d8c9b0502f49d3b46cc37b3e4fedd9798fbd3c9e9ecbed3eff133d85b2aafcff0657bd74e954bd4955c789b1f793f8c0ba5984
 )
 
 if(VCPKG_TARGET_IS_WINDOWS)
