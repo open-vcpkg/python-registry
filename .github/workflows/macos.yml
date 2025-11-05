@@ -20,9 +20,9 @@ jobs:
       matrix:
         include:
           - os: macos-15-intel
-            triplet: x64-osx
+            triplet: x64-osx-dynamic
           - os: macos-15
-            triplet: arm64-osx
+            triplet: arm64-osx-dynamic
     env:
       buildtrees: /Users/runner/vcpkg-build
     name: build (macos)
