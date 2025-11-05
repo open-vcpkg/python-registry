@@ -40,7 +40,7 @@ jobs:
 
       - name: 🔨 Prepare build env
         run: |
-          brew install autoconf automake autoconf-archive libtool mono
+          brew install autoconf automake autoconf-archive libtool mono swig
 
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
