@@ -182,10 +182,18 @@ function(vcpkg_python_test_import)
   set(PACKAGE_SITE_PACKAGES_DIR "${CURRENT_PACKAGES_DIR}/${RELATIVE_SITE_PACKAGES_DIR}")
   configure_file("${CURRENT_HOST_INSTALLED_DIR}/share/vcpkg-python-scripts/import_test.py.in" "${CURRENT_BUILDTREES_DIR}/import_test.py" @ONLY)
 
+  vcpkg_backup_env_variables(VARS DYLD_LIBRARY_PATH LD_LIBRARY_PATH)
+  if(VCPKG_TARGET_IS_OSX)
+    set(ENV{DYLD_LIBRARY_PATH} "${CURRENT_PACKAGES_DIR}/lib")
+  elseif(VCPKG_TARGET_IS_LINUX)
+    set(ENV{LD_LIBRARY_PATH} "${CURRENT_PACKAGES_DIR}/lib")
+  endif()
+
   vcpkg_execute_required_process(COMMAND "${z_vcpkg_python_func_python}" "${CURRENT_BUILDTREES_DIR}/import_test.py"
     LOGNAME "python-test-import-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
   )
+  vcpkg_restore_env_variables(VARS DYLD_LIBRARY_PATH LD_LIBRARY_PATH)
   message(STATUS "Finished testing package!")
 endfunction()
 

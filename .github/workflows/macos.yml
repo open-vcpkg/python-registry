@@ -19,10 +19,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: macos-13
-            triplet: x64-osx
-          - os: macos-14
-            triplet: arm64-osx
+          - os: macos-15-intel
+            triplet: x64-osx-dynamic
+          - os: macos-15
+            triplet: arm64-osx-dynamic
     env:
       buildtrees: /Users/runner/vcpkg-build
     name: build (macos)
@@ -40,13 +40,13 @@ jobs:
 
       - name: 🔨 Prepare build env
         run: |
-          brew install autoconf automake autoconf-archive libtool
+          brew install autoconf automake autoconf-archive libtool mono swig
 
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
         with:
           repository: microsoft/vcpkg
-          ref: 9b75e789ece3f942159b8500584e35aafe3979ff # TODO: can we have a canonical baseline for tests?
+          ref: 7c175421efa71616f86f7f02e053371a67e31bb2 # TODO: can we have a canonical baseline for tests?
           path: vcpkg
           fetch-depth: 1
 
@@ -66,7 +66,7 @@ jobs:
 
       - name: 🌋 Build
         run: |
-          VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }}"
+          VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }} --recurse"
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-duckdb
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pydantic
@@ -74,6 +74,7 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numpy
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-psycopg
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-psycopg2
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS 'gdal[python]'
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-urllib3
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-markupsafe
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-matplotlib
