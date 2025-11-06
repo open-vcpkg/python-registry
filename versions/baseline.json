@@ -205,7 +205,7 @@
       "port-version": 0
     },
     "py-pydantic": {
-      "baseline": "2.12.3",
+      "baseline": "2.12.4",
       "port-version": 0
     },
     "py-pyparsing": {
