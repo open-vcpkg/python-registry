@@ -2,13 +2,11 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO OSGeo/gdal
     REF "v${VERSION}"
-    SHA512 84a9bd58e9992d2d447788727228410184ef31e881026aee1f48766ed8b25039ab1b09afe95c97b66d3a0751bab524dc9bb57ab2c78af53632b52ec8dcd6f4ad
+    SHA512 497e585479b01e0b046ab2343971644746305719f8c6be19764580b818c37b26284f16bdf463e22475f1a2ecb9bf22231f3d51b349458990e75d894c217ae68e
     HEAD_REF master
     PATCHES
-        adopt-compile-only.diff
         find-link-libraries.patch
         fix-gdal-target-interfaces.patch
-        generate-config.diff
         libkml.patch
         sqlite3.diff
         target-is-valid.patch
