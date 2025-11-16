@@ -33,7 +33,7 @@
       "port-version": 0
     },
     "py-click": {
-      "baseline": "8.3.0",
+      "baseline": "8.3.1",
       "port-version": 0
     },
     "py-contourpy": {
@@ -141,7 +141,7 @@
       "port-version": 2
     },
     "py-maturin": {
-      "baseline": "1.9.6",
+      "baseline": "1.10.1",
       "port-version": 0
     },
     "py-meson": {
@@ -297,7 +297,7 @@
       "port-version": 1
     },
     "py-trove-classifiers": {
-      "baseline": "2025.9.11.17",
+      "baseline": "2025.11.14.15",
       "port-version": 0
     },
     "py-typing-extensions": {
@@ -321,7 +321,7 @@
       "port-version": 0
     },
     "py-wrapt": {
-      "baseline": "2.0.0",
+      "baseline": "2.0.1",
       "port-version": 0
     },
     "pybind11": {
