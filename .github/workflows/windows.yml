@@ -59,10 +59,9 @@ jobs:
       - name: 🌋 Build
         shell: bash
         run: |
+            VCPKG_OPTIONS="--overlay-ports=${{ github.workspace }}/ports --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build"
             ./vcpkg/vcpkg.exe install \
-            --overlay-ports="${{ github.workspace }}/ports" \
-            --triplet=${{ matrix.triplet }} \
-            --x-buildtrees-root=C:/vcpkg-build \
+            $VCPKG_OPTIONS \
             'py-pyqt6[qtdeclarative,qt3d]' \
             py-pydantic \
             py-pyyaml \
@@ -85,6 +84,15 @@ jobs:
             py-wrapt \
             py-waitress \
             py-duckdb
+
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-attrs
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-beautifulsoup4
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-fiona
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-rasterio
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-shapely
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-jsonschema
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-networkx
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pyproj
 
           # py-matplotlib 
 
