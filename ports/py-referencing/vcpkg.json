@@ -1,0 +1,29 @@
+{
+  "name": "py-referencing",
+  "version": "0.35.1",
+  "description": "JSON reference resolution.",
+  "homepage": "https://github.com/python-jsonschema/referencing",
+  "dependencies": [
+    {
+      "name": "py-attrs",
+      "host": true
+    },
+    {
+      "name": "py-hatchling",
+      "host": true
+    },
+    {
+      "name": "py-rpds",
+      "host": true
+    },
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

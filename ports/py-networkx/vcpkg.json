@@ -1,0 +1,17 @@
+{
+  "name": "py-networkx",
+  "version": "3.4.2",
+  "description": "Python package for creating and manipulating graphs and networks.",
+  "homepage": "https://networkx.org/",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "py-versioneer",
+  "version": "0.29",
+  "description": "VCS-based automatic version string management.",
+  "homepage": "https://github.com/python-versioneer/python-versioneer",
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

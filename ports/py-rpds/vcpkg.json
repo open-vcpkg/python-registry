@@ -1,0 +1,25 @@
+{
+  "name": "py-rpds",
+  "version": "0.20.1",
+  "description": "Python bindings to the Rust rpds crate for persistent data structures.",
+  "homepage": "https://github.com/crate-py/rpds",
+  "dependencies": [
+    {
+      "name": "py-maturin",
+      "host": true
+    },
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    },
+    {
+      "name": "vcpkg-tool-rust",
+      "host": true
+    }
+  ]
+}
