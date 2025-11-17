@@ -90,7 +90,7 @@ jobs:
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-fiona
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-rasterio
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-shapely
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-jsonschema
+            # ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-jsonschema
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-networkx
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pyproj
 
