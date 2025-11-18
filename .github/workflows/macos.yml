@@ -35,9 +35,6 @@ jobs:
       - name: 🐩 Install CMake and Ninja
         uses: lukka/get-cmake@latest
 
-      - name: 🧽 Developer Command Prompt for Microsoft Visual C++
-        uses: ilammy/msvc-dev-cmd@v1
-
       - name: 🔨 Prepare build env
         run: |
           brew install autoconf automake autoconf-archive libtool mono swig
