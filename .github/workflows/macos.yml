@@ -35,9 +35,6 @@ jobs:
       - name: 🐩 Install CMake and Ninja
         uses: lukka/get-cmake@latest
 
-      - name: 🧽 Developer Command Prompt for Microsoft Visual C++
-        uses: ilammy/msvc-dev-cmd@v1
-
       - name: 🔨 Prepare build env
         run: |
           brew install autoconf automake autoconf-archive libtool mono swig
@@ -87,6 +84,15 @@ jobs:
             py-pip-system-certs \
             py-wrapt \
             py-waitress
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-attrs
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-beautifulsoup4
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-fiona
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-rasterio
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-shapely
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-jsonschema
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-networkx
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyproj
+          
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
       - name: 📑 Upload logs

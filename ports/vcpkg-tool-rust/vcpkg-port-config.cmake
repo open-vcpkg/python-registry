@@ -9,7 +9,7 @@ function(vcpkg_get_rust OUT)
     
     set(tool_path "${DOWNLOADS}/tools/${tool_subdirectory}")
 
-    find_program(CARGO NAMES "${tool_name}" PATHS "${tool_path}/bin")
+    find_program(CARGO NAMES "${tool_name}" PATHS "${tool_path}/bin" NO_DEFAULT_PATH)
 
     set(ENV{RUSTUP_HOME} "${tool_path}")
     set(ENV{CARGO_HOME} "${tool_path}")
@@ -27,6 +27,7 @@ function(vcpkg_get_rust OUT)
             set(BASH "${MSYS_ROOT}/usr/bin/bash")
         else()
             set(BASH "bash")
+            file(CHMOD "${rustup_path}" PERMISSIONS OWNER_EXECUTE OWNER_READ)
         endif()
 
         file(MAKE_DIRECTORY "${tool_path}")

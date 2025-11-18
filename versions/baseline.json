@@ -8,8 +8,20 @@
       "baseline": "2024-03-13",
       "port-version": 0
     },
+    "py-affine": {
+      "baseline": "2.4.0",
+      "port-version": 0
+    },
+    "py-attrs": {
+      "baseline": "24.2.0",
+      "port-version": 0
+    },
     "py-autopep8": {
       "baseline": "2.3.2",
+      "port-version": 0
+    },
+    "py-beautifulsoup4": {
+      "baseline": "4.12.3",
       "port-version": 0
     },
     "py-blinker": {
@@ -68,6 +80,10 @@
       "baseline": "4.2",
       "port-version": 0
     },
+    "py-fiona": {
+      "baseline": "1.10.1",
+      "port-version": 0
+    },
     "py-flask": {
       "baseline": "3.1.2",
       "port-version": 0
@@ -120,6 +136,14 @@
       "baseline": "3.1.6",
       "port-version": 1
     },
+    "py-jsonschema": {
+      "baseline": "4.23.0",
+      "port-version": 0
+    },
+    "py-jsonschema-specifications": {
+      "baseline": "2024.10.1",
+      "port-version": 0
+    },
     "py-kerberos-proxy-auth": {
       "baseline": "0.0.2",
       "port-version": 0
@@ -146,6 +170,10 @@
     },
     "py-meson": {
       "baseline": "0.15.0",
+      "port-version": 0
+    },
+    "py-networkx": {
+      "baseline": "3.4.2",
       "port-version": 0
     },
     "py-numpy": {
@@ -212,6 +240,10 @@
       "baseline": "3.1.1",
       "port-version": 2
     },
+    "py-pyproj": {
+      "baseline": "3.7.0",
+      "port-version": 0
+    },
     "py-pyproject-hooks": {
       "baseline": "1.0.0",
       "port-version": 0
@@ -232,6 +264,10 @@
       "baseline": "13.10.2",
       "port-version": 0
     },
+    "py-pysal": {
+      "baseline": "24.7",
+      "port-version": 0
+    },
     "py-pyspnego": {
       "baseline": "0.12.0",
       "port-version": 0
@@ -248,12 +284,24 @@
       "baseline": "2.14.1",
       "port-version": 2
     },
+    "py-rasterio": {
+      "baseline": "1.4.2",
+      "port-version": 0
+    },
+    "py-referencing": {
+      "baseline": "0.35.1",
+      "port-version": 0
+    },
     "py-requests": {
       "baseline": "2.32.5",
       "port-version": 0
     },
     "py-requests-kerberos": {
       "baseline": "0.15.0",
+      "port-version": 0
+    },
+    "py-rpds": {
+      "baseline": "0.20.1",
       "port-version": 0
     },
     "py-scikit-build": {
@@ -279,6 +327,10 @@
     "py-setuptools-scm": {
       "baseline": "8.1.0",
       "port-version": 1
+    },
+    "py-shapely": {
+      "baseline": "2.0.6",
+      "port-version": 0
     },
     "py-sip": {
       "baseline": "6.14.0",
@@ -306,6 +358,10 @@
     },
     "py-urllib3": {
       "baseline": "2.5.0",
+      "port-version": 0
+    },
+    "py-versioneer": {
+      "baseline": "0.29",
       "port-version": 0
     },
     "py-waitress": {
@@ -346,7 +402,7 @@
     },
     "vcpkg-tool-rust": {
       "baseline": "2025-03-13",
-      "port-version": 0
+      "port-version": 1
     }
   }
 }

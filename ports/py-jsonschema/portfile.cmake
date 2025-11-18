@@ -1,0 +1,17 @@
+set(VCPKG_BUILD_TYPE release)
+
+vcpkg_from_pythonhosted(
+    OUT_SOURCE_PATH SOURCE_PATH
+    PACKAGE_NAME    jsonschema
+    VERSION         ${VERSION}
+    SHA512          3bc3f7c4bb22dc0233bf99ca5cb8e22002cc3b097c7ae8a78c83ae106e4791dcaca228a6830074b1c42312889374b66c1f5390932768110a1e453babd7302bf9
+    FILENAME        jsonschema
+)
+
+vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
+
+vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/COPYING")
+
+vcpkg_python_test_import(MODULE "jsonschema")
+
+set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
