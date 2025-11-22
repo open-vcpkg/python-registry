@@ -61,7 +61,6 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
         webp             GDAL_USE_WEBP
         core             GDAL_USE_ZLIB
         zstd             GDAL_USE_ZSTD
-        python           BUILD_PYTHON_BINDINGS
         tools            BUILD_APPS
     INVERTED_FEATURES
         libspatialite    CMAKE_DISABLE_FIND_PACKAGE_SPATIALITE
@@ -69,6 +68,10 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
 if(GDAL_USE_ICONV AND VCPKG_TARGET_IS_WINDOWS)
     list(APPEND FEATURE_OPTIONS -D_ICONV_SECOND_ARGUMENT_IS_NOT_CONST=ON)
 endif()
+vcpkg_check_features(OUT_FEATURE_OPTIONS RELEASE_FEATURE_OPTIONS
+    FEATURES
+        python           BUILD_PYTHON_BINDINGS
+)
 
 # Compatibility with older Android versions https://github.com/OSGeo/gdal/pull/5941
 if(VCPKG_TARGET_IS_ANDROID AND ANDROID_PLATFORM VERSION_LESS 24 AND (VCPKG_TARGET_ARCHITECTURE STREQUAL "x86" OR VCPKG_TARGET_ARCHITECTURE STREQUAL "arm"))
@@ -113,10 +116,12 @@ vcpkg_cmake_configure(
         "-DGDAL_CHECK_PACKAGE_QHULL_TARGETS=${qhull_target}"
         "-DQHULL_LIBRARY=${qhull_target}"
         "-DGDAL_PYTHON_INSTALL_PREFIX=${GDAL_PYTHON_INSTALL_PREFIX}"
-        -DONLY_GENERATE_FOR_NON_DEBUG=ON # Python bindings only for release
         "-DCMAKE_PROJECT_INCLUDE=${CMAKE_CURRENT_LIST_DIR}/cmake-project-include.cmake"
     OPTIONS_DEBUG
+        -DBUILD_PYTHON_BINDINGS=OFF
         -DBUILD_APPS=OFF
+    OPTIONS_RELEASE
+        ${RELEASE_FEATURE_OPTIONS}
     MAYBE_UNUSED_VARIABLES
         QHULL_LIBRARY
 )
