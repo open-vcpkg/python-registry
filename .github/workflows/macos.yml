@@ -92,6 +92,7 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-jsonschema
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-networkx
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyproj
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-lxml
           
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
