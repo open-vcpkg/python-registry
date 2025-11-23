@@ -1,6 +1,6 @@
 {
   "name": "py-shapely",
-  "version": "2.0.6",
+  "version": "2.1.2",
   "description": "Manipulation and analysis of geometric objects in the Cartesian plane.",
   "homepage": "https://shapely.readthedocs.io/",
   "dependencies": [
