@@ -5,9 +5,12 @@ vcpkg_from_pythonhosted(
     SHA512          2aaa37a4504cd23d2022cbe7c2d99173aa0e3d6ec82a95e2429369ef3ef787db185440b8581db975cb81287c3ab533dd2e7cb447cefe0d7e628082f51c5b5254
 )
 
-if(VCPKG_TARGET_IS_WINDOWS)
-  set(ENV{INCLUDE} "${CURRENT_INSTALLED_DIR}/include;$ENV{INCLUDE}")
-endif()
+file(WRITE "${SOURCE_PATH}/setup.cfg" "
+[build_ext]
+include_dirs=${CURRENT_INSTALLED_DIR}/include;${CURRENT_INSTALLED_DIR}/include/libxml2
+library_dirs=${CURRENT_INSTALLED_DIR}/lib
+libraries=libxml2
+")
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
