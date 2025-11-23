@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    shapely
     VERSION         ${VERSION}
-    SHA512          f1a9e0a5156dc37ad894eb41fea9a1426e1fcc8cd40b2d3af94dbbe2f65c49f134fc1ad3d4a8b7bdad6a4d04af4c2a24443d37c6ed114c70ef67149ed9067e19
+    SHA512          91fe2dd602121cf216f22c899e1557edcb53b9e32681d40b15bbe6d32d342625d6e6ef7b3a5d21fd606cab851b094e6ca87b6ec699f478fefe851eb7b3c8afb6
     FILENAME        shapely
 )
 
