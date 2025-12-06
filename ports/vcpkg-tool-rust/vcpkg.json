@@ -1,7 +1,7 @@
 {
   "name": "vcpkg-tool-rust",
   "version-date": "2025-03-13",
-  "port-version": 2,
+  "port-version": 3,
   "description": "Rust",
   "homepage": "https://www.rust-lang.org//",
   "license": "MIT",
