@@ -280,6 +280,7 @@ else()
         set(_python_for_build "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
         list(APPEND OPTIONS "--with-build-python=${_python_for_build}")
     endif()
+    list(APPEND OPTIONS "--enable-loadable-sqlite-extensions")
 
     vcpkg_make_configure(
         SOURCE_PATH "${SOURCE_PATH}"
