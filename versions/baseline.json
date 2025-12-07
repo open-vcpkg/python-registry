@@ -333,7 +333,7 @@
       "port-version": 0
     },
     "py-sip": {
-      "baseline": "6.14.0",
+      "baseline": "6.15.0",
       "port-version": 0
     },
     "py-six": {
