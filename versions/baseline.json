@@ -402,7 +402,7 @@
     },
     "vcpkg-tool-rust": {
       "baseline": "2025-03-13",
-      "port-version": 2
+      "port-version": 3
     }
   }
 }
