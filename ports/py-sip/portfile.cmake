@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    sip
     VERSION         ${VERSION}
-    SHA512          77bc52cccc9f6eb76aaf7c4e25b4a9d3deccfc02ce3f4d649c6d9f4139c7ffe250d025f7c6de130d88784e39d6294bb1236bb70e7b06cf5d90d5e10667d7d4d1
+    SHA512          d8bc5dc574b0b02c72227f188d3cff64785e794cce5941101269332de3359c2ed50ef1f002e70004050aa477c66803affe2e9a26b12c652722dc774c5fd64ee3
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
