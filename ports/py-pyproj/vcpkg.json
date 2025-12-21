@@ -1,6 +1,6 @@
 {
   "name": "py-pyproj",
-  "version": "3.7.0",
+  "version": "3.7.2",
   "description": "Python interface to PROJ (cartographic projections and coordinate transformations library).",
   "homepage": "https://pyproj4.github.io/pyproj/",
   "dependencies": [

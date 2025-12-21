@@ -1,6 +1,6 @@
 {
   "name": "py-jsonschema-specifications",
-  "version": "2024.10.1",
+  "version": "2025.9.1",
   "description": "The JSON Schema meta-schemas and vocabularies, exposed as a Registry.",
   "homepage": "https://github.com/python-jsonschema/jsonschema-specifications",
   "dependencies": [

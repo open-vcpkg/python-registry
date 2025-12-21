@@ -1,6 +1,6 @@
 {
   "name": "py-rasterio",
-  "version": "1.4.2",
+  "version": "1.4.4",
   "description": "Fast and direct raster I/O for use with Numpy and SciPy.",
   "homepage": "https://rasterio.readthedocs.io/",
   "dependencies": [

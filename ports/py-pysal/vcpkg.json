@@ -1,6 +1,6 @@
 {
   "name": "py-pysal",
-  "version": "24.7",
+  "version": "25.7",
   "description": "Python Spatial Analysis Library - meta-package for the PySAL ecosystem.",
   "homepage": "https://pysal.org/",
   "dependencies": [

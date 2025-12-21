@@ -2,9 +2,9 @@ set(VCPKG_BUILD_TYPE release)
 
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    jsonschema_specifications
+    PACKAGE_NAME    jsonschema-specifications
     VERSION         ${VERSION}
-    SHA512          333efbd81ad787da841fe8526257b4213bff508c91a6a655f2dbe62b22a0347ac8f97230b52e00aabcf626e91026a6c2f5760d54c2078eccd2f033a8599e7484
+    SHA512          04486de70d0fe5242d4a84006027499978983d7aacdb047711218510a5ffda41d5fa5da4acccb047b472e387ca580f6cb41221fb53207e931cb5bc5b9ad3a623
     FILENAME        jsonschema_specifications
 )
 

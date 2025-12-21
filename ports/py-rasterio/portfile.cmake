@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    rasterio
     VERSION         ${VERSION}
-    SHA512          4c98d023994c2505cec77a50f9f6c51faaf81a3e889170f2ae5d2d86ac12e778cf3f306755a7b3fff03b6f8d23f928fb7b9cd0881c912decb15fe7be2b37e1e9
+    SHA512          297145904f573bfb5dfde81deb56dcc1e9b36d29213923726e6258a00214227cde10487778d93dba5446bf5e13ce617669824b2bc5165503ce86b209ffbb5270
     FILENAME        rasterio
 )
 # Read GDAL version from SPDX metadata

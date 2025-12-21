@@ -1,6 +1,6 @@
 {
   "name": "py-wrapt",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Module for decorators, wrappers and monkey patching.",
   "homepage": "https://github.com/GrahamDumpleton/wrapt",
   "dependencies": [

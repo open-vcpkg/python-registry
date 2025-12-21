@@ -5,7 +5,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    PyQt6
     VERSION         ${VERSION}
-    SHA512          ef88adff167ea2ff7c946500371168c5dd9fc8d7c0f9d8ab8b43aedcbfa1bf80cf6d4ef3fc5f3969a1e3a76db90f9c1bd5755ae9739cb86b3f924c4ba8f66d96
+    SHA512          af9bb54b20fd177cf1dac5fe8fb0ff289e1e7e42716d09093d49dd99a7d8065c6b6f34784ed19e21e7e07ba0d550b270cb6be7273f7180e2bf886160fc773d01
     FILENAME        pyqt6
 )
 
