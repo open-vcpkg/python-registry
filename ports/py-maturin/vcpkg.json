@@ -1,6 +1,6 @@
 {
   "name": "py-maturin",
-  "version": "1.9.6",
+  "version": "1.10.2",
   "description": "Build and publish crates with pyo3, cffi and uniffi bindings as well as rust binaries as python packages",
   "homepage": "https://github.com/pyca/cryptography",
   "dependencies": [

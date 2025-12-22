@@ -13,7 +13,7 @@
       "port-version": 0
     },
     "py-attrs": {
-      "baseline": "24.2.0",
+      "baseline": "25.4.0",
       "port-version": 0
     },
     "py-autopep8": {
@@ -21,7 +21,7 @@
       "port-version": 0
     },
     "py-beautifulsoup4": {
-      "baseline": "4.12.3",
+      "baseline": "4.14.3",
       "port-version": 0
     },
     "py-blinker": {
@@ -45,7 +45,7 @@
       "port-version": 0
     },
     "py-click": {
-      "baseline": "8.3.0",
+      "baseline": "8.3.1",
       "port-version": 0
     },
     "py-contourpy": {
@@ -93,7 +93,7 @@
       "port-version": 0
     },
     "py-fonttools": {
-      "baseline": "4.60.1",
+      "baseline": "4.61.1",
       "port-version": 0
     },
     "py-geographiclib": {
@@ -113,7 +113,7 @@
       "port-version": 0
     },
     "py-hatchling": {
-      "baseline": "1.27.0",
+      "baseline": "1.28.0",
       "port-version": 0
     },
     "py-idna": {
@@ -137,11 +137,11 @@
       "port-version": 1
     },
     "py-jsonschema": {
-      "baseline": "4.23.0",
+      "baseline": "4.25.1",
       "port-version": 0
     },
     "py-jsonschema-specifications": {
-      "baseline": "2024.10.1",
+      "baseline": "2025.9.1",
       "port-version": 0
     },
     "py-kerberos-proxy-auth": {
@@ -165,7 +165,7 @@
       "port-version": 2
     },
     "py-maturin": {
-      "baseline": "1.9.6",
+      "baseline": "1.10.2",
       "port-version": 0
     },
     "py-meson": {
@@ -173,7 +173,7 @@
       "port-version": 0
     },
     "py-networkx": {
-      "baseline": "3.4.2",
+      "baseline": "3.6.1",
       "port-version": 0
     },
     "py-numpy": {
@@ -217,7 +217,7 @@
       "port-version": 0
     },
     "py-psycopg": {
-      "baseline": "3.2.12",
+      "baseline": "3.3.2",
       "port-version": 0
     },
     "py-psycopg2": {
@@ -233,7 +233,7 @@
       "port-version": 0
     },
     "py-pydantic": {
-      "baseline": "2.12.4",
+      "baseline": "2.12.5",
       "port-version": 0
     },
     "py-pyparsing": {
@@ -241,7 +241,7 @@
       "port-version": 2
     },
     "py-pyproj": {
-      "baseline": "3.7.0",
+      "baseline": "3.7.2",
       "port-version": 0
     },
     "py-pyproject-hooks": {
@@ -253,19 +253,19 @@
       "port-version": 0
     },
     "py-pyqt-builder": {
-      "baseline": "1.19.0",
+      "baseline": "1.19.1",
       "port-version": 0
     },
     "py-pyqt6": {
-      "baseline": "6.10.0",
+      "baseline": "6.10.1",
       "port-version": 0
     },
     "py-pyqt6-sip": {
-      "baseline": "13.10.2",
+      "baseline": "13.10.3",
       "port-version": 0
     },
     "py-pysal": {
-      "baseline": "24.7",
+      "baseline": "25.7",
       "port-version": 0
     },
     "py-pyspnego": {
@@ -285,11 +285,11 @@
       "port-version": 2
     },
     "py-rasterio": {
-      "baseline": "1.4.2",
+      "baseline": "1.4.4",
       "port-version": 0
     },
     "py-referencing": {
-      "baseline": "0.35.1",
+      "baseline": "0.37.0",
       "port-version": 0
     },
     "py-requests": {
@@ -301,7 +301,7 @@
       "port-version": 0
     },
     "py-rpds": {
-      "baseline": "0.20.1",
+      "baseline": "0.30.0",
       "port-version": 0
     },
     "py-scikit-build": {
@@ -329,11 +329,11 @@
       "port-version": 1
     },
     "py-shapely": {
-      "baseline": "2.0.6",
+      "baseline": "2.1.2",
       "port-version": 0
     },
     "py-sip": {
-      "baseline": "6.15.0",
+      "baseline": "6.15.1",
       "port-version": 0
     },
     "py-six": {
@@ -341,7 +341,7 @@
       "port-version": 0
     },
     "py-sspilib": {
-      "baseline": "0.4.0",
+      "baseline": "0.5.0",
       "port-version": 0
     },
     "py-tomli": {
@@ -349,7 +349,7 @@
       "port-version": 1
     },
     "py-trove-classifiers": {
-      "baseline": "2025.9.11.17",
+      "baseline": "2025.12.1.14",
       "port-version": 0
     },
     "py-typing-extensions": {
@@ -357,7 +357,7 @@
       "port-version": 0
     },
     "py-urllib3": {
-      "baseline": "2.5.0",
+      "baseline": "2.6.2",
       "port-version": 0
     },
     "py-versioneer": {
@@ -369,15 +369,15 @@
       "port-version": 0
     },
     "py-werkzeug": {
-      "baseline": "3.1.3",
-      "port-version": 1
+      "baseline": "3.1.4",
+      "port-version": 0
     },
     "py-wheel": {
       "baseline": "0.43.0",
       "port-version": 0
     },
     "py-wrapt": {
-      "baseline": "2.0.0",
+      "baseline": "2.0.1",
       "port-version": 0
     },
     "pybind11": {

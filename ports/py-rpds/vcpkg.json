@@ -1,6 +1,6 @@
 {
   "name": "py-rpds",
-  "version": "0.20.1",
+  "version": "0.30.0",
   "description": "Python bindings to the Rust rpds crate for persistent data structures.",
   "homepage": "https://github.com/crate-py/rpds",
   "dependencies": [

@@ -1,6 +1,6 @@
 {
   "name": "py-sip",
-  "version": "6.15.0",
+  "version": "6.15.1",
   "description": "A tool that makes it easy to create Python bindings for C and C++ libraries",
   "homepage": "https://www.riverbankcomputing.com/software/sip",
   "dependencies": [

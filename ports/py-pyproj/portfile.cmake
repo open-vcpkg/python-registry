@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    pyproj
     VERSION         ${VERSION}
-    SHA512          aeaf944f80a520c9417ad6acf8d74e217024c366d9ce6462a16ab8f72908c5cb4f4aa6a088deb97467a8eb5f2f33d41e454a16ced2b1c483d1e6ee354799d910
+    SHA512          a6eb34b10ece0db36e7833fd70c658170e4c11d28ca8f75ee2f5634ee65a2fa5af096188b50973eba5296ac9f89d65ffa4badb5b2889ccf0537a0cf4c73e8282
     FILENAME        pyproj
 )
 
