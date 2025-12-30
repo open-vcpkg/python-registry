@@ -1,7 +1,6 @@
 {
   "name": "py-calamine",
   "version": "0.6.1",
-  "port-version": 1,
   "description": "Python binding for Rust's library for reading excel and odf file - calamine.",
   "homepage": "https://github.com/dimastbk/python-calamine",
   "dependencies": [
