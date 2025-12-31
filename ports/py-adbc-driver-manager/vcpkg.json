@@ -18,8 +18,20 @@
       "name": "python3",
       "host": true
     },
+    { 
+      "name": "py-gpep517",
+      "host": true
+    },
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
     {
       "name": "vcpkg-python-scripts",
+      "host": true
+    },
+    {
+      "name": "py-cython",
       "host": true
     }
   ]
