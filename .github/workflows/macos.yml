@@ -93,7 +93,22 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-networkx
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyproj
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-lxml
-          
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-tzdata
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-bottleneck
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numexpr
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-calamine
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyarrow
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-driver-manager
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-postgresql
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-sqlite3
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-gast \
+            py-beniget \
+            py-pythran
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-scipy
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pandas
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pygrio
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-geopandas
+
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
       - name: 📑 Upload logs
