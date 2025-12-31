@@ -10,6 +10,6 @@ set(ENV{ADBC_POSTGRESQL_LIBRARY} "${CURRENT_INSTALLED_DIR}/lib/libadbc_driver_po
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE.txt")
-vcpkg_python_test_import(MODULE "adbc_driver_sqlite")
+vcpkg_python_test_import(MODULE "adbc_driver_postgresql")
 
 set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
