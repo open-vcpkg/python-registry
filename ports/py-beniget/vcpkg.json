@@ -5,6 +5,7 @@
   "homepage": "https://github.com/serge-sans-paille/beniget",
   "dependencies": [
     "python3",
+    "py-gast",
     {
       "name": "python3",
       "host": true
