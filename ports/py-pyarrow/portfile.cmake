@@ -16,9 +16,11 @@ vcpkg_python_build_and_install_wheel(
         --config-json "{\"setup-args\" : [\"-DWITH_COMPUTE=ON\" ] }"
       )
 
-# license is the same as dependency `arrow` -- but the license 
-# is not included in the source file downloaded from pyhosted
-# vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE.txt")
+# license is the same as dependency `arrow` -- but the pyarrow codebase
+# is in a subdirectory of the arrow source repo, and the license is in
+# the root directory and is therefore not included in the source directory
+# for pyarrow
+vcpkg_install_copyright(FILE_LIST "${CURRENT_INSTALLED_DIR}/share/arrow/copyright")
 vcpkg_python_test_import(MODULE "pyarrow")
 
 set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
