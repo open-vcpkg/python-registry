@@ -14,8 +14,14 @@
   },
   "dependencies": [
     "python3",
-    "sqlite3",
     "py-adbc-driver-manager",
+    {
+      "name": "arrow-adbc",
+      "default-features": false,
+      "features": [
+        "sqlite"
+      ]
+    },
     {
       "name": "python3",
       "host": true

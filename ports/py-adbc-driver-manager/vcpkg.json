@@ -8,7 +8,7 @@
     "dbapi": {
       "description": "DBAPI 2.0-compatible interface",
       "dependencies":[
-        "py-arrow"
+        "py-pyarrow"
       ]
     }
   },

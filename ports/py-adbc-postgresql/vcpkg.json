@@ -8,14 +8,20 @@
     "dbapi": {
       "description": "DBAPI 2.0-compatible interface",
       "dependencies":[
-        "py-arrow"
+        "py-pyarrow"
       ]
     }
   },
   "dependencies": [
     "python3",
-    "libpq",
     "py-adbc-driver-manager",
+    {
+      "name": "arrow-adbc",
+      "default-features": false,
+      "features": [
+        "postgresql"
+      ]
+    },
     {
       "name": "python3",
       "host": true
