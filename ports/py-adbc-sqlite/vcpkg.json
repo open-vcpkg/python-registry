@@ -1,0 +1,34 @@
+{
+  "name": "py-adbc-sqlite",
+  "version": "1.9.0",
+  "description": "An ADBC driver for working with SQLite.",
+  "homepage": "https://arrow.apache.org/adbc/",
+  "license": "Apache-2.0",
+  "dependencies": [
+    {
+      "name": "arrow-adbc",
+      "default-features": false,
+      "features": [
+        "sqlite"
+      ]
+    },
+    "py-adbc-driver-manager",
+    "python3",
+    {
+      "name": "python3",
+      "host": true
+    },
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ],
+  "features": {
+    "dbapi": {
+      "description": "DBAPI 2.0-compatible interface",
+      "dependencies": [
+        "py-arrow"
+      ]
+    }
+  }
+}

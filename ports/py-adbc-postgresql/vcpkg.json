@@ -1,0 +1,34 @@
+{
+  "name": "py-adbc-postgresql",
+  "version": "1.9.0",
+  "description": "An ADBC driver for working with PostgreSQL.",
+  "homepage": "https://arrow.apache.org/adbc/",
+  "license": "Apache-2.0",
+  "dependencies": [
+    {
+      "name": "arrow-adbc",
+      "default-features": false,
+      "features": [
+        "postgresql"
+      ]
+    },
+    "py-adbc-driver-manager",
+    "python3",
+    {
+      "name": "python3",
+      "host": true
+    },
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ],
+  "features": {
+    "dbapi": {
+      "description": "DBAPI 2.0-compatible interface",
+      "dependencies": [
+        "py-pyarrow"
+      ]
+    }
+  }
+}

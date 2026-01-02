@@ -25,6 +25,9 @@ jobs:
             triplet: arm64-osx-dynamic
     env:
       buildtrees: /Users/runner/vcpkg-build
+      FC: gfortran
+      GCC_VERSION: 15
+
     name: build (macos)
     runs-on: ${{ matrix.os }}
 
@@ -37,7 +40,29 @@ jobs:
 
       - name: 🔨 Prepare build env
         run: |
-          brew install autoconf automake autoconf-archive libtool mono swig
+          brew install autoconf automake autoconf-archive libtool mono swig bison flex
+
+      - name: Symlink gfortran (macOS)
+        if: matrix.os == 'macos-15'
+        run: |
+          # make sure gfortran is available
+          # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
+          # https://github.com/actions/runner-images/issues/3371
+          # ln version - new path 'MacOS14'
+          sudo ln -fs /opt/homebrew/bin/gfortran-${GCC_VERSION} /usr/local/bin/gfortran
+          sudo mkdir -p /usr/local/gfortran
+          sudo ln -sf /opt/homebrew/Cellar/gcc@${GCC_VERSION}/*/lib/gcc/${GCC_VERSION} /usr/local/gfortran/lib
+
+      - name: Symlink gfortran (macOS-intel)
+        if: matrix.os == 'macos-15-intel'
+        run: |
+          # make sure gfortran is available
+          # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
+          # https://github.com/actions/runner-images/issues/3371
+          # ln version - new path 'MacOS14'
+          sudo ln -fs /usr/local/bin/gfortran-${GCC_VERSION} /usr/local/bin/gfortran
+          sudo mkdir -p /usr/local/gfortran
+          sudo ln -sf /usr/local/Cellar/gcc@${GCC_VERSION}/*/lib/gcc/${GCC_VERSION} /usr/local/gfortran/lib
 
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
@@ -93,7 +118,22 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-networkx
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyproj
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-lxml
-          
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-tzdata
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-bottleneck
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numexpr
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-calamine
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyarrow
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-driver-manager
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-postgresql
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-sqlite
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-gast \
+            py-beniget \
+            py-pythran
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-scipy
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pandas
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyogrio
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-geopandas
+
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
       - name: 📑 Upload logs

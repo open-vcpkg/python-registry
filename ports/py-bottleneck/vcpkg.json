@@ -1,0 +1,22 @@
+{
+  "name": "py-bottleneck",
+  "version": "1.6.0",
+  "description": "Fast NumPy array functions written in C.",
+  "homepage": "https://github.com/pydata/bottleneck",
+  "dependencies": [
+    "py-numpy",
+    {
+      "name": "py-versioneer",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "python3",
+      "host": true
+    },
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

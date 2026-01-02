@@ -4,6 +4,18 @@
       "baseline": "3.12.0",
       "port-version": 1
     },
+    "py-adbc-driver-manager": {
+      "baseline": "1.9.0",
+      "port-version": 0
+    },
+    "py-adbc-postgresql": {
+      "baseline": "1.9.0",
+      "port-version": 0
+    },
+    "py-adbc-sqlite": {
+      "baseline": "1.9.0",
+      "port-version": 0
+    },
     "py-add-vcpkg-dll-path": {
       "baseline": "2024-03-13",
       "port-version": 0
@@ -24,13 +36,25 @@
       "baseline": "4.14.3",
       "port-version": 0
     },
+    "py-beniget": {
+      "baseline": "0.5.0",
+      "port-version": 0
+    },
     "py-blinker": {
       "baseline": "1.9.0",
+      "port-version": 0
+    },
+    "py-bottleneck": {
+      "baseline": "1.6.0",
       "port-version": 0
     },
     "py-build": {
       "baseline": "0.10.0",
       "port-version": 1
+    },
+    "py-calamine": {
+      "baseline": "0.6.1",
+      "port-version": 0
     },
     "py-certifi": {
       "baseline": "2024-02-02",
@@ -96,8 +120,16 @@
       "baseline": "4.61.1",
       "port-version": 0
     },
+    "py-gast": {
+      "baseline": "0.7.0",
+      "port-version": 0
+    },
     "py-geographiclib": {
       "baseline": "2.1",
+      "port-version": 0
+    },
+    "py-geopandas": {
+      "baseline": "1.1.1",
       "port-version": 0
     },
     "py-gpep517": {
@@ -170,10 +202,14 @@
     },
     "py-meson": {
       "baseline": "0.15.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-networkx": {
       "baseline": "3.6.1",
+      "port-version": 0
+    },
+    "py-numexpr": {
+      "baseline": "2.14.1",
       "port-version": 0
     },
     "py-numpy": {
@@ -186,6 +222,10 @@
     },
     "py-packaging": {
       "baseline": "24.2",
+      "port-version": 0
+    },
+    "py-pandas": {
+      "baseline": "2.3.3",
       "port-version": 0
     },
     "py-pathspec": {
@@ -224,6 +264,10 @@
       "baseline": "2.9.11",
       "port-version": 0
     },
+    "py-pyarrow": {
+      "baseline": "21.0.0",
+      "port-version": 0
+    },
     "py-pycodestyle": {
       "baseline": "2.14.0",
       "port-version": 0
@@ -234,6 +278,10 @@
     },
     "py-pydantic": {
       "baseline": "2.12.5",
+      "port-version": 0
+    },
+    "py-pyogrio": {
+      "baseline": "0.12.1",
       "port-version": 0
     },
     "py-pyparsing": {
@@ -270,6 +318,10 @@
     },
     "py-pyspnego": {
       "baseline": "0.12.0",
+      "port-version": 0
+    },
+    "py-pythran": {
+      "baseline": "0.18.1",
       "port-version": 0
     },
     "py-pytz": {
@@ -310,6 +362,10 @@
     },
     "py-scikit-build-core": {
       "baseline": "0.9.3",
+      "port-version": 0
+    },
+    "py-scipy": {
+      "baseline": "1.16.3",
       "port-version": 0
     },
     "py-semantic-version": {
@@ -356,6 +412,10 @@
       "baseline": "4.11.0",
       "port-version": 0
     },
+    "py-tzdata": {
+      "baseline": "2025.2",
+      "port-version": 0
+    },
     "py-urllib3": {
       "baseline": "2.6.2",
       "port-version": 0
@@ -381,7 +441,7 @@
       "port-version": 0
     },
     "pybind11": {
-      "baseline": "2.11.1",
+      "baseline": "2.13.6",
       "port-version": 0
     },
     "python3": {
