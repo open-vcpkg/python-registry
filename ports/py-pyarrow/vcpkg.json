@@ -11,11 +11,6 @@
         "compute"
       ]
     },
-    "python3",
-    {
-      "name": "python3",
-      "host": true
-    },
     {
       "name": "py-cython",
       "host": true
@@ -34,6 +29,11 @@
     },
     {
       "name": "py-wheel",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "python3",
       "host": true
     },
     {

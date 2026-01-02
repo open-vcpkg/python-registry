@@ -4,14 +4,14 @@
   "description": "Fast numerical expression evaluator for NumPy.",
   "homepage": "https://github.com/pydata/numexpr",
   "dependencies": [
-    "python3",
     "py-numpy",
     {
-      "name": "python3",
+      "name": "py-setuptools",
       "host": true
     },
+    "python3",
     {
-      "name": "py-setuptools",
+      "name": "python3",
       "host": true
     },
     {

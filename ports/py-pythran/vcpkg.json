@@ -4,6 +4,9 @@
   "description": "Ahead of Time compiler for numeric kernels.",
   "homepage": "https://github.com/serge-sans-paille/pythran",
   "dependencies": [
+    "py-beniget",
+    "py-gast",
+    "py-ply",
     "python3",
     {
       "name": "python3",
@@ -12,9 +15,6 @@
     {
       "name": "vcpkg-python-scripts",
       "host": true
-    },
-    "py-gast",
-    "py-beniget",
-    "py-ply"
+    }
   ]
 }

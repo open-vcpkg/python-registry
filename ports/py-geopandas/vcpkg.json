@@ -4,14 +4,37 @@
   "description": "Geographic pandas extensions.",
   "homepage": "https://geopandas.org",
   "license": "BSD-3-Clause",
+  "dependencies": [
+    "py-numpy",
+    {
+      "name": "py-packaging",
+      "host": true
+    },
+    "py-pandas",
+    "py-pyproj",
+    "py-shapely",
+    {
+      "name": "py-versioneer",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "python3",
+      "host": true
+    },
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ],
   "default-features": [
     "pyogrio"
   ],
   "features": {
-    "pyogrio": {
-      "description": "Fast reads of OGR data sources with pyogrio",
+    "arrow": {
+      "description": "I/O speedup with pyogrio",
       "dependencies": [
-        "py-pyogrio"
+        "py-arrow"
       ]
     },
     "fiona": {
@@ -20,34 +43,11 @@
         "py-fiona"
       ]
     },
-    "arrow": {
-      "description": "I/O speedup with pyogrio",
-      "dependencies":[
-        "py-arrow"
+    "pyogrio": {
+      "description": "Fast reads of OGR data sources with pyogrio",
+      "dependencies": [
+        "py-pyogrio"
       ]
     }
-  },
-  "dependencies": [
-    "python3",
-    {
-      "name": "python3",
-      "host": true
-    },
-    "py-pandas",
-    "py-pyproj",
-    "py-shapely",
-    "py-numpy",
-    {
-        "name": "py-packaging",
-        "host": true
-    },
-    {
-        "name": "py-versioneer",
-        "host": true
-    },
-    {
-      "name": "vcpkg-python-scripts",
-      "host": true
-    }
-  ]
+  }
 }

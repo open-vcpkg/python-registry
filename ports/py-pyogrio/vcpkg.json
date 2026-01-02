@@ -5,21 +5,19 @@
   "homepage": "https://github.com/geopandas/pyogrio",
   "license": "MIT",
   "dependencies": [
-    "python3",
-    {
-      "name": "gdal"
-    },
-    {
-      "name": "python3",
-      "host": true
-    },
+    "gdal",
     {
       "name": "py-cython",
       "host": true
     },
     {
-        "name": "py-versioneer",
-        "host": true
+      "name": "py-versioneer",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "python3",
+      "host": true
     },
     {
       "name": "vcpkg-python-scripts",
