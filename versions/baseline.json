@@ -14,7 +14,7 @@
     },
     "py-adbc-sqlite": {
       "baseline": "1.9.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-add-vcpkg-dll-path": {
       "baseline": "2024-03-13",
@@ -130,7 +130,7 @@
     },
     "py-geopandas": {
       "baseline": "1.1.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-gpep517": {
       "baseline": "16",
@@ -226,7 +226,7 @@
     },
     "py-pandas": {
       "baseline": "2.3.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pathspec": {
       "baseline": "0.12.1",

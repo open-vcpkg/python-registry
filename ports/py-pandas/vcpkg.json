@@ -1,6 +1,7 @@
 {
   "name": "py-pandas",
   "version": "2.3.3",
+  "port-version": 1,
   "description": "Powerful data structures for data analysis, time series, and statistics.",
   "homepage": "https://pandas.pydata.org",
   "license": "BSD-3-Clause",
@@ -35,7 +36,7 @@
     "arrow": {
       "description": "Parquet, ORC, and feather reading / writing",
       "dependencies": [
-        "py-arrow"
+        "py-pyarrow"
       ]
     },
     "computation": {
