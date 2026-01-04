@@ -34,7 +34,7 @@
     },
     "py-beautifulsoup4": {
       "baseline": "4.14.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-beniget": {
       "baseline": "0.5.0",
