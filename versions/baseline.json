@@ -268,10 +268,6 @@
       "baseline": "2.9.11",
       "port-version": 0
     },
-    "py-pyarrow": {
-      "baseline": "21.0.0",
-      "port-version": 0
-    },
     "py-pycodestyle": {
       "baseline": "2.14.0",
       "port-version": 0
