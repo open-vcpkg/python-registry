@@ -151,6 +151,67 @@ if("example" IN_LIST FEATURES)
     file(INSTALL "${SOURCE_PATH}/cpp/examples/minimal_build/" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}/example")
 endif()
 
+if("python" IN_LIST FEATURES)
+    # use the vcpkg-installed python so we create the wheel for the correct version
+    message(STATUS "Building pyarrow")
+    
+    set(PYTHON3 "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python3${VCPKG_HOST_EXECUTABLE_SUFFIX}")
+    if(NOT EXISTS "${PYTHON3}")
+        vcpkg_find_acquire_program(PYTHON3)
+    endif()
+    x_vcpkg_get_python_packages(
+        PYTHON_VERSION 3
+        PYTHON_EXECUTABLE "${PYTHON3}"
+        REQUIREMENTS_FILE "${SOURCE_PATH}/python/requirements-build.txt"
+        OUT_PYTHON_VAR PYTHON3_VENV
+    )
+
+    set(ENV{Arrow_DIR} "${CURRENT_PACKAGES_DIR}/share/arrow")
+    set(ENV{ArrowCompute_DIR} "${CURRENT_PACKAGES_DIR}/share/arrowcompute")
+    if("dataset" IN_LIST FEATURES)
+        set(ENV{ArrowDataset_DIR} "${CURRENT_PACKAGES_DIR}/share/arrowdataset")
+    endif()
+    if("parquet" IN_LIST FEATURES)
+        set(ENV{Parquet_DIR} "${CURRENT_PACKAGES_DIR}/share/parquet")
+    endif()
+    if("acero" IN_LIST FEATURES)
+        set(ENV{ArrowAcero_DIR} "${CURRENT_PACKAGES_DIR}/share/arrowacero")
+    endif()
+    if("flight" IN_LIST FEATURES)
+        set(ENV{ArrowFlight_DIR} "${CURRENT_PACKAGES_DIR}/share/arrowflight")
+    endif()
+    if ("flightsql" IN_LIST FEATURES)
+         set(ENV{ArrowFlightSql_DIR} "${CURRENT_PACKAGES_DIR}/share/arrowflightsql")
+    endif()
+    
+    set(ENV{SETUPTOOLS_SCM_PRETEND_VERSION} "${VERSION}")
+    set(ENV{PDM_BUILD_SCM_VERSION} "${VERSION}")
+
+    set(install_prefix "${CURRENT_INSTALLED_DIR}")
+    if(VCPKG_TARGET_IS_WINDOWS)
+        string(APPEND install_prefix "/tools/python3")
+    endif()
+
+    if (NOT "${VCPKG_BUILD_TYPE}" STREQUAL "")
+        set(build_opts "--build-type=${VCPKG_BUILD_TYPE}")
+    else()
+        set(build_opts "--build-type=release")
+    endif()
+    vcpkg_execute_required_process(
+        COMMAND "${PYTHON3_VENV}" "setup.py"  
+        "build_ext" "${build_opts}" "--bundle-arrow-cpp"
+        "install" "--prefix" "${install_prefix}"
+        LOGNAME "python-build-${TARGET_TRIPLET}"
+        WORKING_DIRECTORY "${SOURCE_PATH}/python"
+    )
+
+    message(STATUS "Testing pyarrow")
+    vcpkg_execute_required_process(COMMAND "${PYTHON3}" "${SOURCE_PATH}/python/scripts/test_imports.py"
+        LOGNAME "python-import-test-${TARGET_TRIPLET}"
+        WORKING_DIRECTORY "${SOURCE_PATH}/python"
+    )
+endif()
+
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/share/doc")
