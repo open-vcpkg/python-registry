@@ -1,5 +1,9 @@
 {
   "default": {
+    "arrow": {
+      "baseline": "22.0.0",
+      "port-version": 0
+    },
     "gdal": {
       "baseline": "3.12.0",
       "port-version": 1
@@ -262,10 +266,6 @@
     },
     "py-psycopg2": {
       "baseline": "2.9.11",
-      "port-version": 0
-    },
-    "py-pyarrow": {
-      "baseline": "21.0.0",
       "port-version": 0
     },
     "py-pycodestyle": {
