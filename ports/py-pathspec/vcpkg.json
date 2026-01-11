@@ -1,6 +1,6 @@
 {
   "name": "py-pathspec",
-  "version": "0.12.1",
+  "version": "1.0.3",
   "description": "Utility library for gitignore style pattern matching of file paths.",
   "homepage": "https://python-path-specification.readthedocs.io/en/latest/index.html",
   "dependencies": [

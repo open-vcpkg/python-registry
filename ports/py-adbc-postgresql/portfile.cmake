@@ -1,8 +1,9 @@
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    adbc_driver_postgresql
+    PACKAGE_NAME    adbc-driver-postgresql
     VERSION         ${VERSION}
-    SHA512          088698277e559cf834b68e60647d680a90efaed78fc8f8b0c061013aef5ba641a56f8b96fa03426b328b85b9bceba89218ce4fd1b797191707b41332e793c68d
+    SHA512          85d4649de259e72c6d516556efdcd14685f5788d7aa84b556e154f749b08f19ff0ee3f9b51488b6345491fd6830abff4d187c4840ccf696fa2b5f69a078c3045
+    FILENAME        adbc_driver_postgresql
 )
 
 set(ENV{ADBC_POSTGRESQL_LIBRARY} "${CURRENT_INSTALLED_DIR}/lib/libadbc_driver_postgresql${VCPKG_TARGET_SHARED_LIBRARY_SUFFIX}")

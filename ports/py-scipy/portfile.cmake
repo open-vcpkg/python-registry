@@ -17,7 +17,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    scipy
     VERSION         ${VERSION}
-    SHA512          7386670d2be598f46425a5f2ac0194748c83ec006be0b0395a850a613bc12731669469aefe503c9db2521aba956325d44e7a75fa82e4c1e629202cafd1966aa5
+    SHA512          299339cf7885ae6ad81bb29ab1a9128c1e7baef387e64e03a5ca784c14f08de1fe58c8d58b25c76c9068b09d8d97fc8b38d2e03922f0f8ada4e5d00910d56dae
 )
 
 vcpkg_mesonpy_prepare_build_options(OUTPUT meson_opts)

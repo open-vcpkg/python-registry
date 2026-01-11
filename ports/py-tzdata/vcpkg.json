@@ -1,6 +1,6 @@
 {
   "name": "py-tzdata",
-  "version": "2025.2",
+  "version": "2025.3",
   "description": "Provider of IANA time zone data.",
   "homepage": "http://pythonhosted.org/tzdata",
   "dependencies": [

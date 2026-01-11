@@ -1,6 +1,6 @@
 {
   "name": "py-scipy",
-  "version": "1.16.3",
+  "version": "1.17.0",
   "description": "Fundamental algorithms for scientific computing in Python",
   "homepage": "https://scipy.org/",
   "dependencies": [

@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    geopandas
     VERSION         ${VERSION}
-    SHA512          41225eb7d51da9e6cf8314c18ef6d710eff976c358e80dd7f85c21ed04062525ccecaa3f6090919c963d9622892520ddfde553e049a9e8503173798737da53ae
+    SHA512          901ec9a16786872f673cb917bd37ff0790e0582b3738253cd73f0dec3f6bd2c1700cfcaeb4f0f2db87f01940521cb8401d1c511ecdfae98ddb5bce1fa500e941
 )
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
