@@ -31,7 +31,11 @@
     "dbapi": {
       "description": "DBAPI 2.0-compatible interface",
       "dependencies": [
-        "py-pyarrow"
+        {
+          "name": "arrow",
+          "default-features": false,
+          "features": ["python"]
+        }
       ]
     }
   }

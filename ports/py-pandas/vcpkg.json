@@ -36,7 +36,11 @@
     "arrow": {
       "description": "Parquet, ORC, and feather reading / writing",
       "dependencies": [
-        "py-pyarrow"
+        {
+          "name": "arrow",
+          "default-features": false,
+          "features": ["python"]
+        }
       ]
     },
     "computation": {
