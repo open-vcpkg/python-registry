@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    jsonschema
     VERSION         ${VERSION}
-    SHA512          292f8345044a9d94d0a355b531b9310f94e5811de7b17b0bdbd2e9a6ff72fcddac8d43c3d3ccf457a5f01d5e359178698086f04190d496be3bb663cdf39690f4
+    SHA512          a7ae00392b8deb742f5826a65bce0a9149a67c6ddc4deff0bb2e99a79ed94f02c4738d93fef5247e30016fa38397ec68ecdead1c1d76a0caaf7755941544a0a2
     FILENAME        jsonschema
 )
 
