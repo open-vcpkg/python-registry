@@ -1,6 +1,6 @@
 {
   "name": "py-adbc-driver-manager",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "port-version": 1,
   "description": "A generic entrypoint for ADBC drivers.",
   "homepage": "https://arrow.apache.org/adbc/",

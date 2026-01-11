@@ -1,7 +1,7 @@
 {
   "name": "py-geopandas",
-  "version": "1.1.1",
-  "port-version": 2,
+  "version": "1.1.2",
+  "port-version": 1,
   "description": "Geographic pandas extensions.",
   "homepage": "https://geopandas.org",
   "license": "BSD-3-Clause",

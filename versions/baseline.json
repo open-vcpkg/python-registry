@@ -9,16 +9,16 @@
       "port-version": 1
     },
     "py-adbc-driver-manager": {
-      "baseline": "1.9.0",
+      "baseline": "1.10.0",
       "port-version": 1
     },
     "py-adbc-postgresql": {
-      "baseline": "1.9.0",
+      "baseline": "1.10.0",
       "port-version": 1
     },
     "py-adbc-sqlite": {
-      "baseline": "1.9.0",
-      "port-version": 2
+      "baseline": "1.10.0",
+      "port-version": 1
     },
     "py-add-vcpkg-dll-path": {
       "baseline": "2024-03-13",
@@ -133,8 +133,8 @@
       "port-version": 0
     },
     "py-geopandas": {
-      "baseline": "1.1.1",
-      "port-version": 2
+      "baseline": "1.1.2",
+      "port-version": 1
     },
     "py-gpep517": {
       "baseline": "16",
@@ -173,7 +173,7 @@
       "port-version": 1
     },
     "py-jsonschema": {
-      "baseline": "4.25.1",
+      "baseline": "4.26.0",
       "port-version": 0
     },
     "py-jsonschema-specifications": {
@@ -201,7 +201,7 @@
       "port-version": 2
     },
     "py-maturin": {
-      "baseline": "1.10.2",
+      "baseline": "1.11.5",
       "port-version": 0
     },
     "py-meson": {
@@ -233,7 +233,7 @@
       "port-version": 2
     },
     "py-pathspec": {
-      "baseline": "0.12.1",
+      "baseline": "1.0.3",
       "port-version": 0
     },
     "py-pillow": {
@@ -305,7 +305,7 @@
       "port-version": 0
     },
     "py-pyqt6": {
-      "baseline": "6.10.1",
+      "baseline": "6.10.2",
       "port-version": 0
     },
     "py-pyqt6-sip": {
@@ -337,7 +337,7 @@
       "port-version": 2
     },
     "py-rasterio": {
-      "baseline": "1.4.4",
+      "baseline": "1.5.0",
       "port-version": 0
     },
     "py-referencing": {
@@ -365,7 +365,7 @@
       "port-version": 0
     },
     "py-scipy": {
-      "baseline": "1.16.3",
+      "baseline": "1.17.0",
       "port-version": 0
     },
     "py-semantic-version": {
@@ -413,11 +413,11 @@
       "port-version": 0
     },
     "py-tzdata": {
-      "baseline": "2025.2",
+      "baseline": "2025.3",
       "port-version": 0
     },
     "py-urllib3": {
-      "baseline": "2.6.2",
+      "baseline": "2.6.3",
       "port-version": 0
     },
     "py-versioneer": {
@@ -429,7 +429,7 @@
       "port-version": 0
     },
     "py-werkzeug": {
-      "baseline": "3.1.4",
+      "baseline": "3.1.5",
       "port-version": 0
     },
     "py-wheel": {
