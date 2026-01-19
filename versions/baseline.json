@@ -278,6 +278,10 @@
     },
     "py-pydantic": {
       "baseline": "2.12.5",
+      "port-version": 1
+    },
+    "py-pydantic-core": {
+      "baseline": "2.41.5",
       "port-version": 0
     },
     "py-pyogrio": {

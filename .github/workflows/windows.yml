@@ -63,7 +63,6 @@ jobs:
             ./vcpkg/vcpkg.exe install \
             $VCPKG_OPTIONS \
             'py-pyqt6[qtdeclarative,qt3d]' \
-            py-pydantic \
             py-pyyaml \
             py-numpy \
             gdal[python] \
@@ -94,6 +93,7 @@ jobs:
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-networkx
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pyproj
 
+          # py-pydantic   fails with ERROR: truststore not available
           # py-matplotlib 
 
       - name: 📑 Upload logs
