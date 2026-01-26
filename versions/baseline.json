@@ -262,6 +262,10 @@
     },
     "py-psycopg": {
       "baseline": "3.3.2",
+      "port-version": 1
+    },
+    "py-psycopg-c": {
+      "baseline": "3.3.2",
       "port-version": 0
     },
     "py-psycopg2": {
