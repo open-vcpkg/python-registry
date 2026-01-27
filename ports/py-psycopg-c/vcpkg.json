@@ -1,7 +1,6 @@
 {
-  "name": "py-psycopg",
+  "name": "py-psycopg-c",
   "version": "3.3.2",
-  "port-version": 1,
   "description": "Python-PostgreSQL Database Adapter",
   "homepage": "https://psycopg.org/",
   "dependencies": [
@@ -11,12 +10,10 @@
         "client"
       ]
     },
-    "py-psycopg-c",
     {
       "name": "py-setuptools",
       "host": true
     },
-    "py-typing-extensions",
     "python3",
     {
       "name": "vcpkg-python-scripts",
