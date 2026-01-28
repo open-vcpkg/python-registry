@@ -7,13 +7,13 @@ vcpkg_from_pythonhosted(
 
 if(VCPKG_TARGET_IS_WINDOWS)
     vcpkg_add_to_path("${CURRENT_HOST_INSTALLED_DIR}/tools/python${PYTHON3_VERSION_MAJOR}/Scripts")
-
-    vcpkg_get_rust(CARGO)
-    cmake_path(GET CARGO PARENT_PATH CARGO_BIN_DIR)
-    vcpkg_add_to_path("${CARGO_BIN_DIR}")
 else()
     vcpkg_add_to_path("${CURRENT_HOST_INSTALLED_DIR}/bin")
 endif()
+
+vcpkg_get_rust(CARGO)
+cmake_path(GET CARGO PARENT_PATH CARGO_BIN_DIR)
+vcpkg_add_to_path("${CARGO_BIN_DIR}")
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
