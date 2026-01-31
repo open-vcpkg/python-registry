@@ -85,7 +85,7 @@
       "port-version": 0
     },
     "py-cryptography": {
-      "baseline": "46.0.3",
+      "baseline": "46.0.4",
       "port-version": 0
     },
     "py-cycler": {
@@ -233,7 +233,7 @@
       "port-version": 2
     },
     "py-pathspec": {
-      "baseline": "1.0.3",
+      "baseline": "1.0.4",
       "port-version": 0
     },
     "py-pillow": {
@@ -241,7 +241,7 @@
       "port-version": 1
     },
     "py-pip": {
-      "baseline": "25.3",
+      "baseline": "26.0",
       "port-version": 0
     },
     "py-pip-system-certs": {
@@ -257,7 +257,7 @@
       "port-version": 2
     },
     "py-poetry-core": {
-      "baseline": "2.2.1",
+      "baseline": "2.3.0",
       "port-version": 0
     },
     "py-psycopg": {
@@ -277,7 +277,7 @@
       "port-version": 0
     },
     "py-pycparser": {
-      "baseline": "2.23",
+      "baseline": "3.0",
       "port-version": 0
     },
     "py-pydantic": {
@@ -317,7 +317,7 @@
       "port-version": 0
     },
     "py-pyqt6-sip": {
-      "baseline": "13.10.3",
+      "baseline": "13.11.0",
       "port-version": 0
     },
     "py-pysal": {
@@ -381,7 +381,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "80.9.0",
+      "baseline": "80.10.2",
       "port-version": 0
     },
     "py-setuptools-rust": {
@@ -413,7 +413,7 @@
       "port-version": 1
     },
     "py-trove-classifiers": {
-      "baseline": "2025.12.1.14",
+      "baseline": "2026.1.14.14",
       "port-version": 0
     },
     "py-typing-extensions": {
