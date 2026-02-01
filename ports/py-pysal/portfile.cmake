@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    pysal
     VERSION         ${VERSION}
-    SHA512          aca319e8d2128738e760fba7d6628493f200dc9ee46e952e49b2176337acad03dfce9c0e455e6f7305507af7717ccaecc9d796a0bd7e33f122a54c7dac2d1630
+    SHA512          7bb3377204ff68f68ff68835febd21b84b86038e3b8e8f6ef2c966e9938ad5643b97d8ce28fa05b865c8d08826d69757bcbd0618b492abbed1fc1603ed3dcaa5
     FILENAME        pysal
 )
 
