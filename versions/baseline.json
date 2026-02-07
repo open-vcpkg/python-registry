@@ -241,7 +241,7 @@
       "port-version": 1
     },
     "py-pip": {
-      "baseline": "26.0",
+      "baseline": "26.0.1",
       "port-version": 0
     },
     "py-pip-system-certs": {
@@ -381,7 +381,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "80.10.2",
+      "baseline": "81.0.0",
       "port-version": 0
     },
     "py-setuptools-rust": {
