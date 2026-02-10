@@ -381,7 +381,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "81.0.0",
+      "baseline": "82.0.0",
       "port-version": 0
     },
     "py-setuptools-rust": {
