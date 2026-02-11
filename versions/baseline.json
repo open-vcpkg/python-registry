@@ -85,7 +85,7 @@
       "port-version": 0
     },
     "py-cryptography": {
-      "baseline": "46.0.4",
+      "baseline": "46.0.5",
       "port-version": 0
     },
     "py-cycler": {
