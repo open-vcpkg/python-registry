@@ -378,7 +378,7 @@
     },
     "py-scipy": {
       "baseline": "1.17.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-semantic-version": {
       "baseline": "2.10.0",
