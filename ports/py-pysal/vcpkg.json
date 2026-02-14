@@ -1,9 +1,11 @@
 {
   "name": "py-pysal",
   "version": "26.1",
+  "port-version": 1,
   "description": "Python Spatial Analysis Library - meta-package for the PySAL ecosystem.",
   "homepage": "https://pysal.org/",
   "dependencies": [
+    "py-lazy-loader",
     {
       "name": "py-setuptools",
       "host": true
