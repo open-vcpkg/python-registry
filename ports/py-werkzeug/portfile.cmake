@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    Werkzeug
     VERSION         ${VERSION}
-    SHA512          eb76c4b1af04af6c3cdf4fdb0a21df52b1b8414466620d80ad0e284a9ebd22a4ff93d8028b5cb1b7caf5a3fcc079de61aa90030282bb647018c1b53e90c77360
+    SHA512          2bc6b67aa1cac571bd30c59818483e8ef73cd07be2154ce52703429ba29e2f8a8caf2e174291d977df16b944a1f3137b0646effdfb43df8058f6562a2c0bcc04
     FILENAME        werkzeug
 )
 
