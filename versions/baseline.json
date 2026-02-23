@@ -209,8 +209,8 @@
       "port-version": 0
     },
     "py-meson": {
-      "baseline": "0.15.0",
-      "port-version": 1
+      "baseline": "0.19.0",
+      "port-version": 0
     },
     "py-networkx": {
       "baseline": "3.6.1",

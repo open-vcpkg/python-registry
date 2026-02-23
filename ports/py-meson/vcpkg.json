@@ -1,7 +1,6 @@
 {
   "name": "py-meson",
-  "version": "0.15.0",
-  "port-version": 1,
+  "version": "0.19.0",
   "description": "Meson PEP 517 Python build backend",
   "homepage": "https://github.com/mesonbuild/meson-python",
   "license": "MIT",
