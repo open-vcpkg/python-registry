@@ -1,0 +1,22 @@
+{
+  "name": "py-threadpoolctl",
+  "version": "3.6.0",
+  "description": "Python helpers to limit the number of threads used in the threadpool-backed of common native libraries.",
+  "homepage": "https://github.com/joblib/threadpoolctl",
+  "license": "BSD-3-Clause",
+  "dependencies": [
+    {
+      "name": "py-cython",
+      "host": true
+    },
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
