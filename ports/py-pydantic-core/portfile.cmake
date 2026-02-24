@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    pydantic_core
     VERSION         ${VERSION}
-    SHA512          1447f257efdbad0f70b490569c073696f8bdcdbd0baccac40e843520eb3cabfd23d499dca31afdc67581dd6a690cc138b882f393a91f57afcc309c800b9620c3
+    SHA512          f8f15c258cb0240c73c5f070715d2a1893866c2fe07a4d8a6b96feade9f9ab11103aaa73a6fe349a0bf644806b2f8e9b335b8dd4eb6f733ce1fd023b393a6e20
 )
 
 if(VCPKG_TARGET_IS_WINDOWS)
