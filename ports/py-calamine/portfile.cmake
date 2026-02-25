@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    python-calamine
     VERSION         ${VERSION}
-    SHA512          7f95e512ea20e5c07a0795ae2e9380f9f4d2eab2c3e68e05b39214a3468e7628fbc3774486c4014862065f6102f4ef4be351aab0d57aa5f32522006a50e9bdf0
+    SHA512          f76be183793c34bb6311e6856ac47d0ccb6c11eba0a287cfaffc3a79ec3e4f526d079f798bbf7ab121e9a505ca6fd8a53b4c69fe8a64a046b69c43b93ac51130
     FILENAME        python_calamine
 )
 

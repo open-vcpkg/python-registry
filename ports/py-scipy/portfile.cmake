@@ -42,7 +42,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    scipy
     VERSION         ${VERSION}
-    SHA512          299339cf7885ae6ad81bb29ab1a9128c1e7baef387e64e03a5ca784c14f08de1fe58c8d58b25c76c9068b09d8d97fc8b38d2e03922f0f8ada4e5d00910d56dae
+    SHA512          c2930d9be072057eb25394d6bee7fbe504f1b7c442b5393641ab3ff6bba590d4a76d240eb3a2ef58891bcb449af847de056a8957c591caa8fbf496ce9ce5a9e5
 )
 
 vcpkg_replace_string("${SOURCE_PATH}/meson.build" "py3.dependency()" "dependency('python-3.${PYTHON3_VERSION_MINOR}', method : 'pkg-config')")

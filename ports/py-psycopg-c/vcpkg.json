@@ -1,6 +1,6 @@
 {
   "name": "py-psycopg-c",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "description": "Python-PostgreSQL Database Adapter",
   "homepage": "https://psycopg.org/",
   "dependencies": [
