@@ -1,6 +1,6 @@
 {
   "name": "py-ephem",
-  "version": "4.2",
+  "version": "4.2.1",
   "description": "Compute positions of the planets and stars",
   "homepage": "http://rhodesmill.org/pyephem/",
   "dependencies": [
