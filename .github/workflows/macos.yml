@@ -40,29 +40,18 @@ jobs:
 
       - name: 🔨 Prepare build env
         run: |
-          brew install autoconf automake autoconf-archive libtool mono swig bison flex
+          brew install autoconf automake autoconf-archive libtool mono swig bison flex llvm@20
+          echo "HOMEBREW_PREFIX=$(brew --prefix)" >> $GITHUB_ENV
 
-      - name: Symlink gfortran (macOS)
-        if: matrix.os == 'macos-15'
+      - name: Symlink gfortran
         run: |
           # make sure gfortran is available
           # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
           # https://github.com/actions/runner-images/issues/3371
           # ln version - new path 'MacOS14'
-          sudo ln -fs /opt/homebrew/bin/gfortran-${GCC_VERSION} /usr/local/bin/gfortran
+          sudo ln -fs $HOMEBREW_PREFIX/bin/gfortran-${GCC_VERSION} /usr/local/bin/gfortran
           sudo mkdir -p /usr/local/gfortran
-          sudo ln -sf /opt/homebrew/Cellar/gcc@${GCC_VERSION}/*/lib/gcc/${GCC_VERSION} /usr/local/gfortran/lib
-
-      - name: Symlink gfortran (macOS-intel)
-        if: matrix.os == 'macos-15-intel'
-        run: |
-          # make sure gfortran is available
-          # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
-          # https://github.com/actions/runner-images/issues/3371
-          # ln version - new path 'MacOS14'
-          sudo ln -fs /usr/local/bin/gfortran-${GCC_VERSION} /usr/local/bin/gfortran
-          sudo mkdir -p /usr/local/gfortran
-          sudo ln -sf /usr/local/Cellar/gcc@${GCC_VERSION}/*/lib/gcc/${GCC_VERSION} /usr/local/gfortran/lib
+          sudo ln -sf $HOMEBREW_PREFIX/Cellar/gcc@${GCC_VERSION}/*/lib/gcc/${GCC_VERSION} /usr/local/gfortran/lib
 
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v4
@@ -122,9 +111,10 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-bottleneck
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numexpr
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-calamine
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-driver-manager
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-postgresql
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-sqlite
+          # underlying adbc dependency from main vcpkg repo is failing
+          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-driver-manager
+          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-postgresql
+          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-sqlite
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-gast \
             py-beniget \
             py-pythran
