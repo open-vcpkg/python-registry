@@ -172,6 +172,10 @@
       "baseline": "3.1.6",
       "port-version": 1
     },
+    "py-joblib": {
+      "baseline": "1.5.3",
+      "port-version": 0
+    },
     "py-jsonschema": {
       "baseline": "4.26.0",
       "port-version": 0
@@ -190,6 +194,10 @@
     },
     "py-lazy-loader": {
       "baseline": "0.4",
+      "port-version": 0
+    },
+    "py-libpysal": {
+      "baseline": "4.14.1",
       "port-version": 0
     },
     "py-lxml": {
@@ -250,6 +258,10 @@
     },
     "py-pip-system-certs": {
       "baseline": "5.3",
+      "port-version": 0
+    },
+    "py-platformdirs": {
+      "baseline": "4.9.2",
       "port-version": 0
     },
     "py-pluggy": {
@@ -326,7 +338,7 @@
     },
     "py-pysal": {
       "baseline": "26.1",
-      "port-version": 1
+      "port-version": 2
     },
     "py-pyspnego": {
       "baseline": "0.12.0",
@@ -376,6 +388,10 @@
       "baseline": "0.9.3",
       "port-version": 0
     },
+    "py-scikit-learn": {
+      "baseline": "1.8.0",
+      "port-version": 0
+    },
     "py-scipy": {
       "baseline": "1.17.1",
       "port-version": 0
@@ -410,6 +426,10 @@
     },
     "py-sspilib": {
       "baseline": "0.5.0",
+      "port-version": 0
+    },
+    "py-threadpoolctl": {
+      "baseline": "3.6.0",
       "port-version": 0
     },
     "py-tomli": {

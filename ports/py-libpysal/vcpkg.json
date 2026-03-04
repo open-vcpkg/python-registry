@@ -1,0 +1,32 @@
+{
+  "name": "py-libpysal",
+  "version": "4.14.1",
+  "description": "Core components of PySAL - A library of spatial analysis functions.",
+  "homepage": "https://pysal.org/libpysal",
+  "license": "BSD-3-Clause",
+  "dependencies": [
+    "py-geopandas",
+    "py-jinja2",
+    "py-numpy",
+    "py-packaging",
+    "py-pandas",
+    "py-platformdirs",
+    "py-requests",
+    "py-scikit-learn",
+    "py-scipy",
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    {
+      "name": "py-setuptools-scm",
+      "host": true
+    },
+    "py-shapely",
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
