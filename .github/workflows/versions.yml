@@ -29,7 +29,7 @@ jobs:
           vcpkg format-manifest --all $(find . -name "vcpkg.json")
 
       - name: Commit format vcpkg.json
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         if: success()
         with:
           commit_message: 'ci: format vcpkg configuration'
@@ -77,7 +77,7 @@ jobs:
 
       - name: Commit versions
         if: steps.filter-versions.outputs.versions == 'true'
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           file_pattern: versions/*
           commit_message: Update versions.db
