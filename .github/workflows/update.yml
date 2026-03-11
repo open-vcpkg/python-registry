@@ -51,7 +51,7 @@ jobs:
 
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
 
       - name: Enable Auto-Merge
         run: gh pr merge --merge --auto "${{ steps.cpr.outputs.pull-request-number }}"
