@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: 🐣 Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: 🐩 Install CMake and Ninja
         uses: lukka/get-cmake@latest
@@ -34,7 +34,7 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: 🐕 Checkout vcpkg
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: microsoft/vcpkg
           ref: 9b75e789ece3f942159b8500584e35aafe3979ff # TODO: can we have a canonical baseline for tests?
