@@ -1,6 +1,6 @@
 {
   "name": "py-lazy-loader",
-  "version": "0.4",
+  "version": "0.5",
   "description": "Makes it easy to load subpackages and functions on demand.",
   "homepage": "https://scientific-python.org/specs/spec-0001/",
   "dependencies": [

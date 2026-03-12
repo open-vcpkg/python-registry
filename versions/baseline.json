@@ -61,7 +61,7 @@
       "port-version": 0
     },
     "py-certifi": {
-      "baseline": "2024-02-02",
+      "baseline": "2026-02-25",
       "port-version": 0
     },
     "py-cffi": {
@@ -69,7 +69,7 @@
       "port-version": 0
     },
     "py-charset-normalizer": {
-      "baseline": "3.4.4",
+      "baseline": "3.4.5",
       "port-version": 0
     },
     "py-click": {
@@ -93,7 +93,7 @@
       "port-version": 0
     },
     "py-cython": {
-      "baseline": "3.2.2",
+      "baseline": "3.2.4",
       "port-version": 0
     },
     "py-dateutil": {
@@ -101,7 +101,7 @@
       "port-version": 1
     },
     "py-duckdb": {
-      "baseline": "1.2.2",
+      "baseline": "1.5.0",
       "port-version": 0
     },
     "py-ephem": {
@@ -117,11 +117,11 @@
       "port-version": 0
     },
     "py-flit-core": {
-      "baseline": "3.11.0",
+      "baseline": "3.12.0",
       "port-version": 0
     },
     "py-fonttools": {
-      "baseline": "4.61.1",
+      "baseline": "4.62.0",
       "port-version": 0
     },
     "py-gast": {
@@ -133,12 +133,12 @@
       "port-version": 0
     },
     "py-geopandas": {
-      "baseline": "1.1.2",
-      "port-version": 1
+      "baseline": "1.1.3",
+      "port-version": 0
     },
     "py-gpep517": {
-      "baseline": "16",
-      "port-version": 1
+      "baseline": "19",
+      "port-version": 0
     },
     "py-hatch-fancy-pypi-readme": {
       "baseline": "25.1.0",
@@ -189,11 +189,11 @@
       "port-version": 0
     },
     "py-kiwisolver": {
-      "baseline": "1.4.5",
+      "baseline": "1.5.0",
       "port-version": 0
     },
     "py-lazy-loader": {
-      "baseline": "0.4",
+      "baseline": "0.5",
       "port-version": 0
     },
     "py-libpysal": {
@@ -209,8 +209,8 @@
       "port-version": 0
     },
     "py-matplotlib": {
-      "baseline": "3.9.2",
-      "port-version": 2
+      "baseline": "3.10.8",
+      "port-version": 0
     },
     "py-maturin": {
       "baseline": "1.12.6",
@@ -229,7 +229,7 @@
       "port-version": 0
     },
     "py-numpy": {
-      "baseline": "1.26.4",
+      "baseline": "2.4.3",
       "port-version": 0
     },
     "py-owslib": {
@@ -237,20 +237,20 @@
       "port-version": 0
     },
     "py-packaging": {
-      "baseline": "24.2",
+      "baseline": "26.0",
       "port-version": 0
     },
     "py-pandas": {
-      "baseline": "2.3.3",
-      "port-version": 2
+      "baseline": "3.0.1",
+      "port-version": 0
     },
     "py-pathspec": {
       "baseline": "1.0.4",
       "port-version": 0
     },
     "py-pillow": {
-      "baseline": "10.4.0",
-      "port-version": 1
+      "baseline": "12.1.1",
+      "port-version": 0
     },
     "py-pip": {
       "baseline": "26.0.1",
@@ -261,7 +261,7 @@
       "port-version": 0
     },
     "py-platformdirs": {
-      "baseline": "4.9.2",
+      "baseline": "4.9.4",
       "port-version": 0
     },
     "py-pluggy": {
@@ -309,8 +309,8 @@
       "port-version": 0
     },
     "py-pyparsing": {
-      "baseline": "3.1.1",
-      "port-version": 2
+      "baseline": "3.3.2",
+      "port-version": 0
     },
     "py-pyproj": {
       "baseline": "3.7.2",
@@ -333,7 +333,7 @@
       "port-version": 0
     },
     "py-pyqt6-sip": {
-      "baseline": "13.11.0",
+      "baseline": "13.11.1",
       "port-version": 0
     },
     "py-pysal": {
@@ -381,11 +381,11 @@
       "port-version": 0
     },
     "py-scikit-build": {
-      "baseline": "0.18.1",
+      "baseline": "0.19.0",
       "port-version": 0
     },
     "py-scikit-build-core": {
-      "baseline": "0.9.3",
+      "baseline": "0.12.2",
       "port-version": 0
     },
     "py-scikit-learn": {
@@ -401,7 +401,7 @@
       "port-version": 0
     },
     "py-setuptools": {
-      "baseline": "82.0.0",
+      "baseline": "82.0.1",
       "port-version": 0
     },
     "py-setuptools-rust": {
@@ -409,19 +409,19 @@
       "port-version": 0
     },
     "py-setuptools-scm": {
-      "baseline": "8.1.0",
-      "port-version": 1
+      "baseline": "9.2.2",
+      "port-version": 0
     },
     "py-shapely": {
       "baseline": "2.1.2",
       "port-version": 0
     },
     "py-sip": {
-      "baseline": "6.15.1",
+      "baseline": "6.15.2",
       "port-version": 0
     },
     "py-six": {
-      "baseline": "1.16.0",
+      "baseline": "1.17.0",
       "port-version": 0
     },
     "py-sspilib": {
@@ -441,7 +441,7 @@
       "port-version": 0
     },
     "py-typing-extensions": {
-      "baseline": "4.11.0",
+      "baseline": "4.15.0",
       "port-version": 0
     },
     "py-tzdata": {
@@ -465,11 +465,11 @@
       "port-version": 0
     },
     "py-wheel": {
-      "baseline": "0.43.0",
+      "baseline": "0.46.3",
       "port-version": 0
     },
     "py-wrapt": {
-      "baseline": "2.1.1",
+      "baseline": "2.1.2",
       "port-version": 0
     },
     "pybind11": {
