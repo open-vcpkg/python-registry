@@ -1,6 +1,6 @@
 {
   "name": "py-six",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "description": "Python 2 and 3 compatibility library ",
   "homepage": "https://github.com/benjaminp/six",
   "license": null,

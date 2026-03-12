@@ -1,7 +1,6 @@
 {
   "name": "py-setuptools-scm",
-  "version": "8.1.0",
-  "port-version": 1,
+  "version": "9.2.2",
   "description": "the blessed package to manage your versions by scm tags",
   "homepage": "https://github.com/pypa/setuptools_scm",
   "license": "MIT",
