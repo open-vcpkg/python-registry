@@ -1,9 +1,6 @@
 name: Auto update python packages
 
 on:
-  push:
-    branches:
-      - test-update
   workflow_dispatch:
   schedule:
     - cron: "15 5 * * *"
