@@ -85,6 +85,7 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT }}
 
       - name: Enable Auto-Merge
+        continue-on-error: true
         run: |
           BRANCH="auto-update/$(date +%Y-%m-%d)"
           PR_NUMBER=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number')
