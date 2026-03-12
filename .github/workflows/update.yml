@@ -1,6 +1,9 @@
 name: Auto update python packages
 
 on:
+  push:
+    branches:
+      - test-update
   workflow_dispatch:
   schedule:
     - cron: "15 5 * * *"
@@ -25,9 +28,11 @@ jobs:
       - name: Setup vcpkg
         uses: ./.github/actions/setup-vcpkg
 
-      - name: Format vcpkg.json
+      - name: Update ports
         run: |
-          python ./scripts/update-ports.py
+          python ./scripts/update-ports.py 2>&1 | tee /tmp/update-output.txt
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Format vcpkg.json
         run: |
@@ -36,7 +41,7 @@ jobs:
           git config --global user.email "updatebot@open-vcpkg"
           git config --global user.name "Update Bot"
           git add ports
-          git commit -m "Autoupdating ports"
+          git commit -m "Autoupdating ports" || echo "No port changes to commit"
 
       - name: Update versions
         run: |
@@ -47,13 +52,44 @@ jobs:
           done
 
           git add versions
-          git commit --am --no-edit
+          git commit --am --no-edit || echo "No version changes to commit"
 
       - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v8
+        run: |
+          # Check if there are commits ahead of origin
+          if git diff --quiet origin/main..HEAD; then
+            echo "No changes to create a PR for."
+            exit 0
+          fi
+
+          # Build summary from update output
+          SUMMARY=$(awk '/^={10,}/{found=1; next} found' /tmp/update-output.txt)
+          BRANCH="auto-update/$(date +%Y-%m-%d)"
+
+          git checkout -b "$BRANCH"
+          git push --force origin "$BRANCH"
+
+          # Check if a PR already exists for this branch
+          EXISTING_PR=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number // empty')
+          if [ -n "$EXISTING_PR" ]; then
+            echo "PR #$EXISTING_PR already exists, updating..."
+            gh pr edit "$EXISTING_PR" --body "$SUMMARY"
+          else
+            gh pr create \
+              --title "Auto-update ports $(date +%Y-%m-%d)" \
+              --body "$SUMMARY" \
+              --base main \
+              --head "$BRANCH"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
 
       - name: Enable Auto-Merge
-        run: gh pr merge --merge --auto "${{ steps.cpr.outputs.pull-request-number }}"
+        run: |
+          BRANCH="auto-update/$(date +%Y-%m-%d)"
+          PR_NUMBER=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number')
+          if [ -n "$PR_NUMBER" ]; then
+            gh pr merge --merge --auto "$PR_NUMBER"
+          fi
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT }}
