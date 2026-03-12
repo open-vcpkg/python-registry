@@ -163,11 +163,13 @@ def update_pypi_ports():
                                         r"(FILENAME\s+)[^\s]+",
                                         f"\\g<1>{filename_prefix}",
                                         new_portfile_content,
+                                        count=1,
                                     )
                                     new_portfile_content = re.sub(
                                         r"(SHA512\s+)[a-f0-9]+",
                                         f"\\g<1>{sha512_checksum}",
                                         new_portfile_content,
+                                        count=1,
                                     )
                                 else:
                                     # Insert FILENAME after SHA512
@@ -175,6 +177,7 @@ def update_pypi_ports():
                                         r"(SHA512\s+)[a-f0-9]+",
                                         f"\\g<1>{sha512_checksum}\n    FILENAME        {filename_prefix}",
                                         new_portfile_content,
+                                        count=1,
                                     )
                             else:
                                 # No FILENAME needed, just update the SHA512
@@ -182,6 +185,7 @@ def update_pypi_ports():
                                     r"(SHA512\s+)[a-f0-9]+",
                                     f"\\g<1>{sha512_checksum}",
                                     new_portfile_content,
+                                    count=1,
                                 )
                                 print(f"No FILENAME needed, SHA512 updated")
 
@@ -380,11 +384,13 @@ def update_github_ports():
                 json.dump(vcpkg_data, f, indent=2)
             print(f"  Updated {vcpkg_json} to version {new_version}")
 
-            # Update portfile.cmake SHA512
+            # Update portfile.cmake SHA512 (only the first occurrence,
+            # which corresponds to the main source archive)
             new_portfile_content = re.sub(
                 r"(SHA512\s+)[a-f0-9]+",
                 f"\\g<1>{sha512_checksum}",
                 portfile_content,
+                count=1,
             )
 
             # If REF is a literal value (not ${VERSION}), update it too
@@ -393,6 +399,7 @@ def update_github_ports():
                     r'(REF\s+"?)\S+"?',
                     f"\\g<1>{tag_name}",
                     new_portfile_content,
+                    count=1,
                 )
 
             with open(portfile_cmake, "w") as f:

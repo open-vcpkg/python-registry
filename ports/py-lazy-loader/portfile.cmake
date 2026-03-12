@@ -2,9 +2,9 @@ set(VCPKG_BUILD_TYPE release)
 
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    "lazy-loader"
+    PACKAGE_NAME    lazy-loader
     VERSION         ${VERSION}
-    SHA512          29e3589929869351ea62cf7cbba86b581bd7935918b54cfd5ac107cbf7cc427d6d4e050ec1f9bef084587e55286d7afa31d5cdb6deb7d072d25493d19d6bbce6
+    SHA512          aca2a7a8901dadc2c20a5e23ae016b466dad541153c0f43ed20b57b375c6dc8279a324ea086ed2468e20655dd567a30f9275da7fd8664f6384296bdb739289b7
     FILENAME        lazy_loader
 )
 

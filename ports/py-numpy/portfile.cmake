@@ -22,25 +22,25 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO numpy/numpy
     REF v${VERSION}
-    SHA512 01b6a124c72d082f1dafdd98cdaaa84ab57f2bf0112d89d9355fa458a04deb8309c7e78449767429049971793c040e51412060681218a51c671ac6086dba2fa4
+    SHA512 0c3fa8fc09e929d1fdc723e9974e07057c9651fe1dac2704b984f482cfb25dbf8c43c13d43bf003677095e2a9c9914bec05336e82bddd0fc123e3bcb9e7471a2
     HEAD_REF main
 )
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH_SIMD
     REPO intel/x86-simd-sort
-    REF 0631a88763a4a0a4c9e84d5eeb0ec5d36053730b
-    SHA512 cd44796fc10e13004932be05d5bee46070e061bcc429c7ee8d9e11520e18c45bdec2f4fcd3555d9769891a763e151b0a0a4c00385ea30f24c99da1c65d736e39
+    REF 5adb33411f3cea8bdbafa9d91bd75bc4bf19c7dd
+    SHA512 cdc08361b2f7f8480d5b8eb8f3cffbe1c86ef898f5780633bf53a60eb22cddd1571d1358490026b076767b776f53485c90730e354fcaf562c38e9fcc76ed2471
     HEAD_REF main
 )
 
-file(COPY "${SOURCE_PATH_SIMD}/" DESTINATION "${SOURCE_PATH}/numpy/core/src/npysort/x86-simd-sort")
+file(COPY "${SOURCE_PATH_SIMD}/" DESTINATION "${SOURCE_PATH}/numpy/_core/src/npysort/x86-simd-sort")
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH_MESON_NUMPY
     REPO numpy/meson
-    REF 4e370ca8ab73c07f7b84abe8a4b937caace050a4
-    SHA512 dec6e3b9428f95790f85a863778227a73e4f432f8f54e87d61fd6499b5a0723c59a334fcaf880afd59ae50c924d8f2cfa340a143f752cb39f976c731ca0ea123
+    REF 5d5a3d478da115c812be77afa651db2492d52171
+    SHA512 7045d09b123fac0d305071283357e2ee66c6cd2b0459f62b7a27194c68bfc734bf2675ba49ca48fcc738e160dfea9b648e70bd9361afe42a8722c3dfd2f4fd3d
     HEAD_REF main
 )
 
@@ -49,18 +49,44 @@ file(COPY "${SOURCE_PATH_MESON_NUMPY}/mesonbuild/modules/features" DESTINATION "
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH_SVML
     REPO numpy/SVML
-    REF 1b21e453f6b1ba6a6aca392b1d810d9d41576123
-    SHA512 c9ea7bf9effbf5750750ddfdfc7db3d95614ed176bd4540d68eddb90a15f819510e9564c9454ef34be02dd6a8e48a7f292a70cb5b63c25c3d1c450a8e3b77d35
+    REF 3a713b13018325451c1b939d3914ceff5ec68e19
+    SHA512 aa2d1f83a7fdc1c5b31f51c4d8d3ffd2604be68011584ec30e1e18522f9b36c39d613e9e9e4e1b100548b5db42f3cb60d95d042f3d523802103de90f617a8b66
     HEAD_REF main
 )
 
-file(COPY "${SOURCE_PATH_SVML}/" DESTINATION "${SOURCE_PATH}/numpy/core/src/umath/svml")
+file(COPY "${SOURCE_PATH_SVML}/" DESTINATION "${SOURCE_PATH}/numpy/_core/src/umath/svml")
+
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH_HIGHWAY
+    REPO google/highway
+    REF ee36c837129310be19c17c9108c6dc3f6ae06942
+    SHA512 8c2a34a329e9b4c239ded17f906756e79cfc6afd47711ce17eaf7ffab74ae8c7f60bd64b81cfa5eaa2338779998373e1a2c5cb4c97c7a2e8ca7b0514622e8bdb
+    HEAD_REF main
+)
+
+file(COPY "${SOURCE_PATH_HIGHWAY}/" DESTINATION "${SOURCE_PATH}/numpy/_core/src/highway")
+
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH_POCKETFFT
+    REPO mreineck/pocketfft
+    REF 33ae5dc94c9cdc7f1c78346504a85de87cadaa12
+    SHA512 2acd1b2c4419a2a817e5fdc7770e8f9dae991a7b45c115651eb4df489f28b7ae8d088806bc100434bb9a6c77c02018c3ee14315c3c02c0dc433f18d8fbf064ad
+    HEAD_REF main
+)
+
+file(COPY "${SOURCE_PATH_POCKETFFT}/" DESTINATION "${SOURCE_PATH}/numpy/fft/pocketfft")
+
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH_PYTHONCAPI
+    REPO python/pythoncapi-compat
+    REF 8636bccf29adfa23463f810b3c2830f7cff1e933
+    SHA512 7ee775682ddaa6a312a2bd9a723c9aabfd522ba29a438d80c7478262f8d9a31c2850b6d62a6c143d715e611155a879030f83cf8602c3c710dfa89e0a0de45f51
+    HEAD_REF main
+)
+
+file(COPY "${SOURCE_PATH_PYTHONCAPI}/" DESTINATION "${SOURCE_PATH}/numpy/_core/src/common/pythoncapi-compat")
 
 vcpkg_replace_string("${SOURCE_PATH}/meson.build" "py.dependency()" "dependency('python-3.${PYTHON3_VERSION_MINOR}', method : 'pkg-config')")
-
-#debug replacement 
-vcpkg_replace_string("${SOURCE_PATH}/numpy/_build_utils/tempita.py" "import argparse" "import argparse\nprint(sys.executable)\nimport os\n
-print(os.environ['PATH'])")
 
 if(VCPKG_TARGET_IS_WINDOWS AND VCPKG_CROSSCOMPILING AND VCPKG_TARGET_ARCHITECTURE MATCHES "arm")
   set(opts 
@@ -85,6 +111,19 @@ vcpkg_configure_meson(
 message(STATUS "PATH is: '$ENV{PATH}'")
 vcpkg_install_meson()
 message(STATUS "PATH is: '$ENV{PATH}'")
+
+# Move pkgconfig from deep numpy install tree to standard location
+file(MAKE_DIRECTORY "${CURRENT_PACKAGES_DIR}/lib/pkgconfig")
+file(GLOB _numpy_pc_files "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/numpy/_core/lib/pkgconfig/*.pc")
+if(NOT _numpy_pc_files)
+  file(GLOB _numpy_pc_files "${CURRENT_PACKAGES_DIR}/lib/site-packages/numpy/_core/lib/pkgconfig/*.pc")
+endif()
+foreach(_pc_file IN LISTS _numpy_pc_files)
+  get_filename_component(_pc_name "${_pc_file}" NAME)
+  file(RENAME "${_pc_file}" "${CURRENT_PACKAGES_DIR}/lib/pkgconfig/${_pc_name}")
+endforeach()
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/numpy/_core/lib/pkgconfig")
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/lib/site-packages/numpy/_core/lib/pkgconfig")
 vcpkg_fixup_pkgconfig()
 
 #E:\vcpkg_folders\numpy\packages\numpy_arm64-windows-release\tools\python3\Lib\site-packages\numpy\__config__.py
