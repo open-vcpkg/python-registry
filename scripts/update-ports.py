@@ -39,21 +39,24 @@ def update_pypi_ports():
                         # Check if the portfile contains "vcpkg_from_pythonhosted"
                         if "vcpkg_from_pythonhosted" in portfile_content:
 
-                            # Check for PYPI_PROJECT_NAME
+                            # Check for PYPI_PROJECT_NAME (supports both bracket and non-bracket formats)
                             pypi_project_match = re.search(
-                                r"# PYPI_PROJECT_NAME\s+\[([^\]]+)\]", portfile_content
+                                r"# PYPI_PROJECT_NAME\s+(?:\[([^\]]+)\]|(\S+))", portfile_content
                             )
                             if pypi_project_match:
-                                pypi_project_name = pypi_project_match.group(1)
+                                pypi_project_name = pypi_project_match.group(1) or pypi_project_match.group(2)
                                 print(f"    Using PYPI_PROJECT_NAME: {pypi_project_name}")
                             else:
                                 pypi_project_name = dir_name.replace("py-", "", 1)
 
                             package_name_match = re.search(
-                                r"PACKAGE_NAME\s+([^\s]+)", portfile_content
+                                r'PACKAGE_NAME\s+"?([^"\s]+)"?', portfile_content
                             )
                             if package_name_match:
                                 package_name = package_name_match.group(1)
+                                # Skip unresolved cmake variables
+                                if "${" in package_name:
+                                    package_name = pypi_project_name
                             else:
                                 # If PACKAGE_NAME is not set, strip the py- prefix from the folder name
                                 package_name = dir_name.replace("py-", "", 1)
