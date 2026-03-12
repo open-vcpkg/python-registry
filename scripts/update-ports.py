@@ -408,14 +408,14 @@ def print_report(title, updated, failed, unchanged):
     print(f"  {title}")
     print(f"{'=' * 60}")
     if updated:
-        print(f"\nUpdated ({len(updated)}):")
+        print(f"\n✅ Updated ({len(updated)}):")
         for entry in updated:
             print(f"  + {entry}")
     if failed:
-        print(f"\nFailed ({len(failed)}):")
+        print(f"\n❌ Failed ({len(failed)}):")
         for entry in failed:
             print(f"  ! {entry}")
-    print(f"\nUnchanged: {len(unchanged)}")
+    print(f"\n📦 Unchanged: {len(unchanged)}")
     print(f"{'=' * 60}")
 
 
