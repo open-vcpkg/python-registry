@@ -76,6 +76,14 @@ def update_pypi_ports():
                             pypi_project_name = pypi_data.get("info", {}).get("name")
                             source_url = None
 
+                            # vcpkg relaxed versions only allow digits and dots
+                            if latest_version and not re.fullmatch(r"\d+(\.\d+)*", latest_version):
+                                print(
+                                    f"  Skipping {package_name}: version '{latest_version}' is not a valid vcpkg version"
+                                )
+                                unchanged.append(dir_name)
+                                continue
+
                             for release in pypi_data.get("urls", []):
                                 if release.get("packagetype") == "sdist":
                                     source_url = release.get("url")
