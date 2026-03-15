@@ -10,6 +10,7 @@ find_program(VCPKG_CYTHON NAMES cython PATHS "${VCPKG_PYTHON3_BASEDIR}" "${VCPKG
 
 set(ENV{PYTHON3} "${VCPKG_PYTHON3}")
 set(PYTHON3 "${VCPKG_PYTHON3}")
+set(z_vcpkg_python_func_python ${VCPKG_PYTHON3})
 
 vcpkg_add_to_path(PREPEND "${VCPKG_PYTHON3_BASEDIR}")
 if(VCPKG_TARGET_IS_WINDOWS)
@@ -95,22 +96,41 @@ if(VCPKG_TARGET_IS_WINDOWS AND VCPKG_CROSSCOMPILING AND VCPKG_TARGET_ARCHITECTUR
   )
 endif()
 
-message(STATUS "PATH is: '$ENV{PATH}'")
-vcpkg_configure_meson(
-    SOURCE_PATH "${SOURCE_PATH}"
-    OPTIONS 
-        -Dblas=blas
-        -Dlapack=lapack
-        #-Duse-ilp64=true
-    ADDITIONAL_BINARIES
-      cython=['${VCPKG_CYTHON}']
-      python3=['${VCPKG_PYTHON3}']
-#      python=['${VCPKG_PYTHON3}']
+vcpkg_mesonpy_prepare_build_options(
+    OUTPUT meson_opts
     ${opts}
-    )
-message(STATUS "PATH is: '$ENV{PATH}'")
-vcpkg_install_meson()
-message(STATUS "PATH is: '$ENV{PATH}'")
+)
+
+z_vcpkg_setup_pkgconfig_path(CONFIG "RELEASE")
+
+list(APPEND meson_opts
+  "--python.platlibdir" 
+  "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}"
+)
+
+# needed so pythran can be found
+vcpkg_add_to_path("${CURRENT_HOST_INSTALLED_DIR}/bin")
+
+
+if (VCPKG_TARGET_IS_OSX)
+  list(APPEND meson_opts
+    "-Dblas=accelerate"
+    "-Dlapack=accelerate"
+  )
+else()
+  list(APPEND meson_opts
+    "-Dblas=blas"
+    "-Dlapack=lapack"
+  )
+endif()
+
+list(JOIN meson_opts "\",\""  meson_opts)
+
+vcpkg_python_build_and_install_wheel(
+  SOURCE_PATH "${SOURCE_PATH}"
+  OPTIONS 
+    --config-json "{\"setup-args\" : [\"${meson_opts}\" ] }"
+)
 
 # Move pkgconfig from deep numpy install tree to standard location
 file(MAKE_DIRECTORY "${CURRENT_PACKAGES_DIR}/lib/pkgconfig")
@@ -125,10 +145,6 @@ endforeach()
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/numpy/_core/lib/pkgconfig")
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/lib/site-packages/numpy/_core/lib/pkgconfig")
 vcpkg_fixup_pkgconfig()
-
-#E:\vcpkg_folders\numpy\packages\numpy_arm64-windows-release\tools\python3\Lib\site-packages\numpy\__config__.py
-# "path": r"E:/vcpkg_folders/numpy/installed/x64-windows-release/tools/python3/python.exe", and full paths to compilers
-#"commands": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/bin/Hostx64/arm64/cl.exe, -DWIN32, -D_WINDOWS, -W3, -utf-8, -MP, -MD, -O2, -Oi, -Gy, -DNDEBUG, -Z7",
 
 set(subdir "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/")
 if(VCPKG_TARGET_IS_WINDOWS)
