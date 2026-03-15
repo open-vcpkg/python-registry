@@ -147,21 +147,11 @@ file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/lib/site-packages/numpy/_core/lib/p
 vcpkg_fixup_pkgconfig()
 
 set(subdir "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/")
-if(VCPKG_TARGET_IS_WINDOWS)
-  set(subdir "${CURRENT_PACKAGES_DIR}/lib/site-packages/")
-endif()
 set(pyfile "${subdir}/numpy/__config__.py")
 file(READ "${pyfile}" contents)
 string(REPLACE "${CURRENT_INSTALLED_DIR}" "$(prefix)" contents "${contents}")
 string(REPLACE "r\"${VCPKG_PYTHON3}\"" "sys.executable" contents "${contents}")
 file(WRITE "${pyfile}" "${contents}")
-
-
-if(VCPKG_TARGET_IS_WINDOWS)
-    file(MAKE_DIRECTORY "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}")
-    file(RENAME "${CURRENT_PACKAGES_DIR}/lib/site-packages/numpy" "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/numpy")
-    file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/lib")
-endif()
 
 file(REMOVE_RECURSE
     "${CURRENT_PACKAGES_DIR}/debug/include"
