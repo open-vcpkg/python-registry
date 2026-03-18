@@ -68,6 +68,7 @@ set(pyfile "${subdir}/scipy/__config__.py")
 file(READ "${pyfile}" contents)
 string(REPLACE "${CURRENT_INSTALLED_DIR}" "$(prefix)" contents "${contents}")
 string(REPLACE "r\"${VCPKG_PYTHON3}\"" "sys.executable" contents "${contents}")
+string(REGEX REPLACE "r\"(\.\./)+([^\\/]+/)+site-packages/pythran" "r\"../pythran" contents "${contents}")
 file(WRITE "${pyfile}" "${contents}")
 
 file(GLOB licenses "${SOURCE_PATH}/LICENSE*")
