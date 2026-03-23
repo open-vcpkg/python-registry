@@ -1,3 +1,7 @@
+set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
+set(VCPKG_POLICY_MISMATCHED_NUMBER_OF_BINARIES enabled)
+set(VCPKG_BUILD_TYPE release) # No debug builds required for pure python modules since vcpkg does not install a debug python executable. 
+
 set(VCPKG_PYTHON3_BASEDIR "${CURRENT_HOST_INSTALLED_DIR}/tools/python3")
 find_program(VCPKG_PYTHON3 NAMES python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR} python${PYTHON3_VERSION_MAJOR} python PATHS "${VCPKG_PYTHON3_BASEDIR}" NO_DEFAULT_PATH)
 find_program(VCPKG_CYTHON NAMES cython PATHS "${VCPKG_PYTHON3_BASEDIR}" "${VCPKG_PYTHON3_BASEDIR}/Scripts" NO_DEFAULT_PATH)
@@ -70,6 +74,11 @@ string(REPLACE "${CURRENT_INSTALLED_DIR}" "$(prefix)" contents "${contents}")
 string(REPLACE "r\"${VCPKG_PYTHON3}\"" "sys.executable" contents "${contents}")
 string(REGEX REPLACE "r\"(\.\./)+([^\\/]+/)+site-packages/pythran" "r\"../pythran" contents "${contents}")
 file(WRITE "${pyfile}" "${contents}")
+
+file(REMOVE_RECURSE
+    "${CURRENT_PACKAGES_DIR}/debug/include"
+    "${CURRENT_PACKAGES_DIR}/debug/share"
+)
 
 file(GLOB licenses "${SOURCE_PATH}/LICENSE*")
 vcpkg_install_copyright(FILE_LIST ${licenses})
