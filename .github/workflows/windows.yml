@@ -92,6 +92,7 @@ jobs:
             # ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-jsonschema
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-networkx
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pyproj
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-scipy
 
           # py-pydantic   fails with ERROR: truststore not available
           # py-matplotlib 
