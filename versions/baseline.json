@@ -210,7 +210,7 @@
     },
     "py-matplotlib": {
       "baseline": "3.10.8",
-      "port-version": 0
+      "port-version": 1
     },
     "py-maturin": {
       "baseline": "1.12.6",
@@ -258,7 +258,7 @@
     },
     "py-pip-system-certs": {
       "baseline": "5.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-platformdirs": {
       "baseline": "4.9.4",
