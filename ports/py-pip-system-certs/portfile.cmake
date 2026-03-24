@@ -6,6 +6,24 @@ vcpkg_from_pythonhosted(
     FILENAME        pip_system_certs
 )
 
+# Fix: redirect error messages to stderr to avoid corrupting stdout of build tools (e.g. meson introspection)
+vcpkg_replace_string("${SOURCE_PATH}/pip_system_certs/wrapt_requests.py"
+    "import ssl"
+    "import ssl\nimport sys"
+)
+vcpkg_replace_string("${SOURCE_PATH}/pip_system_certs/wrapt_requests.py"
+    [[print("pip_system_certs: ERROR: truststore not available")]]
+    [[print("pip_system_certs: ERROR: truststore not available", file=sys.stderr)]]
+)
+vcpkg_replace_string("${SOURCE_PATH}/pip_system_certs/wrapt_requests.py"
+    [[print("pip_system_certs: ERROR: could not inject truststore:", ex)]]
+    [[print("pip_system_certs: ERROR: could not inject truststore:", ex, file=sys.stderr)]]
+)
+vcpkg_replace_string("${SOURCE_PATH}/pip_system_certs/bootstrap.py"
+    [[print("pip_system_certs: ERROR: could not register module:", ex)]]
+    [[print("pip_system_certs: ERROR: could not register module:", ex, file=sys.stderr)]]
+)
+
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
