@@ -1,6 +1,7 @@
 {
   "name": "py-pip-system-certs",
   "version": "5.3",
+  "port-version": 1,
   "description": "Live patches pip to use system certs by default",
   "homepage": "https://gitlab.com/alelec/pip-system-certs",
   "dependencies": [
