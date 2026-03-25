@@ -1,0 +1,41 @@
+diff --git a/pip_system_certs/bootstrap.py b/pip_system_certs/bootstrap.py
+index 56da4b9..13d4100 100644
+--- a/pip_system_certs/bootstrap.py
++++ b/pip_system_certs/bootstrap.py
+@@ -21,7 +21,7 @@ def _register_bootstrap_functions():
+         from . import wrapt_requests
+         wrapt_requests.inject_truststore()
+     except Exception as ex:
+-        print("pip_system_certs: ERROR: could not register module:", ex)
++        print("pip_system_certs: ERROR: could not register module:", ex, file=sys.stderr)
+ 
+ 
+ def _execsitecustomize_wrapper(wrapped):
+diff --git a/pip_system_certs/wrapt_requests.py b/pip_system_certs/wrapt_requests.py
+index 8ba9f87..af975c5 100644
+--- a/pip_system_certs/wrapt_requests.py
++++ b/pip_system_certs/wrapt_requests.py
+@@ -1,4 +1,5 @@
+ import ssl
++import sys
+ import inspect
+ 
+ _injected = False
+@@ -16,7 +17,7 @@ def inject_truststore():
+                 try:
+                     import truststore
+                 except ImportError:
+-                    print("pip_system_certs: ERROR: truststore not available")
++                    print("pip_system_certs: ERROR: truststore not available", file=sys.stderr)
+                     return
+ 
+             # Check if truststore is already injected globally
+@@ -33,7 +34,7 @@ def inject_truststore():
+             _patch_pip_insecure_adapters()
+ 
+         except Exception as ex:
+-            print("pip_system_certs: ERROR: could not inject truststore:", ex)
++            print("pip_system_certs: ERROR: could not inject truststore:", ex, file=sys.stderr)
+ 
+ 
+ def _patch_pip_insecure_adapters():
