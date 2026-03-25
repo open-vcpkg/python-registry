@@ -12,6 +12,7 @@ if(VCPKG_TARGET_IS_WINDOWS)
 endif()
 
 set(PYTHON3 "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python${VCPKG_HOST_EXECUTABLE_SUFFIX}")
+set(z_vcpkg_python_func_python ${PYTHON3})
 vcpkg_mesonpy_prepare_build_options(OUTPUT meson_opts)
 
 z_vcpkg_setup_pkgconfig_path(CONFIG "RELEASE")
