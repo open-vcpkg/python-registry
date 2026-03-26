@@ -36,7 +36,8 @@
     },
     {
       "name": "py-pythran",
-      "host": true
+      "host": true,
+      "platform": "!windows"
     },
     {
       "name": "py-setuptools",

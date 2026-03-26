@@ -56,6 +56,12 @@ else()
   )
 endif()
 
+if (VCPKG_TARGET_IS_WINDOWS)
+  list(APPEND meson_opts
+    "-Duse-pythran=false"
+  )
+endif()
+
 list(JOIN meson_opts "\",\""  meson_opts)
 
 vcpkg_python_build_and_install_wheel(
@@ -65,9 +71,6 @@ vcpkg_python_build_and_install_wheel(
 )
 
 set(subdir "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/")
-if(VCPKG_TARGET_IS_WINDOWS)
-  set(subdir "${CURRENT_PACKAGES_DIR}/lib/site-packages/")
-endif()
 set(pyfile "${subdir}/scipy/__config__.py")
 file(READ "${pyfile}" contents)
 string(REPLACE "${CURRENT_INSTALLED_DIR}" "$(prefix)" contents "${contents}")
