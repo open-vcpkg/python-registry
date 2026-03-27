@@ -73,9 +73,15 @@ vcpkg_python_build_and_install_wheel(
 set(subdir "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/")
 set(pyfile "${subdir}/scipy/__config__.py")
 file(READ "${pyfile}" contents)
+if (VCPKG_TARGET_IS_WINDOWS)
+  string(REPLACE "/" "\\" python_executable ${VCPKG_PYTHON3})
+else()
+  set(python_executable ${VCPKG_PYTHON3})
+endif()
+string(REPLACE "from enum import Enum" "from enum import Enum\nimport sys" contents "${contents}")
+string(REPLACE "r\"${python_executable}\"" "sys.executable" contents "${contents}")
 string(REPLACE "${CURRENT_INSTALLED_DIR}" "$(prefix)" contents "${contents}")
-string(REPLACE "r\"${VCPKG_PYTHON3}\"" "sys.executable" contents "${contents}")
-string(REGEX REPLACE "r\"(\.\./)+([^\\/]+/)+site-packages/pythran" "r\"../pythran" contents "${contents}")
+string(REGEX REPLACE "\"commands\": +r\"[A-Za-z0-9_ .:\\/-]+[/\\]([A-Za-z0-9_-]+)${VCPKG_HOST_EXECUTABLE_SUFFIX}\"" "\"commands\": r\"\\1${VCPKG_HOST_EXECUTABLE_SUFFIX}\"" contents "${contents}")
 file(WRITE "${pyfile}" "${contents}")
 
 file(REMOVE_RECURSE
