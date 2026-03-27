@@ -1,3 +1,7 @@
+set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
+set(VCPKG_POLICY_MISMATCHED_NUMBER_OF_BINARIES enabled)
+set(VCPKG_BUILD_TYPE release) # No debug builds required for pure python modules since vcpkg does not install a debug python executable. 
+
 set(VCPKG_PYTHON3_BASEDIR "${CURRENT_HOST_INSTALLED_DIR}/tools/python3")
 find_program(VCPKG_PYTHON3 NAMES python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR} python${PYTHON3_VERSION_MAJOR} python PATHS "${VCPKG_PYTHON3_BASEDIR}" NO_DEFAULT_PATH)
 find_program(VCPKG_CYTHON NAMES cython PATHS "${VCPKG_PYTHON3_BASEDIR}" "${VCPKG_PYTHON3_BASEDIR}/Scripts" NO_DEFAULT_PATH)
@@ -15,34 +19,14 @@ vcpkg_add_to_path("${CYTHON_DIR}")
 
 set(z_vcpkg_python_func_python ${PYTHON3})
 
-# Scipy depends on NumPy's command-line f2py utility, but
-# the open-vcpkg py-numpy port doesn't install it. Here, we
-# create it from scratch based on the one pip/PyPi installs.
-# At present, it is a unix-like only solution.
-
-# TODO: figure out how pip creates/installs this
-if(NOT VCPKG_HOST_IS_WINDOWS)
-  file(WRITE "${CURRENT_HOST_INSTALLED_DIR}/tools/tmp/f2py"
-  "\
-#!/bin/sh\n\
-'''exec' ${PYTHON3} \"$0\" \"$@\"\n\
-' '''\n\
-import sys\n\
-from numpy.f2py.f2py2e import main\n\
-if __name__ == '__main__':\n\
-    if sys.argv[0].endswith('.exe'):\n\
-        sys.argv[0] = sys.argv[0][:-4]\n\
-    sys.exit(main())\n\
-\n\
-"
-  )
-endif()
-
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    scipy
     VERSION         ${VERSION}
     SHA512          c2930d9be072057eb25394d6bee7fbe504f1b7c442b5393641ab3ff6bba590d4a76d240eb3a2ef58891bcb449af847de056a8957c591caa8fbf496ce9ce5a9e5
+    PATCHES
+      "no-fortran.patch"
+      "interpolate.patch"
 )
 
 vcpkg_replace_string("${SOURCE_PATH}/meson.build" "py3.dependency()" "dependency('python-3.${PYTHON3_VERSION_MINOR}', method : 'pkg-config')")
@@ -59,11 +43,11 @@ list(APPEND meson_opts
 # needed so pythran can be found
 vcpkg_add_to_path("${CURRENT_HOST_INSTALLED_DIR}/bin")
 
-# haven't been able to get this to build
-# correctly on MacOS with lapack
+
 if (VCPKG_TARGET_IS_OSX)
   list(APPEND meson_opts
     "-Dblas=accelerate"
+    "-Dlapack=accelerate"
   )
 else()
   list(APPEND meson_opts
@@ -72,11 +56,12 @@ else()
   )
 endif()
 
-file(COPY "${CURRENT_HOST_INSTALLED_DIR}/tools/tmp/f2py" DESTINATION ${CURRENT_HOST_INSTALLED_DIR}/tools/numpy/bin FILE_PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ)
-file(REMOVE_RECURSE "${CURRENT_HOST_INSTALLED_DIR}/tools/tmp")
-vcpkg_add_to_path("${CURRENT_HOST_INSTALLED_DIR}/tools/numpy/bin")
+if (VCPKG_TARGET_IS_WINDOWS)
+  list(APPEND meson_opts
+    "-Duse-pythran=false"
+  )
+endif()
 
-list(APPEND meson_opts  "--python.platlibdir" "${CURRENT_INSTALLED_DIR}/lib")
 list(JOIN meson_opts "\",\""  meson_opts)
 
 vcpkg_python_build_and_install_wheel(
@@ -85,17 +70,24 @@ vcpkg_python_build_and_install_wheel(
     --config-json "{\"setup-args\" : [\"${meson_opts}\" ] }"
 )
 
-file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/wheels") # don't need to keep the wheel
-
 set(subdir "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/")
-if(VCPKG_TARGET_IS_WINDOWS)
-  set(subdir "${CURRENT_PACKAGES_DIR}/lib/site-packages/")
-endif()
 set(pyfile "${subdir}/scipy/__config__.py")
 file(READ "${pyfile}" contents)
+if (VCPKG_TARGET_IS_WINDOWS)
+  string(REPLACE "/" "\\" python_executable ${VCPKG_PYTHON3})
+else()
+  set(python_executable ${VCPKG_PYTHON3})
+endif()
+string(REPLACE "from enum import Enum" "from enum import Enum\nimport sys" contents "${contents}")
+string(REPLACE "r\"${python_executable}\"" "sys.executable" contents "${contents}")
 string(REPLACE "${CURRENT_INSTALLED_DIR}" "$(prefix)" contents "${contents}")
-string(REPLACE "r\"${VCPKG_PYTHON3}\"" "sys.executable" contents "${contents}")
+string(REGEX REPLACE "\"commands\": +r\"[A-Za-z0-9_ .:\\/-]+[/\\]([A-Za-z0-9_-]+)${VCPKG_HOST_EXECUTABLE_SUFFIX}\"" "\"commands\": r\"\\1${VCPKG_HOST_EXECUTABLE_SUFFIX}\"" contents "${contents}")
 file(WRITE "${pyfile}" "${contents}")
+
+file(REMOVE_RECURSE
+    "${CURRENT_PACKAGES_DIR}/debug/include"
+    "${CURRENT_PACKAGES_DIR}/debug/share"
+)
 
 file(GLOB licenses "${SOURCE_PATH}/LICENSE*")
 vcpkg_install_copyright(FILE_LIST ${licenses})

@@ -1,0 +1,242 @@
+diff --git a/meson.build b/meson.build
+index 93171d4dbf..7c591222e9 100644
+--- a/meson.build
++++ b/meson.build
+@@ -84,26 +84,6 @@ if host_machine.system() == 'os400'
+   add_project_link_arguments('-Wl,-bnotextro', language : ['c', 'cpp', 'fortran'])
+ endif
+ 
+-# Adding at project level causes many spurious -lgfortran flags.
+-add_languages('fortran', native: false)
+-ff = meson.get_compiler('fortran')
+-if ff.get_id() == 'gcc'
+-  # -std=legacy is not supported by all Fortran compilers, but very useful with
+-  # gfortran since it avoids a ton of warnings that we don't care about.
+-  # Needs fixing in Meson, see https://github.com/mesonbuild/meson/issues/11633.
+-  add_project_arguments('-std=legacy', language: 'fortran')
+-endif
+-
+-if ff.has_argument('-Wno-conversion')
+-  add_project_arguments('-Wno-conversion', language: 'fortran')
+-endif
+-
+-if ff.get_id() == 'llvm-flang'
+-  add_project_arguments('-D_CRT_SECURE_NO_WARNINGS', language: ['fortran'])
+-  # -Wall warnings are visible because Meson's warning_level defaults to 1 (-Wall)
+-  # LLVM tracking issue: https://github.com/llvm/llvm-project/issues/89888
+-endif
+-
+ if cc.get_id() == 'clang-cl'
+   add_global_arguments('-D_CRT_SECURE_NO_WARNINGS', language: ['c', 'cpp'])
+   # Some arguments like -Wl,--version-script may otherwise generate a
+@@ -136,28 +116,12 @@ endif
+ # detection logic below. You have to remove the wrong flags (only `-isystem`
+ # is actually needed, everything else shouldn't be there).
+ _intel_cflags = []
+-_intel_fflags = []
+ if cc.get_id() in ['intel', 'intel-llvm']
+   _intel_cflags += cc.get_supported_arguments('-fp-model=strict')
+ elif cc.get_id() in ['intel-cl', 'intel-llvm-cl']
+   _intel_cflags += cc.get_supported_arguments('/fp:strict')
+ endif
+-if ff.get_id() in ['intel', 'intel-llvm']
+-  _intel_fflags = ff.get_supported_arguments('-fp-model=strict')
+-  minus0_arg = ['-assume', 'minus0']
+-  if ff.has_multi_arguments(minus0_arg)
+-    _intel_fflags += minus0_arg
+-  endif
+-elif ff.get_id() in ['intel-cl', 'intel-llvm-cl']
+-  # Intel Fortran on Windows does things differently, so deal with that
+-  # (also specify dynamic linking and the right name mangling)
+-  _intel_fflags = ff.get_supported_arguments(
+-    '/fp:strict', '/MD', '/names:lowercase', '/assume:underscore',
+-    '/assume:minus0'
+-  )
+-endif
+ add_global_arguments(_intel_cflags, language: ['c', 'cpp'])
+-add_global_arguments(_intel_fflags, language: 'fortran')
+ 
+ # Hide symbols when building on Linux with GCC. For Python extension modules,
+ # we only need `PyInit_*` to be public, anything else may cause problems. So we
+diff --git a/scipy/__init__.py b/scipy/__init__.py
+index cbbe00ea4b..6bcb8fa7ca 100644
+--- a/scipy/__init__.py
++++ b/scipy/__init__.py
+@@ -105,7 +105,6 @@ submodules = [
+     'io',
+     'linalg',
+     'ndimage',
+-    'odr',
+     'optimize',
+     'signal',
+     'sparse',
+diff --git a/scipy/_lib/_public_api.py b/scipy/_lib/_public_api.py
+index 0bfd6c7710..f4feeaa921 100644
+--- a/scipy/_lib/_public_api.py
++++ b/scipy/_lib/_public_api.py
+@@ -35,7 +35,6 @@ PUBLIC_MODULES = ["scipy." + s for s in [
+     "linalg.cython_lapack",
+     "linalg.interpolative",
+     "ndimage",
+-    "odr",
+     "optimize",
+     "optimize.elementwise",
+     "signal",
+diff --git a/scipy/_lib/tests/test_public_api.py b/scipy/_lib/tests/test_public_api.py
+index dfafb4f223..ebdbc76c05 100644
+--- a/scipy/_lib/tests/test_public_api.py
++++ b/scipy/_lib/tests/test_public_api.py
+@@ -81,8 +81,6 @@ PRIVATE_BUT_PRESENT_MODULES = [
+     'scipy.ndimage.interpolation',
+     'scipy.ndimage.measurements',
+     'scipy.ndimage.morphology',
+-    'scipy.odr.models',
+-    'scipy.odr.odrpack',
+     'scipy.optimize.cobyla',
+     'scipy.optimize.cython_optimize',
+     'scipy.optimize.lbfgsb',
+diff --git a/scipy/linalg/meson.build b/scipy/linalg/meson.build
+index 397a1a5ff3..9386dd9496 100644
+--- a/scipy/linalg/meson.build
++++ b/scipy/linalg/meson.build
+@@ -50,7 +50,7 @@ linalg_cython_gen = generator(cython,
+ 
+ # fblas
+ fblas_module = custom_target('fblas_module',
+-  output: ['_fblasmodule.c', '_fblas-f2pywrappers.f'],
++  output: ['_fblasmodule.c'],
+   input: 'fblas.pyf.src',
+   command: [generate_f2pymod, '@INPUT@', '-o', '@OUTDIR@'] + f2py_freethreading_arg,
+   depend_files:
+@@ -61,6 +61,8 @@ fblas_module = custom_target('fblas_module',
+     ]
+ )
+ 
++message(f'{fblas_module}')
++
+ # Note: we're linking LAPACK on purpose here. For some routines (e.g., spmv)
+ # the float/double routines are in BLAS while the complex routines are in
+ # LAPACK - we have historically put these in `_fblas`.
+@@ -69,7 +71,7 @@ py3.extension_module('_fblas',
+   link_args: version_link_args,
+   dependencies: [lapack_lp64_dep, fortranobject_dep],
+   install: true,
+-  link_language: 'fortran',
++  link_language: 'c',
+   subdir: 'scipy/linalg'
+ )
+ 
+@@ -117,7 +119,7 @@ py3.extension_module('_flapack',
+ #       in azure-pipelines.yml if you want to check that).
+ if use_ilp64
+   fblas64_module = custom_target('fblas64_module',
+-    output: ['_fblas_64module.c', '_fblas_64-f2pywrappers.f'],
++    output: ['_fblas_64module.c'],
+     input: 'fblas_64.pyf.src',
+     command: [generate_f2pymod, '@INPUT@', '-o', '@OUTDIR@'] + f2py_ilp64_opts + f2py_freethreading_arg,
+     depend_files:
+@@ -134,12 +136,12 @@ if use_ilp64
+     include_directories: ['../_build_utils/src'],   # for npy_cblas.h
+     dependencies: [lapack_dep, fortranobject_dep],  # lapack_dep is ILP64 if use_ilp64==true
+     install: true,
+-    link_language: 'fortran',
++    link_language: 'c',
+     subdir: 'scipy/linalg'
+   )
+ 
+   flapack64_module = custom_target('flapack64_module',
+-    output: ['_flapack_64module.c', '_flapack_64-f2pywrappers.f'],
++    output: ['_flapack_64module.c'],
+     input: 'flapack_64.pyf.src',
+     command: [generate_f2pymod, '@INPUT@', '-o', '@OUTDIR@'] + f2py_ilp64_opts + f2py_freethreading_arg,
+   )
+@@ -151,7 +153,7 @@ if use_ilp64
+     include_directories: ['../_build_utils/src'],   # for npy_cblas.h
+     dependencies: [lapack_dep, fortranobject_dep],
+     install: true,
+-    link_language: 'fortran',
++    link_language: 'c',
+     subdir: 'scipy/linalg'
+   )
+ endif
+diff --git a/scipy/meson.build b/scipy/meson.build
+index 394c6b4833..d29b04592a 100644
+--- a/scipy/meson.build
++++ b/scipy/meson.build
+@@ -2,9 +2,6 @@ fs = import('fs')
+ 
+ # Platform detection
+ is_mingw = is_windows and cc.get_id() == 'gcc'
+-if is_mingw and ff.get_id() != 'gcc'
+-  error('If you are using GCC on Windows, you must also use GFortran! Detected ' + ff.get_id())
+-endif
+ 
+ cython_c_args = ['-DCYTHON_CCOMPLEX=0'] # see gh-18975 for why we need this
+ if is_mingw
+@@ -600,51 +597,8 @@ cpp_args_pythran += [
+   _cpp_Wno_int_in_bool_context,
+ ]
+ 
+-# Fortran warning flags
+-_fflag_Wno_argument_mismatch = ff.get_supported_arguments('-Wno-argument-mismatch')
+-_fflag_Wno_conversion = ff.get_supported_arguments('-Wno-conversion')
+-_fflag_Wno_intrinsic_shadow = ff.get_supported_arguments('-Wno-intrinsic-shadow')
+-_fflag_Wno_maybe_uninitialized = ff.get_supported_arguments('-Wno-maybe-uninitialized')
+-_fflag_Wno_surprising = ff.get_supported_arguments('-Wno-surprising')
+-_fflag_Wno_uninitialized = ff.get_supported_arguments('-Wno-uninitialized')
+-_fflag_Wno_unused_dummy_argument = ff.get_supported_arguments('-Wno-unused-dummy-argument')
+-_fflag_Wno_unused_label = ff.get_supported_arguments('-Wno-unused-label')
+-_fflag_Wno_unused_variable = ff.get_supported_arguments('-Wno-unused-variable')
+-_fflag_Wno_tabs = ff.get_supported_arguments('-Wno-tabs')
+-# The default list of warnings to ignore from Fortran code. There is a lot of
+-# old, vendored code that is very bad and we want to compile it silently (at
+-# least with GCC and Clang)
+-fortran_ignore_warnings = ff.get_supported_arguments(
+- _fflag_Wno_argument_mismatch,
+- _fflag_Wno_conversion,
+- _fflag_Wno_maybe_uninitialized,
+- _fflag_Wno_unused_dummy_argument,
+- _fflag_Wno_unused_label,
+- _fflag_Wno_unused_variable,
+- _fflag_Wno_tabs,
+-)
+-
+-# Intel Fortran (ifort) does not run the preprocessor by default, if Fortran
+-# code uses preprocessor statements, add this compile flag to it.
+-
+-# Gfortran does run the preprocessor for .F files, and PROPACK is the only
+-# component which needs the preprocessor (unless we need symbol renaming for
+-# blas_symbol_suffix).
+-_fflag_preprocess = []
+-_gfortran_preprocess = ['-cpp', '-ffree-line-length-none', '-ffixed-line-length-none']
+-if ff.has_multi_arguments(_gfortran_preprocess)
+-  _fflag_preprocess = _gfortran_preprocess
+-else
+-  _fflag_preprocess = ff.first_supported_argument(['-fpp', '/fpp', '-cpp'])
+-endif
+-
+-_fflag_ilp64 = []
+ f2py_ilp64_opts = []
+ if use_ilp64
+-  # Gfortran and Clang use `-fdefault-integer-8` to switch to 64-bit integers by
+-  # default, all other known compilers use `-i8`
+-  _fflag_ilp64 = ff.first_supported_argument(['-fdefault-integer-8', '-i8'])
+-
+   # Write out a mapping file for f2py for defaulting to ILP64
+   conf_data = configuration_data()
+   if cc.sizeof('long') == 8
+@@ -718,7 +672,6 @@ compilers = {
+   'C': cc,
+   'CPP': cpp,
+   'CYTHON': meson.get_compiler('cython'),
+-  'FORTRAN': meson.get_compiler('fortran')
+ }
+ 
+ machines = {
+@@ -848,6 +801,5 @@ subdir('differentiate')
+ subdir('signal')
+ subdir('interpolate')
+ subdir('ndimage')
+-subdir('odr')
+ subdir('datasets')
+ subdir('misc')
