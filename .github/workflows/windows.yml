@@ -94,7 +94,8 @@ jobs:
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pyproj
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-scipy
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-matplotlib
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pydantic
+
+            # py-pydantic   fails with ERROR: truststore not available
 
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v7
