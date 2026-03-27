@@ -1,0 +1,13 @@
+diff --git a/python/setup.py b/python/setup.py
+index a27bd3baef..2407457e98 100755
+--- a/python/setup.py
++++ b/python/setup.py
+@@ -236,7 +236,7 @@ class build_ext(_build_ext):
+         source = os.path.dirname(os.path.abspath(__file__))
+ 
+         # The staging directory for the module being built
+-        build_cmd = self.get_finalized_command('build')
++        build_cmd = self.get_finalized_command('build_ext')
+         saved_cwd = os.getcwd()
+         build_temp = pjoin(saved_cwd, build_cmd.build_temp)
+         build_lib = pjoin(saved_cwd, build_cmd.build_lib)

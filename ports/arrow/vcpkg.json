@@ -1,6 +1,6 @@
 {
   "name": "arrow",
-  "version": "22.0.0",
+  "version": "23.0.1",
   "description": "Cross-language development platform for in-memory analytics",
   "homepage": "https://arrow.apache.org",
   "license": "Apache-2.0",
@@ -13,6 +13,10 @@
     "bzip2",
     "gflags",
     "lz4",
+    {
+      "name": "mimalloc",
+      "default-features": false
+    },
     "openssl",
     "re2",
     "snappy",
@@ -171,7 +175,10 @@
           "name": "python3",
           "host": true
         },
-        "vcpkg-get-python-packages"
+        {
+          "name": "vcpkg-get-python-packages",
+          "host": true
+        }
       ]
     },
     "s3": {
