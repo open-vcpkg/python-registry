@@ -55,47 +55,13 @@ jobs:
           echo "$VCPKG_ROOT" >> $GITHUB_PATH
           echo "VCPKG_ROOT=$VCPKG_ROOT" >> $GITHUB_ENV
 
-
       - name: 🌋 Build
         shell: bash
         run: |
-            VCPKG_OPTIONS="--overlay-ports=${{ github.workspace }}/ports --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build"
-            ./vcpkg/vcpkg.exe install \
-            $VCPKG_OPTIONS \
-            'py-pyqt6[qtdeclarative,qt3d]' \
-            py-pyyaml \
-            py-numpy \
-            gdal[python] \
-            py-qscintilla \
-            py-psycopg \
-            py-psycopg2 \
-            py-urllib3 \
-            py-markupsafe \
-            py-requests \
-            py-isort \
-            py-autopep8 \
-            py-flask \
-            py-ephem \
-            py-geographiclib \
-            py-kerberos-proxy-auth \
-            py-pip-system-certs \
-            py-requests-kerberos \
-            py-wrapt \
-            py-waitress \
-            py-duckdb
-
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-attrs
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-beautifulsoup4
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-fiona
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-rasterio
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-shapely
-            # ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-jsonschema
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-networkx
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pyproj
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-scipy
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-matplotlib
-
-            # py-pydantic   fails with ERROR: truststore not available
+          VCPKG_OPTIONS="--overlay-ports=${{ github.workspace }}/ports --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build"
+          ./vcpkg/vcpkg.exe install \
+          $VCPKG_OPTIONS \
+          'arrow[python]'
 
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v7

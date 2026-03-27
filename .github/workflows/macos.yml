@@ -78,52 +78,8 @@ jobs:
       - name: 🌋 Build
         run: |
           VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }} --recurse"
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-duckdb
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pydantic
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-sip
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numpy
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-psycopg
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-psycopg2
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS 'gdal[python]'
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-urllib3
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-markupsafe
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-matplotlib
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-requests
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-isort
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-autopep8
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-flask
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-ephem \
-            py-geographiclib \
-            py-pip-system-certs \
-            py-wrapt \
-            py-waitress
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-attrs
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-beautifulsoup4
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-fiona
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-rasterio
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-shapely
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-jsonschema
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-networkx
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyproj
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-lxml
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-tzdata
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-bottleneck
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numexpr
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-calamine
-          # underlying adbc dependency from main vcpkg repo is failing
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-driver-manager
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-postgresql
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-sqlite
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-gast \
-            py-beniget \
-            py-pythran
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-scipy
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pandas
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyogrio
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-geopandas
-          ./vcpkg/vcpkg install $VCPKG_OPTIONS arrow[core,csv,filesystem,json,parquet,python] # defaults + python
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS 'arrow[python]'
+          
 
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v7
