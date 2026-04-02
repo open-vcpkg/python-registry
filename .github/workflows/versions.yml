@@ -42,7 +42,7 @@ jobs:
 
       - name: Detect ports changes against default branch
         id: filter-ports
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@v4
         with:
           list-files: shell
           filters: |
@@ -61,7 +61,7 @@ jobs:
       - name: Detect versions changes against local
         if: steps.filter-ports.outputs.ports == 'true'
         id: filter-versions
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@v4
         with:
           list-files: shell
           base: HEAD
