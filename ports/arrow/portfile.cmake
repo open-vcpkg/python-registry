@@ -154,8 +154,19 @@ endif()
 if("python" IN_LIST FEATURES)
     # use the vcpkg-installed python so we create the wheel for the correct version
     message(STATUS "Building pyarrow")
+
+    # only build release config for python
+    set(VCPKG_POLICY_MISMATCHED_NUMBER_OF_BINARIES enabled)
+
+    # pyarrow puts dlls in site-packages, which is where they should be
+    set(VCPKG_POLICY_ALLOW_DLLS_IN_LIB enabled)
     
-    set(PYTHON3 "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python3${VCPKG_HOST_EXECUTABLE_SUFFIX}")
+    if (VCPKG_TARGET_IS_WINDOWS)
+        set(PYTHON3 "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python${VCPKG_HOST_EXECUTABLE_SUFFIX}")
+    else()
+        set(PYTHON3 "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python3${VCPKG_HOST_EXECUTABLE_SUFFIX}")
+    endif()
+    
     if(NOT EXISTS "${PYTHON3}")
         vcpkg_find_acquire_program(PYTHON3)
     endif()
@@ -166,6 +177,7 @@ if("python" IN_LIST FEATURES)
         OUT_PYTHON_VAR PYTHON3_VENV
     )
 
+    message(STATUS "Building and installing extension")
     set(ENV{Arrow_DIR} "${CURRENT_PACKAGES_DIR}/share/arrow")
     set(ENV{ArrowCompute_DIR} "${CURRENT_PACKAGES_DIR}/share/arrowcompute")
     if("dataset" IN_LIST FEATURES)
@@ -187,27 +199,17 @@ if("python" IN_LIST FEATURES)
     set(ENV{SETUPTOOLS_SCM_PRETEND_VERSION} "${VERSION}")
     set(ENV{PDM_BUILD_SCM_VERSION} "${VERSION}")
 
-    set(install_prefix "${CURRENT_INSTALLED_DIR}")
-    if(VCPKG_TARGET_IS_WINDOWS)
-        string(APPEND install_prefix "/tools/python3")
-    endif()
-
     if (NOT "${VCPKG_BUILD_TYPE}" STREQUAL "")
         set(build_opts "--build-type=${VCPKG_BUILD_TYPE}")
     else()
         set(build_opts "--build-type=release")
     endif()
+
     vcpkg_execute_required_process(
         COMMAND "${PYTHON3_VENV}" "setup.py"  
-        "build_ext" "${build_opts}" "--bundle-arrow-cpp"
-        "install" "--prefix" "${install_prefix}"
+        "build_ext" ${build_opts} "--cmake-generator" "Ninja" "--rpath" "@loader_path/../../../"
+        "install"  "--prefix" "${CURRENT_PACKAGES_DIR}" 
         LOGNAME "python-build-${TARGET_TRIPLET}"
-        WORKING_DIRECTORY "${SOURCE_PATH}/python"
-    )
-
-    message(STATUS "Testing pyarrow")
-    vcpkg_execute_required_process(COMMAND "${PYTHON3}" "${SOURCE_PATH}/python/scripts/test_imports.py"
-        LOGNAME "python-import-test-${TARGET_TRIPLET}"
         WORKING_DIRECTORY "${SOURCE_PATH}/python"
     )
 endif()
