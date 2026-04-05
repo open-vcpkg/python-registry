@@ -1,15 +1,11 @@
 {
   "name": "py-beniget",
   "version": "0.5.0",
-  "port-version": 1,
+  "port-version": 2,
   "description": "Extract semantic information about static Python code.",
   "homepage": "https://github.com/serge-sans-paille/beniget",
   "dependencies": [
     "py-gast",
-    {
-      "name": "py-gpep517",
-      "host": true
-    },
     {
       "name": "py-setuptools",
       "host": true
