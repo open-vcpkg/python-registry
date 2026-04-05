@@ -10,7 +10,7 @@
     },
     "py-adbc-driver-manager": {
       "baseline": "1.10.0",
-      "port-version": 1
+      "port-version": 2
     },
     "py-adbc-postgresql": {
       "baseline": "1.10.0",
@@ -42,7 +42,7 @@
     },
     "py-beniget": {
       "baseline": "0.5.0",
-      "port-version": 1
+      "port-version": 2
     },
     "py-blinker": {
       "baseline": "1.9.0",
@@ -126,7 +126,7 @@
     },
     "py-gast": {
       "baseline": "0.7.0",
-      "port-version": 1
+      "port-version": 2
     },
     "py-geographiclib": {
       "baseline": "2.1",
@@ -230,7 +230,7 @@
     },
     "py-numpy": {
       "baseline": "2.4.3",
-      "port-version": 1
+      "port-version": 2
     },
     "py-owslib": {
       "baseline": "0.35.0",
@@ -238,7 +238,7 @@
     },
     "py-packaging": {
       "baseline": "26.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pandas": {
       "baseline": "3.0.1",
@@ -390,11 +390,11 @@
     },
     "py-scikit-learn": {
       "baseline": "1.8.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-scipy": {
       "baseline": "1.17.1",
-      "port-version": 1
+      "port-version": 2
     },
     "py-semantic-version": {
       "baseline": "2.10.0",
@@ -466,7 +466,7 @@
     },
     "py-wheel": {
       "baseline": "0.46.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-wrapt": {
       "baseline": "2.1.2",

@@ -1,7 +1,7 @@
 {
   "name": "py-numpy",
   "version": "2.4.3",
-  "port-version": 1,
+  "port-version": 2,
   "description": "The fundamental package for scientific computing with Python.",
   "homepage": "https://www.numpy.org/",
   "license": "BSD-3-Clause",
@@ -16,10 +16,6 @@
     },
     {
       "name": "py-cython",
-      "host": true
-    },
-    {
-      "name": "py-gpep517",
       "host": true
     },
     {

@@ -1,14 +1,10 @@
 {
   "name": "py-gast",
   "version": "0.7.0",
-  "port-version": 1,
+  "port-version": 2,
   "description": "Python AST that abstracts the underlying Python version.",
   "homepage": "https://github.com/serge-sans-paille/gast",
   "dependencies": [
-    {
-      "name": "py-gpep517",
-      "host": true
-    },
     {
       "name": "py-setuptools",
       "host": true

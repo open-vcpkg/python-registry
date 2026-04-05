@@ -1,16 +1,13 @@
 {
   "name": "py-scikit-learn",
   "version": "1.8.0",
+  "port-version": 1,
   "description": "A set of python modules for machine learning and data mining.",
   "homepage": "https://scikit-learn.org/",
   "license": "BSD-3-Clause",
   "dependencies": [
     {
       "name": "py-cython",
-      "host": true
-    },
-    {
-      "name": "py-gpep517",
       "host": true
     },
     "py-joblib",
