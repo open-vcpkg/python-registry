@@ -1,6 +1,7 @@
 {
   "name": "py-scipy",
   "version": "1.18.0",
+  "port-version": 1,
   "description": "Fundamental algorithms for scientific computing in Python",
   "homepage": "https://scipy.org/",
   "dependencies": [
@@ -18,10 +19,6 @@
     },
     {
       "name": "py-cython",
-      "host": true
-    },
-    {
-      "name": "py-gpep517",
       "host": true
     },
     {
