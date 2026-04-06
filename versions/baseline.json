@@ -142,7 +142,7 @@
     },
     "py-gpep517": {
       "baseline": "19",
-      "port-version": 0
+      "port-version": 1
     },
     "py-hatch-fancy-pypi-readme": {
       "baseline": "25.1.0",
@@ -502,7 +502,7 @@
     },
     "vcpkg-python-scripts": {
       "baseline": "2025-05-20",
-      "port-version": 1
+      "port-version": 2
     },
     "vcpkg-tool-mercurial": {
       "baseline": "2023-06-27",
