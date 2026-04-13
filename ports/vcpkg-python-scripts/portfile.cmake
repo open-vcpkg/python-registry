@@ -87,6 +87,7 @@ unset(CACHE{PYTHON3})
 set(PYTHON3_BASEDIR "${CURRENT_INSTALLED_DIR}/tools/python3")
 find_program(PYTHON3 NAMES python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR} python${PYTHON3_VERSION_MAJOR} python PATHS "${PYTHON3_BASEDIR}" NO_DEFAULT_PATH)
 
+# create and install virtual build environment
 x_vcpkg_get_python_packages(
         PYTHON_EXECUTABLE "${PYTHON3}"
         PACKAGES ${packages}
@@ -98,20 +99,24 @@ cmake_path(GET PYTHON3_VENV_BIN PARENT_PATH PYTHON3_VENV_ROOT)
 set(PYTHON3_BUILD_VENV "${CURRENT_PACKAGES_DIR}/tools/build_venv")
 file(REMOVE_RECURSE ${PYTHON3_BUILD_VENV})
 file(MAKE_DIRECTORY ${PYTHON3_BUILD_VENV})
-file(RENAME ${PYTHON3_VENV_ROOT} ${PYTHON3_BUILD_VENV})
+file(COPY "${PYTHON3_VENV_ROOT}/" DESTINATION ${PYTHON3_BUILD_VENV})
+file(REMOVE_RECURSE ${PYTHON3_VENV_ROOT})
 
-file(MAKE_DIRECTORY "${CURRENT_PACKAGES_DIR}/share/pkgconfig")
+# fixup pkgconfig files installed into python site-packages
 file(GLOB_RECURSE pkgconfigs "${PYTHON3_BUILD_VENV}/${PYTHON3_SITE}/**/*.pc")
-foreach(_pc_file IN LISTS pkgconfigs)
-    get_filename_component(_pc_name "${_pc_file}" NAME)
-    file(RENAME "${_pc_file}" "${CURRENT_PACKAGES_DIR}/share/pkgconfig/${_pc_name}")
-endforeach()
-foreach(_pc_file IN LISTS pkgconfigs)
-    get_filename_component(_pc_dir "${_pc_file}" DIRECTORY)
-    file(REMOVE_RECURSE "${_pc_dir}")
-endforeach()
-vcpkg_fixup_pkgconfig()
+if (pkgconfigs)
+    file(MAKE_DIRECTORY "${CURRENT_PACKAGES_DIR}/share/pkgconfig")
+    foreach(_pc_file IN LISTS pkgconfigs)
+        file(INSTALL "${_pc_file}" DESTINATION "${CURRENT_PACKAGES_DIR}/share/pkgconfig")
+    endforeach()
+    foreach(_pc_file IN LISTS pkgconfigs)
+        get_filename_component(_pc_dir "${_pc_file}" DIRECTORY)
+        file(REMOVE_RECURSE "${_pc_dir}")
+    endforeach()
+    vcpkg_fixup_pkgconfig()
+endif()
 
+# move include files from python site-packages to includes folder
 file(GLOB_RECURSE
     include_dirs
     LIST_DIRECTORIES true
@@ -140,9 +145,12 @@ foreach(script IN LISTS scripts)
     endif()
 endforeach()
 
+# remove .venv/include/python3.12 if empty
 file(GLOB includes "${PYTHON3_BUILD_VENV}/include/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}/*")
 if (NOT includes)
     file(REMOVE_RECURSE "${PYTHON3_BUILD_VENV}/include")
 endif()
 
 file(INSTALL "${VCPKG_ROOT_DIR}/LICENSE.txt" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
+
+set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
