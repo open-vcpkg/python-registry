@@ -1,13 +1,10 @@
 {
   "name": "py-idna",
   "version": "3.11",
+  "port-version": 1,
   "description": "Internationalized Domain Names in Applications (IDNA)",
   "homepage": "https://github.com/kjd/idna",
   "dependencies": [
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",

@@ -1,14 +1,11 @@
 {
   "name": "py-poetry-core",
   "version": "2.3.1",
+  "port-version": 1,
   "description": "Poetry PEP 517 Build Backend",
   "homepage": "https://github.com/python-poetry/poetry-core",
   "license": "MIT",
   "dependencies": [
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",

@@ -1,15 +1,12 @@
 {
   "name": "py-hatchling",
   "version": "1.29.0",
+  "port-version": 1,
   "description": "Modern, extensible Python build backend",
   "homepage": "https://hatch.pypa.io/latest/",
   "dependencies": [
     "py-pathspec",
     "py-pluggy",
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "py-trove-classifiers",
     "python3",
     {

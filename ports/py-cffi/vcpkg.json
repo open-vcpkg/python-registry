@@ -1,14 +1,11 @@
 {
   "name": "py-cffi",
   "version": "2.0.0",
+  "port-version": 1,
   "description": "Foreign Function Interface for Python calling C code.",
   "homepage": "http://cffi.readthedocs.org/",
   "dependencies": [
     "py-pycparser",
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",

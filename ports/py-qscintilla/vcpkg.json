@@ -11,6 +11,10 @@
     "python3",
     "qscintilla",
     {
+      "name": "qscintilla",
+      "host": true
+    },
+    {
       "name": "vcpkg-python-scripts",
       "host": true
     },

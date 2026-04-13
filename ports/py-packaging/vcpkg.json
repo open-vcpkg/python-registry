@@ -6,6 +6,9 @@
   "homepage": "https://packaging.pypa.io/",
   "license": "MIT",
   "dependencies": [
-    "vcpkg-python-scripts"
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
   ]
 }

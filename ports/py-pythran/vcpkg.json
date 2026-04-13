@@ -1,7 +1,7 @@
 {
   "name": "py-pythran",
   "version": "0.18.1",
-  "port-version": 1,
+  "port-version": 2,
   "description": "Ahead of Time compiler for numeric kernels.",
   "homepage": "https://github.com/serge-sans-paille/pythran",
   "dependencies": [
@@ -9,15 +9,7 @@
     "py-gast",
     "py-numpy",
     "py-ply",
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
-    {
-      "name": "python3",
-      "host": true
-    },
     {
       "name": "vcpkg-python-scripts",
       "host": true

@@ -10,15 +10,15 @@
     },
     "py-adbc-driver-manager": {
       "baseline": "1.10.0",
-      "port-version": 2
+      "port-version": 3
     },
     "py-adbc-postgresql": {
       "baseline": "1.10.0",
-      "port-version": 1
+      "port-version": 2
     },
     "py-adbc-sqlite": {
       "baseline": "1.10.0",
-      "port-version": 1
+      "port-version": 2
     },
     "py-add-vcpkg-dll-path": {
       "baseline": "2024-03-13",
@@ -26,31 +26,31 @@
     },
     "py-affine": {
       "baseline": "2.4.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-attrs": {
       "baseline": "25.4.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-autopep8": {
       "baseline": "2.3.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-beautifulsoup4": {
       "baseline": "4.14.3",
-      "port-version": 1
+      "port-version": 2
     },
     "py-beniget": {
       "baseline": "0.5.0",
-      "port-version": 2
+      "port-version": 3
     },
     "py-blinker": {
       "baseline": "1.9.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-bottleneck": {
       "baseline": "1.6.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-build": {
       "baseline": "0.10.0",
@@ -58,63 +58,63 @@
     },
     "py-calamine": {
       "baseline": "0.6.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-certifi": {
       "baseline": "2026-02-25",
-      "port-version": 0
+      "port-version": 1
     },
     "py-cffi": {
       "baseline": "2.0.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-charset-normalizer": {
       "baseline": "3.4.6",
-      "port-version": 0
+      "port-version": 1
     },
     "py-click": {
       "baseline": "8.3.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-contourpy": {
       "baseline": "1.3.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-cppy": {
       "baseline": "1.2.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-cryptography": {
       "baseline": "46.0.5",
-      "port-version": 0
+      "port-version": 1
     },
     "py-cycler": {
       "baseline": "0.12.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-cython": {
       "baseline": "3.2.4",
-      "port-version": 0
+      "port-version": 1
     },
     "py-dateutil": {
       "baseline": "2.9.0",
-      "port-version": 1
+      "port-version": 2
     },
     "py-duckdb": {
       "baseline": "1.5.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-ephem": {
       "baseline": "4.2.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-fiona": {
       "baseline": "1.10.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-flask": {
       "baseline": "3.1.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-flit-core": {
       "baseline": "3.12.0",
@@ -122,19 +122,19 @@
     },
     "py-fonttools": {
       "baseline": "4.62.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-gast": {
       "baseline": "0.7.0",
-      "port-version": 2
+      "port-version": 3
     },
     "py-geographiclib": {
       "baseline": "2.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-geopandas": {
       "baseline": "1.1.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-gpep517": {
       "baseline": "19",
@@ -142,19 +142,19 @@
     },
     "py-hatch-fancy-pypi-readme": {
       "baseline": "25.1.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-hatch-vcs": {
       "baseline": "0.5.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-hatchling": {
       "baseline": "1.29.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-idna": {
       "baseline": "3.11",
-      "port-version": 0
+      "port-version": 1
     },
     "py-installer": {
       "baseline": "0.7.0",
@@ -162,51 +162,51 @@
     },
     "py-isort": {
       "baseline": "8.0.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-itsdangerous": {
       "baseline": "2.2.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-jinja2": {
       "baseline": "3.1.6",
-      "port-version": 1
+      "port-version": 2
     },
     "py-joblib": {
       "baseline": "1.5.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-jsonschema": {
       "baseline": "4.26.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-jsonschema-specifications": {
       "baseline": "2025.9.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-kerberos-proxy-auth": {
       "baseline": "0.0.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-kiwisolver": {
       "baseline": "1.5.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-lazy-loader": {
       "baseline": "0.5",
-      "port-version": 0
+      "port-version": 1
     },
     "py-libpysal": {
       "baseline": "4.14.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-lxml": {
       "baseline": "6.0.2",
-      "port-version": 2
+      "port-version": 3
     },
     "py-markupsafe": {
       "baseline": "3.0.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-matplotlib": {
       "baseline": "3.10.8",
@@ -214,7 +214,7 @@
     },
     "py-maturin": {
       "baseline": "1.12.6",
-      "port-version": 0
+      "port-version": 1
     },
     "py-meson": {
       "baseline": "0.19.0",
@@ -222,7 +222,7 @@
     },
     "py-networkx": {
       "baseline": "3.6.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-numexpr": {
       "baseline": "2.14.1",
@@ -230,11 +230,11 @@
     },
     "py-numpy": {
       "baseline": "2.4.3",
-      "port-version": 2
+      "port-version": 3
     },
     "py-owslib": {
       "baseline": "0.35.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-packaging": {
       "baseline": "26.0",
@@ -242,79 +242,79 @@
     },
     "py-pandas": {
       "baseline": "3.0.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pathspec": {
       "baseline": "1.0.4",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pillow": {
       "baseline": "12.1.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pip": {
       "baseline": "26.0.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pip-system-certs": {
       "baseline": "5.3",
-      "port-version": 1
+      "port-version": 2
     },
     "py-platformdirs": {
       "baseline": "4.9.4",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pluggy": {
       "baseline": "1.6.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-ply": {
       "baseline": "3.11",
-      "port-version": 2
+      "port-version": 3
     },
     "py-poetry-core": {
       "baseline": "2.3.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-psycopg": {
       "baseline": "3.3.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-psycopg-c": {
       "baseline": "3.3.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-psycopg2": {
       "baseline": "2.9.11",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pycodestyle": {
       "baseline": "2.14.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pycparser": {
       "baseline": "3.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pydantic": {
       "baseline": "2.12.5",
-      "port-version": 1
+      "port-version": 2
     },
     "py-pydantic-core": {
       "baseline": "2.42.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyogrio": {
       "baseline": "0.12.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyparsing": {
       "baseline": "3.3.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyproj": {
       "baseline": "3.7.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyproject-hooks": {
       "baseline": "1.0.0",
@@ -322,11 +322,11 @@
     },
     "py-pyproject-metadata": {
       "baseline": "0.11.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyqt-builder": {
       "baseline": "1.19.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyqt6": {
       "baseline": "6.10.2",
@@ -334,27 +334,27 @@
     },
     "py-pyqt6-sip": {
       "baseline": "13.11.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pysal": {
       "baseline": "26.1",
-      "port-version": 2
+      "port-version": 3
     },
     "py-pyspnego": {
       "baseline": "0.12.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pythran": {
       "baseline": "0.18.1",
-      "port-version": 1
+      "port-version": 2
     },
     "py-pytz": {
       "baseline": "2025.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyyaml": {
       "baseline": "6.0.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-qscintilla": {
       "baseline": "2.14.1",
@@ -362,43 +362,43 @@
     },
     "py-rasterio": {
       "baseline": "1.5.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-referencing": {
       "baseline": "0.37.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-requests": {
       "baseline": "2.32.5",
-      "port-version": 0
+      "port-version": 1
     },
     "py-requests-kerberos": {
       "baseline": "0.15.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-rpds": {
       "baseline": "0.30.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-scikit-build": {
       "baseline": "0.19.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-scikit-build-core": {
       "baseline": "0.12.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-scikit-learn": {
       "baseline": "1.8.0",
-      "port-version": 1
+      "port-version": 2
     },
     "py-scipy": {
       "baseline": "1.17.1",
-      "port-version": 2
+      "port-version": 3
     },
     "py-semantic-version": {
       "baseline": "2.10.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-setuptools": {
       "baseline": "82.0.1",
@@ -414,63 +414,63 @@
     },
     "py-shapely": {
       "baseline": "2.1.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-sip": {
       "baseline": "6.15.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-six": {
       "baseline": "1.17.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-sspilib": {
       "baseline": "0.5.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-threadpoolctl": {
       "baseline": "3.6.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-tomli": {
       "baseline": "2.0.1",
-      "port-version": 1
+      "port-version": 2
     },
     "py-trove-classifiers": {
       "baseline": "2026.1.14.14",
-      "port-version": 0
+      "port-version": 1
     },
     "py-typing-extensions": {
       "baseline": "4.15.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-tzdata": {
       "baseline": "2025.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-urllib3": {
       "baseline": "2.6.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-versioneer": {
       "baseline": "0.29",
-      "port-version": 0
+      "port-version": 1
     },
     "py-waitress": {
       "baseline": "3.0.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-werkzeug": {
       "baseline": "3.1.6",
-      "port-version": 0
+      "port-version": 1
     },
     "py-wheel": {
       "baseline": "0.46.3",
-      "port-version": 1
+      "port-version": 2
     },
     "py-wrapt": {
       "baseline": "2.1.2",
-      "port-version": 0
+      "port-version": 1
     },
     "pybind11": {
       "baseline": "2.13.6",

@@ -1,22 +1,11 @@
 {
   "name": "py-duckdb",
   "version": "1.5.0",
+  "port-version": 1,
   "description": "Python bindings for high-performance in-process analytical database system",
   "homepage": "https://duckdb.org",
   "license": "MIT",
   "dependencies": [
-    {
-      "name": "py-scikit-build-core",
-      "host": true
-    },
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
-    {
-      "name": "py-setuptools-scm",
-      "host": true
-    },
     {
       "name": "pybind11",
       "features": [
@@ -30,7 +19,11 @@
     },
     {
       "name": "vcpkg-python-scripts",
-      "host": true
+      "host": true,
+      "features": [
+        "scikit-build",
+        "setuptools-scm"
+      ]
     }
   ]
 }

@@ -11,6 +11,12 @@ else()
     vcpkg_add_to_path("${CURRENT_HOST_INSTALLED_DIR}/bin")
 endif()
 
+vcpkg_install_python_build_dependencies(
+    PACKAGES 
+        "cffi"
+        "pycparser"
+)
+
 vcpkg_get_rust(CARGO)
 cmake_path(GET CARGO PARENT_PATH CARGO_BIN_DIR)
 vcpkg_add_to_path("${CARGO_BIN_DIR}")

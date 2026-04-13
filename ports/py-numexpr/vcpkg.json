@@ -5,18 +5,13 @@
   "homepage": "https://github.com/pydata/numexpr",
   "dependencies": [
     "py-numpy",
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
-      "name": "python3",
-      "host": true
-    },
-    {
       "name": "vcpkg-python-scripts",
-      "host": true
+      "host": true,
+      "features": [
+        "numpy"
+      ]
     }
   ]
 }

@@ -1,13 +1,10 @@
 {
   "name": "py-trove-classifiers",
   "version": "2026.1.14.14",
+  "port-version": 1,
   "description": "Canonical source for classifiers on PyPI (pypi.org).",
   "homepage": "https://github.com/pypa/trove-classifiers",
   "dependencies": [
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",

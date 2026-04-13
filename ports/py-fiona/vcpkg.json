@@ -1,6 +1,7 @@
 {
   "name": "py-fiona",
   "version": "1.10.1",
+  "port-version": 1,
   "description": "Fiona reads and writes geographic data files.",
   "homepage": "https://fiona.readthedocs.io/",
   "dependencies": [
@@ -11,30 +12,16 @@
         "python"
       ]
     },
-    {
-      "name": "py-attrs",
-      "host": true
-    },
-    {
-      "name": "py-certifi",
-      "host": true
-    },
-    {
-      "name": "py-click",
-      "host": true
-    },
-    {
-      "name": "py-cython",
-      "host": true
-    },
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
+    "py-attrs",
+    "py-certifi",
+    "py-click",
     "python3",
     {
       "name": "vcpkg-python-scripts",
-      "host": true
+      "host": true,
+      "features": [
+        "cython"
+      ]
     }
   ]
 }

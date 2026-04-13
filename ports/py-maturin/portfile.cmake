@@ -9,6 +9,11 @@ vcpkg_get_rust(CARGO)
 cmake_path(GET CARGO PARENT_PATH CARGO_BIN_DIR)
 vcpkg_add_to_path("${CARGO_BIN_DIR}")
 
+vcpkg_install_python_build_dependencies(
+    PACKAGES 
+        "setuptools-rust"
+        "semantic-version"
+)
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/license-apache")

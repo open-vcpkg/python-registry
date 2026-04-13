@@ -1,13 +1,10 @@
 {
   "name": "py-wrapt",
   "version": "2.1.2",
+  "port-version": 1,
   "description": "Module for decorators, wrappers and monkey patching.",
   "homepage": "https://github.com/GrahamDumpleton/wrapt",
   "dependencies": [
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",

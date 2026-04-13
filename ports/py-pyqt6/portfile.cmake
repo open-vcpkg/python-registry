@@ -12,7 +12,7 @@ vcpkg_from_pythonhosted(
 # https://www.riverbankcomputing.com/static/Docs/PyQt6/installation.html
 set(SIPBUILD_ARGS
   "--confirm-license"
-  "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}"
+  "--qmake" "${CURRENT_HOST_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}"
   "--api-dir" "${CURRENT_PACKAGES_DIR}/share/Qt6/qsci/api/python"
   "--verbose"
   "--qt-shared"
@@ -21,6 +21,7 @@ set(SIPBUILD_ARGS
   "--pep484-pyi"
   "--build-dir" "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel"
   "--target-dir" "${PYTHON3_SITEPACKAGES}"
+  "--scripts-dir" "${CURRENT_PACKAGES_DIR}/bin"
 )
 
 if(VCPKG_TARGET_IS_OSX)
@@ -33,14 +34,25 @@ if(VCPKG_TARGET_IS_OSX)
     vcpkg_list(APPEND SIPBUILD_ARGS "--no-dbus-python")
 endif()
 
+vcpkg_install_python_build_dependencies(
+    PACKAGES 
+        "sip"
+        "PyQt-builder"
+        "PyQt6-sip"
+)
 
-vcpkg_backup_env_variables(VARS PATH)
+# fix shebangs for host binaries
+file(GLOB sip_binaries "${PYTHON3_BUILD_VENV}/bin/sip-*")
+foreach(binary IN LISTS sip_binaries)
+    vcpkg_replace_string(${binary}
+            "#!${PYTHON3_BUILD_VENV}/bin/python"
+            "#!/usr/bin/env python" IGNORE_UNCHANGED)
+endforeach()
 
-vcpkg_add_to_path(PREPEND "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/Scripts/" "${CURRENT_HOST_INSTALLED_DIR}/tools/Qt6/bin/" "${CURRENT_HOST_INSTALLED_DIR}/bin")
 
 message(STATUS "Running sipbuild...")
 vcpkg_execute_required_process(
-    COMMAND "${PYTHON3}" "-m" "sipbuild.tools.build" ${SIPBUILD_ARGS}
+    COMMAND "${PYTHON3_BUILD_VENV}/bin/python" "-m" "sipbuild.tools.build" ${SIPBUILD_ARGS}
     WORKING_DIRECTORY "${SOURCE_PATH}"
     LOGNAME "sipbuild-${TARGET_TRIPLET}"
 )
@@ -50,13 +62,11 @@ message(STATUS "Running sipbuild...finished.")
 file(TO_NATIVE_PATH "${CURRENT_INSTALLED_DIR}" NATIVE_INSTALLED_DIR)
 vcpkg_replace_string("${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel/inventory.txt"
             "${CURRENT_INSTALLED_DIR}"
-            "${CURRENT_PACKAGES_DIR}")
-            vcpkg_replace_string("${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel/inventory.txt"
+            "${CURRENT_PACKAGES_DIR}" IGNORE_UNCHANGED)
+vcpkg_replace_string("${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel/inventory.txt"
             "${NATIVE_INSTALLED_DIR}"
-            "${CURRENT_PACKAGES_DIR}")
+            "${CURRENT_PACKAGES_DIR}" IGNORE_UNCHANGED)
 
 vcpkg_qmake_build(BUILD_LOGNAME "install" TARGETS "install")
-
-vcpkg_restore_env_variables(VARS PATH)
 
 vcpkg_python_test_import(MODULE "PyQt6.QtCore")

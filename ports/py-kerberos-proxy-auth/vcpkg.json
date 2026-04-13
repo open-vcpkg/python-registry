@@ -1,14 +1,11 @@
 {
   "name": "py-kerberos-proxy-auth",
   "version": "0.0.2",
+  "port-version": 1,
   "description": "This package patches requests at runtime to authenticate with kerberos proxy (negotiate)",
   "homepage": "https://github.com/Rdataflow/kerberos-proxy-auth",
   "dependencies": [
     "py-requests-kerberos",
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "py-wrapt",
     "python3",
     {

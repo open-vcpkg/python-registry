@@ -1,22 +1,18 @@
 {
   "name": "py-sspilib",
   "version": "0.5.0",
+  "port-version": 1,
   "description": "SSPI API bindings for Python",
   "homepage": "https://github.com/jborean93/sspilib",
   "supports": "windows",
   "dependencies": [
-    {
-      "name": "py-cython",
-      "host": true
-    },
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",
-      "host": true
+      "host": true,
+      "features": [
+        "cython"
+      ]
     }
   ]
 }

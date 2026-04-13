@@ -23,6 +23,8 @@ file(WRITE "${SOURCE_PATH}/py/src/version.h"
 \n"
 )
 
+vcpkg_install_python_build_dependencies(PACKAGES "cppy")
+
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")

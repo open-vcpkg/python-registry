@@ -1,6 +1,7 @@
 {
   "name": "py-pillow",
   "version": "12.1.1",
+  "port-version": 1,
   "description": "Python Imaging Library",
   "homepage": "https://python-pillow.org/",
   "license": null,
@@ -20,12 +21,14 @@
       "name": "pkgconf",
       "host": true
     },
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "tiff",
-    "vcpkg-python-scripts",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true,
+      "features": [
+        "pybind11"
+      ]
+    },
     "zlib"
   ]
 }

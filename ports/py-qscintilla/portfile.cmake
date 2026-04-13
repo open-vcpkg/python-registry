@@ -16,27 +16,38 @@ vcpkg_extract_source_archive(
 file(RENAME "${SOURCE_PATH}/Python/pyproject-qt5.toml" "${SOURCE_PATH}/Python/pyproject.toml")
 
 set(SIPBUILD_ARGS
-    "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}"
+    "--qmake" "${CURRENT_HOST_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}"
     "--api-dir" "${CURRENT_PACKAGES_DIR}/share/Qt6/qsci/api/python"
     "--qsci-features-dir" "${SOURCE_PATH}/src/features"
-    "--qsci-include-dir" "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}/PyQt6/bindings"
-    "--qsci-library-dir" "${SOURCE_PATH}/src"
+    "--qsci-include-dir" "${CURRENT_INSTALLED_DIR}/include"
+    "--qsci-library-dir" "${CURRENT_INSTALLED_DIR}/lib"
     "--no-make"
     "--verbose"
     "--build-dir" "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel"
     "--target-dir" "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}"
 )
 if(DEFINED VCPKG_OSX_DEPLOYMENT_TARGET)
-  list(APPEND SIPBUILD_ARGS "--qmake-setting" "QMAKE_MACOSX_DEPLOYMENT_TARGET = ${VCPKG_OSX_DEPLOYMENT_TARGET}")
+    list(APPEND SIPBUILD_ARGS "--qmake-setting" "QMAKE_MACOSX_DEPLOYMENT_TARGET = ${VCPKG_OSX_DEPLOYMENT_TARGET}")
 endif()
 
-vcpkg_backup_env_variables(VARS PATH)
+vcpkg_install_python_build_dependencies(
+    PACKAGES 
+        "sip"
+        "PyQt-builder"
+        "PyQt6-sip"
+)
 
-vcpkg_add_to_path(PREPEND "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/Scripts/")
+# fix shebangs for host binaries
+file(GLOB sip_binaries "${PYTHON3_BUILD_VENV}/bin/sip-*")
+foreach(binary IN LISTS sip_binaries)
+    vcpkg_replace_string(${binary}
+            "#!${PYTHON3_BUILD_VENV}/bin/python"
+            "#!/usr/bin/env python" IGNORE_UNCHANGED)
+endforeach()
 
 message(STATUS "Running sipbuild...")
 vcpkg_execute_required_process(
-    COMMAND "${PYTHON3}" "-m" "sipbuild.tools.build" ${SIPBUILD_ARGS}
+    COMMAND "${PYTHON3_BUILD_VENV}/bin/python" "-m" "sipbuild.tools.build" ${SIPBUILD_ARGS}
     WORKING_DIRECTORY "${SOURCE_PATH}/Python"
     LOGNAME "sipbuild-${TARGET_TRIPLET}"
 )
@@ -46,14 +57,12 @@ message(STATUS "Running sipbuild...finished.")
 file(TO_NATIVE_PATH "${CURRENT_INSTALLED_DIR}" NATIVE_INSTALLED_DIR)
 vcpkg_replace_string("${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel/inventory.txt"
         "${CURRENT_INSTALLED_DIR}"
-        "${CURRENT_PACKAGES_DIR}")
+        "${CURRENT_PACKAGES_DIR}" IGNORE_UNCHANGED)
         vcpkg_replace_string("${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-rel/inventory.txt"
         "${NATIVE_INSTALLED_DIR}"
-        "${CURRENT_PACKAGES_DIR}")
+        "${CURRENT_PACKAGES_DIR}" IGNORE_UNCHANGED)
 
 vcpkg_qmake_build(SKIP_MAKEFILE BUILD_LOGNAME "install" TARGETS "install")
-
-vcpkg_restore_env_variables(VARS PATH)
 
 vcpkg_python_test_import(MODULE "PyQt6.Qsci")
 

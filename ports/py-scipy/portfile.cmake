@@ -2,23 +2,6 @@ set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
 set(VCPKG_POLICY_MISMATCHED_NUMBER_OF_BINARIES enabled)
 set(VCPKG_BUILD_TYPE release) # No debug builds required for pure python modules since vcpkg does not install a debug python executable. 
 
-set(VCPKG_PYTHON3_BASEDIR "${CURRENT_HOST_INSTALLED_DIR}/tools/python3")
-find_program(VCPKG_PYTHON3 NAMES python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR} python${PYTHON3_VERSION_MAJOR} python PATHS "${VCPKG_PYTHON3_BASEDIR}" NO_DEFAULT_PATH)
-find_program(VCPKG_CYTHON NAMES cython PATHS "${VCPKG_PYTHON3_BASEDIR}" "${VCPKG_PYTHON3_BASEDIR}/Scripts" NO_DEFAULT_PATH)
-
-set(ENV{PYTHON3} "${VCPKG_PYTHON3}")
-set(PYTHON3 "${VCPKG_PYTHON3}")
-
-vcpkg_add_to_path(PREPEND "${VCPKG_PYTHON3_BASEDIR}")
-if(VCPKG_TARGET_IS_WINDOWS)
-  vcpkg_add_to_path(PREPEND "${VCPKG_PYTHON3_BASEDIR}/Scripts")
-endif()
-
-cmake_path(GET VCPKG_CYTHON PARENT_PATH CYTHON_DIR)
-vcpkg_add_to_path("${CYTHON_DIR}")
-
-set(z_vcpkg_python_func_python ${PYTHON3})
-
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    scipy
@@ -30,6 +13,10 @@ vcpkg_from_pythonhosted(
 )
 
 vcpkg_replace_string("${SOURCE_PATH}/meson.build" "py3.dependency()" "dependency('python-3.${PYTHON3_VERSION_MINOR}', method : 'pkg-config')")
+
+vcpkg_install_python_build_dependencies(
+    PACKAGES "pythran"
+)
 
 vcpkg_mesonpy_prepare_build_options(OUTPUT meson_opts)
 
