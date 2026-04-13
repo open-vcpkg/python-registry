@@ -485,8 +485,8 @@
       "port-version": 1
     },
     "vcpkg-python-scripts": {
-      "baseline": "2025-05-20",
-      "port-version": 1
+      "baseline": "2026-04-08",
+      "port-version": 0
     },
     "vcpkg-tool-mercurial": {
       "baseline": "2023-06-27",

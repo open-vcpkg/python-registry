@@ -1,12 +1,43 @@
 {
   "name": "vcpkg-python-scripts",
-  "version-date": "2025-05-20",
-  "port-version": 1,
+  "version-date": "2026-04-08",
   "documentation": "https://vcpkg.io/en/docs/README.html",
   "license": "MIT",
   "supports": "native",
   "dependencies": [
-    "py-gpep517",
-    "python3"
-  ]
+    "python3",
+    "vcpkg-get-python-packages"
+  ],
+  "features": {
+    "cython": {
+      "description": "Build with cython"
+    },
+    "hatchling": {
+      "description": "Build with hatchling"
+    },
+    "maturin": {
+      "description": "Build with maturin"
+    },
+    "meson": {
+      "description": "Build with meson and meson-python"
+    },
+    "numpy": {
+      "description": "Build with numpy tools"
+    },
+    "poetry": {
+      "description": "Build with poetry"
+    },
+    "pybind11": {
+      "description": "Build with pybind11"
+    },
+    "scikit-build": {
+      "description": "Build with scikit-build"
+    },
+    "setuptools-scm": {
+      "description": "Build with setuptools-scm"
+    },
+    "versioneer": {
+      "description": "Build with versioneer"
+    }
+  }
 }
