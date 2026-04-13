@@ -218,7 +218,7 @@
     },
     "py-meson": {
       "baseline": "0.19.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-networkx": {
       "baseline": "3.6.1",
@@ -490,6 +490,10 @@
     },
     "vcpkg-tool-mercurial": {
       "baseline": "2023-06-27",
+      "port-version": 0
+    },
+    "vcpkg-tool-mesonpy": {
+      "baseline": "2026-04-08",
       "port-version": 0
     },
     "vcpkg-tool-rust": {
