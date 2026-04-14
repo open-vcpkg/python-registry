@@ -22,7 +22,10 @@
     },
     {
       "name": "tiff",
-      "default-features": false
+      "default-features": false,
+      "features": [
+        "zstd"
+      ]
     },
     {
       "name": "vcpkg-cmake",
