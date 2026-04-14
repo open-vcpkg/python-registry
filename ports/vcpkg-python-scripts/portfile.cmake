@@ -124,9 +124,7 @@ file(GLOB_RECURSE
 )
 list(FILTER include_dirs INCLUDE REGEX "^${PYTHON3_BUILD_VENV}/${PYTHON3_SITE}/.*/include$")
 foreach(include_dir IN LISTS include_dirs)
-    file(GLOB includes "${include_dir}/*")
-    file(INSTALL ${includes} DESTINATION "${CURRENT_PACKAGES_DIR}/include")
-    file(REMOVE_RECURSE "${include_dir}")
+    file(INSTALL "${include_dir}/" DESTINATION "${CURRENT_PACKAGES_DIR}/include")
 endforeach()
 
 # fixup absolute paths

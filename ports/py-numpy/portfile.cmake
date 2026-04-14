@@ -37,8 +37,9 @@ vcpkg_from_github(
     HEAD_REF main
 )
 
-set(MESON_DIR "${PYTHON3_BUILD_VENV}/${PYTHON3_SITE}")
-file(COPY "${SOURCE_PATH_MESON_NUMPY}/mesonbuild/modules/features" DESTINATION "${MESON_DIR}/mesonbuild/modules")
+file(COPY "${SOURCE_PATH_MESON_NUMPY}/" DESTINATION "${SOURCE_PATH}/vendored-meson/meson")
+set(SCRIPT_MESON "${SOURCE_PATH}/vendored-meson/meson/meson.py")
+set(ENV{MESON} "${SCRIPT_MESON}")
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH_SVML
