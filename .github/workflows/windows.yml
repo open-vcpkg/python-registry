@@ -13,15 +13,20 @@ concurrency:
 
 jobs:
   build:
-    name: build (windows)
-    runs-on: windows-2022
     permissions:
       contents: read
       packages: write
     strategy:
       matrix:
         include:
-          - triplet: 'x64-windows'
+          - os: windows-2022
+            triplet: x64-windows
+            arch: amd64
+          - os: windows-11-arm
+            triplet: arm64-windows
+            arch: arm64
+    name: build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: 🐣 Checkout
@@ -32,6 +37,8 @@ jobs:
 
       - name: 🧽 Developer Command Prompt for Microsoft Visual C++
         uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.arch }}
 
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v6
