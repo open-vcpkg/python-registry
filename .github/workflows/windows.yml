@@ -53,7 +53,7 @@ jobs:
         run: |
           PKG_SOURCE_USER=$(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)
           ./vcpkg/bootstrap-vcpkg.sh
-          NUGET_EXE=$(./vcpkg/vcpkg fetch nuget)
+          NUGET_EXE=$(./vcpkg/vcpkg fetch nuget | tail -1)
           echo "Downloaded $NUGET_EXE"
           $NUGET_EXE sources add -Name ghpkg -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json" -UserName "$PKG_SOURCE_USER" -Password "${{ secrets.GITHUB_TOKEN }}" -StorePasswordInClearText
           $NUGET_EXE setapikey "${{ secrets.GITHUB_TOKEN }}" -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json"
