@@ -21,6 +21,10 @@
         "numpy",
         "setuptools-scm"
       ]
+    },
+    {
+      "name": "vcpkg-tool-mesonpy",
+      "host": true
     }
   ]
 }

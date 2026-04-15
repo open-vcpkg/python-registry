@@ -6,6 +6,7 @@
   "homepage": "https://pysal.org/libpysal",
   "license": "BSD-3-Clause",
   "dependencies": [
+    "py-beautifulsoup4",
     "py-geopandas",
     "py-jinja2",
     "py-numpy",

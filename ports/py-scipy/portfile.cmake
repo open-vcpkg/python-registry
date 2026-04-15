@@ -15,7 +15,7 @@ vcpkg_from_pythonhosted(
 vcpkg_replace_string("${SOURCE_PATH}/meson.build" "py3.dependency()" "dependency('python-3.${PYTHON3_VERSION_MINOR}', method : 'pkg-config')")
 
 vcpkg_install_python_build_dependencies(
-    PACKAGES "pythran"
+    PACKAGES "pythran" "gast" "beniget" "ply"
 )
 
 vcpkg_mesonpy_prepare_build_options(OUTPUT meson_opts)

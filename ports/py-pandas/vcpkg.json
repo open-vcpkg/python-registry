@@ -24,6 +24,10 @@
     {
       "name": "vcpkg-tool-meson",
       "host": true
+    },
+    {
+      "name": "vcpkg-tool-mesonpy",
+      "host": true
     }
   ],
   "features": {

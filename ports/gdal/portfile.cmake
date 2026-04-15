@@ -117,6 +117,7 @@ vcpkg_cmake_configure(
         "-DQHULL_LIBRARY=${qhull_target}"
         "-DGDAL_PYTHON_INSTALL_PREFIX=${GDAL_PYTHON_INSTALL_PREFIX}"
         "-DCMAKE_PROJECT_INCLUDE=${CMAKE_CURRENT_LIST_DIR}/cmake-project-include.cmake"
+        "-DPython_EXECUTABLE=${PYTHON3_BUILD_VENV}/bin/python"
     OPTIONS_DEBUG
         -DBUILD_PYTHON_BINDINGS=OFF
         -DBUILD_APPS=OFF

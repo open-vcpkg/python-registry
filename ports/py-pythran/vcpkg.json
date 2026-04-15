@@ -9,6 +9,7 @@
     "py-gast",
     "py-numpy",
     "py-ply",
+    "py-setuptools",
     "python3",
     {
       "name": "vcpkg-python-scripts",

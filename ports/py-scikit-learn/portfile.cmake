@@ -6,7 +6,7 @@ vcpkg_from_pythonhosted(
     FILENAME        "scikit_learn"
 )
 
-vcpgk_install_python_build_dependencies(
+vcpkg_install_python_build_dependencies(
     PACKAGES "scipy"
 )
 
