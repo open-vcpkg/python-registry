@@ -10,6 +10,6 @@ vcpkg_add_to_path(PREPEND "${PYTHON3_BUILD_VENV}/bin")
 if(VCPKG_TARGET_IS_WINDOWS)
   vcpkg_add_to_path(PREPEND "${PYTHON3_BUILD_VENV}/Scripts")
 endif()
-set(ENV{PKG_CONFIG_PATH} "${CURRENT_HOST_INSTALLED_DIR}/share/pkgconfig:$ENV{PKG_CONFIG_PATH}")
+set(ENV{PKG_CONFIG_PATH} "${PYTHON3_BUILD_VENV}/share/pkgconfig${VCPKG_HOST_PATH_SEPARATOR}$ENV{PKG_CONFIG_PATH}")
 
 include("${CMAKE_CURRENT_LIST_DIR}/vcpkg_python_functions.cmake")

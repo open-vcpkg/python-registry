@@ -105,9 +105,10 @@ file(REMOVE_RECURSE ${PYTHON3_VENV_ROOT})
 # fixup pkgconfig files installed into python site-packages
 file(GLOB_RECURSE pkgconfigs "${PYTHON3_BUILD_VENV}/${PYTHON3_SITE}/**/*.pc")
 if (pkgconfigs)
-    file(MAKE_DIRECTORY "${CURRENT_PACKAGES_DIR}/share/pkgconfig")
+    file(MAKE_DIRECTORY "${PYTHON3_BUILD_VENV}/share/pkgconfig")
+    set(ENV{PKG_CONFIG_PATH} "${PYTHON3_BUILD_VENV}/share/pkgconfig${VCPKG_HOST_PATH_SEPARATOR}$ENV{PKG_CONFIG_PATH}")
     foreach(_pc_file IN LISTS pkgconfigs)
-        file(INSTALL "${_pc_file}" DESTINATION "${CURRENT_PACKAGES_DIR}/share/pkgconfig")
+        file(INSTALL "${_pc_file}" DESTINATION "${PYTHON3_BUILD_VENV}/share/pkgconfig")
     endforeach()
     foreach(_pc_file IN LISTS pkgconfigs)
         get_filename_component(_pc_dir "${_pc_file}" DIRECTORY)
@@ -124,7 +125,7 @@ file(GLOB_RECURSE
 )
 list(FILTER include_dirs INCLUDE REGEX "^${PYTHON3_BUILD_VENV}/${PYTHON3_SITE}/.*/include$")
 foreach(include_dir IN LISTS include_dirs)
-    file(INSTALL "${include_dir}/" DESTINATION "${CURRENT_PACKAGES_DIR}/include")
+    file(INSTALL "${include_dir}/" DESTINATION "${PYTHON3_BUILD_VENV}/include")
 endforeach()
 
 # fixup absolute paths
@@ -146,9 +147,15 @@ endforeach()
 # remove .venv/include/python3.12 if empty
 file(GLOB includes "${PYTHON3_BUILD_VENV}/include/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}/*")
 if (NOT includes)
+    file(REMOVE_RECURSE "${PYTHON3_BUILD_VENV}/include/python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR}")
+endif()
+# remove .venv/include if empty
+file(GLOB includes "${PYTHON3_BUILD_VENV}/include/*")
+if (NOT includes)
     file(REMOVE_RECURSE "${PYTHON3_BUILD_VENV}/include")
 endif()
 
 file(INSTALL "${VCPKG_ROOT_DIR}/LICENSE.txt" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
 
 set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
+set(VCPKG_POLICY_SKIP_PKGCONFIG_CHECK enabled)
