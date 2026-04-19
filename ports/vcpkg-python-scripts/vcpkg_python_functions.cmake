@@ -3,23 +3,44 @@ set(ENV{PDM_BUILD_SCM_VERSION} "${VERSION}")
 
 set(z_vcpkg_python_func_python "${PYTHON3_BUILD_VENV}/bin/python${VCPKG_HOST_BIN_SUFFIX}")
 
-function(vcpkg_install_python_build_dependencies)
+function(vcpkg_install_python_build_dependency)
   cmake_parse_arguments(
     PARSE_ARGV 0
     "arg"
     ""
-    ""
-    "PACKAGES"
+    "PACKAGE;VERSION"
+    "HASHES"
   )
 
-  list(JOIN arg_PACKAGES ", " packages)
-  message(STATUS "Installing additional build dependencies '${packages}' for port ${PORT}!")
+  if(NOT DEFINED arg_PACKAGE)
+      message(FATAL_ERROR "PACKAGE must be specified.")
+  endif()
+  if(NOT DEFINED arg_HASHES)
+      message(FATAL_ERROR "HASHES must be specified.")
+  endif()
+  string(REGEX MATCH "^([A-Za-z0-9_-]+)(==)?([0-9a-z.-]+)?$" _ ${arg_PACKAGE})
+  if (DEFINED CMAKE_MATCH_2 AND NOT DEFINED CMAKE_MATCH_3) # i.e. == without a version after it
+      message(FATAL_ERROR "Invald version specifier")
+  endif()
+  if (DEFINED CMAKE_MATCH_3)
+      if (DEFINED ${arg_VERSION})
+        message(FATAL_ERROR "Version may be specified in PACKAGE or VERSION, not both")
+      endif()
+      set(arg_VERSION ${CMAKE_MATCH_3})
+  endif()
+  set(arg_PACKAGE ${CMAKE_MATCH_1})
+  foreach(HASH IN LISTS arg_HASHES)
+    list(APPEND hashes "--hash=${HASH}")
+  endforeach()
+  list(JOIN hashes "\n" hashes)
+
+  message(STATUS "Installing additional build dependency'${arg_PACKAGE}' version ${arg_VERSION} with hashes ${arg_HASHES} for port ${PORT}!")
+  file(WRITE "${CURRENT_BUILDTREES_DIR}/vcpkg-build-requirements-${arg_PACKAGE}.txt" "${arg_PACKAGE}==${arg_VERSION}\n${hashes}")
   vcpkg_execute_required_process(
-    COMMAND "${z_vcpkg_python_func_python}" -m pip install --no-deps --no-warn-script-location --prefix "${PYTHON3_BUILD_VENV}" ${arg_PACKAGES}
+    COMMAND "${z_vcpkg_python_func_python}" -m pip install --no-deps --no-warn-script-location --prefix "${PYTHON3_BUILD_VENV}" "-r" "${CURRENT_BUILDTREES_DIR}/vcpkg-build-requirements-${arg_PACKAGE}.txt"
     LOGNAME "python-pip-install-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
   )
-  message(STATUS "Finished installing build dependencies '${packages}' for port ${PORT}!")
 endfunction()
 
 function(vcpkg_from_pythonhosted)

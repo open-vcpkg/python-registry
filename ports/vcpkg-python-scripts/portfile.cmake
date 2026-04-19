@@ -7,6 +7,7 @@ file(INSTALL
 set(packages
     "flit-core"
     "gpep517"
+    "installer"
     "wheel"
     "packaging"
     "setuptools"
@@ -25,9 +26,12 @@ set(scripts
     "activate.fish"
 )
 
-if ("setuptools-scm" IN_LIST FEATURES)
-  list(APPEND packages "setuptools-scm")
-  list(APPEND scripts "setuptools-scm" "vcs-versioning" )
+if ("setuptools-scm" IN_LIST FEATURES OR "hatchling" IN_LIST FEATURES)
+    list(APPEND packages 
+        "setuptools-scm"
+        "vcs-versioning"
+    )
+    list(APPEND scripts "setuptools-scm" "vcs-versioning" )
 endif()
 
 if ("meson" IN_LIST FEATURES)
@@ -43,6 +47,9 @@ if ("hatchling" IN_LIST FEATURES)
         "hatchling"
         "hatch-vcs"
         "hatch-fancy-pypi-readme"
+        "pathspec"
+        "pluggy"
+        "trove-classifiers"
     )
     list(APPEND scripts "hatchling" "hatch-fancy-pypi-readme" "trove-classifiers")
 endif()
@@ -62,7 +69,10 @@ if ("poetry" IN_LIST FEATURES)
 endif()
 
 if ("scikit-build" IN_LIST FEATURES)
-    list(APPEND packages "scikit-build-core")
+    list(APPEND packages 
+        "scikit-build-core"
+        "pathspec"
+    )
 endif()
 
 if ("numpy" IN_LIST FEATURES)
@@ -80,6 +90,19 @@ if ("pybind11" IN_LIST FEATURES)
     list(APPEND scripts "pybind11-config")
 endif()
 
+include("${CMAKE_CURRENT_LIST_DIR}/packages.cmake")
+
+list(REMOVE_DUPLICATES packages)
+foreach(package IN LISTS packages)
+    list(APPEND requirements
+        "${package}==${VERSION_${package}} \\"
+        "${HASHES_${package}}"
+    )
+endforeach()
+
+list(JOIN requirements "\n" requirements)
+file(WRITE "${CURRENT_BUILDTREES_DIR}/vcpkg-requirements.txt" ${requirements})
+
 # ensure that PYTHON3 variable set in vcpkg-tool-meson doesn't interfere with finding the installed python
 unset(PYTHON3)
 unset(CACHE{PYTHON3})
@@ -87,10 +110,12 @@ unset(CACHE{PYTHON3})
 set(PYTHON3_BASEDIR "${CURRENT_INSTALLED_DIR}/tools/python3")
 find_program(PYTHON3 NAMES python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR} python${PYTHON3_VERSION_MAJOR} python PATHS "${PYTHON3_BASEDIR}" NO_DEFAULT_PATH)
 
+
+
 # create and install virtual build environment
 x_vcpkg_get_python_packages(
         PYTHON_EXECUTABLE "${PYTHON3}"
-        PACKAGES ${packages}
+        REQUIREMENTS_FILE "${CURRENT_BUILDTREES_DIR}/vcpkg-requirements.txt"
         OUT_PYTHON_VAR PYTHON3_VENV
     )
 

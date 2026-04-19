@@ -14,8 +14,29 @@ vcpkg_from_pythonhosted(
 
 vcpkg_replace_string("${SOURCE_PATH}/meson.build" "py3.dependency()" "dependency('python-3.${PYTHON3_VERSION_MINOR}', method : 'pkg-config')")
 
-vcpkg_install_python_build_dependencies(
-    PACKAGES "pythran" "gast" "beniget" "ply"
+vcpkg_install_python_build_dependency(
+  PACKAGE "ply==3.11"
+  HASHES
+    "sha256:00c7c1aaa88358b9c765b6d3000c6eec0ba42abca5351b095321aef446081da3"
+    "sha256:096f9b8350b65ebd2fd1346b12452efe5b9607f7482813ffca50c22722a807ce"
+)
+vcpkg_install_python_build_dependency(
+  PACKAGE "gast==0.6.0"
+  HASHES
+    "sha256:52b182313f7330389f72b069ba00f174cfe2a06411099547288839c6cbafbd54"
+    "sha256:88fc5300d32c7ac6ca7b515310862f71e6fdf2c029bbec7c66c0f5dd47b6b1fb"
+)
+vcpkg_install_python_build_dependency(
+  PACKAGE "beniget==0.4.2.post1"
+  HASHES
+    "sha256:a0258537e65e7e14ec33a86802f865a667f949bb6c73646d55e42f7c45a052ae"
+    "sha256:e1b336e7b5f2ae201e6cc21f533486669f1b9eccba018dcff5969cd52f1c20ba"
+)
+vcpkg_install_python_build_dependency(
+  PACKAGE "pythran==0.18.1"
+  HASHES
+    "sha256:8803ed948bf841a11bbbb10472a8ff6ea24ebd70e67c3f77b77be3db900eccfe"
+    "sha256:e1d811a5843d1881f8adcc3944fe3b84c7317ebf4530617829c19c9836f18b49"
 )
 
 vcpkg_mesonpy_prepare_build_options(OUTPUT meson_opts)
