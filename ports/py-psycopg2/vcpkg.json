@@ -1,6 +1,7 @@
 {
   "name": "py-psycopg2",
   "version": "2.9.11",
+  "port-version": 1,
   "description": "Python-PostgreSQL Database Adapter",
   "homepage": "https://psycopg.org/",
   "dependencies": [
@@ -9,10 +10,6 @@
       "features": [
         "client"
       ]
-    },
-    {
-      "name": "py-setuptools",
-      "host": true
     },
     "python3",
     {

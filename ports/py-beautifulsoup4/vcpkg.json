@@ -1,23 +1,18 @@
 {
   "name": "py-beautifulsoup4",
   "version": "4.14.3",
-  "port-version": 1,
+  "port-version": 2,
   "description": "Screen-scraping library.",
   "homepage": "https://www.crummy.com/software/BeautifulSoup/",
   "dependencies": [
-    {
-      "name": "py-hatchling",
-      "host": true
-    },
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "py-typing-extensions",
     "python3",
     {
       "name": "vcpkg-python-scripts",
-      "host": true
+      "host": true,
+      "features": [
+        "hatchling"
+      ]
     }
   ]
 }

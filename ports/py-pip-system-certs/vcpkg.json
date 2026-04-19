@@ -1,14 +1,10 @@
 {
   "name": "py-pip-system-certs",
   "version": "5.3",
-  "port-version": 1,
+  "port-version": 2,
   "description": "Live patches pip to use system certs by default",
   "homepage": "https://gitlab.com/alelec/pip-system-certs",
   "dependencies": [
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "py-wrapt",
     "python3",
     {

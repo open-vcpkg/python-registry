@@ -1,13 +1,10 @@
 {
   "name": "py-pyqt6-sip",
   "version": "13.11.1",
+  "port-version": 1,
   "description": "Python bindings for the Qt cross platform application toolkit",
   "homepage": "https://www.riverbankcomputing.com/software/pyqt/",
   "dependencies": [
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "py-sip",
     "python3",
     {

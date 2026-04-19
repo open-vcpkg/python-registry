@@ -1,26 +1,18 @@
 {
   "name": "py-cryptography",
   "version": "46.0.5",
+  "port-version": 1,
   "description": "cryptography is a package which provides cryptographic recipes and primitives to Python developers",
   "homepage": "https://github.com/pyca/cryptography",
   "dependencies": [
     "openssl",
-    {
-      "name": "py-cffi",
-      "host": true
-    },
-    {
-      "name": "py-maturin",
-      "host": true
-    },
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",
-      "host": true
+      "host": true,
+      "features": [
+        "maturin"
+      ]
     },
     {
       "name": "vcpkg-tool-rust",

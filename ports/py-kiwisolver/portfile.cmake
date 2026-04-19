@@ -23,6 +23,14 @@ file(WRITE "${SOURCE_PATH}/py/src/version.h"
 \n"
 )
 
+vcpkg_install_python_build_dependency(
+    PACKAGE "cppy"
+    VERSION "1.3.1"
+    HASHES
+        "sha256:55b5307c11874f242ea135396f398cb67a5bbde4fab3e3c3294ea5fce43a6d68"
+        "sha256:7ca132b6ef6187384738804bd3a453d4eab7e3274df6dcd35e5d92aae3404717"
+)
+
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")

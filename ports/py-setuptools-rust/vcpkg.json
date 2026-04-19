@@ -6,10 +6,6 @@
   "dependencies": [
     "py-semantic-version",
     "py-setuptools",
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",

@@ -1,11 +1,14 @@
 {
   "name": "py-packaging",
   "version": "26.0",
+  "port-version": 1,
   "description": "Core utilities for Python packages",
   "homepage": "https://packaging.pypa.io/",
   "license": "MIT",
   "dependencies": [
-    "py-gpep517",
-    "vcpkg-python-scripts"
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
   ]
 }

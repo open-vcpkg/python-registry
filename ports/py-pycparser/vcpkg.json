@@ -1,13 +1,10 @@
 {
   "name": "py-pycparser",
   "version": "3.0",
+  "port-version": 1,
   "description": "C parser in Python",
   "homepage": "https://github.com/eliben/pycparser",
   "dependencies": [
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",

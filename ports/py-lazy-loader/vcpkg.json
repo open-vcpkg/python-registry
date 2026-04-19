@@ -1,14 +1,11 @@
 {
   "name": "py-lazy-loader",
   "version": "0.5",
+  "port-version": 1,
   "description": "Makes it easy to load subpackages and functions on demand.",
   "homepage": "https://scientific-python.org/specs/spec-0001/",
   "dependencies": [
     "py-packaging",
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",

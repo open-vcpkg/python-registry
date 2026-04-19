@@ -5,18 +5,16 @@
   "homepage": "https://github.com/pypa/setuptools_scm",
   "license": "MIT",
   "dependencies": [
-    {
-      "name": "py-packaging",
-      "host": true
-    },
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "py-tomli",
     "py-typing-extensions",
-    "vcpkg-get-python-packages",
-    "vcpkg-python-scripts",
+    {
+      "name": "vcpkg-get-python-packages",
+      "host": true
+    },
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    },
     {
       "name": "vcpkg-tool-mercurial",
       "platform": "windows"

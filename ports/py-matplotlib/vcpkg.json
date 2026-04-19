@@ -12,17 +12,9 @@
     "py-dateutil",
     "py-fonttools",
     "py-kiwisolver",
-    {
-      "name": "py-meson",
-      "host": true
-    },
     "py-numpy",
     "py-pillow",
     "py-pyparsing",
-    {
-      "name": "py-setuptools-scm",
-      "host": true
-    },
     {
       "name": "pybind11",
       "features": [
@@ -30,9 +22,16 @@
       ]
     },
     "qhull",
-    "vcpkg-python-scripts",
     {
-      "name": "vcpkg-tool-meson",
+      "name": "vcpkg-python-scripts",
+      "host": true,
+      "features": [
+        "meson",
+        "setuptools-scm"
+      ]
+    },
+    {
+      "name": "vcpkg-tool-mesonpy",
       "host": true
     }
   ]

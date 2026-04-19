@@ -4,20 +4,12 @@ set(VCPKG_BUILD_TYPE release) # No debug builds required for pure python modules
 
 #TODO: Fix E:\vcpkg_folders\numpy\installed\x64-windows-release\tools\python3\Lib\site-packages\numpy\testing\_private\extbuild.py
 
-set(VCPKG_PYTHON3_BASEDIR "${CURRENT_HOST_INSTALLED_DIR}/tools/python3")
+set(VCPKG_PYTHON3_BASEDIR "${PYTHON3_BUILD_VENV}/bin")
 find_program(VCPKG_PYTHON3 NAMES python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR} python${PYTHON3_VERSION_MAJOR} python PATHS "${VCPKG_PYTHON3_BASEDIR}" NO_DEFAULT_PATH)
 find_program(VCPKG_CYTHON NAMES cython PATHS "${VCPKG_PYTHON3_BASEDIR}" "${VCPKG_PYTHON3_BASEDIR}/Scripts" NO_DEFAULT_PATH)
 
 set(ENV{PYTHON3} "${VCPKG_PYTHON3}")
 set(PYTHON3 "${VCPKG_PYTHON3}")
-set(z_vcpkg_python_func_python ${VCPKG_PYTHON3})
-
-vcpkg_add_to_path(PREPEND "${VCPKG_PYTHON3_BASEDIR}")
-if(VCPKG_TARGET_IS_WINDOWS)
-  vcpkg_add_to_path(PREPEND "${VCPKG_PYTHON3_BASEDIR}/Scripts")
-endif()
-
-cmake_path(GET SCRIPT_MESON PARENT_PATH MESON_DIR)
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
@@ -45,7 +37,9 @@ vcpkg_from_github(
     HEAD_REF main
 )
 
-file(COPY "${SOURCE_PATH_MESON_NUMPY}/mesonbuild/modules/features" DESTINATION "${MESON_DIR}/mesonbuild/modules")
+file(COPY "${SOURCE_PATH_MESON_NUMPY}/" DESTINATION "${SOURCE_PATH}/vendored-meson/meson")
+set(SCRIPT_MESON "${SOURCE_PATH}/vendored-meson/meson/meson.py")
+set(ENV{MESON} "${SCRIPT_MESON}")
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH_SVML
@@ -98,6 +92,9 @@ endif()
 
 vcpkg_mesonpy_prepare_build_options(
     OUTPUT meson_opts
+    ADDITIONAL_BINARIES
+      cython=['${VCPKG_CYTHON}']
+      python3=['${VCPKG_PYTHON3}']
     ${opts}
 )
 
@@ -107,10 +104,6 @@ list(APPEND meson_opts
   "--python.platlibdir" 
   "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}"
 )
-
-# needed so pythran can be found
-vcpkg_add_to_path("${CURRENT_HOST_INSTALLED_DIR}/bin")
-
 
 if (VCPKG_TARGET_IS_OSX)
   list(APPEND meson_opts

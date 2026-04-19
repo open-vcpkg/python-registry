@@ -1,14 +1,14 @@
 {
   "name": "py-six",
   "version": "1.17.0",
+  "port-version": 1,
   "description": "Python 2 and 3 compatibility library ",
   "homepage": "https://github.com/benjaminp/six",
   "license": null,
   "dependencies": [
     {
-      "name": "py-setuptools",
+      "name": "vcpkg-python-scripts",
       "host": true
-    },
-    "vcpkg-python-scripts"
+    }
   ]
 }

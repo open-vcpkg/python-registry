@@ -1,25 +1,17 @@
 {
   "name": "py-attrs",
   "version": "25.4.0",
+  "port-version": 1,
   "description": "Classes Without Boilerplate.",
   "homepage": "https://www.attrs.org/",
   "dependencies": [
-    {
-      "name": "py-hatch-fancy-pypi-readme",
-      "host": true
-    },
-    {
-      "name": "py-hatchling",
-      "host": true
-    },
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
     "python3",
     {
       "name": "vcpkg-python-scripts",
-      "host": true
+      "host": true,
+      "features": [
+        "hatchling"
+      ]
     }
   ]
 }

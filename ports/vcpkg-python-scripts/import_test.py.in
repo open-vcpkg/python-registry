@@ -8,7 +8,7 @@ if os.name == 'nt':
     os.add_dll_directory('@INSTALLED_DLL_DIR@')
 
 # Make sure site_packages from CURRENT_INSTALLED_DIR and CURRENT_PACKAGES_DIR are on pythonpath
-sys.path.append('@PACKAGE_SITE_PACKAGES_DIR@')
+sys.path.append('@INSTALLED_SITE_PACKAGES_DIR@')
 sys.path.append('@PYTHON3_SITEPACKAGES@')
 
 from @arg_MODULE@ import *

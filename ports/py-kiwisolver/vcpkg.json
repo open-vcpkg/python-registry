@@ -1,15 +1,15 @@
 {
   "name": "py-kiwisolver",
   "version": "1.5.0",
+  "port-version": 1,
   "description": "Efficient C++ implementation of the Cassowary constraint solving algorithm",
   "homepage": "https://kiwisolver.readthedocs.io/en/latest/",
   "license": null,
   "dependencies": [
     "py-cppy",
     {
-      "name": "py-setuptools",
+      "name": "vcpkg-python-scripts",
       "host": true
-    },
-    "vcpkg-python-scripts"
+    }
   ]
 }

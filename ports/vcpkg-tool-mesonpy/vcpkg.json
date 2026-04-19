@@ -1,0 +1,10 @@
+{
+  "name": "vcpkg-tool-mesonpy",
+  "version": "2026-04-08",
+  "description": "meson-python build utilties",
+  "homepage": "https://github.com/mesonbuild/meson-python",
+  "license": "MIT",
+  "dependencies": [
+    "vcpkg-tool-meson"
+  ]
+}

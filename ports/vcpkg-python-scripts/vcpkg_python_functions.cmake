@@ -1,7 +1,47 @@
 set(ENV{SETUPTOOLS_SCM_PRETEND_VERSION} "${VERSION}")
 set(ENV{PDM_BUILD_SCM_VERSION} "${VERSION}")
 
-set(z_vcpkg_python_func_python "${PYTHON3}")
+set(z_vcpkg_python_func_python "${PYTHON3_BUILD_VENV}/bin/python${VCPKG_HOST_EXECUTABLE_SUFFIX}")
+
+function(vcpkg_install_python_build_dependency)
+  cmake_parse_arguments(
+    PARSE_ARGV 0
+    "arg"
+    ""
+    "PACKAGE;VERSION"
+    "HASHES"
+  )
+
+  if(NOT DEFINED arg_PACKAGE)
+      message(FATAL_ERROR "PACKAGE must be specified.")
+  endif()
+  if(NOT DEFINED arg_HASHES)
+      message(FATAL_ERROR "HASHES must be specified.")
+  endif()
+  string(REGEX MATCH "^([A-Za-z0-9_-]+)(==)?([0-9a-z.-]+)?$" _ ${arg_PACKAGE})
+  if (DEFINED CMAKE_MATCH_2 AND NOT DEFINED CMAKE_MATCH_3) # i.e. == without a version after it
+      message(FATAL_ERROR "Invald version specifier")
+  endif()
+  if (DEFINED CMAKE_MATCH_3)
+      if (DEFINED ${arg_VERSION})
+        message(FATAL_ERROR "Version may be specified in PACKAGE or VERSION, not both")
+      endif()
+      set(arg_VERSION ${CMAKE_MATCH_3})
+  endif()
+  set(arg_PACKAGE ${CMAKE_MATCH_1})
+  foreach(HASH IN LISTS arg_HASHES)
+    list(APPEND hashes "--hash=${HASH}")
+  endforeach()
+  list(JOIN hashes "\n" hashes)
+
+  message(STATUS "Installing additional build dependency'${arg_PACKAGE}' version ${arg_VERSION} with hashes ${arg_HASHES} for port ${PORT}!")
+  file(WRITE "${CURRENT_BUILDTREES_DIR}/vcpkg-build-requirements-${arg_PACKAGE}.txt" "${arg_PACKAGE}==${arg_VERSION}\n${hashes}")
+  vcpkg_execute_required_process(
+    COMMAND "${z_vcpkg_python_func_python}" -m pip install --no-deps --no-warn-script-location --prefix "${PYTHON3_BUILD_VENV}" "-r" "${CURRENT_BUILDTREES_DIR}/vcpkg-build-requirements-${arg_PACKAGE}.txt"
+    LOGNAME "python-pip-install-${TARGET_TRIPLET}"
+    WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
+  )
+endfunction()
 
 function(vcpkg_from_pythonhosted)
   cmake_parse_arguments(
@@ -65,7 +105,7 @@ function(vcpkg_python_build_wheel)
 
   message(STATUS "Building python wheel!")
 
-   list(JOIN arg_ENVIRONMENT " " env)
+  list(JOIN arg_ENVIRONMENT " " env)
   if(CMAKE_HOST_WIN32)
     set(env "")
     set(env_backup_vars "")
@@ -174,12 +214,9 @@ function(vcpkg_python_test_import)
 
   message(STATUS "Testing package!")
 
-  set(RELATIVE_SITE_PACKAGES_DIR "${PYTHON3_SITEPACKAGES}")
-  cmake_path(RELATIVE_PATH RELATIVE_SITE_PACKAGES_DIR BASE_DIRECTORY "${CURRENT_INSTALLED_DIR}")
-
   set(INSTALLED_DLL_DIR "${CURRENT_INSTALLED_DIR}/bin")
   set(PACKAGE_DLL_DIR "${CURRENT_PACKAGES_DIR}/bin")
-  set(PACKAGE_SITE_PACKAGES_DIR "${CURRENT_PACKAGES_DIR}/${RELATIVE_SITE_PACKAGES_DIR}")
+  set(INSTALLED_SITE_PACKAGES_DIR "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}")
   configure_file("${CURRENT_HOST_INSTALLED_DIR}/share/vcpkg-python-scripts/import_test.py.in" "${CURRENT_BUILDTREES_DIR}/import_test.py" @ONLY)
 
   vcpkg_backup_env_variables(VARS DYLD_LIBRARY_PATH LD_LIBRARY_PATH)
@@ -188,8 +225,8 @@ function(vcpkg_python_test_import)
   elseif(VCPKG_TARGET_IS_LINUX)
     set(ENV{LD_LIBRARY_PATH} "${CURRENT_PACKAGES_DIR}/lib")
   endif()
-
-  vcpkg_execute_required_process(COMMAND "${z_vcpkg_python_func_python}" "${CURRENT_BUILDTREES_DIR}/import_test.py"
+ 
+  vcpkg_execute_required_process(COMMAND "${PYTHON3}" "${CURRENT_BUILDTREES_DIR}/import_test.py"
     LOGNAME "python-test-import-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
   )
@@ -230,27 +267,11 @@ function(vcpkg_fixup_shebang script)
 
     # Extract the interpreter path by removing the shebang `#!` part
     string(REGEX REPLACE "^#!" "" interpreter_path "${first_line}")
-
-    # Replace the prefix from `CURRENT_INSTALLED_DIR` with `CURRENT_PACKAGES_DIR`
-    string(REPLACE "${CURRENT_INSTALLED_DIR}" "${CURRENT_PACKAGES_DIR}" new_interpreter_path "${interpreter_path}")
-
-    get_filename_component(script_dir "${script_path}" DIRECTORY)
-    # Calculate the relative path from the script location to the new interpreter location
-    file(RELATIVE_PATH relative_interpreter_path "${script_dir}" "${new_interpreter_path}")
-
-    # Construct the new relative shebang
-    set(new_shebang "#!/bin/sh\n\"exec\" \"`dirname $0`/${relative_interpreter_path}\" \"$0\" \"$@\"")
-
-    # Rebuild the file content with the new shebang as the first line
-    set(new_script_content "${new_shebang}\n")
-
-    # Loop through remaining lines and append them to the new content
-    while (SCRIPT_FILE_LINES)
-      list(POP_FRONT SCRIPT_FILE_LINES line)
-      set(new_script_content "${new_script_content}${line}\n")
-    endwhile()
-
-    # Write the modified content back to the script file
-    file(WRITE "${script_path}" "${new_script_content}")
+    get_filename_component(interpreter_dir "${interpreter_path}" DIRECTORY)
+    
+    # use /usr/bin/env to find the interpreter in the PATH
+    vcpkg_replace_string(${script_path}
+            "#!${interpreter_dir}/"
+            "#!/usr/bin/env " IGNORE_UNCHANGED)
   endif()
 endfunction()
