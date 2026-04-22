@@ -62,7 +62,6 @@ jobs:
           echo "$VCPKG_ROOT" >> $GITHUB_PATH
           echo "VCPKG_ROOT=$VCPKG_ROOT" >> $GITHUB_ENV
 
-
       - name: 🌋 Build
         shell: bash
         run: |
@@ -99,10 +98,18 @@ jobs:
             # ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-jsonschema
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-networkx
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pyproj
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-scipy
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-matplotlib
 
             # py-pydantic   fails with ERROR: truststore not available
+
+      - name: 🌋 Build
+        shell: bash
+        if: matrix.triplet == 'x64-windows'
+        run: |
+            VCPKG_OPTIONS="--overlay-ports=${{ github.workspace }}/ports --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build"
+
+            # lapack problems on arm64
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-scipy
 
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v7
