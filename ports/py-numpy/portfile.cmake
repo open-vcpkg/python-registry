@@ -103,6 +103,13 @@ vcpkg_mesonpy_prepare_build_options(
 
 z_vcpkg_setup_pkgconfig_path(CONFIG "RELEASE")
 
+if(VCPKG_TARGET_IS_WINDOWS AND VCPKG_TARGET_ARCHITECTURE MATCHES "arm")
+  # On windows-arm64, import tests fail. numpy.random.mtrand.__all__ has a
+  # ' + 1) instead' entry. The bug does not reproduce at /O1 or
+  # higher.
+  set(ENV{CL} "/O2 $ENV{CL}")
+endif()
+
 list(APPEND meson_opts
   "--python.platlibdir" 
   "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}"
