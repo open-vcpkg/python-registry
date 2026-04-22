@@ -353,6 +353,16 @@ def update_github_ports():
                 version_key = "version"
                 new_version = version_from_tag
 
+            # vcpkg relaxed versions only allow digits and dots
+            if version_key in ("version", "version-semver") and not re.fullmatch(
+                r"\d+(\.\d+)*", new_version
+            ):
+                print(
+                    f"  Skipping {dir_name}: version '{new_version}' is not a valid vcpkg relaxed version"
+                )
+                unchanged.append(dir_name)
+                continue
+
             current_version = vcpkg_data.get(version_key)
             if current_version == new_version:
                 print(f"  {dir_name} is already up to date ({current_version}). Skipping...")
