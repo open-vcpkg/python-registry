@@ -1,6 +1,6 @@
 {
   "name": "py-duckdb",
-  "version": "1.5.0",
+  "version": "1.5.2",
   "description": "Python bindings for high-performance in-process analytical database system",
   "homepage": "https://duckdb.org",
   "license": "MIT",

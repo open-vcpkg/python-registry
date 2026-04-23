@@ -1,6 +1,6 @@
 {
   "name": "py-platformdirs",
-  "version": "4.9.4",
+  "version": "4.9.6",
   "description": "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`.",
   "homepage": "https://platformdirs.readthedocs.io/en/latest/",
   "license": "MIT",

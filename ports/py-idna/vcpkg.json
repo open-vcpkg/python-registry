@@ -1,6 +1,6 @@
 {
   "name": "py-idna",
-  "version": "3.11",
+  "version": "3.13",
   "description": "Internationalized Domain Names in Applications (IDNA)",
   "homepage": "https://github.com/kjd/idna",
   "dependencies": [
