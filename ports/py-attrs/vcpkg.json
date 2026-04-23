@@ -1,6 +1,6 @@
 {
   "name": "py-attrs",
-  "version": "25.4.0",
+  "version": "26.1.0",
   "description": "Classes Without Boilerplate.",
   "homepage": "https://www.attrs.org/",
   "dependencies": [
