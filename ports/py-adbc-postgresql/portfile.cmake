@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    adbc-driver-postgresql
     VERSION         ${VERSION}
-    SHA512          85d4649de259e72c6d516556efdcd14685f5788d7aa84b556e154f749b08f19ff0ee3f9b51488b6345491fd6830abff4d187c4840ccf696fa2b5f69a078c3045
+    SHA512          fee2da86a6f9a31b22b41c1d57a1eac5d261336d30c48a80497a4fb63b8150508f3b752d00bf135de51b339e708981c9dc3b9f7b0229b1cab59603e4e478ad9e
     FILENAME        adbc_driver_postgresql
 )
 

@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    adbc-driver-sqlite
     VERSION         ${VERSION}
-    SHA512          2698c50c86bcccf9353ab6ce23e7167a9b7e6b781b70c4b77c6348eb684d5ccf8d1d96906e4a29323475e2a415110a96116ba6e56442f44fafb3b1dd4c24f954
+    SHA512          57ab3e845d88c82f328867a36658f6362fe5c095d6b173cbcdc9094593984095bb9f077fe79ccdc22fcfd0afd19bc2ff33196ed47a111ba20f8731eb3781f963
     FILENAME        adbc_driver_sqlite
 )
 

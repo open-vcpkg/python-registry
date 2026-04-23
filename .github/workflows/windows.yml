@@ -99,6 +99,7 @@ jobs:
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-networkx
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pyproj
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-matplotlib
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS 'arrow[acero,compute,core,csv,dataset,example,filesystem,flight,flightsql,gcs,json,mimalloc,orc,parquet,s3,python]'
 
             # py-pydantic   fails with ERROR: truststore not available
 

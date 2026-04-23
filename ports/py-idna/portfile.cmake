@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    idna
     VERSION         ${VERSION}
-    SHA512          f99359b515ae66a124f21336c8b5a4d2842c2ac6f64b2f6f3e25502f376d799bec848fbbf49d886f4ff787e72a0aa49a3416d63f213bc872fc980eaaa977c917
+    SHA512          831ed3e23808dd85285973e9ac7717dad0dd4dbb5aeef6a0532fbc04b41c0714ce83cdc1a8efb6c8311a0160ce00abcbb8ff7064633e2a2bde32c0c2017e39b5
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    adbc-driver-manager
     VERSION         ${VERSION}
-    SHA512          7d6b54efdc9a4b75212276e0ce0c434270f4da1042212e690231c5ee2e2f1fc81081d42c070e3ab9de73805de42f2180205643553903b346711d8885b223daf7
+    SHA512          e3a8d578ac9bf157323d6b3004d8c182ad331fc2c19b74ecf3b9c4a8a1da17aceb368d787c6128c4d3de31728882bb7bea3914202736f7f937cf837a92b446e2
     FILENAME        adbc_driver_manager
 )
 

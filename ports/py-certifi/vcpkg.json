@@ -1,6 +1,6 @@
 {
   "name": "py-certifi",
-  "version-date": "2026-02-25",
+  "version-date": "2026-04-22",
   "description": "A carefully curated collection of Root Certificates for validating the trustworthiness of SSL certificates while verifying the identity of TLS hosts.",
   "homepage": "https://github.com/certifi/python-certifi",
   "license": null,

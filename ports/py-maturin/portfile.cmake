@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    maturin
     VERSION         ${VERSION}
-    SHA512          0bc0de6e8cf8976b40d2f656309d78f22c2d22e37b72b5d28bb5e85d2b0a3830175e88b66eabfa6e39bbddc886a426387b1d2b65fdc8838f0b5207d887ea9893
+    SHA512          f75648121d5e4741f875947334e893676f0b3bb7cd6a4d1cc7e109e44d8fffce22b6cb4899e256475bb7b2f57bbc9d5fb5a50cc4ba04646608d6c375bf730703
 )
 
 vcpkg_get_rust(CARGO)
