@@ -230,7 +230,7 @@
     },
     "py-numpy": {
       "baseline": "2.4.4",
-      "port-version": 0
+      "port-version": 1
     },
     "py-owslib": {
       "baseline": "0.35.0",
