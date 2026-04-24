@@ -209,8 +209,8 @@
       "port-version": 0
     },
     "py-matplotlib": {
-      "baseline": "3.10.8",
-      "port-version": 1
+      "baseline": "3.10.9",
+      "port-version": 0
     },
     "py-maturin": {
       "baseline": "1.13.1",
