@@ -6,6 +6,11 @@ vcpkg_from_github(
     HEAD_REF main
 )
 
+# Disable optimizations to fix ARM64 build
+if(MSVC)
+  set(ENV{_LINK_} "/LTCG:OFF")
+endif()
+
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE.txt")

@@ -13,15 +13,20 @@ concurrency:
 
 jobs:
   build:
-    name: build (windows)
-    runs-on: windows-2022
     permissions:
       contents: read
       packages: write
     strategy:
       matrix:
         include:
-          - triplet: 'x64-windows'
+          - os: windows-2022
+            triplet: x64-windows
+            arch: amd64
+          - os: windows-11-arm
+            triplet: arm64-windows
+            arch: arm64
+    name: build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: 🐣 Checkout
@@ -32,6 +37,8 @@ jobs:
 
       - name: 🧽 Developer Command Prompt for Microsoft Visual C++
         uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.arch }}
 
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v6
@@ -46,15 +53,14 @@ jobs:
         run: |
           PKG_SOURCE_USER=$(echo $GITHUB_REPOSITORY | cut -d '/' -f 1)
           ./vcpkg/bootstrap-vcpkg.sh
-          NUGET_EXE=$(./vcpkg/vcpkg fetch nuget)
+          NUGET_EXE=$(./vcpkg/vcpkg fetch nuget | tail -1)
           echo "Downloaded $NUGET_EXE"
           $NUGET_EXE sources add -Name ghpkg -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json" -UserName "$PKG_SOURCE_USER" -Password "${{ secrets.GITHUB_TOKEN }}" -StorePasswordInClearText
           $NUGET_EXE setapikey "${{ secrets.GITHUB_TOKEN }}" -Source "https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json"
-          echo "VCPKG_BINARY_SOURCES=clear;nuget,https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json,readwrite" >> $GITHUB_ENV
+          echo "VCPKG_BINARY_SOURCES=clear;nuget,https://nuget.pkg.github.com/$PKG_SOURCE_USER/index.json,readwrite;nugettimeout,3600" >> $GITHUB_ENV
           VCPKG_ROOT=$(cygpath -w $(pwd)/vcpkg)
           echo "$VCPKG_ROOT" >> $GITHUB_PATH
           echo "VCPKG_ROOT=$VCPKG_ROOT" >> $GITHUB_ENV
-
 
       - name: 🌋 Build
         shell: bash
@@ -92,11 +98,21 @@ jobs:
             # ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-jsonschema
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-networkx
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pyproj
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-scipy
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-matplotlib
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS 'arrow[acero,compute,core,csv,dataset,example,filesystem,flight,flightsql,gcs,json,mimalloc,orc,parquet,s3,python]'
 
             # py-pydantic   fails with ERROR: truststore not available
+
+      - name: 🌋 Build
+        shell: bash
+        if: matrix.triplet == 'x64-windows'
+        run: |
+            VCPKG_OPTIONS="--overlay-ports=${{ github.workspace }}/ports --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build"
+
+            # lapack problems on arm64
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-scipy
+
+            # python executable is not properly propagated into the build system
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS 'arrow[acero,compute,core,csv,dataset,example,filesystem,flight,flightsql,gcs,json,mimalloc,orc,parquet,s3,python]'
 
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v7
