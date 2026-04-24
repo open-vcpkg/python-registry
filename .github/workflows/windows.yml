@@ -99,7 +99,6 @@ jobs:
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-networkx
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-pyproj
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-matplotlib
-            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS 'arrow[acero,compute,core,csv,dataset,example,filesystem,flight,flightsql,gcs,json,mimalloc,orc,parquet,s3,python]'
 
             # py-pydantic   fails with ERROR: truststore not available
 
@@ -111,6 +110,9 @@ jobs:
 
             # lapack problems on arm64
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-scipy
+
+            # python executable is not properly propagated into the build system
+            ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS 'arrow[acero,compute,core,csv,dataset,example,filesystem,flight,flightsql,gcs,json,mimalloc,orc,parquet,s3,python]'
 
       - name: 📑 Upload logs
         uses: actions/upload-artifact@v7
