@@ -1,6 +1,6 @@
 {
   "name": "py-packaging",
-  "version": "26.1",
+  "version": "26.2",
   "description": "Core utilities for Python packages",
   "homepage": "https://packaging.pypa.io/",
   "license": "MIT",

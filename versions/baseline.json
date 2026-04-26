@@ -85,7 +85,7 @@
       "port-version": 0
     },
     "py-cryptography": {
-      "baseline": "46.0.7",
+      "baseline": "47.0.0",
       "port-version": 0
     },
     "py-cycler": {
@@ -237,7 +237,7 @@
       "port-version": 0
     },
     "py-packaging": {
-      "baseline": "26.1",
+      "baseline": "26.2",
       "port-version": 0
     },
     "py-pandas": {
@@ -445,7 +445,7 @@
       "port-version": 0
     },
     "py-tzdata": {
-      "baseline": "2026.1",
+      "baseline": "2026.2",
       "port-version": 0
     },
     "py-urllib3": {
