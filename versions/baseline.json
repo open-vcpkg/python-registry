@@ -28,6 +28,10 @@
       "baseline": "2.4.0",
       "port-version": 0
     },
+    "py-annotated-types": {
+      "baseline": "0.7.0",
+      "port-version": 0
+    },
     "py-attrs": {
       "baseline": "26.1.0",
       "port-version": 0
@@ -298,7 +302,7 @@
     },
     "py-pydantic": {
       "baseline": "2.13.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pydantic-core": {
       "baseline": "2.46.3",
@@ -442,6 +446,10 @@
     },
     "py-typing-extensions": {
       "baseline": "4.15.0",
+      "port-version": 0
+    },
+    "py-typing-inspection": {
+      "baseline": "0.4.2",
       "port-version": 0
     },
     "py-tzdata": {

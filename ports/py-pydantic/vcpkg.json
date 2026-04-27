@@ -1,9 +1,11 @@
 {
   "name": "py-pydantic",
   "version": "2.13.3",
+  "port-version": 1,
   "description": "Data validation using Python type hints.",
   "homepage": "https://github.com/pydantic/pydantic",
   "dependencies": [
+    "py-annotated-types",
     {
       "name": "py-hatch-fancy-pypi-readme",
       "host": true
@@ -13,6 +15,8 @@
       "host": true
     },
     "py-pydantic-core",
+    "py-typing-extensions",
+    "py-typing-inspection",
     "python3",
     {
       "name": "vcpkg-python-scripts",
