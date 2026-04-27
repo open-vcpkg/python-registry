@@ -1,6 +1,7 @@
 {
   "name": "py-pillow",
   "version": "12.2.0",
+  "port-version": 1,
   "description": "Python Imaging Library",
   "homepage": "https://python-pillow.org/",
   "license": null,
@@ -22,6 +23,10 @@
     },
     {
       "name": "py-setuptools",
+      "host": true
+    },
+    {
+      "name": "pybind11",
       "host": true
     },
     "tiff",
