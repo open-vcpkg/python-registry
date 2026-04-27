@@ -6,25 +6,38 @@ vcpkg_from_github(
     HEAD_REF main
 )
 
+set(VCPKG_PYTHON3_BASEDIR "${CURRENT_HOST_INSTALLED_DIR}/tools/python3")
+find_program(VCPKG_PYTHON3 NAMES python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR} python${PYTHON3_VERSION_MAJOR} python PATHS "${VCPKG_PYTHON3_BASEDIR}" NO_DEFAULT_PATH)
+
+set(ENV{PYTHON3} "${VCPKG_PYTHON3}")
+set(PYTHON3 "${VCPKG_PYTHON3}")
+set(z_vcpkg_python_func_python ${VCPKG_PYTHON3})
+
+vcpkg_add_to_path(PREPEND "${VCPKG_PYTHON3_BASEDIR}")
 if(VCPKG_TARGET_IS_WINDOWS)
-  set(ENV{PKG_CONFIG_PATH} "${CURRENT_INSTALLED_DIR}/lib/pkgconfig;${CURRENT_INSTALLED_DIR}/share/pkgconfig")
-  set(ENV{INCLUDE} "${CURRENT_INSTALLED_DIR}/include;$ENV{INCLUDE}")
+  vcpkg_add_to_path(PREPEND "${VCPKG_PYTHON3_BASEDIR}/Scripts")
 endif()
 
-set(PYTHON3 "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python${VCPKG_HOST_EXECUTABLE_SUFFIX}")
-set(z_vcpkg_python_func_python ${PYTHON3})
-vcpkg_mesonpy_prepare_build_options(OUTPUT meson_opts)
+cmake_path(GET SCRIPT_MESON PARENT_PATH MESON_DIR)
+
+vcpkg_mesonpy_prepare_build_options(
+    OUTPUT meson_opts
+    ${opts}
+)
 
 z_vcpkg_setup_pkgconfig_path(CONFIG "RELEASE")
 
-list(APPEND meson_opts  "--python.platlibdir" "${CURRENT_INSTALLED_DIR}/lib")
+list(APPEND meson_opts
+  "--python.platlibdir" 
+  "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}"
+)
+
 list(JOIN meson_opts "\",\""  meson_opts)
 
 vcpkg_python_build_and_install_wheel(
   SOURCE_PATH "${SOURCE_PATH}"
   OPTIONS 
-    --config-json "{\"setup-args\" : [\"-Dsystem-freetype=true\", \"-Dsystem-qhull=true\", \"${meson_opts}\" ] }" 
-  #-Csetup-args=-Dsystem-freetype=true -Csetup-args=-Dsystem-qhull=true
+    --config-json "{\"setup-args\" : [\"-Dsystem-freetype=true\", \"-Dsystem-qhull=true\", \"${meson_opts}\" ] }"
 )
 
 file(GLOB licenses "${SOURCE_PATH}/LICENSE/*")
