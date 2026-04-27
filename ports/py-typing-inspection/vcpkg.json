@@ -1,0 +1,14 @@
+{
+  "name": "py-typing-inspection",
+  "version": "0.4.2",
+  "description": "Runtime typing introspection tools",
+  "homepage": "https://github.com/pydantic/typing-inspection",
+  "license": null,
+  "dependencies": [
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "vcpkg-python-scripts"
+  ]
+}
