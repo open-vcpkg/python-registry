@@ -121,7 +121,7 @@
       "port-version": 0
     },
     "py-flit-core": {
-      "baseline": "3.12.0",
+      "baseline": "4.0.0",
       "port-version": 0
     },
     "py-fonttools": {
@@ -441,7 +441,7 @@
       "port-version": 1
     },
     "py-trove-classifiers": {
-      "baseline": "2026.1.14.14",
+      "baseline": "2026.4.28.13",
       "port-version": 0
     },
     "py-typing-extensions": {
