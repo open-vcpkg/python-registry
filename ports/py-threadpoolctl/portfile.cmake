@@ -6,6 +6,7 @@ vcpkg_from_pythonhosted(
     FILENAME        threadpoolctl
 )
 
+file(COPY "${CURRENT_PORT_DIR}/pyproject.toml" "${SOURCE_PATH}/pyproject.toml")
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
