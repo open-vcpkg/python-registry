@@ -224,6 +224,10 @@
       "baseline": "0.19.0",
       "port-version": 0
     },
+    "py-narwhals": {
+      "baseline": "2.20.0",
+      "port-version": 0
+    },
     "py-networkx": {
       "baseline": "3.6.1",
       "port-version": 0
@@ -266,6 +270,10 @@
     },
     "py-platformdirs": {
       "baseline": "4.9.6",
+      "port-version": 0
+    },
+    "py-plotly": {
+      "baseline": "6.7.0",
       "port-version": 0
     },
     "py-pluggy": {
