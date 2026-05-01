@@ -2,7 +2,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO pypa/flit
     REF ${VERSION}
-    SHA512 ff6df66dfdae6fdf7b277cc3fbb7c9a569103cbe82a3e3ce6f315ec6adec46be8692eba4549a66b3af537d128e6b57ed8f49316b705636466c25674198503643
+    SHA512 1de9358fa33d0924355679ab6bccf5933f2f154257a875dfec7bf88bb569fce487129ff2d7ea13df16287acaedf9da49ce5f9baccd160ebfb6fd33e831e9c9cb
     HEAD_REF main
 )
 
