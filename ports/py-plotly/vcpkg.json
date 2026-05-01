@@ -1,0 +1,24 @@
+{
+  "name": "py-plotly",
+  "version": "6.7.0",
+  "description": "An open-source interactive data visualization library for Python",
+  "homepage": "https://plotly.com/python/",
+  "license": "MIT",
+  "dependencies": [
+    {
+      "name": "py-hatchling",
+      "host": true
+    },
+    "py-narwhals",
+    "py-packaging",
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}

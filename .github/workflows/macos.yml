@@ -123,6 +123,7 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyogrio
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-geopandas
           ./vcpkg/vcpkg install $VCPKG_OPTIONS arrow[core,csv,filesystem,json,parquet,python] # defaults + python
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-plotly
           # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pyqt6
 
       - name: 📑 Upload logs
