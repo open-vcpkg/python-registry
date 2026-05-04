@@ -285,15 +285,15 @@
       "port-version": 2
     },
     "py-poetry-core": {
-      "baseline": "2.3.2",
+      "baseline": "2.4.0",
       "port-version": 0
     },
     "py-psycopg": {
-      "baseline": "3.3.3",
+      "baseline": "3.3.4",
       "port-version": 0
     },
     "py-psycopg-c": {
-      "baseline": "3.3.3",
+      "baseline": "3.3.4",
       "port-version": 0
     },
     "py-psycopg2": {
@@ -361,7 +361,7 @@
       "port-version": 1
     },
     "py-pytz": {
-      "baseline": "2025.2",
+      "baseline": "2026.2",
       "port-version": 0
     },
     "py-pyyaml": {
