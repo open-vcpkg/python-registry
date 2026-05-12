@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    cryptography
     VERSION         ${VERSION}
-    SHA512          0d2fd9de7b6cfafef5f66e4fb10b7eaa8712bc0ed7bca19a017963b8ea707813a7bdc841f7d4aa512da7963eff3707792d46cb93058875fcc447961256c32d9e
+    SHA512          4d04983e25eb5fc856705f63e8cca32a357ef0a369c4596b1beb2e0befa2b3dcd763eb4e9baed4230bd75aa6738790ec56b107a45d5e02ce09f78fc1851c2ff9
 )
 
 if(VCPKG_TARGET_IS_WINDOWS)
