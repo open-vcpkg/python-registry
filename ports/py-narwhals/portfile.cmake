@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    narwhals
     VERSION         ${VERSION}
-    SHA512          cb48b03e2540aa04e55cbf4a8862b7d0d3376b4aab81f0b7c252097d1774188f2699a1e45f1fa7ad57f6f2a16d9b83569f7ea7f6238e159e537e68e531bed2a5
+    SHA512          2ff8cb94ff3c7a37a036e369f858cc8e9f61f5f540660c92d3fa55ac3d3dbe310c97d723976305346cce9352c2cc31a61a6cb8cfaa797a9e663873a2301d5a94
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

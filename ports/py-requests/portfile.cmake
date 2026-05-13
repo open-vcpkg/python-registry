@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    requests
     VERSION         ${VERSION}
-    SHA512          058dc417085f8be99c2ea79fffecce833068d9342c925a8d8bd1b10c171e52fda5d4bdd8ae1a93b05b111e275c29b705ec79ac0c365fb10f6f81c49e6d839483
+    SHA512          4e3b5c40489b682225667cf46e36058bc22dce6b580e3d01962ea7fa46517e15a775458ebeb970b53fb2f87048f3f09bf09ac599b66c36827622fea7c17e83b6
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
