@@ -101,6 +101,7 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-attrs
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-beautifulsoup4
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-fiona
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pysfcgal
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-rasterio
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-shapely
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-jsonschema
