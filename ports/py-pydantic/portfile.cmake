@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    pydantic
     VERSION         ${VERSION}
-    SHA512          fb807b94eec1ac603e515e11e99d1b4c19d31c0008d2ae02f4798eab8ad524202b38a71211f1667b476f38385f7e13f7e16b38a5912081eb5df22402020f618a
+    SHA512          c1cd883a44e3664cccf5f8c7a10cfd8d27748af0dc50cbc0bf76d2c591d3b19dd247d8b12ab2f494fd144e80e5a4aeaf94632ef6577c5bee2aadaacd07915249
     FILENAME        pydantic
 )
 
