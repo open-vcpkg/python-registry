@@ -7,9 +7,11 @@ vcpkg_from_pythonhosted(
 )
 
 if(VCPKG_TARGET_IS_WINDOWS)
-  vcpkg_add_to_path("${CURRENT_INSTALLED_DIR}/tools/libpq") 
+  vcpkg_add_to_path("${CURRENT_INSTALLED_DIR}/tools/libpq")
+  set(ENV{PG_CONFIG} "${CURRENT_INSTALLED_DIR}/tools/libpq/pg_config.exe")
 else()
-  vcpkg_add_to_path("${CURRENT_INSTALLED_DIR}/tools/libpq/bin") 
+  vcpkg_add_to_path("${CURRENT_INSTALLED_DIR}/tools/libpq/bin")
+  set(ENV{PG_CONFIG} "${CURRENT_INSTALLED_DIR}/tools/libpq/bin/pg_config")
 endif()
 
 set(ENV{INCLUDE} "${CURRENT_INSTALLED_DIR}/include;$ENV{INCLUDE}")
