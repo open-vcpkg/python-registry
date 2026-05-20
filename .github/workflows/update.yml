@@ -51,32 +51,40 @@ jobs:
           git add versions
           git commit --am --no-edit || echo "No version changes to commit"
 
-      - name: Create Pull Request
+      - name: Create or Update Pull Request
         run: |
-          # Check if there are commits ahead of origin
+
+          # Fetch existing remote branch
+          if git ls-remote --exit-code --heads origin auto-update >/dev/null 2>&1; then
+            git fetch origin auto-update:"refs/remotes/origin/auto-update"
+          fi
+
+          # Check if there are commits ahead of origin/main
           if git diff --quiet origin/main..HEAD; then
-            echo "No changes to create a PR for."
+            echo "No changes vs origin/main."
+            # If a stale PR branch exists with no diff, nothing to do.
             exit 0
           fi
 
           # Build summary from update output
           SUMMARY=$(awk '/^={10,}/{found=1; next} found' /tmp/update-output.txt)
-          BRANCH="auto-update/$(date +%Y-%m-%d)"
 
-          git checkout -b "$BRANCH"
-          git push --force origin "$BRANCH"
+          git checkout -B auto-update
+          git push --force origin auto-update
 
           # Check if a PR already exists for this branch
-          EXISTING_PR=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number // empty')
+          EXISTING_PR=$(gh pr list --head auto-update --state open --json number --jq '.[0].number // empty')
           if [ -n "$EXISTING_PR" ]; then
-            echo "PR #$EXISTING_PR already exists, updating..."
-            gh pr edit "$EXISTING_PR" --body "$SUMMARY"
+            echo "PR #$EXISTING_PR already exists, updating title and body..."
+            gh pr edit "$EXISTING_PR" \
+              --title "🚀 Auto-update ports $(date +%Y-%m-%d)" \
+              --body "$SUMMARY"
           else
             gh pr create \
               --title "🚀 Auto-update ports $(date +%Y-%m-%d)" \
               --body "$SUMMARY" \
               --base main \
-              --head "$BRANCH"
+              --head auto-update
           fi
         env:
           GH_TOKEN: ${{ secrets.PAT }}
@@ -84,8 +92,7 @@ jobs:
       - name: Enable Auto-Merge
         continue-on-error: true
         run: |
-          BRANCH="auto-update/$(date +%Y-%m-%d)"
-          PR_NUMBER=$(gh pr list --head "$BRANCH" --json number --jq '.[0].number')
+          PR_NUMBER=$(gh pr list --head auto-update --state open --json number --jq '.[0].number')
           if [ -n "$PR_NUMBER" ]; then
             gh pr merge --merge --auto "$PR_NUMBER"
           fi
