@@ -77,7 +77,7 @@
       "port-version": 0
     },
     "py-click": {
-      "baseline": "8.3.3",
+      "baseline": "8.4.0",
       "port-version": 0
     },
     "py-contourpy": {
@@ -89,7 +89,7 @@
       "port-version": 0
     },
     "py-cryptography": {
-      "baseline": "47.0.0",
+      "baseline": "48.0.0",
       "port-version": 0
     },
     "py-cycler": {
@@ -125,7 +125,7 @@
       "port-version": 0
     },
     "py-fonttools": {
-      "baseline": "4.62.1",
+      "baseline": "4.63.0",
       "port-version": 0
     },
     "py-gast": {
@@ -157,7 +157,7 @@
       "port-version": 0
     },
     "py-idna": {
-      "baseline": "3.13",
+      "baseline": "3.15",
       "port-version": 0
     },
     "py-installer": {
@@ -205,7 +205,7 @@
       "port-version": 0
     },
     "py-lxml": {
-      "baseline": "6.1.0",
+      "baseline": "6.1.1",
       "port-version": 0
     },
     "py-markupsafe": {
@@ -217,7 +217,7 @@
       "port-version": 1
     },
     "py-maturin": {
-      "baseline": "1.13.1",
+      "baseline": "1.13.3",
       "port-version": 0
     },
     "py-meson": {
@@ -225,7 +225,7 @@
       "port-version": 0
     },
     "py-narwhals": {
-      "baseline": "2.20.0",
+      "baseline": "2.21.2",
       "port-version": 0
     },
     "py-networkx": {
@@ -237,8 +237,8 @@
       "port-version": 0
     },
     "py-numpy": {
-      "baseline": "2.4.4",
-      "port-version": 1
+      "baseline": "2.4.6",
+      "port-version": 0
     },
     "py-owslib": {
       "baseline": "0.35.0",
@@ -249,7 +249,7 @@
       "port-version": 0
     },
     "py-pandas": {
-      "baseline": "3.0.2",
+      "baseline": "3.0.3",
       "port-version": 0
     },
     "py-pathspec": {
@@ -261,7 +261,7 @@
       "port-version": 1
     },
     "py-pip": {
-      "baseline": "26.1",
+      "baseline": "26.1.1",
       "port-version": 0
     },
     "py-pip-system-certs": {
@@ -309,11 +309,11 @@
       "port-version": 0
     },
     "py-pydantic": {
-      "baseline": "2.13.3",
-      "port-version": 1
+      "baseline": "2.13.4",
+      "port-version": 0
     },
     "py-pydantic-core": {
-      "baseline": "2.46.3",
+      "baseline": "2.46.4",
       "port-version": 0
     },
     "py-pyogrio": {
@@ -381,7 +381,7 @@
       "port-version": 0
     },
     "py-requests": {
-      "baseline": "2.33.1",
+      "baseline": "2.34.2",
       "port-version": 0
     },
     "py-requests-kerberos": {
@@ -449,7 +449,7 @@
       "port-version": 1
     },
     "py-trove-classifiers": {
-      "baseline": "2026.4.28.13",
+      "baseline": "2026.5.7.17",
       "port-version": 0
     },
     "py-typing-extensions": {
@@ -465,7 +465,7 @@
       "port-version": 0
     },
     "py-urllib3": {
-      "baseline": "2.6.3",
+      "baseline": "2.7.0",
       "port-version": 0
     },
     "py-versioneer": {
