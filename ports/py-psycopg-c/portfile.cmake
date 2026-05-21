@@ -10,9 +10,6 @@ if(VCPKG_TARGET_IS_WINDOWS)
   vcpkg_add_to_path("${CURRENT_INSTALLED_DIR}/tools/libpq")
   set(ENV{PG_CONFIG} "${CURRENT_INSTALLED_DIR}/tools/libpq/pg_config.exe")
 else()
-  # libpq's vcpkg_copy_tools() call has no DESTINATION argument, so pg_config
-  # lands at tools/libpq/pg_config (NOT tools/libpq/bin/pg_config). Match the
-  # Windows branch above.
   vcpkg_add_to_path("${CURRENT_INSTALLED_DIR}/tools/libpq")
   set(ENV{PG_CONFIG} "${CURRENT_INSTALLED_DIR}/tools/libpq/pg_config")
 endif()
