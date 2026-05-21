@@ -6,11 +6,15 @@ vcpkg_from_pythonhosted(
 )
 
 if(VCPKG_TARGET_IS_WINDOWS)
+  # vcpkg's libxml2 may be installed as libxml2.lib (shared) or libxml2s.lib (static)
+  # depending on the triplet. Resolve the actual name.
+  find_library(LIBXML2_LIB NAMES libxml2 libxml2s xml2 PATHS "${CURRENT_INSTALLED_DIR}/lib" NO_DEFAULT_PATH REQUIRED)
+  get_filename_component(LIBXML2_NAME "${LIBXML2_LIB}" NAME_WE)
   file(WRITE "${SOURCE_PATH}/setup.cfg" "
 [build_ext]
 include_dirs=${CURRENT_INSTALLED_DIR}/include;${CURRENT_INSTALLED_DIR}/include/libxml2
 library_dirs=${CURRENT_INSTALLED_DIR}/lib
-libraries=libxml2
+libraries=${LIBXML2_NAME}
 ")
 endif()
 
