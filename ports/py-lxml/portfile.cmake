@@ -10,10 +10,20 @@ if(VCPKG_TARGET_IS_WINDOWS)
   # depending on the triplet. Resolve the actual name.
   find_library(LIBXML2_LIB NAMES libxml2 libxml2s xml2 PATHS "${CURRENT_INSTALLED_DIR}/lib" NO_DEFAULT_PATH REQUIRED)
   get_filename_component(LIBXML2_NAME "${LIBXML2_LIB}" NAME_WE)
+
+  # lxml's setupinfo.py hardcodes 'zlib' as a Windows link library, but the
+  # current microsoft/vcpkg zlib port (madler/zlib cmake build) installs the
+  # Windows import lib as `z.lib` (dynamic) / `zs.lib` (static)
+  find_library(ZLIB_RELEASE NAMES z zs zlib PATHS "${CURRENT_INSTALLED_DIR}/lib" NO_DEFAULT_PATH REQUIRED)
+  set(LXML_LIB_SHIM_DIR "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-lib-shim")
+  file(REMOVE_RECURSE "${LXML_LIB_SHIM_DIR}")
+  file(MAKE_DIRECTORY "${LXML_LIB_SHIM_DIR}")
+  configure_file("${ZLIB_RELEASE}" "${LXML_LIB_SHIM_DIR}/zlib.lib" COPYONLY)
+
   file(WRITE "${SOURCE_PATH}/setup.cfg" "
 [build_ext]
 include_dirs=${CURRENT_INSTALLED_DIR}/include;${CURRENT_INSTALLED_DIR}/include/libxml2
-library_dirs=${CURRENT_INSTALLED_DIR}/lib
+library_dirs=${LXML_LIB_SHIM_DIR};${CURRENT_INSTALLED_DIR}/lib
 libraries=${LIBXML2_NAME}
 ")
 endif()
