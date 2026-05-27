@@ -1,0 +1,41 @@
+--- a/setup.py
++++ b/setup.py
+@@ -79,8 +79,16 @@
+         self.build_ext = build_ext
+         self.pg_config_exe = self.build_ext.pg_config
+         if not self.pg_config_exe:
+-            self.pg_config_exe = self.autodetect_pg_config_path()
++            self.pg_config_exe = (
++                os.environ.get("PSYCOPG2_PG_CONFIG")
++                or self.autodetect_pg_config_path()
++            )
+         if self.pg_config_exe is None:
++            # If both directories are supplied via the environment, the
++            # missing pg_config is not fatal: query() will use them.
++            if (os.environ.get("PSYCOPG2_PG_INCLUDEDIR")
++                    and os.environ.get("PSYCOPG2_PG_LIBDIR")):
++                return
+             sys.stderr.write("""
+ Error: pg_config executable not found.
+ 
+@@ -104,6 +112,20 @@
+     def query(self, attr_name, *, empty_ok=False):
+         """Spawn the pg_config executable, querying for the given config
+         name, and return the printed value, sanitized. """
++        env_map = {
++            "includedir": "PSYCOPG2_PG_INCLUDEDIR",
++            "includedir-server": "PSYCOPG2_PG_INCLUDEDIR",
++            "libdir": "PSYCOPG2_PG_LIBDIR",
++        }
++        envvar = env_map.get(attr_name)
++        if envvar and os.environ.get(envvar):
++            return os.environ[envvar]
++        if self.pg_config_exe is None:
++            if empty_ok:
++                return ""
++            raise Warning(
++                f"pg_config --{attr_name}: set PSYCOPG2_PG_INCLUDEDIR/"
++                f"PSYCOPG2_PG_LIBDIR or make pg_config available")
+         try:
+             pg_config_process = subprocess.run(
+                 [self.pg_config_exe, "--" + attr_name],
