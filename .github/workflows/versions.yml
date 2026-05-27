@@ -34,6 +34,7 @@ jobs:
         if: success()
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.PAT }}
           commit-message: 'ci: format vcpkg configuration'
           title: 'ci: format vcpkg configuration'
           body: 'Automated formatting of `vcpkg.json` files via `vcpkg format-manifest`.'
@@ -86,6 +87,7 @@ jobs:
         if: steps.filter-versions.outputs.versions == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
+          token: ${{ secrets.PAT }}
           commit-message: Update versions.db
           title: Update versions.db
           body: |
