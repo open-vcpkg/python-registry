@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
           fetch-depth: 2
+          token: ${{ secrets.PAT }}
 
       - name: Setup vcpkg
         uses: ./.github/actions/setup-vcpkg
@@ -29,22 +29,15 @@ jobs:
         run: |
           vcpkg format-manifest --all $(find . -name "vcpkg.json")
 
-      - name: Open PR for vcpkg.json formatting
-        id: format-pr
-        if: success()
-        uses: peter-evans/create-pull-request@v7
+      - name: Commit format vcpkg.json
+        id: format-commit
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          token: ${{ secrets.PAT }}
-          commit-message: 'ci: format vcpkg configuration'
-          title: 'ci: format vcpkg configuration'
-          body: 'Automated formatting of `vcpkg.json` files via `vcpkg format-manifest`.'
-          branch: create-pull-request/format-vcpkg-json
-          delete-branch: true
-          add-paths: |
-            **/vcpkg.json
+          commit_message: 'ci: format vcpkg configuration'
+          file_pattern: '**/vcpkg.json'
 
       - name: Exit 1 if vcpkg configuration changes have been detected
-        if: steps.format-pr.outputs.pull-request-operation != ''
+        if: steps.format-commit.outputs.changes_detected == 'true'
         run: |
           exit 1
 
@@ -77,22 +70,10 @@ jobs:
             versions:
               - versions/**
 
-      - name: Get last commit message
+      - name: Commit versions
         if: steps.filter-versions.outputs.versions == 'true'
-        id: last-commit-message
-        run: |
-          echo "msg=$(git log -1 --pretty=%s)" >> $GITHUB_OUTPUT
-
-      - name: Open PR for versions update
-        if: steps.filter-versions.outputs.versions == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          token: ${{ secrets.PAT }}
-          commit-message: Update versions.db
-          title: Update versions.db
-          body: |
-            Automated update of `versions/` triggered by:
-            > ${{ steps.last-commit-message.outputs.msg }}
-          branch: create-pull-request/update-versions-db
-          delete-branch: true
-          add-paths: versions/**
+          file_pattern: versions/*
+          commit_message: Update versions.db
+          skip_fetch: true
