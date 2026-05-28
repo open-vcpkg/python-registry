@@ -1,4 +1,4 @@
-name: Auto update python packages
+name: 🤖 Auto update ports
 
 on:
   workflow_dispatch:

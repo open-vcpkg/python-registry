@@ -1,4 +1,4 @@
-name: Auto update version db
+name: 📚 Auto update version db
 
 on:
   push:
