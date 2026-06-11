@@ -34,6 +34,10 @@ library_dirs=${CURRENT_INSTALLED_DIR}/lib
 libraries=gdal
 ")
 
+vcpkg_apply_patches(SOURCE_PATH "${SOURCE_PATH}"
+    PATCHES no-gdal-config-autodetect.patch
+)
+
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE.txt")

@@ -1,0 +1,27 @@
+--- a/setup.py
++++ b/setup.py
+@@ -233,24 +233,6 @@
+         log.info("GDAL API version obtained from gdal-config: %s", gdalversion)
+
+ if "clean" not in sys.argv:
+-    try:
+-        fill_gdal_build_options_using_gdal_config()
+-    except Exception as e:
+-        # Try to run gdalinfo and get information from that instead
+-        log.info(
+-            "Failed to use gdal-config, trying to run gdalinfo instead (gdal-config error of type %s: %s)",
+-            type(e).__name__,
+-            e,
+-        )
+-        try:
+-            fill_gdal_build_options_using_executable(executable_name="gdalinfo")
+-        except Exception as e:
+-            log.warning(
+-                "Failed to get options via both gdal-config and gdalinfo. (gdalinfo error of type %s: %s)",
+-                type(e).__name__,
+-                e,
+-            )
+-
+     # Get GDAL API version from environment variable.
+     if 'GDAL_VERSION' in os.environ:
+         gdalversion = os.environ['GDAL_VERSION']
