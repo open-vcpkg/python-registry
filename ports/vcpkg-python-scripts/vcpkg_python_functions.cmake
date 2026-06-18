@@ -183,10 +183,14 @@ function(vcpkg_python_test_import)
   configure_file("${CURRENT_HOST_INSTALLED_DIR}/share/vcpkg-python-scripts/import_test.py.in" "${CURRENT_BUILDTREES_DIR}/import_test.py" @ONLY)
 
   vcpkg_backup_env_variables(VARS DYLD_LIBRARY_PATH LD_LIBRARY_PATH)
+  # The module under test may depend on shared libraries from other ports,
+  # which live in CURRENT_INSTALLED_DIR/lib, not just this port's own
+  # CURRENT_PACKAGES_DIR/lib. Add both so the dynamic loader can resolve
+  # transitive deps (e.g. gdal's _gdal.so needs libqhull_r.so from qhull).
   if(VCPKG_TARGET_IS_OSX)
-    set(ENV{DYLD_LIBRARY_PATH} "${CURRENT_PACKAGES_DIR}/lib")
+    set(ENV{DYLD_LIBRARY_PATH} "${CURRENT_PACKAGES_DIR}/lib:${CURRENT_INSTALLED_DIR}/lib")
   elseif(VCPKG_TARGET_IS_LINUX)
-    set(ENV{LD_LIBRARY_PATH} "${CURRENT_PACKAGES_DIR}/lib")
+    set(ENV{LD_LIBRARY_PATH} "${CURRENT_PACKAGES_DIR}/lib:${CURRENT_INSTALLED_DIR}/lib")
   endif()
 
   vcpkg_execute_required_process(COMMAND "${z_vcpkg_python_func_python}" "${CURRENT_BUILDTREES_DIR}/import_test.py"
