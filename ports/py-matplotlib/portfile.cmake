@@ -37,7 +37,7 @@ list(JOIN meson_opts "\",\""  meson_opts)
 vcpkg_python_build_and_install_wheel(
   SOURCE_PATH "${SOURCE_PATH}"
   OPTIONS 
-    --config-json "{\"setup-args\" : [\"-Dsystem-freetype=true\", \"-Dsystem-qhull=true\", \"${meson_opts}\" ] }"
+    --config-json "{\"setup-args\" : [\"-Dsystem-freetype=true\", \"-Dsystem-qhull=true\", \"-Dsystem-libraqm=true\", \"${meson_opts}\" ] }"
 )
 
 file(GLOB licenses "${SOURCE_PATH}/LICENSE/*")
