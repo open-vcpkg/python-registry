@@ -2,7 +2,7 @@
 +++ b/setup.py
 @@ -233,24 +233,6 @@
          log.info("GDAL API version obtained from gdal-config: %s", gdalversion)
-
+ 
  if "clean" not in sys.argv:
 -    try:
 -        fill_gdal_build_options_using_gdal_config()
