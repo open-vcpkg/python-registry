@@ -5,6 +5,8 @@ vcpkg_from_pythonhosted(
     PACKAGE_NAME    narwhals
     VERSION         ${VERSION}
     SHA512          88406008edb73f64fee1bc5ccdf9aeb9bd5e6a59c97955095b5540a19dd34f5c2813bba322285d8a2bf82706420e432efd1bacf59922d778f9069cab3ad99ae1
+    PATCHES
+        use-hatchling.patch
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
