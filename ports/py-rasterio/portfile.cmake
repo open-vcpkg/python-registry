@@ -6,6 +6,8 @@ vcpkg_from_pythonhosted(
     VERSION         ${VERSION}
     SHA512          ce20ca32ea3e4a887dd2fc18ccae4abe774d3754bc560b8a85228d9df58a829e12a04c2dcca2aadbcf888afd6dd89fe5a66cb0ec8231c9d996002ca47742e053
     FILENAME        rasterio
+    PATCHES
+        no-gdal-config-autodetect.patch
 )
 # Read GDAL version from SPDX metadata
 set(GDAL_SPDX "${CURRENT_INSTALLED_DIR}/share/gdal/vcpkg.spdx.json")

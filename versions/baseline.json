@@ -374,7 +374,7 @@
     },
     "py-rasterio": {
       "baseline": "1.5.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-referencing": {
       "baseline": "0.37.0",
