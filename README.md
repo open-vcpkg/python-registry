@@ -21,6 +21,11 @@ Enable registries feature flag in vcpkg and write a vcpkg-configuration.json fil
 }
 ```
 
+## Documentation
+
+- [Build backend handling](docs/build-backends.md) — how `uv_build` and similar
+  backends are handled (and why some ports patch `pyproject.toml`).
+
 ## Contributions
 
 Contributions are very welcome 👋
