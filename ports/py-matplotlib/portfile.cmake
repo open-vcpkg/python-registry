@@ -40,6 +40,11 @@ if(VCPKG_TARGET_IS_WINDOWS)
   # which vcpkg's default "nodownload" blocks.
   list(TRANSFORM meson_opts REPLACE "^nodownload$" "default")
   set(raqm_setup_arg "")
+  # The libraqm wrap ships a diff_files patch that meson applies during
+  # subproject setup; it needs a `patch` (or `git`) tool, which is otherwise
+  # absent from the build PATH. Provide patch.exe from msys2.
+  vcpkg_acquire_msys(MSYS_ROOT PACKAGES patch)
+  vcpkg_add_to_path("${MSYS_ROOT}/usr/bin")
 else()
   # On macOS/Linux, link the system (shared) libraqm; it is resolved at import
   # time via (DY)LD_LIBRARY_PATH. Building the static subprojects here trips a
