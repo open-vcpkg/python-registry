@@ -68,4 +68,27 @@ __version_tuple__ = version_tuple = (${version_major}, ${version_minor}, ${versi
 
 set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
 
+if(VCPKG_TARGET_IS_WINDOWS)
+  # ft2font.pyd links freetype and libraqm (-> harfbuzz, fribidi) dynamically.
+  # CPython loads .pyd modules with LOAD_WITH_ALTERED_SEARCH_PATH, which only
+  # reliably resolves *direct* dependencies via os.add_dll_directory; the
+  # transitive raqm -> harfbuzz/fribidi chain is not found on the vcpkg bin
+  # dir. Co-locate the runtime DLLs next to the extension (as upstream
+  # matplotlib wheels do via delvewheel) so the whole chain resolves.
+  file(GLOB matplotlib_runtime_dlls
+    "${CURRENT_INSTALLED_DIR}/bin/raqm*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/harfbuzz*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/fribidi*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/freetype*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/brotlicommon*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/brotlidec*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/bz2*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/libpng*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/zlib*.dll"
+  )
+  file(COPY ${matplotlib_runtime_dlls}
+       DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/matplotlib")
+  set(VCPKG_POLICY_MISMATCHED_NUMBER_OF_BINARIES enabled)
+endif()
+
 vcpkg_python_test_import(MODULE "matplotlib")
