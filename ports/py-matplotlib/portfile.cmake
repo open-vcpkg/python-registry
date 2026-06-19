@@ -39,6 +39,11 @@ if(VCPKG_TARGET_IS_WINDOWS)
   # to load. Allow meson to fetch the pinned (SHA-verified) wrap subprojects,
   # which vcpkg's default "nodownload" blocks.
   list(TRANSFORM meson_opts REPLACE "^nodownload$" "default")
+  # Force the wrap subprojects to build as static libraries so they are linked
+  # directly into ft2font.pyd. Otherwise meson builds them as shared DLLs and
+  # meson-python refuses to bundle internal shared libs into a Windows wheel
+  # ("allow-windows-internal-shared-libs").
+  list(APPEND meson_opts "-Ddefault_library=static")
   set(raqm_setup_arg "")
   # The libraqm wrap ships a diff_files patch that meson applies during
   # subproject setup; it needs a `patch` (or `git`) tool, which is otherwise

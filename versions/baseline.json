@@ -214,7 +214,7 @@
     },
     "py-matplotlib": {
       "baseline": "3.11.0",
-      "port-version": 6
+      "port-version": 7
     },
     "py-maturin": {
       "baseline": "1.14.1",
