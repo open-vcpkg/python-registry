@@ -69,25 +69,42 @@ __version_tuple__ = version_tuple = (${version_major}, ${version_minor}, ${versi
 set(VCPKG_POLICY_EMPTY_INCLUDE_FOLDER enabled)
 
 if(VCPKG_TARGET_IS_WINDOWS)
+  set(matplotlib_pkg_dir "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/matplotlib")
+
+  # --- diagnostics: log what ft2font actually imports and which DLLs exist ---
+  file(GLOB ft2font_pyd "${matplotlib_pkg_dir}/ft2font*.pyd")
+  find_program(DUMPBIN_EXE NAMES dumpbin)
+  if(DUMPBIN_EXE AND ft2font_pyd)
+    execute_process(
+      COMMAND "${DUMPBIN_EXE}" /dependents ${ft2font_pyd}
+      OUTPUT_VARIABLE ft2font_deps
+      ERROR_VARIABLE ft2font_deps)
+    message(STATUS "ft2font.pyd dependents:\n${ft2font_deps}")
+  endif()
+  file(GLOB installed_bin_dlls "${CURRENT_INSTALLED_DIR}/bin/*.dll")
+  message(STATUS "installed/bin DLLs: ${installed_bin_dlls}")
+
   # ft2font.pyd links freetype and libraqm (-> harfbuzz, fribidi) dynamically.
   # CPython loads .pyd modules with LOAD_WITH_ALTERED_SEARCH_PATH, which only
   # reliably resolves *direct* dependencies via os.add_dll_directory; the
   # transitive raqm -> harfbuzz/fribidi chain is not found on the vcpkg bin
   # dir. Co-locate the runtime DLLs next to the extension (as upstream
   # matplotlib wheels do via delvewheel) so the whole chain resolves.
+  # Patterns are broad (*name*) to catch any lib-prefixed names.
   file(GLOB matplotlib_runtime_dlls
-    "${CURRENT_INSTALLED_DIR}/bin/raqm*.dll"
-    "${CURRENT_INSTALLED_DIR}/bin/harfbuzz*.dll"
-    "${CURRENT_INSTALLED_DIR}/bin/fribidi*.dll"
-    "${CURRENT_INSTALLED_DIR}/bin/freetype*.dll"
-    "${CURRENT_INSTALLED_DIR}/bin/brotlicommon*.dll"
-    "${CURRENT_INSTALLED_DIR}/bin/brotlidec*.dll"
-    "${CURRENT_INSTALLED_DIR}/bin/bz2*.dll"
-    "${CURRENT_INSTALLED_DIR}/bin/libpng*.dll"
-    "${CURRENT_INSTALLED_DIR}/bin/zlib*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/*raqm*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/*harfbuzz*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/*fribidi*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/*freetype*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/*brotli*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/*bz2*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/*png*.dll"
+    "${CURRENT_INSTALLED_DIR}/bin/*zlib*.dll"
   )
-  file(COPY ${matplotlib_runtime_dlls}
-       DESTINATION "${CURRENT_PACKAGES_DIR}/${PYTHON3_SITE}/matplotlib")
+  message(STATUS "matplotlib bundling DLLs: ${matplotlib_runtime_dlls}")
+  if(matplotlib_runtime_dlls)
+    file(COPY ${matplotlib_runtime_dlls} DESTINATION "${matplotlib_pkg_dir}")
+  endif()
   set(VCPKG_POLICY_MISMATCHED_NUMBER_OF_BINARIES enabled)
 endif()
 
