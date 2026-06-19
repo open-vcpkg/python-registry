@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    beautifulsoup4
     VERSION         ${VERSION}
-    SHA512          5c535534045cac033112b7c060539d6b5a748620df9d15fb4c719708cde263ac506f3734a39156681633942543dc555af51c619dae430311a8889204d8ee325e
+    SHA512          ccf07cac23ca52f50802b3d6271b42c1367022e2bc409b1be2924bbbd274cebce3b5afde1c1c4f253802b7a58f907cb60a29d347ae2765c33ce85bec9dcc473c
     FILENAME        beautifulsoup4
 )
 

@@ -1,9 +1,9 @@
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    "scikit-learn"
+    PACKAGE_NAME    scikit-learn
     VERSION         ${VERSION}
-    SHA512          956a1aececf0c219793653e2bb94a9a490f3edc87617dd8f1b16f9eeba53da874fb280fb9650cc8505a85d7c3a188aa72b8e675404519d57f666c44cbfc21ca4
-    FILENAME        "scikit_learn"
+    SHA512          b818bd768f9aca19396351c695330af4f55eef2794047963f357958c9e5bd428cb5e9b7578747845d583c29744659e0c2252aa9ece29c115b697da9b181736fb
+    FILENAME        scikit_learn
 )
 
 set(VCPKG_PYTHON3_BASEDIR "${CURRENT_HOST_INSTALLED_DIR}/tools/python3")

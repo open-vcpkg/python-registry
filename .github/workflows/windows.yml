@@ -65,7 +65,12 @@ jobs:
       - name: 🌋 Build
         shell: bash
         run: |
-            VCPKG_OPTIONS="--overlay-ports=${{ github.workspace }}/ports --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build"
+            VCPKG_OPTIONS="\
+              --overlay-ports=${{ github.workspace }}/ports \
+              --triplet=${{ matrix.triplet }} \
+              --x-buildtrees-root=C:/vcpkg-build \
+              --clean-buildtrees-after-build \
+              --clean-packages-after-build"
             ./vcpkg/vcpkg.exe install \
             $VCPKG_OPTIONS \
             'py-pyqt6[qtdeclarative,qt3d]' \
@@ -107,7 +112,12 @@ jobs:
         shell: bash
         if: matrix.triplet == 'x64-windows'
         run: |
-            VCPKG_OPTIONS="--overlay-ports=${{ github.workspace }}/ports --triplet=${{ matrix.triplet }} --x-buildtrees-root=C:/vcpkg-build"
+            VCPKG_OPTIONS="\
+              --overlay-ports=${{ github.workspace }}/ports \
+              --triplet=${{ matrix.triplet }} \
+              --x-buildtrees-root=C:/vcpkg-build \
+              --clean-buildtrees-after-build \
+              --clean-packages-after-build"
 
             # lapack problems on arm64
             ./vcpkg/vcpkg.exe install $VCPKG_OPTIONS py-scipy

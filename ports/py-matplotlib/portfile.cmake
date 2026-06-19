@@ -2,7 +2,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO matplotlib/matplotlib
     REF v${VERSION}
-    SHA512 57b40503929c838737a853c884e7e2bab2be2a0f710bed29a3902f9e1ebbbd434ac9047c2a2ddabe02ab15e1c95bf324b4cdbf0fda96d53f13381b97031d1f2d
+    SHA512 160ebdcf335c8fb051405f61b05c613047e0164b93b1ff9ea6a8e23dc205af98e6459fab4f067ae3ea826572bc740e768111ecf40aaa28418860ac0861eed881
     HEAD_REF main
 )
 
@@ -32,12 +32,37 @@ list(APPEND meson_opts
   "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}"
 )
 
+if(VCPKG_TARGET_IS_WINDOWS)
+  # On Windows, statically link libraqm (+ its harfbuzz and sheenbidi deps)
+  # into ft2font.pyd, matching upstream matplotlib wheels. This avoids a
+  # fragile shared raqm-0.dll -> harfbuzz/fribidi runtime DLL chain that fails
+  # to load. Allow meson to fetch the pinned (SHA-verified) wrap subprojects,
+  # which vcpkg's default "nodownload" blocks.
+  list(TRANSFORM meson_opts REPLACE "^nodownload$" "default")
+  # Force the wrap subprojects to build as static libraries so they are linked
+  # directly into ft2font.pyd. Otherwise meson builds them as shared DLLs and
+  # meson-python refuses to bundle internal shared libs into a Windows wheel
+  # ("allow-windows-internal-shared-libs").
+  list(APPEND meson_opts "-Ddefault_library=static")
+  set(raqm_setup_arg "")
+  # The libraqm wrap ships a diff_files patch that meson applies during
+  # subproject setup; it needs a `patch` (or `git`) tool, which is otherwise
+  # absent from the build PATH. Provide patch.exe from msys2.
+  vcpkg_acquire_msys(MSYS_ROOT PACKAGES patch)
+  vcpkg_add_to_path("${MSYS_ROOT}/usr/bin")
+else()
+  # On macOS/Linux, link the system (shared) libraqm; it is resolved at import
+  # time via (DY)LD_LIBRARY_PATH. Building the static subprojects here trips a
+  # duplicate LC_RPATH in the meson-python wheel that breaks dlopen on macOS.
+  set(raqm_setup_arg "\"-Dsystem-libraqm=true\", ")
+endif()
+
 list(JOIN meson_opts "\",\""  meson_opts)
 
 vcpkg_python_build_and_install_wheel(
   SOURCE_PATH "${SOURCE_PATH}"
   OPTIONS 
-    --config-json "{\"setup-args\" : [\"-Dsystem-freetype=true\", \"-Dsystem-qhull=true\", \"${meson_opts}\" ] }"
+    --config-json "{\"setup-args\" : [\"-Dsystem-freetype=true\", \"-Dsystem-qhull=true\", ${raqm_setup_arg}\"${meson_opts}\" ] }"
 )
 
 file(GLOB licenses "${SOURCE_PATH}/LICENSE/*")
