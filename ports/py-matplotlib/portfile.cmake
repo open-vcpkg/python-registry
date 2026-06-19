@@ -32,19 +32,27 @@ list(APPEND meson_opts
   "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}"
 )
 
-# Build libraqm (and its harfbuzz + sheenbidi deps) as static meson subprojects
-# so they are linked directly into ft2font.pyd, matching upstream matplotlib
-# wheels. This avoids a fragile shared raqm-0.dll -> harfbuzz/fribidi runtime
-# DLL chain that fails to load on Windows. Allow meson to fetch the pinned
-# (SHA-verified) wrap subprojects, which vcpkg's default "nodownload" blocks.
-list(TRANSFORM meson_opts REPLACE "^nodownload$" "default")
+if(VCPKG_TARGET_IS_WINDOWS)
+  # On Windows, statically link libraqm (+ its harfbuzz and sheenbidi deps)
+  # into ft2font.pyd, matching upstream matplotlib wheels. This avoids a
+  # fragile shared raqm-0.dll -> harfbuzz/fribidi runtime DLL chain that fails
+  # to load. Allow meson to fetch the pinned (SHA-verified) wrap subprojects,
+  # which vcpkg's default "nodownload" blocks.
+  list(TRANSFORM meson_opts REPLACE "^nodownload$" "default")
+  set(raqm_setup_arg "")
+else()
+  # On macOS/Linux, link the system (shared) libraqm; it is resolved at import
+  # time via (DY)LD_LIBRARY_PATH. Building the static subprojects here trips a
+  # duplicate LC_RPATH in the meson-python wheel that breaks dlopen on macOS.
+  set(raqm_setup_arg "\"-Dsystem-libraqm=true\", ")
+endif()
 
 list(JOIN meson_opts "\",\""  meson_opts)
 
 vcpkg_python_build_and_install_wheel(
   SOURCE_PATH "${SOURCE_PATH}"
   OPTIONS 
-    --config-json "{\"setup-args\" : [\"-Dsystem-freetype=true\", \"-Dsystem-qhull=true\", \"${meson_opts}\" ] }"
+    --config-json "{\"setup-args\" : [\"-Dsystem-freetype=true\", \"-Dsystem-qhull=true\", ${raqm_setup_arg}\"${meson_opts}\" ] }"
 )
 
 file(GLOB licenses "${SOURCE_PATH}/LICENSE/*")
