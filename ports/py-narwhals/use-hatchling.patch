@@ -1,7 +1,6 @@
 --- a/pyproject.toml
 +++ b/pyproject.toml
-@@ -1,7 +1,10 @@
- # Reference: https://packaging.python.org/en/latest/guides/writing-pyproject-toml
+@@ -2,4 +2,7 @@
  [build-system]
 -requires = ["uv_build>=0.11.0,<0.12.0"]
 -build-backend = "uv_build"
@@ -11,5 +10,3 @@
 +[tool.hatch.build.targets.wheel]
 +packages = ["src/narwhals"]
  
- [project]
- name = "narwhals"
