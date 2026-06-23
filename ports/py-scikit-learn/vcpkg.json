@@ -1,7 +1,7 @@
 {
   "name": "py-scikit-learn",
   "version": "1.9.0",
-  "port-version": 1,
+  "port-version": 2,
   "description": "A set of python modules for machine learning and data mining.",
   "homepage": "https://scikit-learn.org/",
   "license": "BSD-3-Clause",
@@ -15,6 +15,7 @@
       "name": "py-meson",
       "host": true
     },
+    "py-narwhals",
     "py-numpy",
     "py-packaging",
     "py-scipy",
