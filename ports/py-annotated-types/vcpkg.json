@@ -1,6 +1,7 @@
 {
   "name": "py-annotated-types",
   "version": "0.7.0",
+  "port-version": 1,
   "description": "Reusable constraints for Python types, using PEP 593 Annotated",
   "homepage": "https://github.com/pydantic/annotated-types",
   "license": null,
@@ -13,6 +14,9 @@
       "name": "py-setuptools",
       "host": true
     },
-    "vcpkg-python-scripts"
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
   ]
 }

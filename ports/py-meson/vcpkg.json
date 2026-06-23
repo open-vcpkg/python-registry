@@ -1,7 +1,7 @@
 {
   "name": "py-meson",
   "version": "0.20.0",
-  "port-version": 1,
+  "port-version": 2,
   "description": "Meson PEP 517 Python build backend",
   "homepage": "https://github.com/mesonbuild/meson-python",
   "license": "MIT",
@@ -21,7 +21,10 @@
         "extensions"
       ]
     },
-    "vcpkg-python-scripts",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    },
     {
       "name": "vcpkg-tool-meson",
       "host": true

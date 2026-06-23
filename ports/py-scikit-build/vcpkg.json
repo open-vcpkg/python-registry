@@ -1,6 +1,7 @@
 {
   "name": "py-scikit-build",
   "version": "0.19.1",
+  "port-version": 3,
   "description": "Improved build system generator for Python C/C++/Fortran/Cython extensions",
   "homepage": "https://github.com/scikit-build/scikit-build",
   "dependencies": [
@@ -12,6 +13,8 @@
       "name": "py-hatch-vcs",
       "host": true
     },
+    "py-packaging",
+    "py-setuptools",
     {
       "name": "py-setuptools",
       "host": true
@@ -20,6 +23,10 @@
       "name": "py-setuptools-scm",
       "host": true
     },
-    "vcpkg-python-scripts"
+    "py-wheel",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
   ]
 }
