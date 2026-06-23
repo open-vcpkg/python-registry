@@ -24,9 +24,6 @@ vcpkg_from_pythonhosted(
     PACKAGE_NAME    scipy
     VERSION         ${VERSION}
     SHA512          77ae3bb64f08fa3f204a8187b4f319f73daea60b8b05bad5564c3809a33aeb091160a6d3e2c7b8e4a5a35202c6c9c3a7d8bc0098332c4c01623eb06ba613bbf3
-    PATCHES
-      "no-fortran.patch"
-      "interpolate.patch"
 )
 
 vcpkg_replace_string("${SOURCE_PATH}/meson.build" "py3.dependency()" "dependency('python-3.${PYTHON3_VERSION_MINOR}', method : 'pkg-config')")
@@ -38,6 +35,7 @@ z_vcpkg_setup_pkgconfig_path(CONFIG "RELEASE")
 list(APPEND meson_opts
   "--python.platlibdir" 
   "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}"
+  "-D_without-fortran=true"
 )
 
 # needed so pythran can be found
