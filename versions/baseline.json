@@ -394,7 +394,7 @@
     },
     "py-scikit-build": {
       "baseline": "0.19.1",
-      "port-version": 2
+      "port-version": 3
     },
     "py-scikit-build-core": {
       "baseline": "0.12.2",
