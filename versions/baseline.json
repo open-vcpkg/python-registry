@@ -237,7 +237,7 @@
       "port-version": 0
     },
     "py-numpy": {
-      "baseline": "2.4.6",
+      "baseline": "2.5.0",
       "port-version": 0
     },
     "py-owslib": {
@@ -405,8 +405,8 @@
       "port-version": 0
     },
     "py-scipy": {
-      "baseline": "1.17.1",
-      "port-version": 1
+      "baseline": "1.18.0",
+      "port-version": 0
     },
     "py-semantic-version": {
       "baseline": "2.10.0",
@@ -485,7 +485,7 @@
       "port-version": 0
     },
     "py-wrapt": {
-      "baseline": "2.2.1",
+      "baseline": "2.2.2",
       "port-version": 0
     },
     "pybind11": {
