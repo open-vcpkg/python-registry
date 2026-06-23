@@ -222,7 +222,7 @@
     },
     "py-meson": {
       "baseline": "0.20.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-narwhals": {
       "baseline": "2.22.1",
