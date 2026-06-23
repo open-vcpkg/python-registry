@@ -402,7 +402,7 @@
     },
     "py-scikit-learn": {
       "baseline": "1.9.0",
-      "port-version": 1
+      "port-version": 2
     },
     "py-scipy": {
       "baseline": "1.18.0",
