@@ -422,7 +422,7 @@
     },
     "py-setuptools-scm": {
       "baseline": "9.2.2",
-      "port-version": 2
+      "port-version": 3
     },
     "py-shapely": {
       "baseline": "2.1.2",
@@ -506,7 +506,7 @@
     },
     "vcpkg-tool-mercurial": {
       "baseline": "2023-06-27",
-      "port-version": 0
+      "port-version": 1
     },
     "vcpkg-tool-rust": {
       "baseline": "2025-03-13",
