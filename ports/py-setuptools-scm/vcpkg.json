@@ -1,6 +1,7 @@
 {
   "name": "py-setuptools-scm",
   "version": "9.2.2",
+  "port-version": 1,
   "description": "the blessed package to manage your versions by scm tags",
   "homepage": "https://github.com/pypa/setuptools_scm",
   "license": "MIT",
@@ -13,8 +14,6 @@
       "name": "py-setuptools",
       "host": true
     },
-    "py-tomli",
-    "py-typing-extensions",
     "vcpkg-get-python-packages",
     "vcpkg-python-scripts",
     {
