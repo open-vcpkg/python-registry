@@ -1,9 +1,14 @@
 {
   "name": "py-owslib",
   "version": "0.36.0",
+  "port-version": 1,
   "description": "OGC Web Service utility library",
   "homepage": "https://owslib.readthedocs.io/",
   "dependencies": [
+    "py-dateutil",
+    "py-lxml",
+    "py-pyyaml",
+    "py-requests",
     {
       "name": "py-setuptools",
       "host": true
