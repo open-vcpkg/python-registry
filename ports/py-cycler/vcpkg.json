@@ -1,6 +1,7 @@
 {
   "name": "py-cycler",
   "version": "0.12.1",
+  "port-version": 1,
   "description": "cycler: composable cycles",
   "homepage": "https://matplotlib.org/cycler/",
   "license": "BSD-3-Clause",
@@ -10,6 +11,9 @@
       "host": true
     },
     "python3",
-    "vcpkg-python-scripts"
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
   ]
 }

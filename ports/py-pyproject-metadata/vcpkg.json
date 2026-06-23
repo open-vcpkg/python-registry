@@ -1,6 +1,7 @@
 {
   "name": "py-pyproject-metadata",
   "version": "0.11.0",
+  "port-version": 1,
   "description": "PEP 621 metadata parsing",
   "homepage": "https://pep621.readthedocs.io/",
   "license": "MIT",
@@ -9,6 +10,9 @@
       "name": "py-setuptools",
       "host": true
     },
-    "vcpkg-python-scripts"
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
   ]
 }

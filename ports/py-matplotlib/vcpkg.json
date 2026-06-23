@@ -1,7 +1,7 @@
 {
   "name": "py-matplotlib",
   "version": "3.11.0",
-  "port-version": 7,
+  "port-version": 8,
   "description": "Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.",
   "homepage": "https://matplotlib.org/stable/",
   "license": null,
@@ -34,7 +34,10 @@
       ]
     },
     "qhull",
-    "vcpkg-python-scripts",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    },
     {
       "name": "vcpkg-tool-meson",
       "host": true

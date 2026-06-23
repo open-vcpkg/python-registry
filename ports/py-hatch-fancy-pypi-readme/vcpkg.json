@@ -1,6 +1,7 @@
 {
   "name": "py-hatch-fancy-pypi-readme",
   "version": "25.1.0",
+  "port-version": 1,
   "description": "Fancy PyPI READMEs with Hatch",
   "homepage": "https://github.com/hynek/hatch-fancy-pypi-readme",
   "dependencies": [
@@ -9,6 +10,9 @@
       "name": "py-setuptools",
       "host": true
     },
-    "vcpkg-python-scripts"
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
   ]
 }
