@@ -1,6 +1,7 @@
 {
   "name": "py-meson",
   "version": "0.20.0",
+  "port-version": 1,
   "description": "Meson PEP 517 Python build backend",
   "homepage": "https://github.com/mesonbuild/meson-python",
   "license": "MIT",
@@ -11,10 +12,6 @@
     },
     {
       "name": "py-setuptools",
-      "host": true
-    },
-    {
-      "name": "py-tomli",
       "host": true
     },
     {
