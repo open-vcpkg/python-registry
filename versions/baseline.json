@@ -242,7 +242,7 @@
     },
     "py-owslib": {
       "baseline": "0.36.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-packaging": {
       "baseline": "26.2",
