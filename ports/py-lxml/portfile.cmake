@@ -26,6 +26,12 @@ include_dirs=${CURRENT_INSTALLED_DIR}/include;${CURRENT_INSTALLED_DIR}/include/l
 library_dirs=${LXML_LIB_SHIM_DIR};${CURRENT_INSTALLED_DIR}/lib
 libraries=${LIBXML2_NAME}
 ")
+else()
+  # On Linux/macOS lxml's setup detects libxml2/libxslt via pkg-config. Point it
+  # at vcpkg's installed .pc files (libxml-2.0.pc, libxslt.pc, libexslt.pc) so it
+  # builds against the vcpkg-provided libraries instead of relying on system
+  # development packages (which are not present in clean CI images).
+  set(ENV{PKG_CONFIG_PATH} "${CURRENT_INSTALLED_DIR}/lib/pkgconfig:$ENV{PKG_CONFIG_PATH}")
 endif()
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
