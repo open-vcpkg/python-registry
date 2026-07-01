@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: 🐣 Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: 🐩 Install CMake and Ninja
         uses: lukka/get-cmake@latest
@@ -54,7 +54,7 @@ jobs:
           sudo ln -sf $HOMEBREW_PREFIX/Cellar/gcc@${GCC_VERSION}/*/lib/gcc/${GCC_VERSION} /usr/local/gfortran/lib
 
       - name: 🐕 Checkout vcpkg
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: microsoft/vcpkg
           ref: cd61e1e26a038e82d6550a3ebbe0fbbfe7da78e3 # TODO: can we have a canonical baseline for tests?
