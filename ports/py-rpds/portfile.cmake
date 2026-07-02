@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    rpds-py
     VERSION         ${VERSION}
-    SHA512          0819dde9d6f18b1436efedd2fcfe7e16745f1c38914781abab051ff5b3cd6aa008e9564f5736f860a3fe908340eecf2890150f395f4b5d83125ccc604dfd8f9a
+    SHA512          e3b2874d3f430f805fa4ea2f2fe4e22f02b4491a68aa068644c43aa5949423496cd80a1e6a9f0bd7aec3dafccdac0b177334f53eb077d077e0e56a2e43710d09
     FILENAME        rpds_py
 )
 
