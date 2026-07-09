@@ -69,15 +69,15 @@
       "port-version": 1
     },
     "py-cffi": {
-      "baseline": "2.0.0",
+      "baseline": "2.1.0",
       "port-version": 0
     },
     "py-charset-normalizer": {
-      "baseline": "3.4.7",
+      "baseline": "3.4.9",
       "port-version": 0
     },
     "py-click": {
-      "baseline": "8.4.1",
+      "baseline": "8.4.2",
       "port-version": 0
     },
     "py-contourpy": {
@@ -97,7 +97,7 @@
       "port-version": 1
     },
     "py-cython": {
-      "baseline": "3.2.5",
+      "baseline": "3.2.8",
       "port-version": 0
     },
     "py-dateutil": {
@@ -137,7 +137,7 @@
       "port-version": 0
     },
     "py-geopandas": {
-      "baseline": "1.1.3",
+      "baseline": "1.1.4",
       "port-version": 0
     },
     "py-gpep517": {
@@ -153,7 +153,7 @@
       "port-version": 0
     },
     "py-hatchling": {
-      "baseline": "1.30.1",
+      "baseline": "1.31.0",
       "port-version": 0
     },
     "py-idna": {
@@ -201,7 +201,7 @@
       "port-version": 0
     },
     "py-libpysal": {
-      "baseline": "4.14.1",
+      "baseline": "4.15.0",
       "port-version": 0
     },
     "py-lxml": {
@@ -225,8 +225,8 @@
       "port-version": 2
     },
     "py-narwhals": {
-      "baseline": "2.22.1",
-      "port-version": 1
+      "baseline": "2.23.0",
+      "port-version": 0
     },
     "py-networkx": {
       "baseline": "3.6.1",
@@ -237,8 +237,8 @@
       "port-version": 0
     },
     "py-numpy": {
-      "baseline": "2.5.0",
-      "port-version": 1
+      "baseline": "2.5.1",
+      "port-version": 0
     },
     "py-owslib": {
       "baseline": "0.36.0",
@@ -249,7 +249,7 @@
       "port-version": 2
     },
     "py-pandas": {
-      "baseline": "3.0.3",
+      "baseline": "3.0.4",
       "port-version": 0
     },
     "py-pathspec": {
@@ -257,8 +257,8 @@
       "port-version": 0
     },
     "py-pillow": {
-      "baseline": "12.2.0",
-      "port-version": 2
+      "baseline": "12.3.0",
+      "port-version": 0
     },
     "py-pip": {
       "baseline": "26.1.2",
@@ -317,7 +317,7 @@
       "port-version": 0
     },
     "py-pyogrio": {
-      "baseline": "0.12.1",
+      "baseline": "0.13.0",
       "port-version": 0
     },
     "py-pyparsing": {
@@ -333,8 +333,8 @@
       "port-version": 0
     },
     "py-pyproject-metadata": {
-      "baseline": "0.11.0",
-      "port-version": 1
+      "baseline": "0.12.1",
+      "port-version": 0
     },
     "py-pyqt-builder": {
       "baseline": "1.19.1",
@@ -393,7 +393,7 @@
       "port-version": 0
     },
     "py-rpds": {
-      "baseline": "2026.5.1",
+      "baseline": "2026.6.3",
       "port-version": 0
     },
     "py-scikit-build": {
@@ -401,8 +401,8 @@
       "port-version": 3
     },
     "py-scikit-build-core": {
-      "baseline": "0.12.2",
-      "port-version": 1
+      "baseline": "1.0.1",
+      "port-version": 0
     },
     "py-scikit-learn": {
       "baseline": "1.9.0",
@@ -417,11 +417,11 @@
       "port-version": 1
     },
     "py-setuptools": {
-      "baseline": "82.0.1",
+      "baseline": "83.0.0",
       "port-version": 0
     },
     "py-setuptools-rust": {
-      "baseline": "1.12.1",
+      "baseline": "1.13.0",
       "port-version": 0
     },
     "py-setuptools-scm": {
@@ -457,8 +457,8 @@
       "port-version": 0
     },
     "py-typing-extensions": {
-      "baseline": "4.15.0",
-      "port-version": 1
+      "baseline": "4.16.0",
+      "port-version": 0
     },
     "py-typing-inspection": {
       "baseline": "0.4.2",

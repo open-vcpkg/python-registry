@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    hatchling
     VERSION         ${VERSION}
-    SHA512          8bbe680cb56b82bb50829e7fa049fe9839bc443a671fe7cd679596b892b5c241163b5b943b65146423e3b76b7e5e6594406f65d2dc70721650885b17842f7755
+    SHA512          e48055970b0b6d0752d704c89c660d11530c2594c24eb8d4660b6ae53d79fa8170b0306481c8a8bca3d06feb4476bcdd79d9c1a5dea3c7a4f84a762ecfd5c594
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    libpysal
     VERSION         ${VERSION}
-    SHA512          eaab85b8ce83bccd9cb22671f5e27a1db245db850bef7e80f37ce667876bbed91224a20d72ee976f9fbdc9d3f3a90d58343bde1cd0b6f9a2fe1bbf5abd23be3a
+    SHA512          bee3332ad719184972148f9aa1421c6c6fd5bfb5b705e1ac557d319471149722d7ceba0d39e2adc827d15d7728613801f97976337d0317af5fe7ef223546f1e7
     FILENAME        libpysal
 )
 
