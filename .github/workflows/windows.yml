@@ -44,7 +44,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: microsoft/vcpkg
-          ref: cd61e1e26a038e82d6550a3ebbe0fbbfe7da78e3 # TODO: can we have a canonical baseline for tests?
+          ref: 40f3c709db80acf154ac4b17a1f83c564ebd022e # TODO: can we have a canonical baseline for tests?
           path: vcpkg
           fetch-depth: 1
 
