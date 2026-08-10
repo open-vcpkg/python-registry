@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    narwhals
     VERSION         ${VERSION}
-    SHA512          72752d620db34fd24fc048adb38ad8988ca88303d4bde18e4a47c21b3924699316141d7d111b2bf578a2a0f55568f9cb3112e27aad485684e53908c4698f2b3e
+    SHA512          701deb53fb9b188b37bdf1549fbd1b3092fceac161e0b073b0b7c5c57b55ab8cb1d766df3eefa43639ebb49bf0f768a37487779f20d74df77156e823a0bae94b
     PATCHES
         use-hatchling.patch
 )

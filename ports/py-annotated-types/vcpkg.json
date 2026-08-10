@@ -1,7 +1,6 @@
 {
   "name": "py-annotated-types",
-  "version": "0.7.0",
-  "port-version": 1,
+  "version": "0.8.0",
   "description": "Reusable constraints for Python types, using PEP 593 Annotated",
   "homepage": "https://github.com/pydantic/annotated-types",
   "license": null,

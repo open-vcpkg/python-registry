@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    cffi
     VERSION         ${VERSION}
-    SHA512          44c5e434580ba5ff1f2c23bbabe959d49e77a8823648eaab631c46f175c2b4ff3b96d5976b66ef33b93537674a1ba01e355cf836d40de7e2c0557a51f5fc7959
+    SHA512          60299646ae72e54155a3ca220f00a2b2fee079276a01ff13e30fb6af0d19b07fb4ae539af55e4704ce2081d34c4a3079ef43c0dcb2fe854f835f8441b348f7c5
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

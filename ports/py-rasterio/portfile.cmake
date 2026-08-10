@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    rasterio
     VERSION         ${VERSION}
-    SHA512          ce20ca32ea3e4a887dd2fc18ccae4abe774d3754bc560b8a85228d9df58a829e12a04c2dcca2aadbcf888afd6dd89fe5a66cb0ec8231c9d996002ca47742e053
+    SHA512          b0b669223c596691b67598aabb58140170725c68f7f00331381c8a4037ad1fbc41e8523f50349083149455261577540e3943f60bf41444655c5253445e8cb54f
     FILENAME        rasterio
     PATCHES
         no-gdal-config-autodetect.patch
