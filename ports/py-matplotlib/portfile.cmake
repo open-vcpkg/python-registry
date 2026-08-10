@@ -2,7 +2,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO matplotlib/matplotlib
     REF v${VERSION}
-    SHA512 160ebdcf335c8fb051405f61b05c613047e0164b93b1ff9ea6a8e23dc205af98e6459fab4f067ae3ea826572bc740e768111ecf40aaa28418860ac0861eed881
+    SHA512 fe3f00d6ddc30cf0e9a8a316d8e4025778eec07ccd133d28ab6c8f6f295b39bd0238767f3cd6ad1282adc8e6cad79fbae8e188ad1e99b3f0248a9e1f289fe1b1
     HEAD_REF main
 )
 

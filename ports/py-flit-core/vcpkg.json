@@ -1,6 +1,6 @@
 {
   "name": "py-flit-core",
-  "version": "4.0.0",
+  "version": "4.0.2",
   "description": "Simplified packaging of Python modules",
   "homepage": "https://flit.pypa.io",
   "license": "BSD-3-Clause",
