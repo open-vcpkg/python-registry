@@ -485,8 +485,8 @@
       "port-version": 0
     },
     "py-wheel": {
-      "baseline": "0.47.0",
-      "port-version": 2
+      "baseline": "0.48.0",
+      "port-version": 0
     },
     "py-wrapt": {
       "baseline": "2.3.0",
