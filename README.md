@@ -29,3 +29,13 @@ Enable registries feature flag in vcpkg and write a vcpkg-configuration.json fil
 ## Contributions
 
 Contributions are very welcome 👋
+
+### Using pre-commit hook to automatically format files
+
+Install and enable pre-commit in your local git clone to automatically
+have manifest files formatted whenever you `git commit` something.
+
+```console
+pip install pre-commit
+pre-commit install
+```
