@@ -53,11 +53,16 @@ jobs:
           sudo mkdir -p /usr/local/gfortran
           sudo ln -sf $HOMEBREW_PREFIX/Cellar/gcc@${GCC_VERSION}/*/lib/gcc/${GCC_VERSION} /usr/local/gfortran/lib
 
+      - name: 🔖 Read vcpkg baseline
+        id: vcpkg-baseline
+        shell: bash
+        run: echo "ref=$(cat .github/vcpkg-baseline.txt)" >> "$GITHUB_OUTPUT"
+
       - name: 🐕 Checkout vcpkg
         uses: actions/checkout@v7
         with:
           repository: microsoft/vcpkg
-          ref: 9e593bb18ea69cc5095e012465dcd675a822ed0d # 2026.07.29 - TODO: can we have a canonical baseline for tests?
+          ref: ${{ steps.vcpkg-baseline.outputs.ref }}
           path: vcpkg
           fetch-depth: 1
 
