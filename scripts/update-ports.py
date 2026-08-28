@@ -259,6 +259,18 @@ def get_latest_tag(repo, ref_pattern, headers):
     return None, None
 
 
+def is_auto_update_enabled(dir_name, portfile_content):
+    """Ports named py-* are updated by default, others must opt in.
+
+    An opt-in port carries a marker comment in its portfile:
+
+        # AUTO_UPDATE
+    """
+    if dir_name.startswith("py-"):
+        return True
+    return re.search(r"#\s*AUTO_UPDATE\b", portfile_content) is not None
+
+
 def get_version_key(vcpkg_data):
     """Return the version field a manifest uses (version, version-date, ...)."""
     for key in ("version-date", "version-semver", "version-string"):
@@ -277,146 +289,145 @@ def update_github_ports():
     if token:
         headers["Authorization"] = f"token {token}"
 
-    for root, dirs, files in os.walk(PORTS_DIR):
-        for dir_name in dirs:
-            if not dir_name.startswith("py-"):
-                continue
+    for dir_name in sorted(os.listdir(PORTS_DIR)):
+        dir_path = os.path.join(PORTS_DIR, dir_name)
+        portfile_cmake = os.path.join(dir_path, "portfile.cmake")
+        vcpkg_json = os.path.join(dir_path, "vcpkg.json")
 
-            dir_path = os.path.join(root, dir_name)
-            portfile_cmake = os.path.join(dir_path, "portfile.cmake")
-            vcpkg_json = os.path.join(dir_path, "vcpkg.json")
+        if not os.path.isfile(portfile_cmake):
+            continue
 
-            if not os.path.isfile(portfile_cmake):
-                continue
+        with open(portfile_cmake, "r") as f:
+            portfile_content = f.read()
 
-            with open(portfile_cmake, "r") as f:
-                portfile_content = f.read()
+        if "vcpkg_from_github" not in portfile_content:
+            continue
 
-            if "vcpkg_from_github" not in portfile_content:
-                continue
+        if not is_auto_update_enabled(dir_name, portfile_content):
+            continue
 
-            # Parse REPO
-            repo_match = re.search(r"REPO\s+(\S+)", portfile_content)
-            if not repo_match:
-                print(f"  Could not find REPO in {portfile_cmake}")
-                continue
-            repo = repo_match.group(1)
+        # Parse REPO
+        repo_match = re.search(r"REPO\s+(\S+)", portfile_content)
+        if not repo_match:
+            print(f"  Could not find REPO in {portfile_cmake}")
+            continue
+        repo = repo_match.group(1)
 
-            # Parse REF (strip optional quotes)
-            ref_match = re.search(r'REF\s+"?(\S+?)"?\s*$', portfile_content, re.MULTILINE)
-            if not ref_match:
-                print(f"  Could not find REF in {portfile_cmake}")
-                continue
-            ref_value = ref_match.group(1)
+        # Parse REF (strip optional quotes)
+        ref_match = re.search(r'REF\s+"?(\S+?)"?\s*$', portfile_content, re.MULTILINE)
+        if not ref_match:
+            print(f"  Could not find REF in {portfile_cmake}")
+            continue
+        ref_value = ref_match.group(1)
 
-            # Skip commit-hash based REFs
-            if re.match(r"^[0-9a-f]{40}$", ref_value):
-                print(f"Skipping {dir_name}: commit-hash based REF")
-                unchanged.append(dir_name)
-                continue
+        # Skip commit-hash based REFs
+        if re.match(r"^[0-9a-f]{40}$", ref_value):
+            print(f"Skipping {dir_name}: commit-hash based REF")
+            unchanged.append(dir_name)
+            continue
 
-            # Determine REF pattern
-            uses_version_var = "${VERSION}" in ref_value
+        # Determine REF pattern
+        uses_version_var = "${VERSION}" in ref_value
 
-            print(f"Updating {dir_name} (GitHub: {repo})")
+        print(f"Updating {dir_name} (GitHub: {repo})")
 
-            # Read vcpkg.json early to determine version scheme
-            if not os.path.isfile(vcpkg_json):
-                print(f"  vcpkg.json not found for {dir_name}")
-                failed.append(f"{dir_name} (vcpkg.json not found)")
-                continue
+        # Read vcpkg.json early to determine version scheme
+        if not os.path.isfile(vcpkg_json):
+            print(f"  vcpkg.json not found for {dir_name}")
+            failed.append(f"{dir_name} (vcpkg.json not found)")
+            continue
 
-            with open(vcpkg_json, "r") as f:
-                vcpkg_data = json.load(f)
+        with open(vcpkg_json, "r") as f:
+            vcpkg_data = json.load(f)
 
-            is_version_date = "version-date" in vcpkg_data
+        is_version_date = "version-date" in vcpkg_data
 
-            # Build ref_pattern for get_latest_tag
-            if uses_version_var:
-                ref_pattern = ref_value
-            elif is_version_date:
-                # For version-date ports with literal REFs, match date-like tags (YYYY.MM.DD)
-                ref_pattern = r"(\d{4}\.\d{2}\.\d{2})"
-            else:
-                ref_pattern = None
+        # Build ref_pattern for get_latest_tag
+        if uses_version_var:
+            ref_pattern = ref_value
+        elif is_version_date:
+            # For version-date ports with literal REFs, match date-like tags (YYYY.MM.DD)
+            ref_pattern = r"(\d{4}\.\d{2}\.\d{2})"
+        else:
+            ref_pattern = None
 
-            tag_name, version_from_tag = get_latest_tag(repo, ref_pattern, headers)
+        tag_name, version_from_tag = get_latest_tag(repo, ref_pattern, headers)
 
-            if not tag_name:
-                print(f"  No matching tag found for {repo}")
-                failed.append(f"{dir_name} (no matching tag)")
-                continue
+        if not tag_name:
+            print(f"  No matching tag found for {repo}")
+            failed.append(f"{dir_name} (no matching tag)")
+            continue
 
-            # Determine version key and new version value
-            version_key = get_version_key(vcpkg_data)
-            if is_version_date:
-                new_version = version_from_tag.replace(".", "-")
-            else:
-                new_version = version_from_tag
+        # Determine version key and new version value
+        version_key = get_version_key(vcpkg_data)
+        if is_version_date:
+            new_version = version_from_tag.replace(".", "-")
+        else:
+            new_version = version_from_tag
 
-            # vcpkg relaxed versions only allow digits and dots
-            if version_key in ("version", "version-semver") and not re.fullmatch(
-                r"\d+(\.\d+)*", new_version
-            ):
-                print(
-                    f"  Skipping {dir_name}: version '{new_version}' is not a valid vcpkg relaxed version"
-                )
-                unchanged.append(dir_name)
-                continue
+        # vcpkg relaxed versions only allow digits and dots
+        if version_key in ("version", "version-semver") and not re.fullmatch(
+            r"\d+(\.\d+)*", new_version
+        ):
+            print(
+                f"  Skipping {dir_name}: version '{new_version}' is not a valid vcpkg relaxed version"
+            )
+            unchanged.append(dir_name)
+            continue
 
-            current_version = vcpkg_data.get(version_key)
-            if current_version == new_version:
-                print(f"  {dir_name} is already up to date ({current_version}). Skipping...")
-                unchanged.append(dir_name)
-                continue
+        current_version = vcpkg_data.get(version_key)
+        if current_version == new_version:
+            print(f"  {dir_name} is already up to date ({current_version}). Skipping...")
+            unchanged.append(dir_name)
+            continue
 
-            print(f"  Updating {dir_name} from {current_version} to {new_version} (tag: {tag_name})")
+        print(f"  Updating {dir_name} from {current_version} to {new_version} (tag: {tag_name})")
 
-            # Download tarball and compute SHA512
-            tarball_url = f"https://github.com/{repo}/archive/{tag_name}.tar.gz"
-            resp = requests.get(tarball_url, stream=True)
-            if resp.status_code != 200:
-                print(f"  Failed to download tarball from {tarball_url} (status {resp.status_code})")
-                failed.append(f"{dir_name} (download failed)")
-                continue
+        # Download tarball and compute SHA512
+        tarball_url = f"https://github.com/{repo}/archive/{tag_name}.tar.gz"
+        resp = requests.get(tarball_url, stream=True)
+        if resp.status_code != 200:
+            print(f"  Failed to download tarball from {tarball_url} (status {resp.status_code})")
+            failed.append(f"{dir_name} (download failed)")
+            continue
 
-            temp_file_path = os.path.join(dir_path, "temp_source_file")
-            with open(temp_file_path, "wb") as f:
-                for chunk in resp.iter_content(chunk_size=8192):
-                    f.write(chunk)
-            sha512_checksum = calculate_sha512(temp_file_path)
-            os.remove(temp_file_path)
-            print(f"  Calculated SHA512 checksum: {sha512_checksum}")
+        temp_file_path = os.path.join(dir_path, "temp_source_file")
+        with open(temp_file_path, "wb") as f:
+            for chunk in resp.iter_content(chunk_size=8192):
+                f.write(chunk)
+        sha512_checksum = calculate_sha512(temp_file_path)
+        os.remove(temp_file_path)
+        print(f"  Calculated SHA512 checksum: {sha512_checksum}")
 
-            # Update vcpkg.json
-            vcpkg_data.pop("port-version", None)
-            vcpkg_data[version_key] = new_version
-            with open(vcpkg_json, "w") as f:
-                json.dump(vcpkg_data, f, indent=2)
-            print(f"  Updated {vcpkg_json} to version {new_version}")
+        # Update vcpkg.json
+        vcpkg_data.pop("port-version", None)
+        vcpkg_data[version_key] = new_version
+        with open(vcpkg_json, "w") as f:
+            json.dump(vcpkg_data, f, indent=2)
+        print(f"  Updated {vcpkg_json} to version {new_version}")
 
-            # Update portfile.cmake SHA512 (only the first occurrence,
-            # which corresponds to the main source archive)
+        # Update portfile.cmake SHA512 (only the first occurrence,
+        # which corresponds to the main source archive)
+        new_portfile_content = re.sub(
+            r"(SHA512\s+)[a-f0-9]+",
+            f"\\g<1>{sha512_checksum}",
+            portfile_content,
+            count=1,
+        )
+
+        # If REF is a literal value (not ${VERSION}), update it too
+        if not uses_version_var:
             new_portfile_content = re.sub(
-                r"(SHA512\s+)[a-f0-9]+",
-                f"\\g<1>{sha512_checksum}",
-                portfile_content,
+                r'(REF\s+"?)\S+"?',
+                f"\\g<1>{tag_name}",
+                new_portfile_content,
                 count=1,
             )
 
-            # If REF is a literal value (not ${VERSION}), update it too
-            if not uses_version_var:
-                new_portfile_content = re.sub(
-                    r'(REF\s+"?)\S+"?',
-                    f"\\g<1>{tag_name}",
-                    new_portfile_content,
-                    count=1,
-                )
-
-            with open(portfile_cmake, "w") as f:
-                f.write(new_portfile_content)
-            print(f"  Updated {portfile_cmake}")
-            updated.append(f"{dir_name} ({current_version} -> {new_version})")
+        with open(portfile_cmake, "w") as f:
+            f.write(new_portfile_content)
+        print(f"  Updated {portfile_cmake}")
+        updated.append(f"{dir_name} ({current_version} -> {new_version})")
 
     return updated, failed, unchanged
 
@@ -425,8 +436,10 @@ def update_distfile_ports():
     """Update ports that fetch a release archive with vcpkg_download_distfile.
 
     Such ports have no REPO to derive the upstream from, so the GitHub
-    repository holding the releases is declared in the portfile:
+    repository holding the releases is declared in the portfile alongside the
+    # AUTO_UPDATE opt-in:
 
+        # AUTO_UPDATE
         # GITHUB_REPO apache/arrow
         # GITHUB_REF  apache-arrow-${VERSION}
 
@@ -456,7 +469,11 @@ def update_distfile_ports():
         if "vcpkg_download_distfile" not in portfile_content:
             continue
 
-        # Only ports that opt in by declaring their upstream repository
+        if not is_auto_update_enabled(dir_name, portfile_content):
+            continue
+
+        # Without GITHUB_REPO there is no upstream to query; such ports are
+        # not managed here (PyPI sdists are handled by update_pypi_ports)
         repo_match = re.search(r"#\s*GITHUB_REPO\s+(\S+)", portfile_content)
         if not repo_match:
             continue
