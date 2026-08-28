@@ -1,0 +1,22 @@
+{
+  "name": "py-mypy-extensions",
+  "version": "1.1.0",
+  "description": "Experimental type system extensions for programs checked with mypy",
+  "homepage": "https://github.com/python/mypy_extensions",
+  "license": "MIT",
+  "dependencies": [
+    {
+      "name": "py-flit-core",
+      "host": true
+    },
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
