@@ -1,11 +1,11 @@
 {
   "default": {
     "arrow": {
-      "baseline": "23.0.1",
-      "port-version": 1
+      "baseline": "25.0.1",
+      "port-version": 0
     },
     "gdal": {
-      "baseline": "3.12.4",
+      "baseline": "3.13.3",
       "port-version": 0
     },
     "py-adbc-driver-manager": {
