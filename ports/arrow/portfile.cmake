@@ -221,6 +221,38 @@ if("python" IN_LIST FEATURES)
         set(py_build_type "Release")
     endif()
 
+    # pyarrow's find_package(Python3Alt) asks CMake for Development.Module and
+    # NumPy. CMake derives the header and library locations from the
+    # interpreter's prefix, but the python3 port moves them: headers go to
+    # include/python<X.Y> and, on Windows, the import library is lib/pythonXY.lib.
+    # Left alone this fails with
+    #   Could NOT find Python3 (missing: Development.Module NumPy)
+    # so point CMake straight at them.
+    execute_process(
+        COMMAND "${PYTHON3_VENV}" -c "import sys; print('%d.%d' % sys.version_info[:2])"
+        OUTPUT_VARIABLE py_version
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        COMMAND_ERROR_IS_FATAL ANY
+    )
+    execute_process(
+        COMMAND "${PYTHON3_VENV}" -c "import numpy; print(numpy.get_include())"
+        OUTPUT_VARIABLE py_numpy_include
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        COMMAND_ERROR_IS_FATAL ANY
+    )
+
+    set(py_hints
+        "--config-settings=cmake.define.Python3_EXECUTABLE=${PYTHON3_VENV}"
+        "--config-settings=cmake.define.Python3_INCLUDE_DIR=${CURRENT_INSTALLED_DIR}/include/python${py_version}"
+        "--config-settings=cmake.define.Python3_NumPy_INCLUDE_DIR=${py_numpy_include}"
+    )
+    if(VCPKG_TARGET_IS_WINDOWS)
+        # Extension modules must link the import library on Windows
+        string(REPLACE "." "" py_version_nodot "${py_version}")
+        list(APPEND py_hints
+            "--config-settings=cmake.define.Python3_LIBRARY=${CURRENT_INSTALLED_DIR}/lib/python${py_version_nodot}.lib")
+    endif()
+
     # The extensions land in <prefix>/lib/python3.X/site-packages/pyarrow, so
     # libarrow in <prefix>/lib is three directories up. Only a relative RPATH
     # survives vcpkg moving the staged tree into the installed one
@@ -231,6 +263,7 @@ if("python" IN_LIST FEATURES)
         --prefix "${CURRENT_PACKAGES_DIR}"
         "--config-settings=cmake.build-type=${py_build_type}"
         "--config-settings=cmake.define.PYARROW_INSTALL_RPATH=@loader_path/../../../"
+        ${py_hints}
         LOGNAME "python-build-${TARGET_TRIPLET}"
         WORKING_DIRECTORY "${SOURCE_PATH}/python"
     )
