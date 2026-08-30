@@ -1,8 +1,11 @@
+# AUTO_UPDATE
+# GITHUB_REPO apache/arrow
+# GITHUB_REF  apache-arrow-${VERSION}
 vcpkg_download_distfile(
     ARCHIVE_PATH
     URLS "https://archive.apache.org/dist/arrow/arrow-${VERSION}/apache-arrow-${VERSION}.tar.gz"
     FILENAME apache-arrow-${VERSION}.tar.gz
-    SHA512 c687e50dfcdbf7e0e39710224360d35d9aa734452b3a47adc8c101f3019b6b4116310c05b9f3cd0a5ed4ad9b7bd8fb88edb70e79b3cbd413a57e5e35e4554a6c
+    SHA512 e75d384b4fdbdee29eb8ad29800c731843e7c43d90a43995dcc77390008723537791e212333178625345c718bdab15e0f3d8c12aa86b336918598c7d3fefc6e5
 )
 vcpkg_extract_source_archive(
     SOURCE_PATH
@@ -13,6 +16,7 @@ vcpkg_extract_source_archive(
         0004-android-datetime.patch
         0005-cmake-msvcruntime.patch
         0007-use-vcpkg-mimalloc.patch
+        0008-pyarrow-relative-rpath.patch
 )
 
 # Check cpp/cmake_modules/DefineOptions.cmake for option dependencies -
@@ -199,16 +203,67 @@ if("python" IN_LIST FEATURES)
     set(ENV{SETUPTOOLS_SCM_PRETEND_VERSION} "${VERSION}")
     set(ENV{PDM_BUILD_SCM_VERSION} "${VERSION}")
 
-    if (NOT "${VCPKG_BUILD_TYPE}" STREQUAL "")
-        set(build_opts "--build-type=${VCPKG_BUILD_TYPE}")
+    # Since 24.0.0 pyarrow has no setup.py and builds with scikit-build-core,
+    # which shells out to cmake and ninja. When it cannot find them on PATH it
+    # asks pip for them as wheels instead, which --no-index forbids, so hand it
+    # the ones vcpkg already has. The generator has no config-setting; CMake
+    # picks it up from the environment.
+    vcpkg_find_acquire_program(NINJA)
+    get_filename_component(ninja_dir "${NINJA}" DIRECTORY)
+    get_filename_component(cmake_dir "${CMAKE_COMMAND}" DIRECTORY)
+    vcpkg_add_to_path(PREPEND "${ninja_dir}")
+    vcpkg_add_to_path(PREPEND "${cmake_dir}")
+    set(ENV{CMAKE_GENERATOR} "Ninja")
+
+    if(VCPKG_BUILD_TYPE STREQUAL "debug")
+        set(py_build_type "Debug")
     else()
-        set(build_opts "--build-type=release")
+        set(py_build_type "Release")
     endif()
 
+    # pyarrow's find_package(Python3Alt) asks CMake for Development.Module and
+    # NumPy. CMake derives the header and library locations from the
+    # interpreter's prefix, but the python3 port moves them: headers go to
+    # include/python<X.Y> and, on Windows, the import library is lib/pythonXY.lib.
+    # Left alone this fails with
+    #   Could NOT find Python3 (missing: Development.Module NumPy)
+    # so point CMake straight at them.
+    execute_process(
+        COMMAND "${PYTHON3_VENV}" -c "import sys; print('%d.%d' % sys.version_info[:2])"
+        OUTPUT_VARIABLE py_version
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        COMMAND_ERROR_IS_FATAL ANY
+    )
+    execute_process(
+        COMMAND "${PYTHON3_VENV}" -c "import numpy; print(numpy.get_include())"
+        OUTPUT_VARIABLE py_numpy_include
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        COMMAND_ERROR_IS_FATAL ANY
+    )
+
+    set(py_hints
+        "--config-settings=cmake.define.Python3_EXECUTABLE=${PYTHON3_VENV}"
+        "--config-settings=cmake.define.Python3_INCLUDE_DIR=${CURRENT_INSTALLED_DIR}/include/python${py_version}"
+        "--config-settings=cmake.define.Python3_NumPy_INCLUDE_DIR=${py_numpy_include}"
+    )
+    if(VCPKG_TARGET_IS_WINDOWS)
+        # Extension modules must link the import library on Windows
+        string(REPLACE "." "" py_version_nodot "${py_version}")
+        list(APPEND py_hints
+            "--config-settings=cmake.define.Python3_LIBRARY=${CURRENT_INSTALLED_DIR}/lib/python${py_version_nodot}.lib")
+    endif()
+
+    # The extensions land in <prefix>/lib/python3.X/site-packages/pyarrow, so
+    # libarrow in <prefix>/lib is three directories up. Only a relative RPATH
+    # survives vcpkg moving the staged tree into the installed one
+    # (see 0008-pyarrow-relative-rpath.patch).
     vcpkg_execute_required_process(
-        COMMAND "${PYTHON3_VENV}" "setup.py"  
-        "build_ext" ${build_opts} "--cmake-generator" "Ninja" "--rpath" "@loader_path/../../../"
-        "install"  "--prefix" "${CURRENT_PACKAGES_DIR}" 
+        COMMAND "${PYTHON3_VENV}" -m pip install "${SOURCE_PATH}/python"
+        --no-build-isolation --no-deps --no-index
+        --prefix "${CURRENT_PACKAGES_DIR}"
+        "--config-settings=cmake.build-type=${py_build_type}"
+        "--config-settings=cmake.define.PYARROW_INSTALL_RPATH=@loader_path/../../../"
+        ${py_hints}
         LOGNAME "python-build-${TARGET_TRIPLET}"
         WORKING_DIRECTORY "${SOURCE_PATH}/python"
     )
