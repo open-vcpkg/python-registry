@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    plotly
     VERSION         ${VERSION}
-    SHA512          9e60016acac69a0f1428237d97b671319fb6a988b2d01c4c6efbe898bda5ea34f3db6310394e425260a889e291ac39c7a5c7ed65b60fb50256e366b4a5c172a5
+    SHA512          e095aace1cceb207a187ba1416c61e0b9df227fcb5b7291c12f770e5c0969bfdb911645ebc841ad5f898a41edd0f66118776f4f4a75656e6608566706a9ad68e
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

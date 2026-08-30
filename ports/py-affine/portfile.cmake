@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    affine
     VERSION         ${VERSION}
-    SHA512          37e5f2c1179c4e5a15997dfa6b399d1490e5647f672361acbdb2b681d83fcaaa8fc34114286ce1bfe5cfa0680e43b8eaef2a2e0eed47ddcd2e4462aa8aac77e3
+    SHA512          64f79e4305d2b38b51f083613c536f4cdd390ff1d4686fdd7859070f6b3b6c588c2730fc6f47c894c5e70aa7ce8dfeb04eea64c1354cce414937c238a009ce8d
     FILENAME        affine
 )
 
