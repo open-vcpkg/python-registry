@@ -26,6 +26,16 @@ jobs:
         run: |
           vcpkg format-manifest --all $(find . -name "vcpkg.json")
 
+      # format-manifest rewrites files in place and always exits 0, so the
+      # formatting is only really checked by looking at the working tree.
+      - name: Fail if manifests are not formatted
+        run: |
+          if [ -n "$(git status --porcelain -- '*vcpkg.json')" ]; then
+            git --no-pager diff -- '*vcpkg.json'
+            echo "::error::vcpkg.json files are not formatted. Run the 'Format vcpkg.json' command from this workflow locally and commit the result."
+            exit 1
+          fi
+
       - name: Check versions
         run: |
           for dir in ports/* ; do
@@ -33,3 +43,18 @@ jobs:
             --x-builtin-registry-versions-dir=./versions/ \
             --x-builtin-ports-root=./ports
           done
+
+      # Same story: x-add-version writes versions/ and exits 0 whether or not
+      # anything was missing. Without this the step checks nothing, and a port
+      # change merged without its version bump leaves the registry baseline
+      # pointing at the previous git-tree -- consumers then silently keep
+      # resolving the pre-change port. Uses git status rather than git diff so
+      # that a brand new versions/<x>-/<port>.json is caught as well.
+      - name: Fail if the version database is out of date
+        run: |
+          if [ -n "$(git status --porcelain -- versions/)" ]; then
+            git status --porcelain -- versions/
+            git --no-pager diff -- versions/
+            echo "::error::The version database is out of date. Run the 'Check versions' loop from this workflow locally and commit the changes under versions/."
+            exit 1
+          fi
