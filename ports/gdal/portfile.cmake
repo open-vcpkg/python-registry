@@ -11,6 +11,8 @@ vcpkg_from_github(
         libkml.patch
         sqlite3.diff
         target-is-valid.patch
+        # can be dropped at GDAL >= 3.14 (fixed upstream in f68c6ba6551f)
+        python-extension-args.patch
 )
 # `vcpkg clean` stumbles over one subdir
 file(REMOVE_RECURSE "${SOURCE_PATH}/autotest")
