@@ -1,6 +1,6 @@
 {
   "name": "py-joblib",
-  "version": "1.5.3",
+  "version": "1.6.0",
   "description": "Lightweight pipelining with Python functions.",
   "homepage": "https://joblib.readthedocs.io/",
   "license": "BSD-3-Clause",
