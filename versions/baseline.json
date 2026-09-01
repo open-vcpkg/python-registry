@@ -80,6 +80,10 @@
       "baseline": "8.5.0",
       "port-version": 0
     },
+    "py-cloudpickle": {
+      "baseline": "3.1.2",
+      "port-version": 0
+    },
     "py-contourpy": {
       "baseline": "1.3.3",
       "port-version": 0
@@ -178,7 +182,7 @@
     },
     "py-joblib": {
       "baseline": "1.6.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-jsonschema": {
       "baseline": "4.26.0",
