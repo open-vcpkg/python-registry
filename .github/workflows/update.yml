@@ -3,7 +3,7 @@ name: 🤖 Auto update ports
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 5 * * *"
+    - cron: "15 5 * * 1"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
