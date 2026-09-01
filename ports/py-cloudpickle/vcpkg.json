@@ -1,0 +1,14 @@
+{
+  "name": "py-cloudpickle",
+  "version": "3.1.2",
+  "description": "Pickler class to extend the standard pickle.Pickler functionality",
+  "homepage": "https://github.com/cloudpipe/cloudpickle",
+  "license": "BSD-3-Clause",
+  "dependencies": [
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
