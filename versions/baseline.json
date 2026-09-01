@@ -129,7 +129,7 @@
       "port-version": 0
     },
     "py-fonttools": {
-      "baseline": "4.63.0",
+      "baseline": "4.64.0",
       "port-version": 0
     },
     "py-gast": {
@@ -277,7 +277,7 @@
       "port-version": 1
     },
     "py-platformdirs": {
-      "baseline": "4.11.5",
+      "baseline": "4.11.6",
       "port-version": 0
     },
     "py-plotly": {
@@ -297,12 +297,12 @@
       "port-version": 0
     },
     "py-psycopg": {
-      "baseline": "3.3.4",
+      "baseline": "3.3.5",
       "port-version": 0
     },
     "py-psycopg-c": {
-      "baseline": "3.3.4",
-      "port-version": 4
+      "baseline": "3.3.5",
+      "port-version": 0
     },
     "py-psycopg2": {
       "baseline": "2.9.12",
