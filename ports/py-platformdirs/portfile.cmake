@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    platformdirs
     VERSION         ${VERSION}
-    SHA512          6238abd47f5d3ec6f5b87db98bc3a051e521594c280decf3f4f0403e2c43e07fa3b3802d40637b7414d322b8e0ed64853377b0b547a580654a3cbc198bd4f61e
+    SHA512          800732f452cb3a67622b6f633ccadeb008169c69fc5e5bf3e708455d53772f256c32b577f09be7cae16aa8e2d2c507fde5b3344ee0b1a0590cd9c7f51c861779
     FILENAME        platformdirs
 )
 
