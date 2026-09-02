@@ -277,7 +277,7 @@
       "port-version": 1
     },
     "py-platformdirs": {
-      "baseline": "4.11.6",
+      "baseline": "4.11.7",
       "port-version": 0
     },
     "py-plotly": {
