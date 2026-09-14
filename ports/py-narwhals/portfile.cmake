@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    narwhals
     VERSION         ${VERSION}
-    SHA512          225190b5e31f3fd5ac514527bd8dcb3c50ae7f4abd3620ae1cf5a28b5f88b5c115b590705eb3c63de97dd8c5e172fd892286c3f896439815a3a83c076c18b3ba
+    SHA512          39f9273e785565b39aa4e34602e7484002dd515deb47ce457d48f1365b047bcd8c53cf66f8cd6ada024a9937b2224de6f8037b1beb8340c07317667fe7e54076
 )
 
 # uv_build is not available, build with hatchling instead
