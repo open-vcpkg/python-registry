@@ -258,7 +258,7 @@
     },
     "py-pandas": {
       "baseline": "3.0.5",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pathspec": {
       "baseline": "1.1.1",
