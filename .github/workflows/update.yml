@@ -20,7 +20,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v7
         with:
-          fetch-depth: 2
+          fetch-depth: 10
+          ssh-key: ${{ secrets.UPDATE_BOT_SSH_KEY }}
+          persist-credentials: true
 
       - name: Setup vcpkg
         uses: ./.github/actions/setup-vcpkg
