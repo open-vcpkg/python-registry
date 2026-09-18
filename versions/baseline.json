@@ -125,7 +125,7 @@
       "port-version": 0
     },
     "py-flit-core": {
-      "baseline": "4.0.2",
+      "baseline": "4.1.0",
       "port-version": 0
     },
     "py-fonttools": {
@@ -145,7 +145,7 @@
       "port-version": 0
     },
     "py-gpep517": {
-      "baseline": "22",
+      "baseline": "23",
       "port-version": 0
     },
     "py-hatch-fancy-pypi-readme": {
@@ -157,11 +157,11 @@
       "port-version": 0
     },
     "py-hatchling": {
-      "baseline": "1.32.0",
+      "baseline": "1.32.3",
       "port-version": 0
     },
     "py-idna": {
-      "baseline": "3.19",
+      "baseline": "3.20",
       "port-version": 0
     },
     "py-installer": {
@@ -257,8 +257,8 @@
       "port-version": 0
     },
     "py-pandas": {
-      "baseline": "3.0.5",
-      "port-version": 1
+      "baseline": "3.0.6",
+      "port-version": 0
     },
     "py-pathspec": {
       "baseline": "1.1.1",
@@ -277,11 +277,11 @@
       "port-version": 1
     },
     "py-platformdirs": {
-      "baseline": "4.11.8",
+      "baseline": "4.11.10",
       "port-version": 0
     },
     "py-plotly": {
-      "baseline": "7.0.0",
+      "baseline": "7.1.0",
       "port-version": 0
     },
     "py-pluggy": {
@@ -477,7 +477,7 @@
       "port-version": 0
     },
     "py-urllib3": {
-      "baseline": "2.7.0",
+      "baseline": "2.8.0",
       "port-version": 0
     },
     "py-versioneer": {
