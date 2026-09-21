@@ -1,6 +1,6 @@
 {
   "name": "py-pyparsing",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "description": "Python library for creating PEG parsers",
   "homepage": "https://github.com/pyparsing/pyparsing",
   "license": "MIT",

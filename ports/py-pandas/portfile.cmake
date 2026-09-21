@@ -20,7 +20,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO pandas-dev/pandas
     REF v${VERSION}
-    SHA512 ad18657a171cfc0a057ca041e9cb6b72a5904d531f5ab05bff2aae250b100d63a637961809c6c9625cf2dac77169fe11fc7ac5dbe1fc87ef971c8911f5fed170
+    SHA512 aee8ed69aec1327a07b1833204e48bab01d5cf0c06b7bc18e9f183a8054d1ec8ea26bcb44092b837d835b8fe60f36ec2a2b4b3f55e172f74aebadce54fef648c
     HEAD_REF main
 )
 
