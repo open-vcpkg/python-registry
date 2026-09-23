@@ -3,7 +3,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    poetry-core
     VERSION         ${VERSION}
-    SHA512          13fbaa062eafa59a3d4ef1dbc681d834bc61e1d3218e908aabc198dea26135a307bc4b34abdb1043d453b9de9755653f1dc261cbd8e508bdce8477cc6ca4ee54
+    SHA512          a6e2b6369ef674566d43df66a23c1ce6b9c9d20ed291742845bf95e8049ca395fccc373ef25871867ebb9ae3ec54d3a33f99e49c1c2c123ce6743653c8a27b09
     FILENAME        poetry_core
 )
 
