@@ -1,0 +1,5 @@
+repos:
+- repo: https://github.com/m-kuhn/vcpkg-pre-commit
+  rev: v0.1.0
+  hooks:
+  - id: vcpkg-format
