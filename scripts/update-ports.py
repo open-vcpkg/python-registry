@@ -18,6 +18,42 @@ def calculate_sha512(file_path):
     return sha512.hexdigest()
 
 
+def normalize_package_name(name):
+    """Normalize a PyPI package name (PEP 503)."""
+    return re.sub(r"[-_.]+", "-", name).lower()
+
+
+def get_pinned_version(pinning_package, package_name):
+    """Return the exact version of package_name required by the latest release of pinning_package.
+
+    Some packages require a companion package at an exact version (pydantic
+    requires pydantic-core==X), while the companion may publish newer releases
+    meant for pre-releases of the pinning package. The companion port declares
+    the PyPI package pinning it, so it is not updated past that pin:
+
+        # PINNED_BY pydantic
+
+    Returns None if the pinning package cannot be queried or has no such pin.
+    """
+    response = requests.get(f"https://pypi.org/pypi/{pinning_package}/json")
+    if response.status_code != 200:
+        return None
+
+    requires_dist = response.json().get("info", {}).get("requires_dist") or []
+    for requirement in requires_dist:
+        requirement, _, marker = requirement.partition(";")
+        # Optional dependencies do not constrain the installed version
+        if "extra" in marker:
+            continue
+        match = re.fullmatch(
+            r"\s*([A-Za-z0-9._-]+)\s*\(?\s*==\s*([^\s,()]+)\s*\)?\s*", requirement
+        )
+        if match and normalize_package_name(match.group(1)) == normalize_package_name(package_name):
+            return match.group(2)
+
+    return None
+
+
 def update_pypi_ports():
     updated = []
     failed = []
@@ -65,6 +101,20 @@ def update_pypi_ports():
 
                             # Query the PyPI API for the latest package info
                             pypi_url = f"https://pypi.org/pypi/{package_name}/json"
+
+                            # A pinned port follows the version required by the
+                            # package pinning it rather than its latest release
+                            pinned_by_match = re.search(r"#\s*PINNED_BY\s+(\S+)", portfile_content)
+                            if pinned_by_match:
+                                pinned_by = pinned_by_match.group(1)
+                                pinned_version = get_pinned_version(pinned_by, package_name)
+                                if not pinned_version:
+                                    print(f"  Failed to find the {package_name} version pinned by {pinned_by}")
+                                    failed.append(f"{dir_name} (no pin found in {pinned_by})")
+                                    continue
+                                print(f"  Using version {pinned_version} pinned by {pinned_by}")
+                                pypi_url = f"https://pypi.org/pypi/{package_name}/{pinned_version}/json"
+
                             response = requests.get(pypi_url)
 
                             if response.status_code != 200:
