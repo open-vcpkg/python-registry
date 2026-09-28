@@ -1,6 +1,7 @@
 {
   "name": "py-pydantic",
   "version": "2.13.5",
+  "port-version": 1,
   "description": "Data validation using Python type hints.",
   "homepage": "https://github.com/pydantic/pydantic",
   "dependencies": [
