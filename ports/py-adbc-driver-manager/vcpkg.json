@@ -1,14 +1,24 @@
 {
   "name": "py-adbc-driver-manager",
   "version": "1.12.0",
+  "port-version": 1,
   "description": "A generic entrypoint for ADBC drivers.",
   "homepage": "https://arrow.apache.org/adbc/",
   "license": "Apache-2.0",
   "dependencies": [
     {
+      "name": "arrow",
+      "default-features": false,
+      "features": [
+        "dataset",
+        "python"
+      ]
+    },
+    {
       "name": "py-cython",
       "host": true
     },
+    "py-importlib-resources",
     {
       "name": "py-setuptools",
       "host": true
@@ -25,16 +35,7 @@
   ],
   "features": {
     "dbapi": {
-      "description": "DBAPI 2.0-compatible interface",
-      "dependencies": [
-        {
-          "name": "arrow",
-          "default-features": false,
-          "features": [
-            "python"
-          ]
-        }
-      ]
+      "description": "DBAPI 2.0-compatible interface"
     }
   }
 }
