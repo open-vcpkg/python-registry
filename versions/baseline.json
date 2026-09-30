@@ -164,6 +164,10 @@
       "baseline": "3.20",
       "port-version": 0
     },
+    "py-importlib-resources": {
+      "baseline": "7.1.0",
+      "port-version": 0
+    },
     "py-installer": {
       "baseline": "0.7.0",
       "port-version": 1

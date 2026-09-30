@@ -80,6 +80,7 @@ jobs:
             $VCPKG_OPTIONS \
             'py-pyqt6[qtdeclarative,qt3d]' \
             py-pyyaml \
+            py-importlib-resources \
             py-numpy \
             gdal[python] \
             py-qscintilla \
