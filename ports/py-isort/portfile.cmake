@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    isort
     VERSION         ${VERSION}
-    SHA512          edf386ec3497c1b9e540015dea76f8328593f43d2aa391acad459f175fe1b3a552d4ca0e75187bc92ef1319cb4c77bb774cb22ef9b46cf89daacc754bb454f93
+    SHA512          78274fb9876684abed3821673245d061bf3fb2b884fca487c8920a96736fed573fa7747284dd6c075f2712b83513de08352d46697d4b7b863b63d4fbbb21322a
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

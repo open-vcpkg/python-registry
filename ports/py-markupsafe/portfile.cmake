@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    MarkupSafe
     VERSION         ${VERSION}
-    SHA512          8c4ed04b467244f6bf99cd2a60ed922bc0569581f00cc5a13d9edcd0a4bc8b97c404edc4576f6146c7aa543bbd37cf52e5312d3bdd27758264d8751fdc7a646c
+    SHA512          032a791bdc82ddb8cb7a24ee767ae87bd996af2a7195c9272bff7affc0bb63ffe664f54c785335d917b2fa23f45c74fd3b41e51ed46c0eef7a44f005070311f1
     FILENAME        markupsafe
 )
 

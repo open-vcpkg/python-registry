@@ -2,7 +2,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO scikit-build/scikit-build-core
     REF v${VERSION}
-    SHA512 f5fb61a9d6fb91d59eb225344736104d18ec18ff93c5a6cdbb1861d7e07fd982cc760222d79e745c3ba8e98046c4165abc24a27d89b43bd450aab2c42bf75926
+    SHA512 6dc9cc2bdc6e621973c73b5de7daebd34bae12e5e45957c39e6de3173c1dd2c2628f1e8ecbc76a7ed2eb4423131ab44ebd7f95741e92d82aacb824dfecb0b597
     HEAD_REF main
 )
 
