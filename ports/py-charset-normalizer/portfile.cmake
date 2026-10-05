@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    charset-normalizer
     VERSION         ${VERSION}
-    SHA512          9f77c6eb941e7b718ccfeefc0febbf964c9b4992fc14c9d64efac1da346f24f1c0b5b82a094512f2ab220232b2b269614ca34e59b93eb05e57e13cd85f7167fb
+    SHA512          342e94ae5b4a3d378860aab316d76947e67cc26d62529e2a9c0e062766ed2c48e4641497b0277c9e291a7ba40fe6861c5b6d4814f38c0775fad59a3b761468d3
     FILENAME        charset_normalizer
 )
 

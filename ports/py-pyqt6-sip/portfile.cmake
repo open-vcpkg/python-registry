@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    PyQt6-sip
     VERSION         ${VERSION}
-    SHA512          fecb597444b801efd8e9ef7564cfc4379659104af784f3f6a64320a5cfa4d78cb0860cbdeb266424618c24ab7071d25c24d63218efc84206c8eeb8da0e27bd85
+    SHA512          59449eeb31036fee2b55caaf5b6c74ca2c0e941c271cf91f8d5a85afc6e2c1e151e611ad92bf7913b709d03a7769f9ac65eb312a7ba4ff1314d35a33a20275cc
     FILENAME        pyqt6_sip
 )
 
