@@ -53,6 +53,12 @@ jobs:
           path: vcpkg
           fetch-depth: 1
 
+      - name: 📌 Use MSVC 14.44 for arm64
+        if: matrix.triplet == 'arm64-windows'
+        shell: bash
+        # MSVC 14.51 (VS 2026 image) hangs and crashes building for ARM64
+        run: echo 'set(VCPKG_PLATFORM_TOOLSET v143)' >> vcpkg/triplets/arm64-windows.cmake
+
       - name: 🐾 Bootstrap vcpkg
         shell: bash
         run: |
