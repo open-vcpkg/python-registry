@@ -11,6 +11,11 @@ if(MSVC)
   set(ENV{_LINK_} "/LTCG:OFF")
 endif()
 
+# MSVC 14.51 (VS 2026) hangs compiling Cython's own modules for ARM64, install it as pure Python
+if(VCPKG_TARGET_IS_WINDOWS AND VCPKG_TARGET_ARCHITECTURE STREQUAL "arm64")
+  set(ENV{NO_CYTHON_COMPILE} "true")
+endif()
+
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
 vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE.txt")
