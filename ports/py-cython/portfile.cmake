@@ -6,8 +6,9 @@ vcpkg_from_github(
     HEAD_REF main
 )
 
-# Disable optimizations to fix ARM64 build
-if(MSVC)
+# MSVC's link-time code generation hangs on ARM64 (Cython.Runtime.refnanny with MSVC 14.51)
+if(VCPKG_TARGET_IS_WINDOWS AND VCPKG_TARGET_ARCHITECTURE STREQUAL "arm64")
+  set(ENV{_CL_} "/GL-")
   set(ENV{_LINK_} "/LTCG:OFF")
 endif()
 
