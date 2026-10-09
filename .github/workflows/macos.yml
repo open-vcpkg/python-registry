@@ -27,6 +27,8 @@ jobs:
       buildtrees: /Users/runner/vcpkg-build
       FC: gfortran
       GCC_VERSION: 15
+      # the background metrics upload inherits vcpkg's install lock and makes the next install fail
+      VCPKG_DISABLE_METRICS: 1
 
     name: build (macos)
     runs-on: ${{ matrix.os }}
