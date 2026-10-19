@@ -17,6 +17,7 @@ vcpkg_extract_source_archive(
         0005-cmake-msvcruntime.patch
         0007-use-vcpkg-mimalloc.patch
         0008-pyarrow-relative-rpath.patch
+        0009-msvc-no-sse2-define.patch
 )
 
 # Check cpp/cmake_modules/DefineOptions.cmake for option dependencies -
@@ -132,6 +133,14 @@ if("parquet" IN_LIST FEATURES)
     )
 endif()
 
+if("s3" IN_LIST FEATURES)
+    vcpkg_cmake_config_fixup(
+        PACKAGE_NAME arrows3
+        CONFIG_PATH lib/cmake/ArrowS3
+        DO_NOT_DELETE_PARENT_CONFIG_PATH
+    )
+endif()
+
 file(GLOB main_configs "${CURRENT_PACKAGES_DIR}/lib/cmake/Arrow/*onfig.cmake")
 file(GLOB extra_configs "${CURRENT_PACKAGES_DIR}/lib/cmake/*/*onfig.cmake")
 list(REMOVE_ITEM extra_configs ${main_configs})
@@ -144,7 +153,7 @@ endif()
 vcpkg_cmake_config_fixup(CONFIG_PATH lib/cmake/Arrow)
 
 file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
-foreach(feature IN ITEMS parquet dataset acero compute flight flightsql)
+foreach(feature IN ITEMS parquet dataset acero compute flight flightsql s3)
     if(feature IN_LIST FEATURES)
         file(READ "${CMAKE_CURRENT_LIST_DIR}/usage-${feature}" feature_usage)
         file(APPEND "${CURRENT_PACKAGES_DIR}/share/${PORT}/usage" "${feature_usage}")
@@ -198,6 +207,9 @@ if("python" IN_LIST FEATURES)
     endif()
     if ("flightsql" IN_LIST FEATURES)
          set(ENV{ArrowFlightSql_DIR} "${CURRENT_PACKAGES_DIR}/share/arrowflightsql")
+    endif()
+    if("s3" IN_LIST FEATURES)
+        set(ENV{ArrowS3_DIR} "${CURRENT_PACKAGES_DIR}/share/arrows3")
     endif()
     
     set(ENV{SETUPTOOLS_SCM_PRETEND_VERSION} "${VERSION}")

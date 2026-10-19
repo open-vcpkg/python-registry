@@ -21,6 +21,7 @@
     "re2",
     "snappy",
     "thrift",
+    "uriparser",
     "utf8proc",
     {
       "name": "vcpkg-cmake",
@@ -131,7 +132,8 @@
     "json": {
       "description": "JSON support",
       "dependencies": [
-        "rapidjson"
+        "rapidjson",
+        "simdjson"
       ]
     },
     "mimalloc": {
