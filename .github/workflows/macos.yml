@@ -68,6 +68,9 @@ jobs:
           path: vcpkg
           fetch-depth: 1
 
+      - name: ✂️ Build release only
+        run: echo 'set(VCPKG_BUILD_TYPE release)' >> vcpkg/triplets/community/${{ matrix.triplet }}.cmake
+
       - name: 🐾 Bootstrap vcpkg
         shell: bash
         run: |

@@ -53,6 +53,10 @@ jobs:
           path: vcpkg
           fetch-depth: 1
 
+      - name: ✂️ Build release only
+        shell: bash
+        run: echo 'set(VCPKG_BUILD_TYPE release)' >> vcpkg/triplets/${{ matrix.triplet }}.cmake
+
       - name: 📌 Use MSVC 14.44 for arm64
         if: matrix.triplet == 'arm64-windows'
         shell: bash
