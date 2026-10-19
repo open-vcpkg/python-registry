@@ -9,14 +9,22 @@
       "name": "py-cython",
       "host": true
     },
-    "py-numpy",
     {
-      "name": "py-setuptools",
+      "name": "py-meson",
       "host": true
     },
+    "py-numpy",
     "python3",
     {
+      "name": "python3",
+      "host": true
+    },
+    {
       "name": "vcpkg-python-scripts",
+      "host": true
+    },
+    {
+      "name": "vcpkg-tool-meson",
       "host": true
     }
   ]
