@@ -23,7 +23,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO numpy/numpy
     REF v${VERSION}
-    SHA512 973e007a6fee02b9f4b2ef73462cee4179d54156ada36582ad58511932c2688666f46e30ae876a415f3fd542a0b2c21e5a35881b105d514ed06481cf93913b45
+    SHA512 99048b7af3c5639b02b0e4bef689ba9a8e0056da4162f5fcfc5b2306dd4a5b68b69a8822037c5959becefd81a89aba5cf6b4fdad247bbd824170ef6aa4f06dc3
     HEAD_REF main
 )
 
@@ -146,6 +146,9 @@ if(NOT _numpy_pc_files)
   file(GLOB _numpy_pc_files "${CURRENT_PACKAGES_DIR}/lib/site-packages/numpy/_core/lib/pkgconfig/*.pc")
 endif()
 foreach(_pc_file IN LISTS _numpy_pc_files)
+  # includedir is relative to the .pc location, keep pointing at the headers inside the module
+  string(REGEX REPLACE "/lib/pkgconfig/[^/]+$" "/include" _numpy_include_dir "${_pc_file}")
+  vcpkg_replace_string("${_pc_file}" [[includedir=${prefix}/include]] "includedir=${_numpy_include_dir}")
   get_filename_component(_pc_name "${_pc_file}" NAME)
   file(RENAME "${_pc_file}" "${CURRENT_PACKAGES_DIR}/lib/pkgconfig/${_pc_name}")
 endforeach()

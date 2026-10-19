@@ -1,6 +1,6 @@
 {
   "name": "py-shapely",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Manipulation and analysis of geometric objects in the Cartesian plane.",
   "homepage": "https://shapely.readthedocs.io/",
   "dependencies": [
@@ -9,14 +9,22 @@
       "name": "py-cython",
       "host": true
     },
-    "py-numpy",
     {
-      "name": "py-setuptools",
+      "name": "py-meson",
       "host": true
     },
+    "py-numpy",
     "python3",
     {
+      "name": "python3",
+      "host": true
+    },
+    {
       "name": "vcpkg-python-scripts",
+      "host": true
+    },
+    {
+      "name": "vcpkg-tool-meson",
       "host": true
     }
   ]

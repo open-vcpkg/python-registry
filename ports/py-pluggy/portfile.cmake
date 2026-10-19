@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    pluggy
     VERSION         ${VERSION}
-    SHA512          8b88eb778ab955910bcde2b3a6c4925d0a239f932aa9b1d8a351aa21b8a922bd842f735e397ef15ed9bd8e51085a88723660e1e691888a9879e7144add32bff2
+    SHA512          945b352d9a5562764830ac7b7199d8801f4486638bf0b1630f61d7a102b466119af2c1e168cb457bcedf1212be1c5ebcb0848f05c76e91db34951f43c48ae466
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
