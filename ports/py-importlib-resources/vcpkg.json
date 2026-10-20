@@ -1,0 +1,26 @@
+{
+  "name": "py-importlib-resources",
+  "version": "7.1.0",
+  "description": "Read resources from Python packages.",
+  "homepage": "https://github.com/python/importlib_resources",
+  "license": "Apache-2.0",
+  "dependencies": [
+    {
+      "name": "py-gpep517",
+      "host": true
+    },
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    {
+      "name": "py-setuptools-scm",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
