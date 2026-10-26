@@ -6,7 +6,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    duckdb
     VERSION         ${VERSION}
-    SHA512          d1c137b3f95457180db98508a4a6ec15ff11a7213b5f6260e7757a89bc9d487e818229e8ccd931815679eb1a58d27e00f5dc04974d377daabaa34f10678c143c
+    SHA512          a48595608b027d4984afe2650b574fda09d48fc91031356abdaed0e027ea1696744dded818c33e0d566e0a4d0f28f80bbefbb7734cc89b1070d5919a0fd6e659
 )
 
 z_vcpkg_make_prepare_flags()

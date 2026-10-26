@@ -9,15 +9,15 @@
       "port-version": 1
     },
     "py-adbc-driver-manager": {
-      "baseline": "1.12.0",
-      "port-version": 1
+      "baseline": "1.13.0",
+      "port-version": 0
     },
     "py-adbc-postgresql": {
-      "baseline": "1.12.0",
+      "baseline": "1.13.0",
       "port-version": 0
     },
     "py-adbc-sqlite": {
-      "baseline": "1.12.0",
+      "baseline": "1.13.0",
       "port-version": 0
     },
     "py-add-vcpkg-dll-path": {
@@ -65,7 +65,7 @@
       "port-version": 0
     },
     "py-certifi": {
-      "baseline": "2026-10-19",
+      "baseline": "2026-10-23",
       "port-version": 0
     },
     "py-cffi": {
@@ -105,11 +105,11 @@
       "port-version": 1
     },
     "py-dateutil": {
-      "baseline": "2.9.0",
-      "port-version": 2
+      "baseline": "3.0.0",
+      "port-version": 0
     },
     "py-duckdb": {
-      "baseline": "1.5.6",
+      "baseline": "2.0.0",
       "port-version": 0
     },
     "py-ephem": {
@@ -209,7 +209,7 @@
       "port-version": 0
     },
     "py-libpysal": {
-      "baseline": "4.15.0",
+      "baseline": "4.15.1",
       "port-version": 0
     },
     "py-lxml": {
@@ -261,7 +261,7 @@
       "port-version": 0
     },
     "py-pandas": {
-      "baseline": "3.0.6",
+      "baseline": "3.1.0",
       "port-version": 0
     },
     "py-pathspec": {
@@ -317,7 +317,7 @@
       "port-version": 0
     },
     "py-pycparser": {
-      "baseline": "3.11",
+      "baseline": "3.12",
       "port-version": 0
     },
     "py-pydantic": {
