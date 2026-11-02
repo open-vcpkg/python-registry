@@ -5,23 +5,11 @@
   "homepage": "https://duckdb.org",
   "license": "MIT",
   "dependencies": [
+    "nanobind",
+    "py-numpy",
     {
       "name": "py-scikit-build-core",
       "host": true
-    },
-    {
-      "name": "py-setuptools",
-      "host": true
-    },
-    {
-      "name": "py-setuptools-scm",
-      "host": true
-    },
-    {
-      "name": "pybind11",
-      "features": [
-        "scripts"
-      ]
     },
     "python3",
     {
