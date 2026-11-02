@@ -6,10 +6,22 @@
   "license": null,
   "dependencies": [
     {
-      "name": "py-setuptools",
+      "name": "py-hatch-fancy-pypi-readme",
       "host": true
     },
-    "py-six",
+    {
+      "name": "py-hatch-vcs",
+      "host": true
+    },
+    {
+      "name": "py-hatchling",
+      "host": true
+    },
+    {
+      "name": "py-setuptools-scm",
+      "host": true
+    },
+    "py-tzdata",
     {
       "name": "vcpkg-python-scripts",
       "host": true
