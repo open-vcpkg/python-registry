@@ -1,6 +1,6 @@
 {
   "name": "py-pytz",
-  "version": "2026.5",
+  "version": "2026.6",
   "description": "World timezone definitions, modern and historical",
   "homepage": "http://pythonhosted.org/pytz",
   "dependencies": [

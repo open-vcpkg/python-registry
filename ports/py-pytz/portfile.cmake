@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    pytz
     VERSION         ${VERSION}
-    SHA512          e4950a00d4a4ad7812210f7d914d3b4b809eed8b9cf5b612b27c32fecbdc0ee72093b8c5f6ff4ffc8b6462ec65762951e4029c70084afef0ca2501c09362d600
+    SHA512          44e6453347143661842b605a3a02a08d007d40c1f749406d973ff919927c267de20bad69acfe558aa795f7e26eee628423533204f320b570cc535acfe32e6df5
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")

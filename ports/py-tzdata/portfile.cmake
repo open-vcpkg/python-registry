@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    tzdata
     VERSION         ${VERSION}
-    SHA512          a3d7b61681ea53ca789e66c4f770bbadd3d2880dfdc3a8934ce1e74faf37a4eefb9bab533f8d236a9f2e549e0784b7b15493582f3e131f50a452f921b1460751
+    SHA512          7fd9177af9481511a169ac521c763fccd89c19613c810b1569bbcb7a2a1f7256cdab3bfa1df582e3ec7e3c547dbbf1be1693184f2e9cbc3dff107b7fd5daade1
 )
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
 
