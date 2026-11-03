@@ -5,6 +5,7 @@
   "homepage": "https://pandas.pydata.org",
   "license": "BSD-3-Clause",
   "dependencies": [
+    "fast-float",
     {
       "name": "py-cython",
       "host": true
@@ -29,7 +30,8 @@
     {
       "name": "vcpkg-tool-meson",
       "host": true
-    }
+    },
+    "xsimd"
   ],
   "features": {
     "arrow": {
