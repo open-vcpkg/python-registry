@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    psycopg-c
     VERSION         ${VERSION}
-    SHA512          77973d95ebad28ade3c17170a0497a8fca7b16400e87a88802182b10f77ada2af25da35c28902649c907576c91751d78766e44d268fb8392c918265542933429
+    SHA512          6c7985cd1e7d3a323e9c0fc2efd9cde77a3e5fd273cae8497e39b2f69b248bf7c04227ad0d86a3c682caa974762d6688e5b411f13a91398c58efb8dfd8f96432
     FILENAME        psycopg_c
     PATCHES
       env_configurable.patch
