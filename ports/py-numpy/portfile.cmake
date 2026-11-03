@@ -37,11 +37,22 @@ vcpkg_from_github(
 
 file(COPY "${SOURCE_PATH_SIMD}/" DESTINATION "${SOURCE_PATH}/numpy/_core/src/npysort/x86-simd-sort")
 
+# The features module must match the meson API: 1.10 dropped the env/coredata compiler arguments
+file(STRINGS "${MESON_DIR}/mesonbuild/coredata.py" MESON_VERSION REGEX "^version = ")
+string(REGEX REPLACE "^version = '([^']+)'.*" "\\1" MESON_VERSION "${MESON_VERSION}")
+if(MESON_VERSION VERSION_LESS "1.10")
+  set(MESON_NUMPY_REF 5d5a3d478da115c812be77afa651db2492d52171)
+  set(MESON_NUMPY_SHA512 7045d09b123fac0d305071283357e2ee66c6cd2b0459f62b7a27194c68bfc734bf2675ba49ca48fcc738e160dfea9b648e70bd9361afe42a8722c3dfd2f4fd3d)
+else()
+  set(MESON_NUMPY_REF 11ed55a4f364a81d7eeef740b27d73cfb4d36a05)
+  set(MESON_NUMPY_SHA512 da1bb54dd42f8c21ed915f02bf4da873c0fd3550b063bd93cf16cc086a737e809028c9c477832c957a6a1b61d625d29e85b50ddafb50e8e83525954bb747fbe7)
+endif()
+
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH_MESON_NUMPY
     REPO numpy/meson
-    REF 5d5a3d478da115c812be77afa651db2492d52171
-    SHA512 7045d09b123fac0d305071283357e2ee66c6cd2b0459f62b7a27194c68bfc734bf2675ba49ca48fcc738e160dfea9b648e70bd9361afe42a8722c3dfd2f4fd3d
+    REF ${MESON_NUMPY_REF}
+    SHA512 ${MESON_NUMPY_SHA512}
     HEAD_REF main
 )
 
