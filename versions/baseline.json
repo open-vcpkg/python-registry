@@ -360,6 +360,10 @@
       "baseline": "13.13.0",
       "port-version": 0
     },
+    "py-pyqt6-webengine": {
+      "baseline": "6.11.0",
+      "port-version": 0
+    },
     "py-pysal": {
       "baseline": "26.7",
       "port-version": 0

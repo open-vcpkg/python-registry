@@ -1,0 +1,35 @@
+{
+  "name": "py-pyqt6-webengine",
+  "version": "6.11.0",
+  "description": "Python bindings for the Qt WebEngine framework",
+  "homepage": "https://www.riverbankcomputing.com/software/pyqtwebengine/",
+  "license": "GPL-3.0-only",
+  "supports": "!static & ((linux & !x86) | osx | (windows & x64))",
+  "dependencies": [
+    "py-pyqt-builder",
+    {
+      "name": "py-pyqt6",
+      "features": [
+        "qtdeclarative",
+        "qtwebengine"
+      ]
+    },
+    "python3",
+    {
+      "name": "qtwebengine",
+      "default-features": false,
+      "features": [
+        "webchannel",
+        "webengine"
+      ]
+    },
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    },
+    {
+      "name": "vcpkg-qmake",
+      "host": true
+    }
+  ]
+}
