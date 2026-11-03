@@ -1,10 +1,11 @@
 {
   "name": "py-pandas",
-  "version": "3.0.6",
+  "version": "3.1.0",
   "description": "Powerful data structures for data analysis, time series, and statistics.",
   "homepage": "https://pandas.pydata.org",
   "license": "BSD-3-Clause",
   "dependencies": [
+    "fast-float",
     {
       "name": "py-cython",
       "host": true
@@ -29,7 +30,8 @@
     {
       "name": "vcpkg-tool-meson",
       "host": true
-    }
+    },
+    "xsimd"
   ],
   "features": {
     "arrow": {

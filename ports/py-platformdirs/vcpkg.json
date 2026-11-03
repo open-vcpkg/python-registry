@@ -1,12 +1,24 @@
 {
   "name": "py-platformdirs",
-  "version": "4.13.5",
+  "version": "4.14.3",
   "description": "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`.",
   "homepage": "https://platformdirs.readthedocs.io/en/latest/",
   "license": "MIT",
   "dependencies": [
     {
-      "name": "py-setuptools",
+      "name": "py-hatch-fancy-pypi-readme",
+      "host": true
+    },
+    {
+      "name": "py-hatch-vcs",
+      "host": true
+    },
+    {
+      "name": "py-hatchling",
+      "host": true
+    },
+    {
+      "name": "py-setuptools-scm",
       "host": true
     },
     "python3",

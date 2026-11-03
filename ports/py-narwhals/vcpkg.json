@@ -1,6 +1,6 @@
 {
   "name": "py-narwhals",
-  "version": "2.27.1",
+  "version": "2.28.0",
   "description": "Extremely lightweight compatibility layer between dataframe libraries",
   "homepage": "https://github.com/narwhals-dev/narwhals",
   "license": "MIT",

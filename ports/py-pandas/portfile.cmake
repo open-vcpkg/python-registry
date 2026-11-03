@@ -20,9 +20,17 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO pandas-dev/pandas
     REF v${VERSION}
-    SHA512 aee8ed69aec1327a07b1833204e48bab01d5cf0c06b7bc18e9f183a8054d1ec8ea26bcb44092b837d835b8fe60f36ec2a2b4b3f55e172f74aebadce54fef648c
+    SHA512 807b066c9c5104ccab862db472a904e12bc6519047c17fb24320dac42db9142dc1d3db41aac145d286040ae5005843472840c3db70ca5345265c85b6c615a22a
     HEAD_REF main
 )
+
+# pandas pulls fast_float in through subproject() only, which meson would
+# download. An existing subproject directory with a meson.build is used as is,
+# so assemble it from the fast-float port and pandas' own packagefile.
+file(STRINGS "${SOURCE_PATH}/subprojects/fast_float.wrap" fast_float_dir REGEX "^directory *=")
+string(REGEX REPLACE "^directory *= *" "" fast_float_dir "${fast_float_dir}")
+file(COPY "${CURRENT_INSTALLED_DIR}/include/fast_float" DESTINATION "${SOURCE_PATH}/subprojects/${fast_float_dir}/include")
+file(COPY "${SOURCE_PATH}/subprojects/packagefiles/fast_float/meson.build" DESTINATION "${SOURCE_PATH}/subprojects/${fast_float_dir}")
 
 vcpkg_configure_meson(
     SOURCE_PATH "${SOURCE_PATH}"

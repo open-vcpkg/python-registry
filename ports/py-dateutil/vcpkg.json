@@ -1,16 +1,27 @@
 {
   "name": "py-dateutil",
-  "version": "2.9.0",
-  "port-version": 2,
+  "version": "4.0.0",
   "description": "Useful extensions to the standard Python datetime features",
   "homepage": "https://github.com/dateutil/dateutil",
   "license": null,
   "dependencies": [
     {
-      "name": "py-setuptools",
+      "name": "py-hatch-fancy-pypi-readme",
       "host": true
     },
-    "py-six",
+    {
+      "name": "py-hatch-vcs",
+      "host": true
+    },
+    {
+      "name": "py-hatchling",
+      "host": true
+    },
+    {
+      "name": "py-setuptools-scm",
+      "host": true
+    },
+    "py-tzdata",
     {
       "name": "vcpkg-python-scripts",
       "host": true

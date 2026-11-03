@@ -3,9 +3,10 @@ string(REGEX REPLACE "^py-" "" package "${PORT}")
 # PYPI_PROJECT_NAME python-dateutil
 vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
-    PACKAGE_NAME    python-${package}
+    PACKAGE_NAME    python-dateutil
     VERSION         ${VERSION}
-    SHA512          7dd550d646477c8c3953a42aabe4c0aa3f4d1f74f6fed018a1a429270f41aa2c6832df264e67510d380d149eaa436c1b613544c8026c180c2241f15205ca6d36
+    SHA512          40e87b7fe0a8281468da74a3e202cfdacfda7ba5ca692ac2282aed5de8daf7797daaa0a6801943fe68d7043a85991dbe43b092d6f1d7506853735b0a363f1a0d
+    FILENAME        python_dateutil
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
