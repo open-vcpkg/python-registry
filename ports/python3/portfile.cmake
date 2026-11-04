@@ -252,6 +252,9 @@ else()
     )
     if(VCPKG_TARGET_IS_OSX)
         list(APPEND OPTIONS "LIBS=-liconv -lintl")
+        # pipe2() is declared by the macOS 27 SDK but missing on older macOS; CPython 3.12 calls it unguarded,
+        # so os.pipe() (and subprocess) crashes with a NULL call when built with a newer SDK than the running OS.
+        list(APPEND OPTIONS "ac_cv_func_pipe2=no")
     endif()
 
     if("readline" IN_LIST FEATURES)
