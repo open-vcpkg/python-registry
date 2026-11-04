@@ -1,6 +1,7 @@
 {
   "name": "py-pyqt6-webengine",
   "version": "6.11.0",
+  "port-version": 1,
   "description": "Python bindings for the Qt WebEngine framework",
   "homepage": "https://www.riverbankcomputing.com/software/pyqtwebengine/",
   "license": "GPL-3.0-only",
