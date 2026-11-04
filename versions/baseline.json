@@ -354,7 +354,7 @@
     },
     "py-pyqt6": {
       "baseline": "6.12.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyqt6-sip": {
       "baseline": "13.13.0",
@@ -362,7 +362,7 @@
     },
     "py-pyqt6-webengine": {
       "baseline": "6.11.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pysal": {
       "baseline": "26.7",
@@ -390,7 +390,7 @@
     },
     "py-qscintilla": {
       "baseline": "2.14.1",
-      "port-version": 2
+      "port-version": 3
     },
     "py-rasterio": {
       "baseline": "1.5.2",
@@ -518,7 +518,7 @@
     },
     "python3": {
       "baseline": "3.12.11",
-      "port-version": 2
+      "port-version": 3
     },
     "swig": {
       "baseline": "4.2.1",
@@ -526,7 +526,7 @@
     },
     "vcpkg-python-scripts": {
       "baseline": "2025-05-20",
-      "port-version": 2
+      "port-version": 3
     },
     "vcpkg-tool-mercurial": {
       "baseline": "2023-06-27",
