@@ -1,6 +1,7 @@
 {
   "name": "py-pillow",
   "version": "13.0.0",
+  "port-version": 1,
   "description": "Python Imaging Library",
   "homepage": "https://python-pillow.org/",
   "license": null,
@@ -28,6 +29,7 @@
       "name": "pybind11",
       "host": true
     },
+    "python3",
     "tiff",
     {
       "name": "vcpkg-python-scripts",
