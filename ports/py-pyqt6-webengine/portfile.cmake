@@ -12,8 +12,9 @@ vcpkg_download_distfile(ARCHIVE
 vcpkg_extract_source_archive(SOURCE_PATH ARCHIVE "${ARCHIVE}")
 
 # https://www.riverbankcomputing.com/static/Docs/PyQt6/installation.html
+vcpkg_python_get_qmake(QMAKE)
 set(SIPBUILD_ARGS
-  "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}"
+  "--qmake" "${QMAKE}"
   "--api-dir" "${CURRENT_PACKAGES_DIR}/share/Qt6/qsci/api/python"
   "--verbose"
   "--no-make"

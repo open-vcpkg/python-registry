@@ -15,8 +15,9 @@ vcpkg_extract_source_archive(
 
 file(RENAME "${SOURCE_PATH}/Python/pyproject-qt5.toml" "${SOURCE_PATH}/Python/pyproject.toml")
 
+vcpkg_python_get_qmake(QMAKE)
 set(SIPBUILD_ARGS
-    "--qmake" "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}"
+    "--qmake" "${QMAKE}"
     "--api-dir" "${CURRENT_PACKAGES_DIR}/share/Qt6/qsci/api/python"
     "--qsci-features-dir" "${SOURCE_PATH}/src/features"
     "--qsci-include-dir" "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}/PyQt6/bindings"
