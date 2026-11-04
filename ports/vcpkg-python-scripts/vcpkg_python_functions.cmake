@@ -48,7 +48,7 @@ endfunction()
 # the target qmake is not installed (Qt's qmake/moc/... come from the host tree), so generate a wrapper which runs the
 # host qmake against the target Qt, the same way vcpkg_qmake_configure does (-qtconf).
 function(vcpkg_python_get_qmake out_var)
-  set(target_qmake "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}")
+  set(target_qmake "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_TARGET_EXECUTABLE_SUFFIX}")
   if(EXISTS "${target_qmake}")
     set("${out_var}" "${target_qmake}" PARENT_SCOPE)
     return()
