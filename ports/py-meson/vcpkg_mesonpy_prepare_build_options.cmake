@@ -10,7 +10,8 @@ function(vcpkg_mesonpy_prepare_build_options)
     if(NOT VCPKG_CHAINLOAD_TOOLCHAIN_FILE)
         z_vcpkg_select_default_vcpkg_chainload_toolchain()
     endif()
-    z_vcpkg_get_cmake_vars(cmake_vars_file)
+    # vcpkg_cmake_get_vars sets the VCPKG_COMBINED_* flags (e.g. -arch) which vcpkg-tool-meson writes to the cross/native file
+    vcpkg_cmake_get_vars(cmake_vars_file ADDITIONAL_LANGUAGES ${arg_LANGUAGES})
     debug_message("Including cmake vars from: ${cmake_vars_file}")
     include("${cmake_vars_file}")
 
@@ -36,6 +37,15 @@ function(vcpkg_mesonpy_prepare_build_options)
     vcpkg_list(APPEND arg_OPTIONS --backend ninja --wrap-mode nodownload -Dbuildtype=plain -Doptimization=plain)
 
     z_vcpkg_get_build_and_host_system(MESON_HOST_MACHINE MESON_BUILD_MACHINE IS_CROSS)
+
+    # The two machine variable names are swapped (as in vcpkg-tool-meson), so match the [build_machine] section itself
+    if(IS_CROSS AND VCPKG_TARGET_IS_OSX AND VCPKG_TARGET_ARCHITECTURE STREQUAL "x64"
+       AND "${MESON_HOST_MACHINE}${MESON_BUILD_MACHINE}" MATCHES "\\[build_machine\\][^[]*cpu_family = 'aarch64'")
+        # arm64 macOS runs x86_64 binaries (Rosetta), as scripts/toolchains/osx.cmake assumes for CMake
+        vcpkg_list(APPEND arg_ADDITIONAL_PROPERTIES "needs_exe_wrapper = false")
+    endif()
+    vcpkg_list(JOIN arg_ADDITIONAL_BINARIES "\n" MESON_ADDITIONAL_BINARIES)
+    vcpkg_list(JOIN arg_ADDITIONAL_PROPERTIES "\n" MESON_ADDITIONAL_PROPERTIES)
 
     if(IS_CROSS)
         # VCPKG_CROSSCOMPILING is not used since it regresses a lot of ports in x64-windows-x triplets
