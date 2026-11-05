@@ -107,12 +107,21 @@ function(vcpkg_python_build_wheel)
     endforeach()
   endif()
 
+  vcpkg_backup_env_variables(VARS PYTHONPATH)
+  if(VCPKG_CROSSCOMPILING AND NOT CURRENT_HOST_INSTALLED_DIR STREQUAL CURRENT_INSTALLED_DIR
+     AND z_vcpkg_python_func_python STREQUAL z_vcpkg_python_test_python)
+    # The host site-packages on PYTHONPATH come before the interpreter's own. Build tools with compiled modules
+    # (e.g. Cython) only load in the target interpreter from the target tree, so ports list them as target dependencies too.
+    vcpkg_host_path_list(PREPEND ENV{PYTHONPATH} "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}")
+  endif()
+
   vcpkg_execute_required_process(
     COMMAND ${env} "${z_vcpkg_python_func_python}" -m gpep517 build-wheel --wheel-dir "${z_vcpkg_wheeldir}" --output-fd 1 ${build_ops}
     LOGNAME "python-build-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${arg_SOURCE_PATH}"
   )
 
+  vcpkg_restore_env_variables(VARS PYTHONPATH)
   foreach(env_var IN LISTS env_backup_vars)
     if(DEFINED env_bak_${env_var})
       set(ENV{${env_var}} "${env_bak_${env_var}}")
