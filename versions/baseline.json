@@ -10,7 +10,7 @@
     },
     "py-adbc-driver-manager": {
       "baseline": "1.13.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-adbc-postgresql": {
       "baseline": "1.13.0",
@@ -26,7 +26,7 @@
     },
     "py-affine": {
       "baseline": "3.0.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-annotated-types": {
       "baseline": "0.8.0",
@@ -118,7 +118,7 @@
     },
     "py-fiona": {
       "baseline": "1.10.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-flask": {
       "baseline": "3.1.3",
@@ -130,7 +130,7 @@
     },
     "py-fonttools": {
       "baseline": "4.68.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-gast": {
       "baseline": "0.7.0",
@@ -330,7 +330,7 @@
     },
     "py-pyogrio": {
       "baseline": "0.13.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyparsing": {
       "baseline": "3.3.3",
@@ -338,7 +338,7 @@
     },
     "py-pyproj": {
       "baseline": "3.8.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyproject-hooks": {
       "baseline": "1.0.0",
@@ -370,7 +370,7 @@
     },
     "py-pysfcgal": {
       "baseline": "2.3.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyspnego": {
       "baseline": "0.12.4",
@@ -394,7 +394,7 @@
     },
     "py-rasterio": {
       "baseline": "1.5.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-referencing": {
       "baseline": "0.37.0",
@@ -522,7 +522,7 @@
     },
     "vcpkg-python-scripts": {
       "baseline": "2025-05-20",
-      "port-version": 4
+      "port-version": 5
     },
     "vcpkg-tool-mercurial": {
       "baseline": "2023-06-27",
