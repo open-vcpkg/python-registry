@@ -264,6 +264,22 @@ if("python" IN_LIST FEATURES)
         list(APPEND py_hints
             "--config-settings=cmake.define.Python3_LIBRARY=${CURRENT_INSTALLED_DIR}/lib/python${py_version_nodot}.lib")
     endif()
+    if(VCPKG_TARGET_IS_OSX)
+        # This build doesn't go through vcpkg_cmake_configure, so give it the same toolchain and macOS settings.
+        # Otherwise a cross build compiles pyarrow for the host architecture, with the host's SIMD flags.
+        if(NOT VCPKG_CHAINLOAD_TOOLCHAIN_FILE)
+            z_vcpkg_select_default_vcpkg_chainload_toolchain()
+        endif()
+        list(APPEND py_hints
+            "--config-settings=cmake.define.CMAKE_TOOLCHAIN_FILE=${VCPKG_CHAINLOAD_TOOLCHAIN_FILE}"
+            "--config-settings=cmake.define.VCPKG_TARGET_ARCHITECTURE=${VCPKG_TARGET_ARCHITECTURE}"
+        )
+        foreach(config_var IN ITEMS OSX_DEPLOYMENT_TARGET OSX_SYSROOT OSX_ARCHITECTURES)
+            if(DEFINED VCPKG_${config_var})
+                list(APPEND py_hints "--config-settings=cmake.define.CMAKE_${config_var}=${VCPKG_${config_var}}")
+            endif()
+        endforeach()
+    endif()
 
     # The extensions land in <prefix>/lib/python3.X/site-packages/pyarrow, so
     # libarrow in <prefix>/lib is three directories up. Only a relative RPATH
