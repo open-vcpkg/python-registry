@@ -1,9 +1,15 @@
 {
   "name": "py-fonttools",
   "version": "4.68.0",
+  "port-version": 1,
   "description": "A library to manipulate font files from Python.",
   "homepage": "https://github.com/fonttools/fonttools",
   "dependencies": [
+    {
+      "name": "py-cython",
+      "host": true
+    },
+    "py-cython",
     {
       "name": "py-setuptools",
       "host": true
