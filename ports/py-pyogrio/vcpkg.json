@@ -1,6 +1,7 @@
 {
   "name": "py-pyogrio",
   "version": "0.13.0",
+  "port-version": 1,
   "description": "Vectorized spatial vector file format I/O using GDAL/OGR.",
   "homepage": "https://github.com/geopandas/pyogrio",
   "license": "MIT",
@@ -10,6 +11,7 @@
       "name": "py-cython",
       "host": true
     },
+    "py-cython",
     {
       "name": "py-versioneer",
       "host": true

@@ -1,6 +1,7 @@
 {
   "name": "py-rasterio",
   "version": "1.5.2",
+  "port-version": 1,
   "description": "Fast and direct raster I/O for use with Numpy and SciPy.",
   "homepage": "https://rasterio.readthedocs.io/",
   "dependencies": [
@@ -11,26 +12,21 @@
         "python"
       ]
     },
-    {
-      "name": "py-affine",
-      "host": true
-    },
-    {
-      "name": "py-certifi",
-      "host": true
-    },
-    {
-      "name": "py-click",
-      "host": true
-    },
+    "py-affine",
+    "py-attrs",
+    "py-certifi",
+    "py-click",
     {
       "name": "py-cython",
       "host": true
     },
+    "py-cython",
     {
       "name": "py-numpy",
       "host": true
     },
+    "py-numpy",
+    "py-pyparsing",
     {
       "name": "py-setuptools",
       "host": true
