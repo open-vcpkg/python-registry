@@ -154,7 +154,8 @@ jobs:
         if: failure()
         with:
           name: logs-${{ matrix.triplet }}${{ matrix.host-triplet && '-cross' || '' }}
-          path: ${{ env.buildtrees }}/**/*.log
+          # vcpkg writes the logs next to each port's src; recursing into src hits py-meson's symlink cycle (ELOOP)
+          path: ${{ env.buildtrees }}/*/*.log
 
   build-cross:
     # x64 packages built on an arm64 runner; the x64 target tools run under Rosetta.
