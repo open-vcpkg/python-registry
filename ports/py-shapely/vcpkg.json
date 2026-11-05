@@ -1,6 +1,7 @@
 {
   "name": "py-shapely",
   "version": "2.2.0",
+  "port-version": 1,
   "description": "Manipulation and analysis of geometric objects in the Cartesian plane.",
   "homepage": "https://shapely.readthedocs.io/",
   "dependencies": [
@@ -14,6 +15,10 @@
       "host": true
     },
     "py-numpy",
+    {
+      "name": "py-numpy",
+      "host": true
+    },
     "python3",
     {
       "name": "python3",
