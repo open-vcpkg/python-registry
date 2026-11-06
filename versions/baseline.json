@@ -42,7 +42,7 @@
     },
     "py-beautifulsoup4": {
       "baseline": "4.15.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-beniget": {
       "baseline": "0.5.0",
@@ -455,6 +455,10 @@
     "py-six": {
       "baseline": "1.17.0",
       "port-version": 1
+    },
+    "py-soupsieve": {
+      "baseline": "4.0.1",
+      "port-version": 0
     },
     "py-sspilib": {
       "baseline": "0.6.0",
