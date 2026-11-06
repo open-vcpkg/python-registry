@@ -24,6 +24,10 @@ vcpkg_from_github(
     HEAD_REF main
 )
 
+# The GitHub archive has no git metadata, so versioneer would report the version as 0+unknown.
+# pandas uses an existing _version_meson.py as is, like the one in its sdist.
+file(WRITE "${SOURCE_PATH}/_version_meson.py" "__version__=\"${VERSION}\"\n__git_version__=\"\"\n")
+
 # pandas pulls fast_float in through subproject() only, which meson would
 # download. An existing subproject directory with a meson.build is used as is,
 # so assemble it from the fast-float port and pandas' own packagefile.
