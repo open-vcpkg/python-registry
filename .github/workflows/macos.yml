@@ -167,7 +167,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: macos-15
+          - os: macos-26
             triplet: x64-osx-dynamic
             host-triplet: arm64-osx-dynamic
     env: *build-env
