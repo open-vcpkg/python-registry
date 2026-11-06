@@ -1,0 +1,22 @@
+{
+  "name": "py-soupsieve",
+  "version": "4.0.1",
+  "description": "A modern CSS selector implementation for Beautiful Soup.",
+  "homepage": "https://github.com/facelessuser/soupsieve",
+  "license": "MIT",
+  "dependencies": [
+    {
+      "name": "py-hatchling",
+      "host": true
+    },
+    {
+      "name": "py-setuptools",
+      "host": true
+    },
+    "python3",
+    {
+      "name": "vcpkg-python-scripts",
+      "host": true
+    }
+  ]
+}
