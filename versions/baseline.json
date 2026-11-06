@@ -386,7 +386,7 @@
     },
     "py-pyyaml": {
       "baseline": "6.0.3",
-      "port-version": 0
+      "port-version": 1
     },
     "py-qscintilla": {
       "baseline": "2.14.1",
