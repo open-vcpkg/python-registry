@@ -6,7 +6,7 @@
     },
     "gdal": {
       "baseline": "3.13.3",
-      "port-version": 1
+      "port-version": 2
     },
     "py-adbc-driver-manager": {
       "baseline": "1.13.0",
