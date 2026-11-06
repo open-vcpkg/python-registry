@@ -8,6 +8,8 @@ vcpkg_from_pythonhosted(
 
 # Build the libyaml bindings (yaml.CLoader, yaml.CDumper). Without Cython or libyaml,
 # setup.py quietly falls back to pure Python; these make that an error instead.
+# py-cython is a target dependency too: setup.py imports it in the target python, which in a cross build
+# can't load the host's compiled Cython.
 set(ENV{PYYAML_FORCE_CYTHON} 1)
 set(ENV{PYYAML_FORCE_LIBYAML} 1)
 file(APPEND "${SOURCE_PATH}/setup.cfg" "
