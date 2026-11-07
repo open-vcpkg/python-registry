@@ -252,6 +252,9 @@ else()
     )
     if(VCPKG_TARGET_IS_OSX)
         list(APPEND OPTIONS "LIBS=-liconv -lintl")
+        # pipe2() is declared by the macOS 27 SDK but missing on older macOS; CPython 3.12 calls it unguarded,
+        # so os.pipe() (and subprocess) crashes with a NULL call when built with a newer SDK than the running OS.
+        list(APPEND OPTIONS "ac_cv_func_pipe2=no")
     endif()
 
     if("readline" IN_LIST FEATURES)
@@ -276,7 +279,15 @@ else()
 
     # The version of the build Python must match the version of the cross compiled host Python.
     # https://docs.python.org/3/using/configure.html#cross-compiling-options
-    if(VCPKG_CROSSCOMPILING)
+    if(VCPKG_CROSSCOMPILING AND VCPKG_TARGET_IS_OSX AND CMAKE_HOST_APPLE)
+        # macOS arm64 <-> x86_64: CPython's configure rejects "--host=x86_64-apple-darwin --build=aarch64-apple-darwin"
+        # ("cross build not supported"), but the target binaries run natively (Rosetta), so configure as a native build.
+        if(VCPKG_TARGET_ARCHITECTURE STREQUAL "x64")
+            set(VCPKG_MAKE_BUILD_TRIPLET "--host=x86_64-apple-darwin" "--build=x86_64-apple-darwin")
+        elseif(VCPKG_TARGET_ARCHITECTURE STREQUAL "arm64")
+            set(VCPKG_MAKE_BUILD_TRIPLET "--host=aarch64-apple-darwin" "--build=aarch64-apple-darwin")
+        endif()
+    elseif(VCPKG_CROSSCOMPILING)
         set(_python_for_build "${CURRENT_HOST_INSTALLED_DIR}/tools/python3/python${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}")
         list(APPEND OPTIONS "--with-build-python=${_python_for_build}")
     endif()

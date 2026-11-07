@@ -44,6 +44,28 @@ function(vcpkg_from_pythonhosted)
   set("${arg_OUT_SOURCE_PATH}" "${SOURCE_PATH}" PARENT_SCOPE)
 endfunction()
 
+# Returns the qmake to pass to sipbuild (--qmake). Normally that is the installed target qmake. When cross-compiling
+# the target qmake is not installed (Qt's qmake/moc/... come from the host tree), so generate a wrapper which runs the
+# host qmake against the target Qt, the same way vcpkg_qmake_configure does (-qtconf).
+function(vcpkg_python_get_qmake out_var)
+  set(target_qmake "${CURRENT_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_TARGET_EXECUTABLE_SUFFIX}")
+  if(EXISTS "${target_qmake}")
+    set("${out_var}" "${target_qmake}" PARENT_SCOPE)
+    return()
+  endif()
+  set(host_qmake "${CURRENT_HOST_INSTALLED_DIR}/tools/Qt6/bin/qmake${VCPKG_HOST_EXECUTABLE_SUFFIX}")
+  set(qt_conf_template "${CURRENT_INSTALLED_DIR}/tools/Qt6/qt_release.conf")
+  if(NOT VCPKG_CROSSCOMPILING OR NOT EXISTS "${host_qmake}" OR NOT EXISTS "${qt_conf_template}" OR CMAKE_HOST_WIN32)
+    message(FATAL_ERROR "No usable qmake: '${target_qmake}' is missing and a host qmake wrapper cannot be generated.")
+  endif()
+  set(wrapper_dir "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-qmake")
+  file(MAKE_DIRECTORY "${wrapper_dir}")
+  configure_file("${qt_conf_template}" "${wrapper_dir}/qt.conf")
+  file(WRITE "${wrapper_dir}/qmake" "#!/bin/sh\nexec \"${host_qmake}\" -qtconf \"${wrapper_dir}/qt.conf\" \"$@\"\n")
+  file(CHMOD "${wrapper_dir}/qmake" PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+  set("${out_var}" "${wrapper_dir}/qmake" PARENT_SCOPE)
+endfunction()
+
 function(vcpkg_python_build_wheel)
   cmake_parse_arguments(
     PARSE_ARGV 0
