@@ -133,10 +133,9 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-bottleneck
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numexpr
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-calamine
-          # underlying adbc dependency from main vcpkg repo is failing
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-driver-manager
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-postgresql
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-sqlite
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-driver-manager
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-postgresql
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-sqlite
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-gast \
             py-beniget \
             py-pythran
