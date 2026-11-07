@@ -2,7 +2,7 @@
   "default": {
     "arrow": {
       "baseline": "26.0.0",
-      "port-version": 0
+      "port-version": 1
     },
     "gdal": {
       "baseline": "3.13.3",
@@ -10,7 +10,7 @@
     },
     "py-adbc-driver-manager": {
       "baseline": "1.13.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-adbc-postgresql": {
       "baseline": "1.13.0",
@@ -26,7 +26,7 @@
     },
     "py-affine": {
       "baseline": "3.0.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-annotated-types": {
       "baseline": "0.8.0",
@@ -86,7 +86,7 @@
     },
     "py-contourpy": {
       "baseline": "1.4.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-cppy": {
       "baseline": "1.2.1",
@@ -118,7 +118,7 @@
     },
     "py-fiona": {
       "baseline": "1.10.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-flask": {
       "baseline": "3.1.3",
@@ -130,7 +130,7 @@
     },
     "py-fonttools": {
       "baseline": "4.68.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-gast": {
       "baseline": "0.7.0",
@@ -190,11 +190,11 @@
     },
     "py-jsonschema": {
       "baseline": "4.26.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-jsonschema-specifications": {
       "baseline": "2025.9.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-kerberos-proxy-auth": {
       "baseline": "0.0.2",
@@ -222,7 +222,7 @@
     },
     "py-matplotlib": {
       "baseline": "3.11.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-maturin": {
       "baseline": "1.16.0",
@@ -230,7 +230,7 @@
     },
     "py-meson": {
       "baseline": "0.22.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-mypy-extensions": {
       "baseline": "1.1.0",
@@ -330,7 +330,7 @@
     },
     "py-pyogrio": {
       "baseline": "0.13.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyparsing": {
       "baseline": "3.3.3",
@@ -338,7 +338,7 @@
     },
     "py-pyproj": {
       "baseline": "3.8.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyproject-hooks": {
       "baseline": "1.0.0",
@@ -370,7 +370,7 @@
     },
     "py-pysfcgal": {
       "baseline": "2.3.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-pyspnego": {
       "baseline": "0.12.4",
@@ -394,11 +394,11 @@
     },
     "py-rasterio": {
       "baseline": "1.5.2",
-      "port-version": 0
+      "port-version": 1
     },
     "py-referencing": {
       "baseline": "0.37.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-requests": {
       "baseline": "2.34.2",
@@ -422,7 +422,7 @@
     },
     "py-scikit-learn": {
       "baseline": "1.9.1",
-      "port-version": 0
+      "port-version": 1
     },
     "py-scipy": {
       "baseline": "1.18.1",
@@ -446,7 +446,7 @@
     },
     "py-shapely": {
       "baseline": "2.2.0",
-      "port-version": 0
+      "port-version": 1
     },
     "py-sip": {
       "baseline": "6.17.2",
@@ -526,7 +526,7 @@
     },
     "vcpkg-python-scripts": {
       "baseline": "2025-05-20",
-      "port-version": 3
+      "port-version": 5
     },
     "vcpkg-tool-mercurial": {
       "baseline": "2023-06-27",

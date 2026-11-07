@@ -1,6 +1,7 @@
 {
   "name": "py-matplotlib",
   "version": "3.11.2",
+  "port-version": 1,
   "description": "Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.",
   "homepage": "https://matplotlib.org/stable/",
   "license": null,
@@ -11,6 +12,7 @@
       "platform": "!windows"
     },
     "py-certifi",
+    "py-contourpy",
     "py-cycler",
     "py-dateutil",
     "py-fonttools",
@@ -20,6 +22,7 @@
       "host": true
     },
     "py-numpy",
+    "py-packaging",
     "py-pillow",
     "py-pyparsing",
     {

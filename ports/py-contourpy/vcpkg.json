@@ -1,16 +1,32 @@
 {
   "name": "py-contourpy",
   "version": "1.4.0",
+  "port-version": 1,
   "description": "Python library for calculating contours in 2D quadrilateral grids",
   "homepage": "https://contourpy.readthedocs.io/",
   "dependencies": [
     {
-      "name": "py-setuptools",
+      "name": "py-meson",
       "host": true
+    },
+    "py-numpy",
+    {
+      "name": "pybind11",
+      "features": [
+        "scripts"
+      ]
     },
     "python3",
     {
+      "name": "python3",
+      "host": true
+    },
+    {
       "name": "vcpkg-python-scripts",
+      "host": true
+    },
+    {
+      "name": "vcpkg-tool-meson",
       "host": true
     }
   ]
