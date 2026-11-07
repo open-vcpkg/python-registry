@@ -19,10 +19,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: macos-15-intel
-            triplet: x64-osx-dynamic
-          - os: macos-15
+          - os: macos-26
             triplet: arm64-osx-dynamic
+          # x64 packages built on the arm64 runner; the x64 target tools run under Rosetta.
+          - os: macos-26
+            triplet: x64-osx-dynamic
+            host-triplet: arm64-osx-dynamic
     env:
       buildtrees: /Users/runner/vcpkg-build
       FC: gfortran
@@ -44,6 +46,10 @@ jobs:
         run: |
           brew install autoconf automake autoconf-archive libtool mono swig bison flex llvm@20
           echo "HOMEBREW_PREFIX=$(brew --prefix)" >> $GITHUB_ENV
+
+      - name: 🍷 Install Rosetta
+        if: matrix.host-triplet
+        run: sudo softwareupdate --install-rosetta --agree-to-license
 
       - name: Symlink gfortran
         run: |
@@ -69,7 +75,10 @@ jobs:
           fetch-depth: 1
 
       - name: ✂️ Build release only
-        run: echo 'set(VCPKG_BUILD_TYPE release)' >> vcpkg/triplets/community/${{ matrix.triplet }}.cmake
+        run: |
+          for triplet in ${{ matrix.triplet }} ${{ matrix.host-triplet }}; do
+            echo 'set(VCPKG_BUILD_TYPE release)' >> vcpkg/triplets/community/$triplet.cmake
+          done
 
       - name: 🐾 Bootstrap vcpkg
         shell: bash
@@ -87,7 +96,7 @@ jobs:
 
       - name: 🌋 Build
         run: |
-          VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }} --recurse"
+          VCPKG_OPTIONS="--overlay-ports="${{ github.workspace }}/ports" --host-triplet=${{ matrix.host-triplet || matrix.triplet }} --triplet=${{ matrix.triplet }}  --x-buildtrees-root=${{ env.buildtrees }} --recurse"
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-duckdb
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-pip
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-importlib-resources
@@ -124,10 +133,9 @@ jobs:
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-bottleneck
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-numexpr
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-calamine
-          # underlying adbc dependency from main vcpkg repo is failing
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-driver-manager
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-postgresql
-          # ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-sqlite
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-driver-manager
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-postgresql
+          ./vcpkg/vcpkg install $VCPKG_OPTIONS py-adbc-sqlite
           ./vcpkg/vcpkg install $VCPKG_OPTIONS py-gast \
             py-beniget \
             py-pythran
@@ -144,4 +152,5 @@ jobs:
         if: failure()
         with:
           name: logs-${{ matrix.triplet }}
-          path: ${{ env.buildtrees }}/**/*.log
+          # vcpkg writes the logs next to each port's src; recursing into src hits py-meson's symlink cycle (ELOOP)
+          path: ${{ env.buildtrees }}/*/*.log

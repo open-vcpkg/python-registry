@@ -2,6 +2,9 @@ set(ENV{SETUPTOOLS_SCM_PRETEND_VERSION} "${VERSION}")
 set(ENV{PDM_BUILD_SCM_VERSION} "${VERSION}")
 
 set(z_vcpkg_python_func_python "${PYTHON3}")
+# Ports may build with the host interpreter, but the import test loads target binaries, so it needs the target one.
+# PYTHON3 can't be used: when another port config acquired a Python first, find_program keeps that one.
+find_program(z_vcpkg_python_test_python NAMES python${PYTHON3_VERSION_MAJOR}.${PYTHON3_VERSION_MINOR} python${PYTHON3_VERSION_MAJOR} python PATHS "${CURRENT_INSTALLED_DIR}/tools/python3" NO_DEFAULT_PATH)
 
 function(vcpkg_from_pythonhosted)
   cmake_parse_arguments(
@@ -104,12 +107,21 @@ function(vcpkg_python_build_wheel)
     endforeach()
   endif()
 
+  vcpkg_backup_env_variables(VARS PYTHONPATH)
+  if(VCPKG_CROSSCOMPILING AND NOT CURRENT_HOST_INSTALLED_DIR STREQUAL CURRENT_INSTALLED_DIR
+     AND z_vcpkg_python_func_python STREQUAL z_vcpkg_python_test_python)
+    # The host site-packages on PYTHONPATH come before the interpreter's own. Build tools with compiled modules
+    # (e.g. Cython) only load in the target interpreter from the target tree, so ports list them as target dependencies too.
+    vcpkg_host_path_list(PREPEND ENV{PYTHONPATH} "${CURRENT_INSTALLED_DIR}/${PYTHON3_SITE}")
+  endif()
+
   vcpkg_execute_required_process(
     COMMAND ${env} "${z_vcpkg_python_func_python}" -m gpep517 build-wheel --wheel-dir "${z_vcpkg_wheeldir}" --output-fd 1 ${build_ops}
     LOGNAME "python-build-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${arg_SOURCE_PATH}"
   )
 
+  vcpkg_restore_env_variables(VARS PYTHONPATH)
   foreach(env_var IN LISTS env_backup_vars)
     if(DEFINED env_bak_${env_var})
       set(ENV{${env_var}} "${env_bak_${env_var}}")
@@ -204,7 +216,11 @@ function(vcpkg_python_test_import)
   set(PACKAGE_SITE_PACKAGES_DIR "${CURRENT_PACKAGES_DIR}/${RELATIVE_SITE_PACKAGES_DIR}")
   configure_file("${CURRENT_HOST_INSTALLED_DIR}/share/vcpkg-python-scripts/import_test.py.in" "${CURRENT_BUILDTREES_DIR}/import_test.py" @ONLY)
 
-  vcpkg_backup_env_variables(VARS DYLD_LIBRARY_PATH LD_LIBRARY_PATH)
+  vcpkg_backup_env_variables(VARS DYLD_LIBRARY_PATH LD_LIBRARY_PATH PYTHONPATH)
+  if(VCPKG_CROSSCOMPILING AND NOT CURRENT_HOST_INSTALLED_DIR STREQUAL CURRENT_INSTALLED_DIR)
+    # Host packages (e.g. an arm64 numpy, see vcpkg-port-config.cmake) must not shadow the target ones
+    unset(ENV{PYTHONPATH})
+  endif()
   # The module under test may depend on shared libraries from other ports,
   # which live in CURRENT_INSTALLED_DIR/lib, not just this port's own
   # CURRENT_PACKAGES_DIR/lib. Add both so the dynamic loader can resolve
@@ -215,11 +231,11 @@ function(vcpkg_python_test_import)
     set(ENV{LD_LIBRARY_PATH} "${CURRENT_PACKAGES_DIR}/lib:${CURRENT_INSTALLED_DIR}/lib")
   endif()
 
-  vcpkg_execute_required_process(COMMAND "${z_vcpkg_python_func_python}" "${CURRENT_BUILDTREES_DIR}/import_test.py"
+  vcpkg_execute_required_process(COMMAND "${z_vcpkg_python_test_python}" "${CURRENT_BUILDTREES_DIR}/import_test.py"
     LOGNAME "python-test-import-${TARGET_TRIPLET}"
     WORKING_DIRECTORY "${CURRENT_BUILDTREES_DIR}"
   )
-  vcpkg_restore_env_variables(VARS DYLD_LIBRARY_PATH LD_LIBRARY_PATH)
+  vcpkg_restore_env_variables(VARS DYLD_LIBRARY_PATH LD_LIBRARY_PATH PYTHONPATH)
   message(STATUS "Finished testing package!")
 endfunction()
 

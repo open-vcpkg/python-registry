@@ -20,8 +20,14 @@ endif()
 
 cmake_path(GET SCRIPT_MESON PARENT_PATH MESON_DIR)
 
+if(VCPKG_TARGET_IS_OSX)
+    # The macosx backend is Objective-C; a cross build only has the compilers listed in the cross file
+    set(languages LANGUAGES C CXX OBJC)
+endif()
+
 vcpkg_mesonpy_prepare_build_options(
     OUTPUT meson_opts
+    ${languages}
     ${opts}
 )
 

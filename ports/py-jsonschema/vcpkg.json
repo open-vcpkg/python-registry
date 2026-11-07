@@ -1,25 +1,18 @@
 {
   "name": "py-jsonschema",
   "version": "4.26.0",
+  "port-version": 1,
   "description": "An implementation of JSON Schema validation for Python.",
   "homepage": "https://python-jsonschema.readthedocs.io/",
   "dependencies": [
-    {
-      "name": "py-attrs",
-      "host": true
-    },
+    "py-attrs",
     {
       "name": "py-hatchling",
       "host": true
     },
-    {
-      "name": "py-jsonschema-specifications",
-      "host": true
-    },
-    {
-      "name": "py-referencing",
-      "host": true
-    },
+    "py-jsonschema-specifications",
+    "py-referencing",
+    "py-rpds",
     {
       "name": "py-setuptools",
       "host": true
