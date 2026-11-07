@@ -5,7 +5,6 @@ on:
     branches:
       - main
       - create-pull-request/**
-      - cross-**
   pull_request:
 
 concurrency:
@@ -14,19 +13,19 @@ concurrency:
 
 jobs:
   build:
-    # A push to a cross-* branch only runs build-cross; its pull request still runs this job.
-    if: github.event_name != 'push' || !startsWith(github.ref_name, 'cross-')
     permissions:
       contents: read
       packages: write
     strategy:
       matrix:
         include:
-          - os: macos-15-intel
-            triplet: x64-osx-dynamic
-          - os: macos-15
+          - os: macos-26
             triplet: arm64-osx-dynamic
-    env: &build-env
+          # x64 packages built on the arm64 runner; the x64 target tools run under Rosetta.
+          - os: macos-26
+            triplet: x64-osx-dynamic
+            host-triplet: arm64-osx-dynamic
+    env:
       buildtrees: /Users/runner/vcpkg-build
       FC: gfortran
       GCC_VERSION: 15
@@ -36,7 +35,7 @@ jobs:
     name: build (macos)
     runs-on: ${{ matrix.os }}
 
-    steps: &build-steps
+    steps:
       - name: 🐣 Checkout
         uses: actions/checkout@v7
 
@@ -153,26 +152,6 @@ jobs:
         uses: actions/upload-artifact@v7
         if: failure()
         with:
-          name: logs-${{ matrix.triplet }}${{ matrix.host-triplet && '-cross' || '' }}
+          name: logs-${{ matrix.triplet }}
           # vcpkg writes the logs next to each port's src; recursing into src hits py-meson's symlink cycle (ELOOP)
           path: ${{ env.buildtrees }}/*/*.log
-
-  build-cross:
-    # x64 packages built on an arm64 runner; the x64 target tools run under Rosetta.
-    # Only on pushes to cross-* branches, to keep build time and binary cache usage down.
-    if: github.event_name == 'push' && startsWith(github.ref_name, 'cross-')
-    permissions:
-      contents: read
-      packages: write
-    strategy:
-      matrix:
-        include:
-          - os: macos-26
-            triplet: x64-osx-dynamic
-            host-triplet: arm64-osx-dynamic
-    env: *build-env
-
-    name: build (macos cross)
-    runs-on: ${{ matrix.os }}
-
-    steps: *build-steps
