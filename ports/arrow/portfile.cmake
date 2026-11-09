@@ -17,7 +17,6 @@ vcpkg_extract_source_archive(
         0005-cmake-msvcruntime.patch
         0007-use-vcpkg-mimalloc.patch
         0008-pyarrow-relative-rpath.patch
-        0009-msvc-no-sse2-define.patch
 )
 
 # Check cpp/cmake_modules/DefineOptions.cmake for option dependencies -
