@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    mypy-extensions
     VERSION         ${VERSION}
-    SHA512          b946d48ff85a2c384049058a3bd822942a91114f818374764722962869e47ae0b86efee4b58b3c14a974e6711a8c1651ca6a1c0a448fa4ea03f9190c63b3dae0
+    SHA512          f050995fc3de1da951a21d9a1abad70a2d42bdfa4577ce76dcb24e2b272a8708dc0e23aa1311e500e72660a787206774ad8ada4f62aa571867ba8b945fe8bfed
     FILENAME        mypy_extensions
 )
 
