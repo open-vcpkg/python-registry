@@ -2,7 +2,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO pydantic/typing-inspection
     REF v${VERSION}
-    SHA512 b39a7fbffc52f599809f0276c9cba01e54a2a30f9ef1fa94961faf586277917e0b756fac1a32e5ab9a8405c0c6a7a1629e7d85ad20e43e7f84581d77954c0efb
+    SHA512 299bc412e34aabdd3cc4146e4cef9408e604e6f93391f113b4bebcf37c7c232a0272ce29b1ec18c7f577676aab19ca6270456fa5a9ae4d6bd2284e5bb3757677
     HEAD_REF main
 )
 

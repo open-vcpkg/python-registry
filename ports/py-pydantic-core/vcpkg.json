@@ -1,6 +1,6 @@
 {
   "name": "py-pydantic-core",
-  "version": "2.50.2",
+  "version": "2.50.4",
   "description": "Data validation using Python type hints.",
   "homepage": "https://github.com/pydantic/pydantic",
   "dependencies": [
