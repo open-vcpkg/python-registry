@@ -34,6 +34,9 @@ jobs:
 
       - name: 🐩 Install CMake and Ninja
         uses: lukka/get-cmake@latest
+        with:
+          # CMake 4.5 breaks boost-locale 1.92 (microsoft/vcpkg#55069)
+          cmakeVersion: "~4.4.0"
 
       - name: 🧽 Developer Command Prompt for Microsoft Visual C++
         uses: ilammy/msvc-dev-cmd@v1
