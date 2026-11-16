@@ -1,6 +1,6 @@
 {
   "name": "py-bottleneck",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Fast NumPy array functions written in C.",
   "homepage": "https://github.com/pydata/bottleneck",
   "dependencies": [
