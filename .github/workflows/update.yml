@@ -53,6 +53,13 @@ jobs:
           git add versions
           git commit --am --no-edit || echo "No version changes to commit"
 
+      - name: Generate update bot token
+        id: bot-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.UPDATE_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.UPDATE_BOT_PRIVATE_KEY }}
+
       - name: Create or Update Pull Request
         run: |
 
@@ -89,7 +96,7 @@ jobs:
               --head auto-update
           fi
         env:
-          GH_TOKEN: ${{ secrets.PAT }}
+          GH_TOKEN: ${{ steps.bot-token.outputs.token }}
 
       - name: Enable Auto-Merge
         continue-on-error: true
@@ -99,4 +106,4 @@ jobs:
             gh pr merge --merge --auto "$PR_NUMBER"
           fi
         env:
-          GH_TOKEN: ${{ secrets.PAT }}
+          GH_TOKEN: ${{ steps.bot-token.outputs.token }}
