@@ -4,7 +4,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    soupsieve
     VERSION         ${VERSION}
-    SHA512          c73a83e83adaf409a25b47eaa0a727e922b9fafc787e313cef961f49081ac5c13fbd77ee1653e2947e74cbc9f4f2a7047b73a413c297ab2e1348d8a443df20f3
+    SHA512          94df14a715bc901a5925f64378ccfa1f505a072fa15f3e86a91cdc1e8aa8bfad608a3a7117020ff04fb669d214dd0210cb2857316e2a1c1b8b0d868032fc8817
 )
 
 vcpkg_python_build_and_install_wheel(SOURCE_PATH "${SOURCE_PATH}")
