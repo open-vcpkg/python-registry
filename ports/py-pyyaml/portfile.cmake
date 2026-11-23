@@ -2,7 +2,7 @@ vcpkg_from_pythonhosted(
     OUT_SOURCE_PATH SOURCE_PATH
     PACKAGE_NAME    PyYAML
     VERSION         ${VERSION}
-    SHA512          0df64497f51bd07ee01d7676afc4cf3eff228e1a73d4b1c7f034c7cba762f3451aa686e594af54e8e359173262cc0e47c110491bc7e29c3dd712a66c4316b2cf
+    SHA512          4fc671c8e952cc5d5bb08c3123bdeca035417c30a3bdb5b8f945d6bd48029d50ddaa48d8ff1d87307a461fc706ffe0cccc048093b65c9398fd2f5ffefee9b708
     FILENAME        pyyaml
 )
 
